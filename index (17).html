@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMIÈRE Beauty — Pack 14 Modules</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/*══════════════════════════════════════════════
+  DESIGN TOKENS — DARK & LIGHT
+══════════════════════════════════════════════*/
+:root{
+  --g:#C9A96E;--gl:#e8d5b0;--gd:#a07840;
+  --r:'Cormorant Garamond',serif;--f:'Josefin Sans',sans-serif;
+  --rad:var(--r4);  /* 21px ≈ φ² */
+
+  /* ── NOMBRE D'OR φ = 1.618 ── */
+  --phi:1.618;
+
+  /* Espacements φ-scale (base 8px) */
+  --s1:3px;      /* 8 / φ² */
+  --s2:5px;      /* 8 / φ  */
+  --s3:8px;      /* base   */
+  --s4:13px;     /* 8 × φ  */
+  --s5:21px;     /* 8 × φ² */
+  --s6:34px;     /* 8 × φ³ */
+  --s7:55px;     /* 8 × φ⁴ */
+  --s8:89px;     /* 8 × φ⁵ */
+  --s9:144px;    /* 8 × φ⁶ */
+
+  /* Typographie φ-scale (base 10px) */
+  --t0:6px;      /* 10 / φ  — labels micro */
+  --t1:10px;     /* base    — body small   */
+  --t2:16px;     /* 10 × φ  — body         */
+  --t3:26px;     /* 10 × φ² — subtitle     */
+  --t4:42px;     /* 10 × φ³ — title        */
+  --t5:68px;     /* 10 × φ⁴ — display      */
+  --t6:110px;    /* 10 × φ⁵ — hero huge    */
+
+  /* Border radius φ-scale */
+  --r1:5px;      /* 8 / φ   — small  */
+  --r2:8px;      /* base    — medium */
+  --r3:13px;     /* 8 × φ   — large  */
+  --r4:21px;     /* 8 × φ²  — xl     */
+  --r5:34px;     /* 8 × φ³  — 2xl    */
+
+  /* Timings animations φ-scale (base 200ms) */
+  --dur1:200ms;  /* base      — micro  */
+  --dur2:324ms;  /* 200 × φ   — fast   */
+  --dur3:524ms;  /* 200 × φ²  — medium */
+  --dur4:847ms;  /* 200 × φ³  — slow   */
+  --dur5:1371ms; /* 200 × φ⁴  — hero   */
+
+  /* Aspect ratios φ */
+  --ratio-phi:calc(1 / 1.618);      /* portrait φ  */
+  --ratio-phi2:calc(1 / 2.618);     /* portrait φ² */
+  --ratio-land:calc(1.618 / 1);     /* paysage φ   */
+  --trans:background .35s ease,color .35s ease,border-color .35s ease;
+}
+
+/* DARK (défaut) */
+[data-theme="dark"]{
+  --bg:#0f0e0c;--bg2:#181614;--bg3:#1e1b17;
+  --txt:#ffffff;--txt2:rgba(255,255,255,.7);--txt3:rgba(255,255,255,.38);
+  --bdr:rgba(201,169,110,.12);--bdr2:rgba(255,255,255,.08);
+  --nav-bg:rgba(15,14,12,.92);--nav-bdr:rgba(201,169,110,.12);
+  --bx-bg:#181614;--bx-head-bdr:rgba(255,255,255,.06);
+  --btn-gh-bg:rgba(255,255,255,.07);--btn-gh-bdr:rgba(255,255,255,.18);
+  --prog-bg:rgba(255,255,255,.08);
+  --sw-ring:rgba(255,255,255,.12);
+  --mq-fade-l:rgba(15,14,12,1);
+}
+
+/* LIGHT */
+[data-theme="light"]{
+  --bg:#ffffff;--bg2:#f7f4ef;--bg3:#ede9e0;
+  --txt:#0f0e0c;--txt2:rgba(15,14,12,.7);--txt3:rgba(15,14,12,.38);
+  --bdr:rgba(201,169,110,.25);--bdr2:rgba(15,14,12,.1);
+  --nav-bg:rgba(255,255,255,.94);--nav-bdr:rgba(201,169,110,.2);
+  --bx-bg:#f7f4ef;--bx-head-bdr:rgba(15,14,12,.08);
+  --btn-gh-bg:rgba(15,14,12,.05);--btn-gh-bdr:rgba(15,14,12,.18);
+  --prog-bg:rgba(15,14,12,.08);
+  --sw-ring:rgba(15,14,12,.15);
+  --mq-fade-l:rgba(255,255,255,1);
+}
+
+/*── RESET ───────────────────────────────────*/
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:var(--bg);color:var(--txt);overflow-x:hidden;transition:var(--trans)}
+
+/*── LAYOUT ──────────────────────────────────*/
+.mod{display:none;animation:fi var(--dur2) ease}
+.mod.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.page{padding-top:80px;min-height:100vh;background:var(--bg);transition:var(--trans)}
+.sw{max-width:880px;margin:0 auto;padding:48px 28px}
+
+/*── TYPOGRAPHY ──────────────────────────────*/
+.ey{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--g);font-weight:700;margin-bottom:var(--s4)}
+.st{font-family:var(--r);font-size:clamp(26px,3.5vw,46px);font-weight:300;line-height:1.1;margin-bottom:var(--s4);color:var(--txt)}
+.st em{color:var(--g);font-style:italic}
+.ss{font-size:13px;font-weight:300;color:var(--txt2);max-width:52ch;line-height:1.8;margin-bottom:var(--s6)}
+.gold{color:var(--g)}.italic{font-style:italic}
+
+/*── SHARED COMPONENTS ───────────────────────*/
+.bx{background:var(--bx-bg);border:1px solid var(--bdr);border-radius:var(--r4);overflow:hidden;transition:var(--trans)}
+.bx-head{padding:var(--s5) 24px 16px;text-align:center;border-bottom:1px solid var(--bx-head-bdr)}
+.bx-head h3{font-family:var(--r);font-size:22px;font-weight:300;color:var(--txt)}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;background:var(--g);color:#111;font-family:var(--f);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:var(--s4) 26px;border-radius:999px;border:none;cursor:pointer;text-decoration:none;transition:all var(--dur2)}
+.btn-g:hover{background:var(--txt);color:var(--bg);transform:translateY(-2px)}
+.btn-gh{display:inline-flex;align-items:center;justify-content:center;background:var(--btn-gh-bg);color:var(--txt);font-family:var(--f);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:var(--s4) 26px;border-radius:999px;border:1px solid var(--btn-gh-bdr);cursor:pointer;text-decoration:none;backdrop-filter:blur(8px);transition:all var(--dur2)}
+.btn-gh:hover{background:var(--bdr);transform:translateY(-2px)}
+.prog-bar{height:2px;background:var(--prog-bg);border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--g),var(--gl));transition:width linear}
+
+/*── MODULE THEME TOGGLE ─────────────────────*/
+.mod-theme-toggle{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid var(--bdr);background:var(--bx-bg);cursor:pointer;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);transition:all var(--dur1);margin-bottom:var(--s5)}
+.mod-theme-toggle:hover{border-color:var(--g);color:var(--g)}
+.mod-theme-toggle .tog-icon{font-size:13px}
+
+/*── TOP BAR ─────────────────────────────────*/
+#tb{position:fixed;top:0;left:0;right:0;z-index:2000;height:32px;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(201,169,110,.95);backdrop-filter:blur(10px);font-size:11px;font-weight:600;letter-spacing:.1em;color:#111;text-transform:uppercase;white-space:nowrap;overflow:hidden;padding:0 40px}
+#tb .tb-txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#tbc{position:absolute;right:10px;background:none;border:none;cursor:pointer;font-size:14px;color:rgba(0,0,0,.5)}
+@media(max-width:480px){#tb{font-size:9.5px;letter-spacing:.05em}}
+
+/*── NAV ─────────────────────────────────────*/
+nav{position:fixed;top:32px;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--nav-bdr);transition:var(--trans),top .3s}
+nav.ntb{top:0}
+.n-logo{font-family:var(--r);font-size:20px;font-weight:600;letter-spacing:.24em;color:var(--g);text-transform:uppercase}
+.n-links{display:flex;gap:3px;list-style:none;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.n-links::-webkit-scrollbar{display:none}
+.n-links button{background:transparent;border:1px solid transparent;color:var(--txt3);font-family:var(--f);font-size:7.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:5px 8px;border-radius:999px;cursor:pointer;transition:all var(--dur1);white-space:nowrap;flex-shrink:0}
+.n-links button:hover,.n-links button.on{color:var(--g);border-color:rgba(201,169,110,.28);background:rgba(201,169,110,.07)}
+.n-right{display:flex;align-items:center;gap:var(--s3);flex-shrink:0}
+.n-badge{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,169,110,.5);border:1px solid rgba(201,169,110,.2);padding:4px 9px;border-radius:999px}
+
+/* THEME TOGGLE GLOBAL */
+#theme-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;border:1px solid var(--nav-bdr);background:transparent;cursor:pointer;font-family:var(--f);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);transition:all var(--dur1)}
+#theme-toggle:hover{border-color:var(--g);color:var(--g)}
+#theme-toggle .t-icon{font-size:14px;line-height:1}
+@media(max-width:680px){.n-badge{display:none}}
+
+/*── HERO BASE ───────────────────────────────*/
+.hero-full{position:relative;width:100%;min-height:100vh;overflow:hidden;background:#000;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0}
+.hero-bg-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity var(--dur5) ease}
+.hero-slide.on{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover;object-position:center center}
+.hero-bg video{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.hero-bg img.fb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.68) 60%,rgba(0,0,0,.96) 100%)}
+.hero-ov2{position:absolute;inset:0;z-index:2;background:radial-gradient(900px 500px at 20% 10%,rgba(201,169,110,.18),transparent 60%),linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.46) 45%,rgba(0,0,0,.84) 75%,rgba(0,0,0,.97) 100%);pointer-events:none}
+.hero-cnt{position:relative;z-index:3;width:100%;max-width:1100px;margin:0 auto;padding:0 40px clamp(140px,16vw,200px);display:flex;flex-direction:column;gap:var(--s5)}
+.hero-ky{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--g);font-weight:600}
+.hero-tt{font-family:var(--r);font-size:clamp(40px,5.5vw,82px);font-weight:300;line-height:1;text-shadow:0 20px 60px rgba(0,0,0,.5)}
+.hero-sb{font-size:13px;font-weight:300;opacity:.78;max-width:50ch;line-height:1.7}
+.hero-pills-w{position:absolute;bottom:26px;left:0;right:0;z-index:4;display:flex;justify-content:center}
+.hero-pills-bar{display:flex;gap:6px;padding:9px 13px;background:rgba(0,0,0,.38);backdrop-filter:blur(12px);border:1px solid rgba(201,169,110,.15);border-radius:999px;flex-wrap:wrap;justify-content:center}
+.hero-pill{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:7px 12px;border-radius:999px;border:1px solid transparent;background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--f);transition:all var(--dur1)}
+.hero-pill:hover{color:rgba(255,255,255,.88)}
+.hero-pill.on{color:var(--g);border-color:rgba(201,169,110,.42);background:rgba(201,169,110,.09)}
+.hero-prog{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,.06);z-index:5}
+.hero-pf{height:100%;width:0%;background:linear-gradient(90deg,var(--g),var(--gl))}
+.hero-pf.run{width:100%;transition:width 4.2s linear}
+
+/*── VIDÉO COMPACT ───────────────────────────*/
+#m2{padding-top:80px}
+.vc-box{position:relative;width:100%;aspect-ratio:calc(var(--phi) * 1);max-height:72vh;overflow:hidden;background:#000;border-radius:var(--r4)}
+.vc-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r4);transition:opacity var(--dur1)}
+.vc-ov{position:absolute;inset:0;z-index:2;background:radial-gradient(circle at center,rgba(0,0,0,0) 40%,rgba(0,0,0,.38) 100%),linear-gradient(to bottom,rgba(0,0,0,.5),transparent 50%);border-radius:var(--r4);display:flex;flex-direction:column;justify-content:space-between;padding:22px}
+.vc-btns{display:flex;gap:var(--s3);flex-wrap:wrap;justify-content:center}
+.vc-btn{padding:10px 18px;border-radius:999px;font-family:var(--f);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all var(--dur1)}
+.vc-btn.gld{background:linear-gradient(135deg,var(--gd),var(--gl),var(--g));color:#111}
+.vc-btn.gho{border:1px solid rgba(255,255,255,.7);color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(4px)}
+.vc-btn:hover{transform:translateY(-2px)}
+.vf-mute{position:absolute;bottom:16px;right:16px;z-index:4;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px}
+
+/*── VIDÉO FULL ──────────────────────────────*/
+.vf-badges{position:absolute;top:50%;right:clamp(16px,4vw,50px);transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;gap:10px}
+.vf-badge{background:rgba(0,0,0,.4);backdrop-filter:blur(12px);border:1px solid rgba(201,169,110,.22);border-radius:var(--r3);padding:10px 14px;min-width:120px;opacity:0;animation:bdi .8s ease forwards}
+.vf-badge:nth-child(1){animation-delay:.5s}.vf-badge:nth-child(2){animation-delay:.8s}.vf-badge:nth-child(3){animation-delay:1.1s}
+@keyframes bdi{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
+.vf-badge span:first-child{display:block;font-size:8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--g)}
+.vf-badge span:last-child{font-family:var(--r);font-size:17px;font-weight:300;color:#fff;line-height:1.2}
+@media(max-width:680px){.vf-badges{display:none}}
+
+/*── HERO PANEL ──────────────────────────────*/
+.hp-panel{position:absolute;left:0;right:0;bottom:16px;z-index:4}
+.hp-panel-box{width:min(1000px,92%);margin:0 auto;border-radius:var(--r4);border:1px solid rgba(201,169,110,.2);background:rgba(0,0,0,.3);backdrop-filter:blur(12px);padding:var(--s4) 14px}
+.hp-pill{appearance:none;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.78);font-family:var(--f);font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:var(--s3) 12px;border-radius:999px;cursor:pointer;transition:all .18s;white-space:nowrap}
+.hp-pill:hover{transform:translateY(-1px);border-color:rgba(201,169,110,.35)}
+.hp-pill.on{border-color:rgba(201,169,110,.7);color:var(--g);background:rgba(201,169,110,.08)}
+.hp-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(201,169,110,.16);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+
+/*── MARQUEE ─────────────────────────────────*/
+.mq-outer{overflow:hidden;padding:var(--s5) 0;position:relative}
+.mq-outer::before,.mq-outer::after{content:'';position:absolute;top:0;bottom:0;width:50px;z-index:2;pointer-events:none}
+.mq-outer::before{left:0;background:linear-gradient(to right,var(--mq-fade-l),transparent)}
+.mq-outer::after{right:0;background:linear-gradient(to left,var(--mq-fade-l),transparent)}
+.mq-track{display:flex;gap:var(--s4);width:max-content;animation:mqs 30s linear infinite}
+.mq-track:hover{animation-play-state:paused}
+@keyframes mqs{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.mq-card{flex:0 0 auto;width:110px;display:flex;flex-direction:column;align-items:center;text-decoration:none;cursor:pointer}
+.mq-img{width:110px;height:145px;border-radius:var(--r3);overflow:hidden;background:var(--bg3);border:1px solid var(--bdr2);transition:border-color .22s,transform .22s;position:relative}
+.mq-card:hover .mq-img{border-color:var(--g);transform:translateY(-4px)}
+.mq-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.mq-badge{position:absolute;top:7px;left:7px;background:var(--bg);color:var(--g);font-size:7px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:4px;border:1px solid rgba(201,169,110,.3)}
+.mq-name{margin-top:var(--s2);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3)}
+.mq-sub{font-size:8px;color:var(--g);margin-top:2px}
+
+/*── COMPARATEUR ─────────────────────────────*/
+.cp-slider{position:relative;width:100%;aspect-ratio:calc(var(--phi) * 1);cursor:ew-resize;user-select:none;background:#222}
+.cp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cp-overlay{position:absolute;inset:0;width:50%;overflow:hidden;border-right:2px solid var(--g)}
+.cp-overlay img{position:absolute;top:0;left:0;height:100%;object-fit:cover}
+.cp-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:var(--g);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:10;pointer-events:none;box-shadow:0 4px 18px rgba(0,0,0,.45)}
+.cp-handle svg{width:18px;height:18px;color:#111}
+.cp-lbl{position:absolute;bottom:12px;padding:4px 10px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);color:#fff;font-size:9px;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;z-index:5}
+.cp-lbl.l{left:12px}.cp-lbl.r{right:12px}
+.cp-shades{display:flex;gap:10px;padding:14px 22px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--bx-head-bdr)}
+.cp-dot{width:26px;height:26px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all var(--dur1)}
+.cp-dot:hover{transform:scale(1.1)}
+.cp-dot.on{border-color:var(--g);transform:scale(1.22);box-shadow:0 0 0 3px rgba(201,169,110,.18)}
+
+/*── QUIZ ─────────────────────────────────────*/
+.qz-wrap{max-width:540px;margin:0 auto}
+.qz-step{padding:var(--s6);display:none}.qz-step.on{display:block}
+.qz-q-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3);text-align:center;margin-bottom:var(--s5)}
+.qz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qz-opt{background:var(--btn-gh-bg);border:1px solid var(--bdr2);border-radius:var(--r3);padding:var(--s5) 12px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;transition:all var(--dur1)}
+.qz-opt:hover{border-color:var(--g);background:rgba(201,169,110,.07);transform:translateY(-2px)}
+.qz-sw{width:34px;height:34px;border-radius:50%;border:1px solid var(--bdr2)}
+.qz-res-img{width:100%;aspect-ratio:calc(var(--phi) / 1);border-radius:var(--r3);overflow:hidden;margin-bottom:var(--s5);border:1px solid var(--bdr)}
+.qz-res-img img{width:100%;height:100%;object-fit:cover}
+.qz-reset{display:block;margin-top:var(--s4);font-size:10px;color:var(--txt3);text-decoration:underline;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;background:none;border:none}
+
+/*── SÉLECTEUR ───────────────────────────────*/
+.sel-img{width:100%;aspect-ratio:calc(var(--phi) / 1);overflow:hidden}
+.sel-img img{width:100%;height:100%;object-fit:cover;display:block}
+.sel-body{padding:22px 24px}
+.sel-info{min-height:68px;margin-bottom:var(--s5)}
+.sel-name{font-size:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);margin-bottom:4px}
+.sel-desc{font-family:var(--r);font-size:16px;font-style:italic;color:var(--txt2);line-height:1.4}
+.sel-sws{display:flex;gap:10px;flex-wrap:wrap;padding:var(--s4);background:var(--btn-gh-bg);border:1px solid var(--bdr2);border-radius:var(--r3);margin-bottom:14px}
+.sw-dot{width:28px;height:28px;border-radius:50%;background:var(--c);border:none;cursor:pointer;box-shadow:inset 0 0 0 1px var(--sw-ring);transition:all var(--dur1)}
+.sw-dot:hover{transform:scale(1.08)}
+.sw-dot.on{transform:scale(1.2);box-shadow:inset 0 0 0 2px rgba(255,255,255,.9),0 0 0 4px rgba(201,169,110,.17)}
+.sel-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:44px;background:linear-gradient(180deg,var(--g),var(--gd));color:#111;border:none;cursor:pointer;font-family:var(--f);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border-radius:999px;transition:all var(--dur1)}
+.sel-btn:hover{transform:translateY(-1px);opacity:.9}
+
+/*── GUIDE ───────────────────────────────────*/
+.gd-layout{display:grid;grid-template-columns:1fr 210px}
+.gd-form{padding:var(--s6)}
+.gd-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:var(--s2);opacity:.8}
+.gd-input{width:100%;height:44px;border:1px solid var(--bdr);border-radius:11px;padding:0 13px;background:var(--btn-gh-bg);color:var(--txt);font-family:var(--f);font-size:14px;margin-bottom:var(--s4);outline:none;transition:border-color .2s}
+.gd-input:focus{border-color:var(--g)}
+.gd-row{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.gd-sz-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s4)}
+.gd-sz{background:var(--btn-gh-bg);border:1px solid var(--bdr2);border-radius:var(--r2);padding:6px 11px;font-family:var(--f);font-size:12px;font-weight:600;color:var(--txt3);cursor:pointer;transition:all var(--dur1)}
+.gd-sz:hover{background:rgba(201,169,110,.14);color:var(--g)}
+.gd-sz.on{background:linear-gradient(180deg,var(--g),var(--gd));color:#111;border-color:transparent}
+.gd-result{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--s6) 14px;background:linear-gradient(180deg,var(--g),#8a6030);position:relative;overflow:hidden}
+.gd-result::before{content:'';position:absolute;inset:-30%;background:radial-gradient(circle,rgba(255,220,140,.26),transparent 60%);filter:blur(18px)}
+.gd-result>*{position:relative;z-index:1}
+
+/*── SHOWCASE ────────────────────────────────*/
+.sc-grid{display:grid;grid-template-columns:1fr}
+@media(min-width:680px){.sc-grid{grid-template-columns:1fr 1fr}}
+.sc-img{width:100%;aspect-ratio:calc(1 / var(--phi));overflow:hidden}
+.sc-img img{width:100%;height:100%;object-fit:cover;display:block}
+.sc-body{padding:var(--s6);display:flex;flex-direction:column;align-items:flex-start}
+.sc-tag{display:inline-flex;align-items:center;min-height:28px;padding:4px 12px;margin-bottom:var(--s4);border:1px solid rgba(201,169,110,.3);border-radius:999px;background:rgba(201,169,110,.07);color:var(--g);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.sc-desc{font-size:14px;line-height:1.7;color:var(--txt2);margin-bottom:var(--s5);flex:1}
+.sc-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;background:linear-gradient(180deg,var(--g),var(--gd));color:#111;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all var(--dur2);margin-bottom:var(--s5)}
+.sc-cta:hover{transform:translateY(-1px);opacity:.9}
+.sc-tabs{display:flex;flex-wrap:wrap;gap:6px}
+.sc-tab{appearance:none;border:1px solid var(--bdr2);background:var(--btn-gh-bg);color:var(--txt3);border-radius:999px;min-height:32px;padding:0 12px;font-family:var(--f);font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:all var(--dur1)}
+.sc-tab:hover{border-color:rgba(201,169,110,.35);color:var(--g)}
+.sc-tab.on{background:var(--txt);border-color:var(--txt);color:var(--bg)}
+
+/*── DOCK ─────────────────────────────────────*/
+.dk-wrap{display:flex;flex-direction:column;align-items:center;gap:var(--r4);padding:var(--s7) 20px}
+.dk-bubs{display:flex;gap:var(--s4);padding:10px;background:var(--btn-gh-bg);border-radius:999px;border:1px solid var(--bdr)}
+.dk-bub{width:52px;height:52px;background:var(--bx-bg);border:1px solid rgba(201,169,110,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--dur2) cubic-bezier(.23,1,.32,1);font-size:20px}
+.dk-bub:hover{transform:translateY(-4px);border-color:var(--g)}
+.dk-bub.on{background:var(--g);transform:scale(1.15) translateY(-6px);box-shadow:0 10px 28px rgba(201,169,110,.35);border-color:#fff}
+.dk-card{width:100%;max-width:440px;background:var(--bx-bg);border:1px solid rgba(201,169,110,.35);border-radius:24px;padding:var(--s6) 22px;text-align:center;position:relative;opacity:0;transform:translateY(14px) rotateX(-8deg);transition:all var(--dur3) cubic-bezier(.23,1,.32,1);box-shadow:0 18px 48px rgba(0,0,0,.12)}
+.dk-card.on{opacity:1;transform:translateY(0) rotateX(0)}
+.dk-card::before{content:'';position:absolute;top:-7px;left:var(--ax,50%);transform:translateX(-50%) rotate(45deg);width:14px;height:14px;background:var(--bx-bg);border-left:1px solid rgba(201,169,110,.35);border-top:1px solid rgba(201,169,110,.35);transition:left .4s ease}
+
+/*── EMAIL ────────────────────────────────────*/
+.val-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s6)}
+.val-card{background:var(--bx-bg);border:1px solid var(--bdr);border-radius:var(--r4);padding:18px;transition:all var(--dur2)}
+.val-card:hover{border-color:var(--g);background:rgba(201,169,110,.05);transform:translateY(-3px)}
+.email-box{background:var(--bx-bg);border:1px solid var(--bdr);border-radius:var(--r4);padding:var(--s7) 32px;text-align:center;position:relative;overflow:hidden}
+.email-box::before{content:'';position:absolute;top:-40%;right:-15%;width:300px;height:300px;background:radial-gradient(circle,rgba(201,169,110,.1),transparent 70%);pointer-events:none}
+.email-box>*{position:relative;z-index:1}
+.email-form{display:flex;max-width:400px;margin:0 auto;gap:var(--s3)}
+.email-inp{flex:1;padding:var(--s4) 16px;border-radius:999px;border:1px solid var(--bdr);background:var(--btn-gh-bg);color:var(--txt);font-family:var(--f);font-size:13px;outline:none}
+.email-inp:focus{border-color:rgba(201,169,110,.42)}
+
+/*── SPLIT PREVIEW ───────────────────────────*/
+#m-split{padding-top:80px}
+.split-intro{max-width:880px;margin:0 auto;padding:48px 28px 24px}
+.split-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+.split-half{padding:var(--s7) 32px;display:flex;flex-direction:column;gap:var(--s5)}
+.split-half.dark-side{background:#0f0e0c;color:#fff}
+.split-half.light-side{background:#ffffff;color:#0f0e0c}
+.split-label{font-size:9px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;padding:5px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;margin-bottom:var(--s3)}
+.split-label.dk{background:rgba(201,169,110,.15);color:var(--g);border:1px solid rgba(201,169,110,.3)}
+.split-label.lt{background:rgba(201,169,110,.12);color:#a07840;border:1px solid rgba(201,169,110,.35)}
+.split-title{font-family:var(--r);font-size:clamp(22px,3vw,36px);font-weight:300;line-height:1.1}
+.split-title em{color:var(--g);font-style:italic}
+.split-sub{font-size:13px;line-height:1.7;opacity:.65;max-width:38ch}
+.split-bx{border-radius:var(--r3);padding:18px;border:1px solid}
+.split-half.dark-side .split-bx{background:#181614;border-color:rgba(201,169,110,.12)}
+.split-half.light-side .split-bx{background:#f7f4ef;border-color:rgba(201,169,110,.25)}
+.split-sws{display:flex;gap:var(--s3);margin-bottom:var(--s4)}
+.split-sw{width:24px;height:24px;border-radius:50%;border:2px solid transparent;cursor:pointer}
+.split-sw.on{border-color:var(--g);box-shadow:0 0 0 3px rgba(201,169,110,.2)}
+.split-cta{display:inline-flex;align-items:center;justify-content:center;padding:11px 22px;border-radius:999px;background:var(--g);color:#111;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--f)}
+.split-ghost-dk{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.07);color:#fff;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);font-family:var(--f)}
+.split-ghost-lt{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;border-radius:999px;background:rgba(0,0,0,.05);color:#0f0e0c;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(0,0,0,.15);font-family:var(--f)}
+.split-divider{position:relative}
+.split-divider::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:2px;background:linear-gradient(180deg,transparent,var(--g),transparent)}
+.split-divider-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--g);color:#111;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;white-space:nowrap;z-index:2}
+@media(max-width:680px){.split-wrap{grid-template-columns:1fr}.split-half{padding:var(--s6) 20px}}
+
+footer{text-align:center;padding:var(--s6);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3);border-top:1px solid var(--bdr)}
+
+/*── RESPONSIVE ──────────────────────────────*/
+@media(max-width:680px){
+  nav{padding:9px 12px}
+  .n-links button{font-size:7px;padding:4px 7px}
+  .hero-cnt{padding-left:18px;padding-right:18px;padding-bottom:clamp(120px,14vw,150px)}
+  .sw{padding:30px 16px}
+  .gd-layout{grid-template-columns:1fr}.gd-result{min-height:140px}
+  .email-form{flex-direction:column}
+  .val-grid{grid-template-columns:1fr}
+  .dk-bubs{gap:var(--s3)}.dk-bub{width:44px;height:44px;font-size:17px}
+  #theme-toggle span.t-label{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .vf-badge,.dk-card{animation:none;opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="tb">
+  <span style="width:5px;height:5px;border-radius:50%;background:rgba(0,0,0,.3);display:inline-block;flex-shrink:0"></span>
+  <span class="tb-txt">Livraison offerte dès 60€ · Code : <strong>BEAUTY10</strong></span>
+  <span style="width:5px;height:5px;border-radius:50%;background:rgba(0,0,0,.3);display:inline-block;flex-shrink:0"></span>
+  <button id="tbc" onclick="closeTb()">✕</button>
+</div>
+
+<!-- NAV -->
+<nav id="mn">
+  <div class="n-logo">Lumière</div>
+  <ul class="n-links">
+    <li><button onclick="show('m1')" class="on">01 Hero</button></li>
+    <li><button onclick="show('m2')">02 Vidéo compact</button></li>
+    <li><button onclick="show('m3')">03 Vidéo full</button></li>
+    <li><button onclick="show('m4')">04 Panel</button></li>
+    <li><button onclick="show('m5')">05 Marquee</button></li>
+    <li><button onclick="show('m6')">06 Comparateur</button></li>
+    <li><button onclick="show('m7')">07 Quiz</button></li>
+    <li><button onclick="show('m8')">08 Sélecteur</button></li>
+    <li><button onclick="show('m9')">09 Guide</button></li>
+    <li><button onclick="show('m10')">10 Showcase</button></li>
+    <li><button onclick="show('m11')">11 Dock</button></li>
+    <li><button onclick="show('m12')">12 Email</button></li>
+    <li><button onclick="show('m-split')" style="color:#C9A96E;border-color:rgba(201,169,110,.3)">✦ Dark / Light</button></li>
+  </ul>
+  <div class="n-right">
+    <button id="theme-toggle" onclick="toggleGlobalTheme()">
+      <span class="t-icon">🌙</span>
+      <span class="t-label">Dark</span>
+    </button>
+    <div class="n-badge">14 modules</div>
+  </div>
+</nav>
+
+<!-- 01 HERO SLIDESHOW -->
+<div id="m1" class="mod active">
+  <div class="hero-full">
+    <div class="hero-bg-slides" id="hs-wrap"></div>
+    <div class="hero-ov"></div>
+    <div class="hero-cnt">
+      <div class="hero-ky">Beauty · 5 teintes signature</div>
+      <h1 class="hero-tt" style="color:#fff">La beauté,<br><em class="gold italic">à votre image.</em></h1>
+      <p class="hero-sb" style="color:rgba(255,255,255,.78)">Cinq teintes pour révéler votre éclat naturel · Formule longue durée</p>
+      <button class="btn-g" style="align-self:flex-start">Explorer la collection →</button>
+    </div>
+    <div class="hero-pills-w"><div class="hero-pills-bar" id="hs-pills"></div></div>
+    <div class="hero-prog"><div class="hero-pf" id="hs-fill"></div></div>
+  </div>
+</div>
+
+<!-- 02 VIDÉO COMPACT -->
+<div id="m2" class="mod">
+  <div class="page">
+    <div class="sw">
+      <button class="mod-theme-toggle" onclick="toggleModTheme(this,'m2-inner')">
+        <span class="tog-icon">◑</span> Changer le thème de ce module
+      </button>
+      <div class="ey">Module 03 — Vidéo compact</div>
+      <h2 class="st">Vidéo <em>intégrée</em></h2>
+      <p class="ss">Rotation automatique de 2 vidéos · S'intègre dans n'importe quelle page.</p>
+      <div id="m2-inner">
+        <div class="vc-box">
+          <video id="vcv" autoplay muted playsinline preload="auto"
+            poster="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&crop=faces&w=900&q=80"></video>
+          <div class="vc-ov">
+            <div>
+              <div class="hero-ky">Beauty · Collection</div>
+              <div style="font-family:var(--r);font-size:clamp(22px,3.5vw,34px);letter-spacing:.1em;text-transform:uppercase;color:#fff;font-weight:600;margin-top:var(--s1)">Lumière</div>
+              <div style="font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.88;margin-top:var(--s2)">5 teintes signature</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:var(--s3)">
+              <div class="vc-btns">
+                <a class="vc-btn gld" href="#">Explorer la collection</a>
+                <a class="vc-btn gho" href="#">Trouver ma teinte</a>
+              </div>
+              <div style="font-size:7px;color:#fff;opacity:.85;letter-spacing:.06em;text-align:center">5 teintes · Livraison offerte dès 60€</div>
+            </div>
+          </div>
+          <button class="vf-mute" id="vc-mute">🔇</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 VIDÉO FULL -->
+<div id="m3" class="mod">
+  <div class="hero-full">
+    <div class="hero-bg">
+      <video id="vfv" autoplay muted playsinline preload="auto"
+        poster="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&crop=faces&w=1400&q=80"></video>
+      <img class="fb" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&crop=faces&w=1400&q=80" alt="">
+    </div>
+    <div class="hero-ov2"></div>
+    <div class="vf-badges">
+      <div class="vf-badge"><span>Résultat</span><span>Naturel</span></div>
+      <div class="vf-badge"><span>Formule</span><span>Premium</span></div>
+      <div class="vf-badge"><span>Teintes</span><span>5 nuances</span></div>
+    </div>
+    <div class="hero-cnt" style="padding-bottom:clamp(80px,10vw,130px)">
+      <div class="hero-ky">Beauty · Collection Signature</div>
+      <h1 class="hero-tt" style="color:#fff">La beauté,<br><em class="gold italic">à l'état pur.</em></h1>
+      <p class="hero-sb" style="color:rgba(255,255,255,.78)">Une formule pour révéler votre éclat naturel · Cinq teintes signature.</p>
+      <div style="display:flex;gap:var(--s4);flex-wrap:wrap;margin-top:var(--s1)">
+        <a href="#" class="btn-g">Explorer →</a>
+        <a href="#" class="btn-gh">Trouver ma teinte</a>
+      </div>
+    </div>
+    <button class="vf-mute" id="vf-mute">🔇</button>
+    <div class="hero-prog"><div class="prog-fill" id="vf-fill"></div></div>
+  </div>
+</div>
+
+<!-- 04 HERO PANEL -->
+<div id="m4" class="mod">
+  <div class="hero-full">
+    <div class="hero-bg-slides" id="hp-wrap"></div>
+    <div style="position:absolute;inset:0;z-index:2;background:radial-gradient(900px 520px at 18% 18%,rgba(201,169,110,.2),transparent 60%),linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.55) 65%,rgba(0,0,0,.9) 100%)"></div>
+    <div class="hero-cnt" style="padding-bottom:clamp(220px,22vw,280px);z-index:3">
+      <div class="hero-ky">Beauty · 5 teintes</div>
+      <h1 class="hero-tt" style="color:#fff">Votre teinte,<br><em class="gold italic">enfin.</em></h1>
+      <p class="hero-sb" style="color:rgba(255,255,255,.78)">Cinq nuances pour révéler votre éclat naturel</p>
+      <div style="display:flex;align-items:center;gap:var(--s4)">
+        <a href="#" style="width:50px;height:50px;border-radius:var(--r3);border:1px solid rgba(201,169,110,.4);background:rgba(0,0,0,.22);backdrop-filter:blur(8px);display:grid;place-items:center;text-decoration:none;color:var(--g);font-size:20px">→</a>
+        <span id="hp-cta-lbl" style="font-size:13px;opacity:.9;color:#fff">Découvrir Perle</span>
+      </div>
+    </div>
+    <div class="hp-panel"><div style="width:min(1000px,92%);margin:0 auto;">
+      <div class="hp-panel-box">
+        <div style="display:flex;align-items:center;gap:var(--s3);justify-content:center;padding:6px 4px 10px;flex-wrap:wrap" id="hp-pills"></div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:4px">
+          <div>
+            <h3 style="font-family:var(--r);font-size:24px;line-height:1.05;margin:0;color:#fff">Teinte <span class="gold" id="hp-name">Perle</span></h3>
+            <p id="hp-desc" style="font-size:13px;color:rgba(255,255,255,.85);margin:5px 0 0;max-width:50ch">Légèreté nacrée — un voile de lumière sur la peau.</p>
+          </div>
+          <div style="display:flex;gap:var(--s3);flex-wrap:wrap;align-items:center">
+            <span class="hp-chip">Résultat naturel</span>
+            <span class="hp-chip">Longue durée</span>
+          </div>
+        </div>
+        <div class="prog-bar" style="margin-top:var(--s4)"><div class="prog-fill" id="hp-fill"></div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 05 MARQUEE -->
+<div id="m5" class="mod">
+  <div class="page">
+    <div class="sw">
+      <button class="mod-theme-toggle" onclick="toggleModTheme(this,'m5-inner')">
+        <span class="tog-icon">◑</span> Changer le thème de ce module
+      </button>
+      <div class="ey">Module 06 — Défilé produits</div>
+      <h2 class="st">La collection <em>complète</em></h2>
+      <p class="ss">Défilé animé — s'arrête au survol, cliquable, fluide sur mobile.</p>
+    </div>
+    <div id="m5-inner">
+      <div class="mq-outer"><div class="mq-track" id="mq-track"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 COMPARATEUR -->
+<div id="m6" class="mod">
+  <div class="page">
+    <div class="sw">
+      <button class="mod-theme-toggle" onclick="toggleModTheme(this,'m6-inner')">
+        <span class="tog-icon">◑</span> Changer le thème de ce module
+      </button>
+      <div class="ey">Module 07 — Comparateur avant / après</div>
+      <h2 class="st">Voyez la <em>transformation</em></h2>
+      <p class="ss">Glissez le curseur pour révéler le résultat.</p>
+      <div id="m6-inner">
+        <div class="bx">
+          <div class="bx-head"><h3>Résultat <em class="gold italic">avant / après</em></h3></div>
+          <div class="cp-slider" id="cp-sl">
+            <img class="cp-img" id="cp-after" src="https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,h_800,w_900/v1774114633/apres_xmzmbe.png" alt="">
+            <div class="cp-overlay" id="cp-ov"><img id="cp-before" src="https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,h_800,w_900/v1774114634/avant_w5kilh.png" alt=""></div>
+            <div class="cp-handle" id="cp-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6"></polyline><polyline points="21 18 15 12 21 6"></polyline></svg></div>
+            <span class="cp-lbl l">Avant</span><span class="cp-lbl r">Après</span>
+          </div>
+          <div class="cp-shades" id="cp-sh"><span style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-right:4px">Teinte :</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 QUIZ -->
+<div id="m7" class="mod">
+  <div class="page">
+    <div class="sw">
+      <button class="mod-theme-toggle" onclick="toggleModTheme(this,'m7-inner')">
+        <span class="tog-icon">◑</span> Changer le thème de ce module
+      </button>
+      <div class="ey">Module 08 — Quiz teinte</div>
+      <h2 class="st">Votre teinte <em>sur mesure</em></h2>
+      <p class="ss">Deux questions pour recommander la teinte idéale.</p>
+      <div id="m7-inner">
+        <div class="bx qz-wrap">
+          <div class="bx-head">
+            <div style="font-family:var(--r);font-size:22px;font-weight:300;color:var(--txt)">Quel est votre <em class="gold italic">éclat naturel ?</em></div>
+            <div class="prog-bar" style="width:70px;margin:12px auto 0"><div class="prog-fill" id="qz-fill" style="width:33%"></div></div>
+          </div>
+          <div class="qz-step on" id="qs1">
+            <div class="qz-q-label">Étape 1 · Votre teinte de peau</div>
+            <div class="qz-opts">
+              <div class="qz-opt" onclick="qStep('light')"><div class="qz-sw" style="background:#F5E6D3"></div><span style="font-size:11px;font-weight:600;color:var(--txt)">Lumineuse</span></div>
+              <div class="qz-opt" onclick="qStep('medium')"><div class="qz-sw" style="background:#C8895A"></div><span style="font-size:11px;font-weight:600;color:var(--txt)">Dorée</span></div>
+              <div class="qz-opt" onclick="qStep('deep')" style="grid-column:1/-1"><div class="qz-sw" style="background:#3D2010"></div><span style="font-size:11px;font-weight:600;color:var(--txt)">Profonde</span></div>
+            </div>
+          </div>
+          <div class="qz-step" id="qs2">
+            <div class="qz-q-label">Étape 2 · Votre effet recherché</div>
+            <div class="qz-opts" id="qs2-opts"></div>
+            <button class="qz-reset" onclick="qReset()">← Recommencer</button>
+          </div>
+          <div class="qz-step" id="qs3">
+            <div style="text-align:center;padding:0 0 8px">
+              <div class="qz-res-img"><img id="q-img" src="" alt=""></div>
+              <div style="font-family:var(--r);font-size:36px;color:var(--g);margin-bottom:var(--s3)" id="q-name"></div>
+              <div style="font-size:14px;color:var(--txt2);margin-bottom:var(--s5);line-height:1.6;font-family:var(--r);font-style:italic" id="q-desc"></div>
+              <button class="btn-g">Découvrir cette teinte</button>
+              <button class="qz-reset" onclick="qReset()">Recommencer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 SÉLECTEUR -->
+<div id="m8" class="mod">
+  <div class="page">
+    <div class="sw">
+      <button class="mod-theme-toggle" onclick="toggleModTheme(this,'m8-inner')">
+        <span class="tog-icon">◑</span> Changer le thème de ce module
+      </button>
+      <div class="ey">Module 09 — Sélecteur de teinte</div>
+      <h2 class="st">Choisissez votre <em>signature</em></h2>
+      <p class="ss">Chaque teinte se révèle en image et description au clic.</p>
+      <div id="m8-inner">
+        <div class="bx">
+          <div class="sel-img"><img id="sel-img" src="" alt=""></div>
+          <div class="sel-body">
+            <div class="sel-info"><div class="sel-name" id="sel-name"></div><div class="sel-desc" id="sel-desc"></div></div>
+            <div class="sel-sws" id="sel-sws"></div>
+            <button class="sel-btn" id="sel-btn"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 09 GUIDE -->
+<div id="m9" class="mod">
+  <div class="page">
+    <div class="sw">
+      <button class="mod-theme-toggle" onclick="toggleModTheme(this,'m9-inner')">
+        <span class="tog-icon">◑</span> Changer le thème de ce module
+      </button>
+      <div class="ey">Module 10 — Guide de sélection</div>
+      <h2 class="st">Votre <em>format idéal</em></h2>
+      <p class="ss">Entrez vos mesures — recommandation personnalisée instantanée.</p>
+      <div id="m9-inner">
+        <div class="bx gd-layout">
+          <div class="gd-form">
+            <div class="gd-row">
+              <div><label class="gd-label">Taille (cm)</label><input class="gd-input" id="gH" type="number" placeholder="168" oninput="gCalc()"></div>
+              <div><label class="gd-label">Poids (kg)</label><input class="gd-input" id="gW" type="number" placeholder="62" oninput="gCalc()"></div>
+            </div>
+            <label class="gd-label">Mensurations — optionnel</label>
+            <input class="gd-input" id="gP" type="number" placeholder="96 cm" oninput="gCalc()">
+            <div class="gd-label" style="margin-top:var(--s1);margin-bottom:var(--s3)">Repères rapides</div>
+            <div class="gd-sz-btns">
+              <button class="gd-sz" onclick="gShow('XS','45–55 kg · 150–165 cm')">XS</button>
+              <button class="gd-sz" onclick="gShow('S','50–60 kg · 155–170 cm')">S</button>
+              <button class="gd-sz" onclick="gShow('M','55–70 kg · 160–175 cm')">M</button>
+              <button class="gd-sz" onclick="gShow('L','65–80 kg · 165–180 cm')">L</button>
+              <button class="gd-sz" onclick="gShow('XL','75–95 kg · 170–188 cm')">XL</button>
+            </div>
+            <div style="font-size:11px;color:var(--txt3);margin-top:var(--s3);line-height:1.5" id="gInfo"></div>
+          </div>
+          <div class="gd-result">
+            <div style="font-family:var(--r);font-size:64px;line-height:1;color:#fff" id="gNum">—</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.8);margin-top:var(--s2)" id="gType">Lumière Beauty</div>
+            <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.88);margin-top:var(--s2)" id="gConf">Entrez vos mesures</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10 SHOWCASE -->
+<div id="m10" class="mod">
+  <div class="page">
+    <div class="sw">
+      <button class="mod-theme-toggle" onclick="toggleModTheme(this,'m10-inner')">
+        <span class="tog-icon">◑</span> Changer le thème de ce module
+      </button>
+      <div class="ey">Module 11 — Showcase produit</div>
+      <h2 class="st">Explorez chaque <em>teinte</em></h2>
+      <p class="ss">Navigation par onglets — image, description et CTA mis à jour en temps réel.</p>
+      <div id="m10-inner">
+        <div class="bx">
+          <div class="bx-head">
+            <span style="font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--g);font-weight:700;display:block;margin-bottom:var(--s2)">Lumière Beauty</span>
+            <div style="font-family:var(--r);font-size:32px;font-weight:600;color:var(--txt)">Collection Signature</div>
+          </div>
+          <div class="sc-grid">
+            <div class="sc-img"><img id="sc-img" src="" alt=""></div>
+            <div class="sc-body">
+              <div class="sc-tag" id="sc-tag"></div>
+              <p class="sc-desc" id="sc-desc"></p>
+              <button class="sc-cta" id="sc-cta"></button>
+              <div class="sc-tabs" id="sc-tabs"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11 DOCK -->
+<div id="m11" class="mod">
+  <div class="page">
+    <div class="sw">
+      <button class="mod-theme-toggle" onclick="toggleModTheme(this,'m11-inner')">
+        <span class="tog-icon">◑</span> Changer le thème de ce module
+      </button>
+      <div class="ey">Module 12 — Dock interactif</div>
+      <h2 class="st">L'<em>ADN</em> de la marque</h2>
+      <p class="ss">Cliquez sur chaque icône pour révéler les valeurs.</p>
+      <div id="m11-inner">
+        <div class="bx" style="padding:0">
+          <div class="dk-wrap">
+            <div class="dk-bubs" id="dk-bubs"></div>
+            <div class="dk-card on" id="dk-card">
+              <div style="font-family:var(--r);font-size:26px;font-weight:300;color:var(--txt);margin-bottom:var(--s4)" id="dk-title"></div>
+              <div style="font-size:13px;font-weight:300;color:var(--txt2);line-height:1.7;font-style:italic;font-family:var(--r)" id="dk-desc"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 12 EMAIL -->
+<div id="m12" class="mod">
+  <div class="page">
+    <div class="sw">
+      <button class="mod-theme-toggle" onclick="toggleModTheme(this,'m12-inner')">
+        <span class="tog-icon">◑</span> Changer le thème de ce module
+      </button>
+      <div class="ey">Module 13 — Valeurs & Email</div>
+      <h2 class="st">Notre <em>philosophie</em></h2>
+      <p class="ss">Bloc valeurs animé + bannière de capture email.</p>
+      <div id="m12-inner">
+        <div class="val-grid" id="val-grid"></div>
+        <div class="email-box">
+          <h2 style="font-family:var(--r);font-size:clamp(22px,3.5vw,38px);font-weight:300;margin-bottom:var(--s4);color:var(--txt)">Découvrez votre <em class="gold italic">teinte signature</em></h2>
+          <p style="font-size:13px;color:var(--txt2);max-width:38ch;margin:0 auto 24px;line-height:1.7">Inscrivez-vous pour recevoir des conseils beauté exclusifs et −10% sur votre première commande.</p>
+          <div class="email-form">
+            <input class="email-inp" type="email" placeholder="Votre adresse email">
+            <button style="padding:var(--s4) 22px;border-radius:999px;background:var(--g);color:#111;font-family:var(--f);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap" onclick="this.textContent='✓ Merci !'">S'inscrire</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ✦ DARK / LIGHT SPLIT -->
+<div id="m-split" class="mod">
+  <div id="m-split-inner" style="background:var(--bg);transition:var(--trans)">
+    <div class="split-intro">
+      <div class="ey">Dark & Light — Deux univers, un seul kit</div>
+      <h2 class="st">Adaptez le style à <em>votre marque</em></h2>
+      <p class="ss">Le kit s'adapte en une variable CSS. Chaque module peut avoir son propre thème — ou tout switcher d'un coup avec le toggle en haut à droite.</p>
+    </div>
+    <div class="split-divider" style="position:relative">
+      <div class="split-divider-badge">Dark · Light</div>
+      <div class="split-wrap">
+        <!-- DARK SIDE -->
+        <div class="split-half dark-side">
+          <div>
+            <div class="split-label dk">🌙 Thème sombre</div>
+            <div class="split-title">La beauté,<br><em>à votre image.</em></div>
+            <div class="split-sub" style="color:rgba(255,255,255,.6);margin-top:var(--s4)">Fond noir profond · Accents dorés · Typographie lumineuse · Ambiance luxe et sophistication.</div>
+          </div>
+          <div class="split-bx">
+            <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--g);font-weight:700;margin-bottom:var(--s4)">Teinte sélectionnée</div>
+            <div class="split-sws">
+              <div class="split-sw on" style="background:#F2E0CC;border-color:#C9A96E"></div>
+              <div class="split-sw" style="background:#D4A574"></div>
+              <div class="split-sw" style="background:#B8865A"></div>
+              <div class="split-sw" style="background:#7B4F35"></div>
+              <div class="split-sw" style="background:#1E1410"></div>
+            </div>
+            <div style="font-size:17px;font-weight:700;letter-spacing:.06em;color:#fff;margin-bottom:4px">Perle</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.6);font-family:'Cormorant Garamond',serif;font-style:italic;margin-bottom:var(--s5)">Légèreté nacrée — un voile de lumière.</div>
+            <div style="display:flex;gap:var(--s3)">
+              <button class="split-cta">Découvrir</button>
+              <button class="split-ghost-dk">En savoir plus</button>
+            </div>
+          </div>
+          <div style="padding:14px;border:1px solid rgba(201,169,110,.15);border-radius:var(--r3);background:rgba(201,169,110,.06)">
+            <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--g);font-weight:700;margin-bottom:var(--s2)">Idéal pour</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6">Marques luxe · Cosmétiques premium · Univers nuit · Parfums · Skincare haut de gamme</div>
+          </div>
+        </div>
+        <!-- LIGHT SIDE -->
+        <div class="split-half light-side">
+          <div>
+            <div class="split-label lt">☀️ Thème clair</div>
+            <div class="split-title" style="color:#0f0e0c">La beauté,<br><em>à votre image.</em></div>
+            <div class="split-sub" style="color:rgba(15,14,12,.6);margin-top:var(--s4)">Fond blanc pur · Accents dorés · Typographie élégante · Ambiance fraîcheur et légèreté.</div>
+          </div>
+          <div class="split-bx" style="background:#f7f4ef;border-color:rgba(201,169,110,.25)">
+            <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#a07840;font-weight:700;margin-bottom:var(--s4)">Teinte sélectionnée</div>
+            <div class="split-sws">
+              <div class="split-sw on" style="background:#F2E0CC;border-color:#C9A96E"></div>
+              <div class="split-sw" style="background:#D4A574"></div>
+              <div class="split-sw" style="background:#B8865A"></div>
+              <div class="split-sw" style="background:#7B4F35"></div>
+              <div class="split-sw" style="background:#1E1410"></div>
+            </div>
+            <div style="font-size:17px;font-weight:700;letter-spacing:.06em;color:#0f0e0c;margin-bottom:4px">Perle</div>
+            <div style="font-size:13px;color:rgba(15,14,12,.6);font-family:'Cormorant Garamond',serif;font-style:italic;margin-bottom:var(--s5)">Légèreté nacrée — un voile de lumière.</div>
+            <div style="display:flex;gap:var(--s3)">
+              <button class="split-cta">Découvrir</button>
+              <button class="split-ghost-lt">En savoir plus</button>
+            </div>
+          </div>
+          <div style="padding:14px;border:1px solid rgba(201,169,110,.3);border-radius:var(--r3);background:rgba(201,169,110,.08)">
+            <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#a07840;font-weight:700;margin-bottom:var(--s2)">Idéal pour</div>
+            <div style="font-size:13px;color:rgba(15,14,12,.65);line-height:1.6">Marques naturelles · BB cream · Soins du jour · Univers clean beauty · Maternité</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- DÉMO TOGGLE EN LIVE -->
+    <div style="max-width:880px;margin:0 auto;padding:48px 28px">
+      <div class="ey">Testez le switch en direct</div>
+      <h2 class="st">Un seul clic, <em>tout change</em></h2>
+      <p class="ss">Utilisez le bouton 🌙 / ☀️ en haut à droite pour switcher tout le kit. Ou le bouton ◑ sur chaque module pour changer son thème indépendamment.</p>
+      <div style="display:flex;gap:var(--s4);flex-wrap:wrap">
+        <button class="btn-g" onclick="setTheme('dark')">🌙 Passer en Dark</button>
+        <button class="btn-gh" onclick="setTheme('light')">☀️ Passer en Light</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Lumière Beauty · Pack 14 modules · Dark & Light · Personnalisable pour toute marque de beauté</footer>
+
+<script>
+/*══════════════════════════════════
+  DATA
+══════════════════════════════════*/
+const SHADES=[
+  {name:'Perle', sub:'Nacré',  desc:"Légèreté nacrée — un voile de lumière sur la peau.",        color:'#F2E0CC',badge:null, img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&crop=faces&w=900&q=80'},
+  {name:'Ambre', sub:'Doré',   desc:"Chaleur dorée — l'éclat du soleil capturé en flacon.",      color:'#D4A574',badge:null, img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&crop=faces&w=900&q=80'},
+  {name:'Santal',sub:'Boisé',  desc:"Douceur boisée — une seconde peau naturellement parfaite.", color:'#B8865A',badge:null, img:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&crop=faces&w=900&q=80'},
+  {name:'Cacao', sub:'Velouté',desc:"Profondeur veloutée — un rendu riche et sophistiqué.",      color:'#7B4F35',badge:'Best',img:'https://images.unsplash.com/photo-1523264939339-c89f9dadde2e?auto=format&fit=crop&crop=faces&w=900&q=80'},
+  {name:'Onyx',  sub:'Intense',desc:"Intensité absolue — l'élégance à son état le plus pur.",    color:'#1E1410',badge:null, img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&crop=faces&w=900&q=80'},
+];
+const VIDEO_SRCS=['https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4','https://res.cloudinary.com/dy6joecsh/video/upload/v1773880555/3762912-hd_1280_720_50fps_bybc6z.mp4'];
+const COMP_PAIRS=[
+  {c:'#F2E0CC',b:'https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,w_900,h_800,y_-30/v1774138867/glowup-before-16-9-1774138358562_pqfflk.png',a:'https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,w_900,h_800,y_-30/v1774138866/glowup-after-16-9-1774138391717_oygixc.png'},
+  {c:'#D4A574',b:'https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,w_900,h_800,y_-30/v1774138866/glowup-before-16-9-1774138387325_snr18x.png',a:'https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,w_900,h_800,y_-30/v1774138867/glowup-after-16-9-1774138361538_xhj0k5.png'},
+  {c:'#B8865A',b:'https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,w_900,h_800,y_-30/v1774138866/glowup-before-16-9-1774138388453_ttedfq.png',a:'https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,w_900,h_800,y_-30/v1774138866/glowup-after-16-9-1774138360049_zlp1kl.png'},
+  {c:'#7B4F35',b:'https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,w_900,h_800,y_-30/v1774138865/glowup-before-16-9-1774138386313_qtgn83.png',a:'https://res.cloudinary.com/dy6joecsh/image/upload/c_fill,g_face,w_900,h_800,y_-30/v1774138865/glowup-before-16-9-1774138386313_qtgn83.png'},
+];
+const QUIZ_MAP={light:[{c:'#F5E8D5',label:'Éclat nacré',shade:0},{c:'#E0C49A',label:'Soleil doré',shade:1}],medium:[{c:'#C8956A',label:'Velours chaud',shade:2},{c:'#96613A',label:'Profondeur',shade:3}],deep:[{c:'#6B3D22',label:'Intensité',shade:3},{c:'#1E1410',label:'Absolu',shade:4}]};
+const DOCK_DATA=[{icon:'✦',title:'Notre savoir-faire',desc:'Une formulation pensée avec précision pour révéler la beauté naturelle de chaque peau.'},{icon:'◈',title:'5 teintes signature',desc:'De Perle à Onyx — une gamme complète pour sublimer tout le spectre des beautés.'},{icon:'⬡',title:'Formule premium',desc:'Chaque teinte calibrée pour se fondre parfaitement, sans sous-ton indésirable.'},{icon:'◎',title:'Notre promesse',desc:"Votre peau, magnifiée. Un résultat naturel et élégant. Sans jamais compromettre votre style."}];
+const VALUES=[{ey:'Savoir-faire',title:"L'atelier",desc:'Formulé avec précision pour révéler la beauté naturelle de chaque peau.'},{ey:'Formulation',title:'La science',desc:'Chaque teinte calibrée pour se fondre parfaitement, quel que soit votre type de peau.'},{ey:'Gamme',title:'5 signatures',desc:'De Perle à Onyx — cinq nuances pour sublimer tout le spectre des beautés.'},{ey:'Promesse',title:"L'essence",desc:'Votre peau, magnifiée. Un résultat naturel, élégant et durable.'}];
+const SIZES=[{l:'XS',w:[45,55],h:[150,165]},{l:'S',w:[50,60],h:[155,170]},{l:'M',w:[55,70],h:[160,175]},{l:'L',w:[65,80],h:[165,180]},{l:'XL',w:[75,95],h:[170,188]}];
+const $=id=>document.getElementById(id);
+
+/*══════════════════════════════════
+  THEME SYSTEM
+══════════════════════════════════*/
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  const btn=$('theme-toggle');
+  btn.querySelector('.t-icon').textContent=t==='dark'?'🌙':'☀️';
+  btn.querySelector('.t-label').textContent=t==='dark'?'Dark':'Light';
+}
+function toggleGlobalTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  setTheme(cur==='dark'?'light':'dark');
+}
+function toggleModTheme(btn,innerId){
+  const inner=$(innerId);
+  const cur=inner.getAttribute('data-theme')||document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  inner.setAttribute('data-theme',next);
+  btn.querySelector('.tog-icon').textContent=next==='dark'?'🌙':'☀️';
+}
+
+/*══════════════════════════════════
+  NAV & TOPBAR
+══════════════════════════════════*/
+function closeTb(){$('tb').style.display='none';$('mn').classList.add('ntb');}
+function show(id){
+  document.querySelectorAll('.mod').forEach(m=>m.classList.remove('active'));
+  $(id).classList.add('active');
+  document.querySelectorAll('.n-links button').forEach(b=>b.classList.toggle('on',b.getAttribute('onclick').includes(id)));
+  window.scrollTo(0,0);
+  if(id==='m6'){setTimeout(()=>{var sl=$("cp-sl");var bf=$("cp-before");if(sl&&bf)bf.style.width=sl.offsetWidth+"px";},100);}
+}
+
+/*══════════════════════════════════
+  HERO SLIDES (réutilisable)
+══════════════════════════════════*/
+function makeHeroSlides(wrapId,pillsId,fillId,shades,dur,onSwitch){
+  dur=dur||4200;
+  const wrap=$(wrapId),pillsEl=$(pillsId),fill=$(fillId);
+  shades.forEach((s,i)=>{
+    const d=document.createElement('div');d.className='hero-slide'+(i===0?' on':'');
+    d.innerHTML=`<img src="${s.img}" alt="${s.name}" loading="${i===0?'eager':'lazy'}">`;wrap.appendChild(d);
+    const p=document.createElement('button');p.className='hero-pill'+(i===0?' on':'');p.textContent=s.name;
+    p.onclick=()=>{clearInterval(t);go(i);start();};pillsEl.appendChild(p);
+  });
+  const sl=wrap.querySelectorAll('.hero-slide'),pl=pillsEl.querySelectorAll('button');
+  let i=0,t;
+  function go(x){sl[i].classList.remove('on');pl[i].classList.remove('on');i=x;sl[i].classList.add('on');pl[i].classList.add('on');fill.classList.remove('run');void fill.offsetWidth;fill.style.transition=`width ${dur}ms linear`;fill.classList.add('run');if(onSwitch)onSwitch(shades[i],i);}
+  function start(){fill.style.transition=`width ${dur}ms linear`;fill.classList.add('run');t=setInterval(()=>go((i+1)%sl.length),dur);}
+  start();
+}
+
+/* INIT HERO SLIDESHOW */
+makeHeroSlides('hs-wrap','hs-pills','hs-fill',SHADES);
+
+/* INIT HERO PANEL */
+makeHeroSlides('hp-wrap','hp-pills','hp-fill',SHADES,5000,(s)=>{
+  $('hp-name').textContent=s.name;$('hp-desc').textContent=s.desc;$('hp-cta-lbl').textContent='Découvrir '+s.name;
+});
+document.querySelectorAll('#hp-pills button').forEach(b=>{b.className='hp-pill'+(b.classList.contains('on')?' on':'');});
+
+/* VIDÉO COMPACT */
+(function(){
+  const v=$('vcv'),m=$('vc-mute');if(!v)return;
+  let vi=0;v.src=VIDEO_SRCS[0];v.load();v.play().catch(()=>{});
+  v.addEventListener('ended',()=>{vi=(vi+1)%VIDEO_SRCS.length;v.style.opacity='.3';setTimeout(()=>{v.src=VIDEO_SRCS[vi];v.load();v.play();v.style.opacity='1';},200);});
+  m.onclick=()=>{v.muted=!v.muted;m.textContent=v.muted?'🔇':'🔊';};
+})();
+
+/* VIDÉO FULL */
+(function(){
+  const v=$('vfv'),m=$('vf-mute'),f=$('vf-fill');if(!v)return;
+  let vi=0;v.src=VIDEO_SRCS[0];v.load();v.play().catch(()=>{});
+  v.addEventListener('ended',()=>{vi=(vi+1)%VIDEO_SRCS.length;v.style.opacity='.3';setTimeout(()=>{v.src=VIDEO_SRCS[vi];v.load();v.play();v.style.opacity='1';},200);});
+  m.onclick=()=>{v.muted=!v.muted;m.textContent=v.muted?'🔇':'🔊';};
+  v.addEventListener('timeupdate',()=>{if(v.duration)f.style.width=(v.currentTime/v.duration*100)+'%';});
+})();
+
+/* MARQUEE */
+(function(){
+  const EXTRA=[{name:'Rosée',sub:'Frais',badge:'New',img:'https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&crop=faces&w=320&h=427&q=70'},{name:'Miel',sub:'Lumineux',badge:null,img:'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&crop=faces&w=320&h=427&q=70'}];
+  const all=[...SHADES,...EXTRA];
+  $('mq-track').innerHTML=[...all,...all].map(p=>`<a class="mq-card" href="#"><div class="mq-img">${p.badge?`<div class="mq-badge">${p.badge}</div>`:''}<img src="${p.img}" alt="${p.name}" loading="lazy"></div><div class="mq-name">${p.name}</div><div class="mq-sub">${p.sub}</div></a>`).join('');
+})();
+
+/* COMPARATEUR */
+(function(){
+  const sl=$('cp-sl'),ov=$('cp-ov'),hd=$('cp-hd'),bf=$('cp-before'),af=$('cp-after');
+  let drag=false;
+  function syncW(){if(sl&&bf){bf.style.width=sl.getBoundingClientRect().width+'px';}}
+  const mv=x=>{const r=sl.getBoundingClientRect(),p=Math.max(0,Math.min(100,(x-r.left)/r.width*100));ov.style.width=p+'%';hd.style.left=p+'%';};
+  syncW();window.addEventListener('resize',syncW);setTimeout(syncW,50);setTimeout(syncW,300);setTimeout(syncW,800);
+  sl.addEventListener('mousedown',e=>{drag=true;mv(e.clientX);});
+  window.addEventListener('mousemove',e=>{if(drag)mv(e.clientX);});
+  window.addEventListener('mouseup',()=>drag=false);
+  sl.addEventListener('touchmove',e=>mv(e.touches[0].clientX),{passive:true});
+  COMP_PAIRS.forEach((p,i)=>{
+    const d=document.createElement('button');d.className='cp-dot'+(i===0?' on':'');d.style.background=p.c;
+    d.onclick=()=>{document.querySelectorAll('.cp-dot').forEach(x=>x.classList.remove('on'));d.classList.add('on');bf.src=p.b;af.src=p.a;};
+    $('cp-sh').appendChild(d);
+  });
+})();
+
+/* QUIZ */
+function qStep(c){$('qs1').classList.remove('on');$('qs2').classList.add('on');$('qz-fill').style.width='66%';$('qs2-opts').innerHTML=QUIZ_MAP[c].map(o=>`<div class="qz-opt" onclick="qResult(${o.shade})"><div class="qz-sw" style="background:${o.c}"></div><span style="font-size:11px;font-weight:600;color:var(--txt)">${o.label}</span></div>`).join('');}
+function qResult(idx){$('qs2').classList.remove('on');$('qs3').classList.add('on');$('qz-fill').style.width='100%';const s=SHADES[idx];$('q-name').textContent=s.name;$('q-desc').textContent=s.desc;$('q-img').src=s.img;}
+function qReset(){['qs1','qs2','qs3'].forEach(id=>$(id).classList.remove('on'));$('qs1').classList.add('on');$('qz-fill').style.width='33%';}
+
+/* SÉLECTEUR */
+(function(){
+  const sws=$('sel-sws');
+  function set(s){$('sel-img').src=s.img;$('sel-name').textContent=s.name;$('sel-desc').textContent=s.desc;$('sel-btn').textContent='Découvrir '+s.name;}
+  SHADES.forEach((s,i)=>{
+    const d=document.createElement('button');d.className='sw-dot'+(i===0?' on':'');d.style.setProperty('--c',s.color);
+    d.onclick=()=>{document.querySelectorAll('.sw-dot').forEach(x=>x.classList.remove('on'));d.classList.add('on');set(s);};
+    sws.appendChild(d);
+  });
+  set(SHADES[0]);
+})();
+
+/* GUIDE */
+function gCalc(){const cm=+$('gH').value,kg=+$('gW').value;if(!cm||!kg||cm<130||cm>210||kg<35||kg>150){$('gNum').textContent='—';$('gConf').textContent='Entrez vos mesures';return;}const dist=(v,a,b)=>v<a?a-v:v>b?v-b:0;const b=SIZES.map(s=>({...s,sc:dist(kg,s.w[0],s.w[1])*1.1+dist(cm,s.h[0],s.h[1])*.9})).sort((a,b)=>a.sc-b.sc)[0];$('gNum').textContent=b.l;$('gType').textContent='Lumière Beauty · Format '+b.l;$('gConf').textContent=b.sc<=3?'Recommandation optimale':b.sc<=8?'Très bonne correspondance':'Format souple conseillé';}
+function gShow(sz,info){$('gNum').textContent=sz;$('gType').textContent='Lumière Beauty · Format '+sz;$('gConf').textContent='Correspondance idéale';$('gInfo').textContent=info;document.querySelectorAll('.gd-sz').forEach(b=>b.classList.toggle('on',b.textContent===sz));}
+
+/* SHOWCASE */
+(function(){
+  function set(i){const s=SHADES[i];$('sc-img').src=s.img;$('sc-tag').textContent='Teinte '+s.name;$('sc-desc').textContent=s.desc;$('sc-cta').textContent='Découvrir '+s.name;document.querySelectorAll('.sc-tab').forEach((t,j)=>t.classList.toggle('on',j===i));}
+  $('sc-tabs').innerHTML=SHADES.map((s,i)=>`<button class="sc-tab${i===0?' on':''}" onclick="scSet(${i})">${s.name}</button>`).join('');
+  window.scSet=set;set(0);
+})();
+
+/* DOCK */
+(function(){
+  const bubs=$('dk-bubs');
+  DOCK_DATA.forEach((d,i)=>{
+    const b=document.createElement('div');b.className='dk-bub'+(i===0?' on':'');b.textContent=d.icon;
+    b.onclick=()=>{document.querySelectorAll('.dk-bub').forEach(x=>x.classList.remove('on'));b.classList.add('on');const card=$('dk-card'),r=b.getBoundingClientRect(),pr=b.parentElement.getBoundingClientRect();card.style.setProperty('--ax',((r.left+r.width/2-pr.left)/pr.width*100)+'%');card.classList.remove('on');setTimeout(()=>{$('dk-title').textContent=d.title;$('dk-desc').textContent=d.desc;card.classList.add('on');},200);};
+    bubs.appendChild(b);
+  });
+  $('dk-title').textContent=DOCK_DATA[0].title;$('dk-desc').textContent=DOCK_DATA[0].desc;
+})();
+
+/* VALEURS */
+$('val-grid').innerHTML=VALUES.map(v=>`<div class="val-card"><div style="font-size:8px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--g);margin-bottom:var(--s2)">${v.ey}</div><div style="font-family:var(--r);font-size:20px;margin-bottom:var(--s2);color:var(--txt)">${v.title}</div><div style="font-size:12px;color:var(--txt2);line-height:1.65;font-weight:300">${v.desc}</div></div>`).join('');
+</script>
+</body>
+</html>
