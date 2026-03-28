@@ -3,1152 +3,875 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beauty Website Modules</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <title>Beauty Website Modules — 14 modules premium pour sites beauté</title>
+  <meta
+    name="description"
+    content="14 modules premium pour transformer un site beauté en machine à vendre. Compatible Shopify, Webflow, IONOS, WordPress, Wix et plus."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    :root {
-      --bg: #06060a;
-      --surface: #0e0e14;
-      --surface-2: #13131a;
-      --gold: #c9a96e;
-      --gold-light: #e8d4a8;
-      --gold-dim: rgba(201,169,110,.18);
-      --text: #f0ece4;
-      --muted: #8a8580;
-      --line: rgba(201,169,110,.12);
+    :root{
+      --bg:#0b0b0d;
+      --bg-soft:#121216;
+      --card:#141419;
+      --card-2:#191920;
+      --text:#f7f3ee;
+      --muted:#b9b0a6;
+      --line:rgba(255,255,255,.08);
+      --gold:#d7b171;
+      --gold-2:#b98c48;
+      --gold-soft:rgba(215,177,113,.14);
+      --white-soft:rgba(255,255,255,.72);
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:1200px;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
     }
 
-    /* ─── HERO ─── */
-    .hero {
-      position: relative;
-      width: 100%;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      background: #04040a;
+    html{
+      scroll-behavior:smooth;
     }
 
-    /* Simulated cinematic video background */
-    .hero-canvas {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
-
-    .hero-canvas::before {
-      content: '';
-      position: absolute;
-      inset: -20%;
+    body{
+      font-family:'Inter',sans-serif;
       background:
-        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(180,130,70,.28) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 60% at 30% 60%, rgba(100,70,30,.18) 0%, transparent 60%),
-        radial-gradient(ellipse 80% 40% at 50% 80%, rgba(20,10,5,.9) 0%, transparent 70%);
-      animation: ambientShift 12s ease-in-out infinite alternate;
+        radial-gradient(circle at 20% 0%, rgba(215,177,113,.11), transparent 32%),
+        radial-gradient(circle at 100% 10%, rgba(255,255,255,.05), transparent 24%),
+        linear-gradient(180deg,#09090b 0%, #0d0d10 100%);
+      color:var(--text);
+      line-height:1.55;
     }
 
-    .hero-canvas::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      background-size: 180px;
-      opacity: .6;
-      pointer-events: none;
+    a{
+      text-decoration:none;
+      color:inherit;
     }
 
-    /* Animated light orb — simulates product spotlight */
-    .hero-orb {
-      position: absolute;
-      width: 480px;
-      height: 480px;
-      border-radius: 50%;
-      right: -60px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: radial-gradient(circle, rgba(201,169,110,.22) 0%, rgba(180,120,50,.08) 40%, transparent 70%);
-      animation: orbFloat 8s ease-in-out infinite alternate;
-      pointer-events: none;
+    img{
+      max-width:100%;
+      display:block;
     }
 
-    .hero-scan {
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,.03) 2px,
-        rgba(0,0,0,.03) 4px
-      );
-      pointer-events: none;
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
     }
 
-    /* Mockup image */
-    .hero-mockup {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      opacity: .85;
-      animation: subtleZoom 20s ease-in-out infinite alternate;
+    .section{
+      padding:88px 0;
+      position:relative;
     }
 
-    .hero-veil {
-      position: absolute;
-      inset: 0;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border:1px solid rgba(215,177,113,.22);
+      background:rgba(215,177,113,.08);
+      color:#efd9b0;
+      border-radius:999px;
+      font-size:.82rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      backdrop-filter:blur(8px);
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(180deg,var(--gold),#fff1cf);
+      box-shadow:0 0 18px rgba(215,177,113,.55);
+    }
+
+    h1,h2,h3{
+      font-family:'Playfair Display',serif;
+      line-height:1.02;
+      letter-spacing:-.02em;
+    }
+
+    h1{
+      font-size:clamp(2.5rem, 5.7vw, 5.4rem);
+      max-width:900px;
+      margin-top:18px;
+    }
+
+    h2{
+      font-size:clamp(2rem, 4vw, 3.35rem);
+      margin-bottom:18px;
+    }
+
+    h3{
+      font-size:1.35rem;
+      margin-bottom:10px;
+    }
+
+    p.lead{
+      font-size:clamp(1.02rem, 1.7vw, 1.2rem);
+      color:var(--white-soft);
+      max-width:760px;
+      margin-top:22px;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .hero{
+      padding:34px 0 48px;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        linear-gradient(90deg,
-          rgba(4,4,10,.92) 0%,
-          rgba(4,4,10,.75) 35%,
-          rgba(4,4,10,.25) 65%,
-          rgba(4,4,10,.05) 100%
-        ),
-        linear-gradient(180deg,
-          rgba(4,4,10,.2) 0%,
-          rgba(4,4,10,0) 30%,
-          rgba(4,4,10,0) 65%,
-          rgba(4,4,10,.6) 100%
-        );
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 100svh;
-      padding: 80px 60px 80px;
-      max-width: 640px;
-    }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-      opacity: 0;
-      animation: fadeUp .9s .2s forwards;
-    }
-
-    .hero-eyebrow-line {
-      width: 32px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .hero-eyebrow-text {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      font-size: 10px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .hero-title {
-      font-family: 'DM Serif Display', serif;
-      font-weight: 400;
-      font-size: clamp(2.4rem, 4.2vw, 4rem);
-      line-height: 1.08;
-      letter-spacing: -.01em;
-      color: var(--text);
-      margin-bottom: 18px;
-      opacity: 0;
-      animation: fadeUp 1s .4s forwards;
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    .hero-subtitle {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      font-size: clamp(.95rem, 1.4vw, 1.05rem);
-      line-height: 1.85;
-      color: rgba(240,236,228,.75);
-      max-width: 420px;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeUp 1s .6s forwards;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      opacity: 0;
-      animation: fadeUp 1s .8s forwards;
-    }
-
-    .btn-gold {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px 32px;
-      background: var(--gold);
-      color: #0a0805;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: 11px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all .35s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-gold::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,.15);
-      transform: translateX(-100%);
-      transition: transform .4s ease;
-    }
-
-    .btn-gold:hover::after { transform: translateX(0); }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,169,110,.25); }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 15px 32px;
-      background: transparent;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      font-size: 11px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid rgba(240,236,228,.18);
-      transition: all .35s ease;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-
-    .hero-meta {
-      display: flex;
-      gap: 32px;
-      margin-top: 44px;
-      padding-top: 32px;
-      border-top: 1px solid var(--line);
-      opacity: 0;
-      animation: fadeUp 1s 1s forwards;
-    }
-
-    .hero-meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .hero-meta-value {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: var(--gold-light);
-      line-height: 1;
-    }
-
-    .hero-meta-label {
-      font-size: 10px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ─── TICKER ─── */
-    .ticker {
-      width: 100%;
-      overflow: hidden;
-      padding: 14px 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .ticker-track {
-      display: flex;
-      gap: 48px;
-      white-space: nowrap;
-      animation: ticker 22s linear infinite;
-    }
-
-    .ticker-item {
-      font-size: 10px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .ticker-item::after {
-      content: '◆';
-      font-size: 6px;
-      opacity: .5;
-    }
-
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ─── SECTION BASE ─── */
-    .section {
-      padding: 80px 72px;
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      margin-bottom: 52px;
-    }
-
-    .label {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-      font-weight: 400;
-    }
-
-    .label::before {
-      content: '';
-      width: 20px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .heading {
-      font-family: 'DM Serif Display', serif;
-      font-weight: 400;
-      font-size: clamp(1.9rem, 3vw, 2.9rem);
-      line-height: 1.12;
-      color: var(--text);
-      letter-spacing: -.01em;
-    }
-
-    .heading em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    .body-text {
-      font-weight: 300;
-      font-size: .95rem;
-      line-height: 1.85;
-      color: rgba(240,236,228,.65);
-      max-width: 500px;
-      margin-top: 14px;
-    }
-
-    /* ─── MODULES GRID ─── */
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      background: transparent;
-      border: none;
-    }
-
-    .module-item {
-      background: var(--surface);
-      padding: 32px 28px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.05);
-      transition: background .35s ease, border-color .35s ease, transform .35s ease;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      cursor: pointer;
-    }
-
-    .module-item::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      transition: width .5s ease;
-    }
-
-    .module-item:hover {
-      background: var(--surface-2);
-      border-color: rgba(201,169,110,.15);
-      transform: translateY(-3px);
-    }
-    .module-item:hover::before { width: 100%; }
-
-    .module-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: rgba(201,169,110,.2);
-      line-height: 1;
-      margin-bottom: 16px;
-      transition: color .4s;
-    }
-
-    .module-item:hover .module-num { color: rgba(201,169,110,.45); }
-
-    .module-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.15rem;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-
-    .module-desc {
-      font-size: .84rem;
-      font-weight: 300;
-      line-height: 1.7;
-      color: rgba(138,133,128,.85);
-    }
-
-    .module-cta {
-      margin-top: 16px;
-      font-size: 10px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0;
-      transform: translateY(5px);
-      transition: opacity .3s ease, transform .3s ease;
-    }
-
-    .module-item:hover .module-cta {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── COMPARE ─── */
-    .compare-section {
-      padding: 80px 72px;
-      background: var(--surface);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .compare-section .section-header { max-width: 1240px; margin: 0 auto 52px; }
-
-    .compare-inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 0;
-      align-items: stretch;
-    }
-
-    .compare-col {
-      padding: 44px 36px;
-    }
-
-    .compare-col-a {
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 14px 0 0 14px;
-    }
-
-    .compare-col-b {
-      border: 1px solid var(--gold);
-      border-radius: 0 14px 14px 0;
-      position: relative;
-      background: linear-gradient(135deg, rgba(201,169,110,.05), rgba(201,169,110,.01));
-    }
-
-    .compare-col-b::before {
-      content: 'Recommandé';
-      position: absolute;
-      top: -1px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gold);
-      color: #0a0805;
-      font-size: 9px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: 0 0 6px 6px;
-      white-space: nowrap;
-    }
-
-    .compare-divider {
-      width: 1px;
-      background: var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .compare-vs-badge {
-      background: var(--surface-2);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-family: 'DM Serif Display', serif;
-      font-size: 1rem;
-      font-style: italic;
-      padding: 10px 14px;
-      writing-mode: vertical-rl;
-      letter-spacing: .1em;
-      border-radius: 6px;
-    }
-
-    .compare-tag {
-      font-size: 10px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 18px;
-      font-weight: 400;
-    }
-
-    .compare-price-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 3.6rem;
-      font-weight: 400;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .compare-col-a .compare-price-num { color: rgba(240,236,228,.35); }
-    .compare-col-b .compare-price-num { color: var(--gold-light); }
-
-    .compare-note { font-size: .8rem; color: var(--muted); margin-bottom: 28px; font-weight: 300; }
-    .compare-col-b .compare-note { color: var(--gold); }
-
-    .compare-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .compare-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: .88rem;
-      font-weight: 300;
-      line-height: 1.55;
-      color: rgba(138,133,128,.85);
-    }
-
-    .compare-list li::before {
-      content: '';
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      margin-top: 7px;
-      flex-shrink: 0;
-    }
-
-    .compare-col-a .compare-list li::before { background: rgba(255,255,255,.18); }
-    .compare-col-b .compare-list li { color: rgba(240,236,228,.8); }
-    .compare-col-b .compare-list li::before { background: var(--gold); }
-
-    /* ─── TESTIMONIALS ─── */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .testimonial-card {
-      border: 1px solid rgba(255,255,255,.05);
-      border-radius: 14px;
-      padding: 32px 28px;
-      position: relative;
-      background: var(--surface);
-      transition: border-color .35s ease;
-    }
-
-    .testimonial-card:hover {
-      border-color: rgba(201,169,110,.18);
-    }
-
-    .testimonial-quote {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.08rem;
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.7;
-      color: rgba(240,236,228,.88);
-      margin-bottom: 22px;
-    }
-
-    .testimonial-author {
-      font-size: 10px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 400;
-    }
-
-    .testimonial-mark {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      font-family: 'DM Serif Display', serif;
-      font-size: 3.2rem;
-      font-weight: 400;
-      color: rgba(201,169,110,.14);
-      line-height: 1;
-    }
-
-    /* ─── PRICING ─── */
-    .pricing-section {
-      padding: 80px 72px;
-      text-align: center;
-      background: var(--surface);
-      border-top: 1px solid var(--line);
-    }
-
-    .pricing-card {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      border: 1px solid var(--gold);
-      border-radius: 18px;
-      max-width: 400px;
-      width: 100%;
-      margin-top: 44px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pricing-tag {
-      position: absolute;
-      top: -1px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gold);
-      color: #0a0805;
-      font-size: 9px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      padding: 5px 20px;
-      white-space: nowrap;
-      border-radius: 0 0 8px 8px;
-    }
-
-    .pricing-top {
-      padding: 44px 36px 28px;
-      width: 100%;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .pricing-amount {
-      font-family: 'DM Serif Display', serif;
-      font-size: 4.4rem;
-      font-weight: 400;
-      color: var(--gold-light);
-      line-height: 1;
-    }
-
-    .pricing-then {
-      font-size: .82rem;
-      color: var(--muted);
-      margin-top: 8px;
-      letter-spacing: .04em;
-      font-weight: 300;
-    }
-
-    .pricing-bottom {
-      padding: 24px 36px 36px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .pricing-perks {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 100%;
-      text-align: left;
-    }
-
-    .pricing-perk {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: .85rem;
-      font-weight: 200;
-      color: rgba(240,236,228,.7);
-    }
-
-    .pricing-perk::before {
-      content: '';
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .stock-note {
-      font-size: .8rem;
-      color: var(--gold);
-      letter-spacing: .08em;
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      padding: 36px 72px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-brand {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: .06em;
-      color: var(--gold-light);
-    }
-
-    .footer-copy {
-      font-size: 11px;
-      letter-spacing: .08em;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes ambientShift {
-      0%   { transform: translate(0%, 0%) scale(1); }
-      100% { transform: translate(3%, 2%) scale(1.06); }
-    }
-
-    @keyframes orbFloat {
-      0%   { transform: translateY(-50%) translateX(0); }
-      100% { transform: translateY(-52%) translateX(-20px); }
-    }
-
-    @keyframes subtleZoom {
-      from { transform: scale(1); }
-      to   { transform: scale(1.05); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .85s ease, transform .85s cubic-bezier(.16,1,.3,1);
-    }
-
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── MOBILE ─── */
-    .hero-mobile-img { display: none; }
-
-    @media (max-width: 768px) {
-      .hero { min-height: unset; align-items: flex-start; flex-direction: column; }
-      .hero-mockup { display: none; }
-      .hero-canvas, .hero-orb, .hero-scan, .hero-veil { display: none; }
-
-      .hero-inner {
-        position: relative;
-        z-index: 1;
-        padding: 52px 22px 30px;
-        justify-content: flex-start;
-        min-height: unset;
-        max-width: none;
-        background: var(--bg);
+        linear-gradient(90deg, rgba(8,8,10,.88) 0%, rgba(8,8,10,.72) 42%, rgba(8,8,10,.28) 72%, rgba(8,8,10,.1) 100%);
+      z-index:1;
+    }
+
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      overflow:hidden;
+    }
+
+    .hero-bg img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.46;
+      filter:saturate(.9) contrast(1.03);
+      transform:scale(1.03);
+    }
+
+    .hero-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .hero-copy{
+      padding:34px 0;
+    }
+
+    .micro-proof{
+      margin-top:22px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .micro-proof span{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:#ddd5ca;
+      font-size:.88rem;
+      font-weight:600;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      padding:0 24px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:1rem;
+      transition:.25s ease;
+      border:1px solid transparent;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:linear-gradient(180deg,#e3c185 0%, #c89d59 100%);
+      color:#1a1208;
+      box-shadow:
+        0 12px 30px rgba(215,177,113,.22),
+        inset 0 1px 0 rgba(255,255,255,.45);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:
+        0 18px 40px rgba(215,177,113,.26),
+        inset 0 1px 0 rgba(255,255,255,.45);
+    }
+
+    .btn-ghost{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--text);
+      backdrop-filter:blur(10px);
+    }
+
+    .btn-ghost:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateY(-2px);
+    }
+
+    .hero-benefits{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      max-width:760px;
+    }
+
+    .hero-benefits div{
+      padding:14px 16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      color:#e7ddd1;
+      font-size:.94rem;
+      font-weight:600;
+      backdrop-filter:blur(8px);
+    }
+
+    .hero-card{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:28px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+    }
+
+    .hero-card-inner{
+      overflow:hidden;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#0d0d11;
+    }
+
+    .hero-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      aspect-ratio: 4 / 4.5;
+    }
+
+    .floating-stats{
+      position:absolute;
+      right:-18px;
+      bottom:24px;
+      display:grid;
+      gap:12px;
+      width:min(240px, 72%);
+    }
+
+    .stat{
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(13,13,18,.82);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(10px);
+      box-shadow:0 10px 30px rgba(0,0,0,.22);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:1.15rem;
+      color:#fff6e7;
+    }
+
+    .stat span{
+      font-size:.88rem;
+      color:#cabcae;
+    }
+
+    .section-head{
+      max-width:760px;
+      margin-bottom:34px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .problem-card{
+      min-height:100%;
+    }
+
+    .problem-list,
+    .gain-list{
+      list-style:none;
+      margin-top:18px;
+      display:grid;
+      gap:12px;
+    }
+
+    .problem-list li,
+    .gain-list li{
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.06);
+      color:#e8dfd4;
+      font-weight:500;
+    }
+
+    .accent-line{
+      margin:20px 0 18px;
+      color:#f1d7a3;
+      font-weight:700;
+    }
+
+    .modules-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:18px;
+      margin-top:30px;
+    }
+
+    .module{
+      padding:22px;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      transition:.25s ease;
+    }
+
+    .module:hover{
+      transform:translateY(-4px);
+      border-color:rgba(215,177,113,.24);
+      box-shadow:0 18px 40px rgba(0,0,0,.22);
+    }
+
+    .module-num{
+      display:inline-flex;
+      width:38px;
+      height:38px;
+      align-items:center;
+      justify-content:center;
+      border-radius:12px;
+      margin-bottom:16px;
+      font-weight:800;
+      font-size:.92rem;
+      color:#1a1208;
+      background:linear-gradient(180deg,#e1bf84,#be9252);
+    }
+
+    .module p{
+      color:var(--muted);
+      font-size:.94rem;
+      margin-top:8px;
+    }
+
+    .impact{
+      display:grid;
+      grid-template-columns: .96fr 1.04fr;
+      gap:26px;
+      margin-top:28px;
+      align-items:stretch;
+    }
+
+    .compare{
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      gap:16px;
+      align-items:center;
+      margin-top:18px;
+    }
+
+    .compare-box{
+      padding:24px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      min-height:100%;
+    }
+
+    .compare-box h3{
+      margin-bottom:8px;
+    }
+
+    .price{
+      font-size:2rem;
+      font-weight:800;
+      margin:12px 0 14px;
+      color:#fff3db;
+    }
+
+    .vs{
+      font-family:'Playfair Display',serif;
+      font-size:1.5rem;
+      color:#d4b076;
+      opacity:.92;
+    }
+
+    .compare-box ul{
+      list-style:none;
+      display:grid;
+      gap:10px;
+      margin-top:10px;
+      color:#ddd3c8;
+    }
+
+    .compare-box li{
+      padding-left:18px;
+      position:relative;
+    }
+
+    .compare-box li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      top:0;
+      color:#d4b076;
+    }
+
+    .cta-band{
+      margin-top:34px;
+      padding:26px;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at top left, rgba(215,177,113,.14), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(215,177,113,.18);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .cta-band p{
+      color:#e6dbcf;
+      font-size:1rem;
+      max-width:700px;
+    }
+
+    .footer{
+      padding:34px 0 60px;
+      color:#9f9588;
+      font-size:.95rem;
+      text-align:center;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition:all .7s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 1080px){
+      .modules-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
       }
 
-      .hero-mobile-img {
-        display: block;
-        width: 100%;
-        aspect-ratio: 4/3;
-        object-fit: cover;
-        object-position: center 15%;
+      .hero-grid,
+      .split,
+      .impact{
+        grid-template-columns:1fr;
       }
 
-      .hero-title { font-size: 2.5rem; letter-spacing: -.02em; }
-      .hero-subtitle { font-size: .92rem; max-width: none; }
-      .hero-subtitle br { display: none; }
-      .hero-actions { flex-direction: column; }
-      .btn-gold, .btn-ghost { width: 100%; padding: 17px; font-size: 10px; }
-      .hero-meta { gap: 18px; padding-top: 22px; margin-top: 24px; }
-      .hero-meta-value { font-size: 1.25rem; }
+      .hero{
+        min-height:auto;
+        padding-top:22px;
+      }
 
-      .section { padding: 52px 20px; }
-      .modules-grid { grid-template-columns: 1fr; gap: 10px; }
-      .module-item { padding: 26px 20px; }
-      .compare-section { padding: 52px 20px; }
-      .compare-inner { grid-template-columns: 1fr; }
-      .compare-divider { display: none; }
-      .compare-col { padding: 28px 20px; }
-      .compare-col-a { opacity: .55; border-radius: 14px; }
-      .compare-col-b { border-radius: 14px; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .pricing-section { padding: 52px 20px; }
+      .hero-card{
+        max-width:720px;
+      }
 
-      footer {
-        padding: 26px 20px;
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
+      .floating-stats{
+        right:14px;
+        bottom:14px;
       }
     }
 
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .modules-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero-inner { padding: 80px 40px; }
-      .section { padding: 80px 40px; }
+    @media (max-width: 720px){
+      .section{
+        padding:68px 0;
+      }
+
+      .container{
+        width:min(var(--max), calc(100% - 20px));
+      }
+
+      h1{
+        font-size:clamp(2.15rem, 10vw, 3.25rem);
+      }
+
+      h2{
+        font-size:clamp(1.7rem, 8vw, 2.5rem);
+      }
+
+      .hero-benefits{
+        grid-template-columns:1fr;
+      }
+
+      .micro-proof{
+        gap:8px;
+      }
+
+      .micro-proof span{
+        font-size:.8rem;
+        padding:9px 12px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .modules-grid{
+        grid-template-columns:1fr;
+      }
+
+      .compare{
+        grid-template-columns:1fr;
+      }
+
+      .vs{
+        text-align:center;
+      }
+
+      .floating-stats{
+        position:static;
+        width:100%;
+        margin-top:14px;
+      }
+
+      .hero-card{
+        padding:14px;
+      }
+
+      .hero-card img{
+        aspect-ratio: 4 / 4.8;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-canvas"></div>
-  <div class="hero-orb"></div>
-  <div class="hero-scan"></div>
-
-  <img src="mockup.png" class="hero-mockup" alt="Beauty Website Modules — Aperçu">
-  <div class="hero-veil"></div>
-
-  <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <span class="hero-eyebrow-line"></span>
-      <span class="hero-eyebrow-text">Modules Premium — Marques Beauté</span>
+  <header class="hero">
+    <div class="hero-bg">
+      <!-- Remplace cette image par ton visuel si tu veux -->
+      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1600&auto=format&fit=crop" alt="Beauty website premium modules preview" />
     </div>
 
-    <h1 class="hero-title">
-      Ton produit<br>mérite un site<br><em>qui vend.</em>
-    </h1>
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">Modules premium pour marques beauté</div>
 
-    <p class="hero-subtitle">
-      14 modules prêts à l'emploi. Pensés pour Shopify, Webflow<br>
-      et les créateurs no-code qui veulent un rendu luxe<br>
-      sans passer par une agence.
-    </p>
+        <h1>14 modules premium pour transformer ton site beauté en machine à vendre</h1>
 
-    <div class="hero-actions">
-      <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn-gold">
-        Accéder au pack — 79€
-      </a>
-      <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn-ghost">
-        Voir la démo →
-      </a>
-    </div>
+        <p class="lead">
+          Augmente tes conversions dès aujourd’hui avec des modules interactifs prêts à intégrer.
+          Sans agence. Sans développement compliqué. Pensé pour les marques beauté qui veulent enfin un rendu premium qui convertit.
+        </p>
 
-    <div class="hero-meta">
-      <div class="hero-meta-item">
-        <span class="hero-meta-value">14</span>
-        <span class="hero-meta-label">Modules inclus</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-value">79€</span>
-        <span class="hero-meta-label">Prix de lancement</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-value">∞</span>
-        <span class="hero-meta-label">Accès à vie</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Image affichée en bloc sur mobile uniquement -->
-  <img src="mockup.png" class="hero-mobile-img" alt="Aperçu Beauty Website Modules">
-</section>
-
-<!-- ═══ TICKER ═══ -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">Sans coder</span>
-    <span class="ticker-item">Effet premium immédiat</span>
-    <span class="ticker-item">Shopify &amp; Webflow</span>
-    <span class="ticker-item">14 modules</span>
-    <span class="ticker-item">Accès à vie</span>
-    <span class="ticker-item">Alternative à 800€+</span>
-    <span class="ticker-item">Installation rapide</span>
-    <span class="ticker-item">100% mobile</span>
-    <span class="ticker-item">Sans coder</span>
-    <span class="ticker-item">Effet premium immédiat</span>
-    <span class="ticker-item">Shopify &amp; Webflow</span>
-    <span class="ticker-item">14 modules</span>
-    <span class="ticker-item">Accès à vie</span>
-    <span class="ticker-item">Alternative à 800€+</span>
-    <span class="ticker-item">Installation rapide</span>
-    <span class="ticker-item">100% mobile</span>
-  </div>
-</div>
-
-<!-- ═══ MODULES ═══ -->
-<div class="section reveal">
-  <div class="section-header">
-    <div class="label">Ce que tu obtiens</div>
-    <h2 class="heading">14 modules.<br><em>Un site qui convertit.</em></h2>
-    <p class="body-text">
-      Chaque module est pensé pour valoriser ton produit, renforcer la confiance
-      et augmenter la conversion — sans une ligne de code.
-    </p>
-  </div>
-
-  <div class="modules-grid">
-    <a class="module-item reveal" href="01-barre-annonce.html" target="_blank">
-      <div class="module-num">01</div>
-      <div class="module-title">Barre d'annonce</div>
-      <div class="module-desc">Barre fixe livraison / code promo, une ligne, fermable.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="02-hero-slideshow.html" target="_blank">
-      <div class="module-num">02</div>
-      <div class="module-title">Hero Slideshow</div>
-      <div class="module-desc">Hero plein écran 5 teintes, pills et barre de progression.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="03-video-compact.html" target="_blank">
-      <div class="module-num">03</div>
-      <div class="module-title">Vidéo Compacte</div>
-      <div class="module-desc">Format compact, rotation 2 vidéos, bouton mute intégré.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="04-video-full.html" target="_blank">
-      <div class="module-num">04</div>
-      <div class="module-title">Vidéo Plein Écran</div>
-      <div class="module-desc">Vidéo full screen, badges, mute et barre de progression.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="05-hero-panel.html" target="_blank">
-      <div class="module-num">05</div>
-      <div class="module-title">Hero + Panel Teinte</div>
-      <div class="module-desc">Hero plein écran avec panel teinte détaillé intégré.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="06-marquee.html" target="_blank">
-      <div class="module-num">06</div>
-      <div class="module-title">Marquee Produits</div>
-      <div class="module-desc">Défilé produits animé infini — pause au survol.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="07-comparateur.html" target="_blank">
-      <div class="module-num">07</div>
-      <div class="module-title">Comparateur Avant / Après</div>
-      <div class="module-desc">Slider interactif avant/après tactile — images fixes.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="08-quiz.html" target="_blank">
-      <div class="module-num">08</div>
-      <div class="module-title">Quiz Intelligent</div>
-      <div class="module-desc">2 étapes → teinte recommandée + CTA direct vers le produit.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="09-selecteur.html" target="_blank">
-      <div class="module-num">09</div>
-      <div class="module-title">Sélecteur de Teinte</div>
-      <div class="module-desc">Pastilles + image + description dynamiques au survol.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="10-guide-tailles.html" target="_blank">
-      <div class="module-num">10</div>
-      <div class="module-title">Guide des Tailles</div>
-      <div class="module-desc">Calculateur taille/poids → format produit recommandé.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="11-showcase.html" target="_blank">
-      <div class="module-num">11</div>
-      <div class="module-title">Showcase Produit</div>
-      <div class="module-desc">Présentation produit par onglets — rendu éditorial.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="12-dock.html" target="_blank">
-      <div class="module-num">12</div>
-      <div class="module-title">Dock Valeurs Marque</div>
-      <div class="module-desc">Dock interactif des valeurs de marque avec effet 3D.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="13-email-valeurs.html" target="_blank">
-      <div class="module-num">13</div>
-      <div class="module-title">Capture Email</div>
-      <div class="module-desc">Bloc valeurs animé + bannière capture email intégrée.</div>
-      <div class="module-cta">Voir la démo →</div>
-    </a>
-    <a class="module-item reveal" href="00-pack-complet.html" target="_blank">
-      <div class="module-num">14</div>
-      <div class="module-title">Pack Complet</div>
-      <div class="module-desc">Tous les modules + toggle Dark/Light + Split preview.</div>
-      <div class="module-cta">Voir tous les modules →</div>
-    </a>
-  </div>
-</div>
-
-<!-- ═══ COMPARE ═══ -->
-<div class="compare-section">
-  <div class="section-header reveal">
-    <div class="label">La différence</div>
-    <h2 class="heading">Ce que tu <em>économises.</em></h2>
-    <p class="body-text">
-      Pour ce rendu, la plupart des créatrices paient plusieurs centaines d'euros
-      pour quelques sections seulement.
-    </p>
-  </div>
-
-  <div class="compare-inner">
-    <div class="compare-col compare-col-a reveal">
-      <div class="compare-tag">Web designer freelance</div>
-      <div class="compare-price-num">800€+</div>
-      <div class="compare-note">quelques sections sur mesure</div>
-      <ul class="compare-list">
-        <li>Sections limitées</li>
-        <li>Délais plus longs</li>
-        <li>Allers-retours coûteux</li>
-        <li>Modifications facturées en plus</li>
-      </ul>
-    </div>
-
-    <div class="compare-divider">
-      <span class="compare-vs-badge">vs</span>
-    </div>
-
-    <div class="compare-col compare-col-b reveal">
-      <div class="compare-tag">Beauty Website Modules</div>
-      <div class="compare-price-num">79€</div>
-      <div class="compare-note">pour les 30 premiers — puis 139€</div>
-      <ul class="compare-list">
-        <li>14 modules premium inclus</li>
-        <li>Installation immédiate</li>
-        <li>100% personnalisable</li>
-        <li>Accès à vie + mises à jour</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ TESTIMONIALS ═══ -->
-<div class="section reveal">
-  <div class="section-header">
-    <div class="label">Elles l'utilisent déjà</div>
-    <h2 class="heading">Ce qu'elles <em>en disent.</em></h2>
-  </div>
-
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <span class="testimonial-mark">"</span>
-      <p class="testimonial-quote">J'ai ajouté 2 modules et mon site paraît déjà beaucoup plus professionnel.</p>
-      <span class="testimonial-author">Sarah — boutique skincare</span>
-    </div>
-    <div class="testimonial-card reveal">
-      <span class="testimonial-mark">"</span>
-      <p class="testimonial-quote">Ça m'a évité de payer un designer, et le rendu est vraiment incroyable.</p>
-      <span class="testimonial-author">Lina — marque beauté</span>
-    </div>
-    <div class="testimonial-card reveal">
-      <span class="testimonial-mark">"</span>
-      <p class="testimonial-quote">Ultra simple à installer. Et ça change tout visuellement, dès le premier module.</p>
-      <span class="testimonial-author">Camille — e-commerce</span>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ PRICING ═══ -->
-<div class="pricing-section reveal">
-  <div class="label" style="justify-content:center;">Offre de lancement</div>
-  <h2 class="heading" style="font-size:clamp(2rem,4vw,3.2rem);">
-    30 accès.<br><em>Il en reste 17.</em>
-  </h2>
-
-  <div style="display:flex;justify-content:center;">
-    <div class="pricing-card">
-      <div class="pricing-tag">🔥 Offre limitée</div>
-      <div class="pricing-top">
-        <div class="pricing-amount">79€</div>
-        <div class="pricing-then">Puis 139€ — accès à vie</div>
-      </div>
-      <div class="pricing-bottom">
-        <div class="pricing-perks">
-          <div class="pricing-perk">14 modules premium prêts à l'emploi</div>
-          <div class="pricing-perk">Installation immédiate, sans coder</div>
-          <div class="pricing-perk">Compatible Shopify &amp; Webflow</div>
-          <div class="pricing-perk">Mises à jour incluses à vie</div>
+        <div class="micro-proof">
+          <span>Shopify</span>
+          <span>Webflow</span>
+          <span>IONOS</span>
+          <span>WordPress</span>
+          <span>Wix</span>
+          <span>100% mobile</span>
         </div>
-        <div class="stock-note">Plus que 17 accès à ce prix</div>
-        <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn-gold" style="width:100%;">
-          Accéder au pack maintenant
-        </a>
-        <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn-ghost" style="width:100%;">
-          Voir la démo d'abord
-        </a>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/" target="_blank" rel="noopener noreferrer">
+            Accéder au pack — 79€
+          </a>
+          <a class="btn btn-ghost" href="#modules">
+            Voir la démo
+          </a>
+        </div>
+
+        <div class="hero-benefits">
+          <div>✔ Augmente le temps passé sur ton site</div>
+          <div>✔ Guide tes clientes vers le bon produit</div>
+          <div>✔ Donne un effet premium immédiat</div>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="hero-card-inner">
+          <!-- Tu peux remplacer par ton screenshot réel -->
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200&auto=format&fit=crop" alt="Aperçu premium du pack Beauty Website Modules" />
+        </div>
+
+        <div class="floating-stats">
+          <div class="stat">
+            <strong>14 modules inclus</strong>
+            <span>Hero, quiz, comparateur, email capture, sélecteurs, etc.</span>
+          </div>
+          <div class="stat">
+            <strong>Alternative à 800€+</strong>
+            <span>Un rendu premium sans payer une agence pour chaque section.</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </header>
 
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <span class="footer-brand">Beauty Website Modules</span>
-  <span class="footer-copy">© 2026 — Tous droits réservés</span>
-</footer>
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Bloc 1 — Problème / solution</div>
+          <h2>Ton site est peut-être beau. Mais est-ce qu’il vend vraiment&nbsp;?</h2>
+          <p class="lead">
+            Beaucoup de marques ont un bon produit, une belle identité… mais un site trop statique,
+            trop plat, pas assez engageant. Résultat : les visiteuses regardent, puis partent.
+          </p>
+        </div>
 
-<script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('show');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
+        <div class="split">
+          <div class="card problem-card reveal">
+            <h3>Ce qui bloque souvent les ventes</h3>
+            <ul class="problem-list">
+              <li>Pas assez d’interactivité pour capter l’attention dès les premières secondes</li>
+              <li>Pas assez de relief premium pour inspirer confiance</li>
+              <li>Pas de parcours clair pour guider vers le bon produit</li>
+              <li>Un rendu “site builder” qui fait perdre de la valeur perçue</li>
+            </ul>
+          </div>
 
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+          <div class="card problem-card reveal">
+            <h3>Ce pack change ça immédiatement</h3>
+            <p class="muted">
+              Avec ces 14 modules, tu ajoutes en quelques minutes des sections qui retiennent,
+              rassurent et poussent à l’action — sans refaire tout ton site.
+            </p>
+            <div class="accent-line">👉 Tu gardes ton site. Tu augmentes juste son pouvoir de conversion.</div>
+            <ul class="gain-list">
+              <li>Des interactions qui donnent envie de rester</li>
+              <li>Des sections qui valorisent ton produit</li>
+              <li>Des modules pensés mobile et faciles à intégrer</li>
+              <li>Un rendu haut de gamme immédiat</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="modules">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Bloc 2 — Ce que tu obtiens</div>
+          <h2>14 modules pensés pour retenir, convaincre et convertir</h2>
+          <p class="lead">
+            Tu n’achètes pas juste des “sections”. Tu ajoutes une vraie expérience premium à ton site.
+            Chaque module a un rôle précis dans le parcours d’achat.
+          </p>
+        </div>
+
+        <div class="modules-grid">
+          <article class="module reveal">
+            <div class="module-num">01</div>
+            <h3>Hero vidéo immersif</h3>
+            <p>Capte l’attention en 3 secondes avec un rendu marque premium.</p>
+          </article>
+
+          <article class="module reveal">
+            <div class="module-num">02</div>
+            <h3>Comparateur avant / après</h3>
+            <p>Prouve la transformation au lieu de seulement la promettre.</p>
+          </article>
+
+          <article class="module reveal">
+            <div class="module-num">03</div>
+            <h3>Quiz intelligent</h3>
+            <p>Guide chaque cliente vers le bon produit sans friction.</p>
+          </article>
+
+          <article class="module reveal">
+            <div class="module-num">04</div>
+            <h3>Sélecteur interactif</h3>
+            <p>Crée une expérience personnalisée qui donne envie de cliquer.</p>
+          </article>
+
+          <article class="module reveal">
+            <div class="module-num">05</div>
+            <h3>Capture email intégrée</h3>
+            <p>Transforme plus de visiteuses en prospects qualifiés.</p>
+          </article>
+
+          <article class="module reveal">
+            <div class="module-num">06</div>
+            <h3>Design responsive</h3>
+            <p>Un rendu impeccable sur mobile, là où se jouent la majorité des ventes.</p>
+          </article>
+
+          <article class="module reveal">
+            <div class="module-num">07</div>
+            <h3>Dark & Light mode</h3>
+            <p>Deux ambiances premium pour s’adapter à ton univers visuel.</p>
+          </article>
+
+          <article class="module reveal">
+            <div class="module-num">08</div>
+            <h3>Animations fluides</h3>
+            <p>Donne ce petit effet “grande marque” qui change tout à la perception.</p>
+          </article>
+        </div>
+
+        <div class="cta-band reveal">
+          <p>
+            En clair : tu installes des modules qui font paraître ta marque plus haut de gamme,
+            augmentent l’engagement et facilitent la conversion.
+          </p>
+          <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/" target="_blank" rel="noopener noreferrer">
+            Voir le pack complet
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Bloc 3 — Gain / impact / ROI</div>
+          <h2>Le moyen le plus rapide de passer d’un site correct à un site qui vend vraiment</h2>
+          <p class="lead">
+            Avant : un site statique, peu d’engagement, peu de différenciation.  
+            Après : une expérience plus immersive, plus crédible, plus rentable.
+          </p>
+        </div>
+
+        <div class="impact">
+          <div class="card reveal">
+            <h3>Ce que ça change concrètement</h3>
+            <ul class="gain-list">
+              <li>Plus de temps passé sur la page</li>
+              <li>Plus de clics sur les CTA</li>
+              <li>Une meilleure mise en valeur du produit</li>
+              <li>Une perception de marque beaucoup plus premium</li>
+              <li>Un parcours plus clair jusqu’à l’achat</li>
+            </ul>
+          </div>
+
+          <div class="card reveal">
+            <h3>Ce que tu économises vs un web designer</h3>
+
+            <div class="compare">
+              <div class="compare-box">
+                <h3>Freelance / agence</h3>
+                <div class="price">800€+</div>
+                <ul>
+                  <li>Quelques sections seulement</li>
+                  <li>Délais plus longs</li>
+                  <li>Allers-retours coûteux</li>
+                  <li>Chaque modif peut être refacturée</li>
+                </ul>
+              </div>
+
+              <div class="vs">vs</div>
+
+              <div class="compare-box">
+                <h3>Beauty Website Modules</h3>
+                <div class="price">79€</div>
+                <ul>
+                  <li>14 modules premium inclus</li>
+                  <li>Installation immédiate</li>
+                  <li>100% personnalisable</li>
+                  <li>Accès à vie + mises à jour</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accent-line" style="margin-top:22px;">
+              👉 Un seul bon module peut déjà changer la perception de ta marque. Là, tu en as 14.
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-band reveal">
+          <p>
+            Pensé pour les créatrices de marques beauté, skincare, maquillage, accessoires ou e-commerce premium
+            qui veulent enfin un site plus fort sans se ruiner.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/" target="_blank" rel="noopener noreferrer">
+              Acheter le pack
+            </a>
+            <a class="btn btn-ghost" href="#top">
+              Revoir le hero
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Beauty Website Modules © 2026 — Tous droits réservés
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
