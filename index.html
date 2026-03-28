@@ -37,114 +37,30 @@
       overflow-x:hidden;
     }
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:-20%;
-      pointer-events:none;
-      background:radial-gradient(circle at 50% 50%, rgba(214,183,119,.04), transparent 35%);
-      filter:blur(70px);
-      animation:ambientGlow 10s ease-in-out infinite alternate;
-      z-index:0;
-    }
-
-    @keyframes ambientGlow{
-      from{transform:translateY(0) scale(1)}
-      to{transform:translateY(-14px) scale(1.04)}
-    }
-
     .container{
-      position:relative;
-      z-index:1;
       max-width:1180px;
       margin:auto;
       padding:0 20px;
     }
 
-    .hero{
-      padding:32px 0 24px;
+    .section{
+      margin-top:34px;
+      padding-top:26px;
     }
 
-    .hero-shell{
-      overflow:hidden;
-      border-radius:30px;
-      border:1px solid rgba(214,183,119,.14);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
-        radial-gradient(circle at 20% 10%, rgba(214,183,119,.07), transparent 32%),
-        linear-gradient(135deg, #0e0e0e 0%, #121212 100%);
-      box-shadow:var(--shadow);
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.02fr .98fr;
-      gap:34px;
-      align-items:center;
-      padding:42px;
-      min-height:640px;
-    }
-
-    .hero-left{
-      text-align:left;
-      max-width:620px;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(214,183,119,.24);
-      background:rgba(255,255,255,.02);
-      color:#e8d2a1;
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      margin-bottom:22px;
-    }
-
-    h1{
-      margin:0 0 16px;
+    .section-title{
+      margin:0 0 10px;
       font-family:'Playfair Display',serif;
-      font-size:clamp(2.5rem,5.6vw,4.8rem);
-      line-height:1.02;
-      letter-spacing:-.03em;
+      font-size:clamp(1.7rem,3vw,2.4rem);
+      text-align:center;
     }
 
-    .subtitle{
-      margin:0;
+    .section-text{
       color:var(--muted);
-      font-size:1.06rem;
-      line-height:1.8;
-      max-width:590px;
-    }
-
-    .hero-note{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:22px;
-    }
-
-    .note-chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.025);
-      color:#e8d2a1;
-      font-size:13px;
-    }
-
-    .buttons{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-top:28px;
+      max-width:760px;
+      margin:0 auto;
+      line-height:1.7;
+      text-align:center;
     }
 
     .btn{
@@ -180,10 +96,10 @@
       height:100%;
       background:linear-gradient(90deg, transparent, rgba(255,255,255,.38), transparent);
       transform:skewX(-20deg);
-      animation:shimmer 3.2s ease-in-out infinite;
+      animation:ultraShimmer 3.2s ease-in-out infinite;
     }
 
-    @keyframes shimmer{
+    @keyframes ultraShimmer{
       0%{left:-120%}
       55%{left:140%}
       100%{left:140%}
@@ -191,7 +107,7 @@
 
     .btn-secondary{
       color:#fff;
-      border:1px solid rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.18);
       background:rgba(255,255,255,.03);
       backdrop-filter:blur(8px);
     }
@@ -201,172 +117,11 @@
       box-shadow:0 8px 24px rgba(214,183,119,.08);
     }
 
-    .hero-meta{
+    .buttons{
       display:flex;
       flex-wrap:wrap;
-      gap:18px;
-      margin-top:26px;
-      color:var(--muted-2);
-      font-size:14px;
-    }
-
-    .hero-meta strong{
-      color:#fff;
-    }
-
-    .hero-right{
-      position:relative;
-      min-height:560px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .glow-orb{
-      position:absolute;
-      width:430px;
-      height:430px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(214,183,119,.18), rgba(214,183,119,.04) 45%, transparent 70%);
-      filter:blur(18px);
-      animation:floatOrb 6s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatOrb{
-      from{transform:translateY(0) scale(1)}
-      to{transform:translateY(-12px) scale(1.04)}
-    }
-
-    .video-card{
-      position:relative;
-      width:min(100%, 540px);
-      border-radius:28px;
-      padding:14px;
-      border:1px solid rgba(214,183,119,.18);
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      box-shadow:0 28px 70px rgba(0,0,0,.40);
-      overflow:hidden;
-    }
-
-    .video-topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:8px 6px 14px;
-    }
-
-    .video-dots{
-      display:flex;
-      gap:7px;
-    }
-
-    .video-dots span{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:rgba(255,255,255,.25);
-    }
-
-    .video-titlebar{
-      width:52%;
-      height:12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.07);
-    }
-
-    .hero-video{
-      width:100%;
-      height:420px;
-      object-fit:cover;
-      display:block;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.06);
-      background:#120e0c;
-    }
-
-    .floating-card{
-      position:absolute;
-      right:-10px;
-      bottom:24px;
-      min-width:190px;
-      padding:14px 16px;
-      border-radius:18px;
-      border:1px solid rgba(214,183,119,.20);
-      background:rgba(13,13,13,.80);
-      backdrop-filter:blur(14px);
-      box-shadow:0 18px 45px rgba(0,0,0,.30);
-    }
-
-    .floating-card .label{
-      color:#c8c8c8;
-      font-size:12px;
-      margin-bottom:6px;
-    }
-
-    .floating-card .value{
-      color:#fff;
-      font-size:1.08rem;
-      font-weight:700;
-    }
-
-    .floating-card .value strong{
-      color:var(--gold-3);
-      font-size:1.35rem;
-    }
-
-    .conversion-band{
-      margin-top:18px;
-      padding:16px 18px;
-      border:1px solid rgba(214,183,119,.16);
-      border-radius:22px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.028), rgba(255,255,255,.015)),
-        linear-gradient(135deg, #111111, #101010);
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
       gap:14px;
-      box-shadow:0 16px 38px rgba(0,0,0,.18);
-    }
-
-    .band-item{
-      padding:10px 12px;
-      border-right:1px solid rgba(255,255,255,.06);
-    }
-
-    .band-item:last-child{border-right:none}
-
-    .band-top{
-      color:#f0d7a8;
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:6px;
-    }
-
-    .band-bottom{
-      color:#e2e2e2;
-      font-size:14px;
-      line-height:1.5;
-    }
-
-    .section{
-      margin-top:34px;
-      padding-top:26px;
-    }
-
-    .section-title{
-      margin:0 0 10px;
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.7rem,3vw,2.4rem);
-      text-align:center;
-    }
-
-    .section-text{
-      color:var(--muted);
-      max-width:760px;
-      margin:0 auto;
-      line-height:1.7;
-      text-align:center;
+      margin-top:28px;
     }
 
     .grid{
@@ -426,6 +181,178 @@
       margin:0;
     }
 
+    .reveal{
+      opacity:0;
+      transform:translateY(22px);
+      transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ULTRA HERO */
+    .ultra-hero{
+      position:relative;
+      min-height:100vh;
+      width:100%;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      padding:0 24px;
+      background:#090909;
+    }
+
+    .ultra-hero-image{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      animation:heroSlowZoom 16s ease-in-out infinite alternate;
+      transform-origin:center center;
+    }
+
+    @keyframes heroSlowZoom{
+      from{transform:scale(1)}
+      to{transform:scale(1.06)}
+    }
+
+    .ultra-hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.68) 34%, rgba(0,0,0,.32) 62%, rgba(0,0,0,.18) 100%);
+    }
+
+    .ultra-hero-glow{
+      position:absolute;
+      inset:auto auto -120px -120px;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(214,183,119,.16), transparent 68%);
+      filter:blur(24px);
+      pointer-events:none;
+    }
+
+    .ultra-hero-inner{
+      position:relative;
+      z-index:2;
+      max-width:650px;
+      margin-left:72px;
+    }
+
+    .ultra-hero-badge{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(214,183,119,.32);
+      background:rgba(255,255,255,.03);
+      color:#e8d2a1;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:24px;
+      backdrop-filter:blur(8px);
+      box-shadow:0 8px 20px rgba(0,0,0,.18);
+    }
+
+    .ultra-hero h1{
+      margin:0 0 16px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.8rem,6vw,5.5rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      max-width:720px;
+    }
+
+    .ultra-hero-subtitle{
+      margin:0;
+      max-width:600px;
+      color:#dddddd;
+      font-size:1.08rem;
+      line-height:1.8;
+      text-shadow:0 2px 14px rgba(0,0,0,.25);
+    }
+
+    .ultra-hero-chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:22px;
+    }
+
+    .ultra-hero-chips span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.025);
+      color:#f0d7a8;
+      font-size:13px;
+      backdrop-filter:blur(8px);
+    }
+
+    .ultra-hero .buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .ultra-hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      margin-top:26px;
+      color:#b9b9b9;
+      font-size:14px;
+    }
+
+    .ultra-hero-meta strong{
+      color:#ffffff;
+    }
+
+    .ultra-proof-band{
+      max-width:1180px;
+      margin:-34px auto 0;
+      position:relative;
+      z-index:3;
+      padding:0 20px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .ultra-proof-item{
+      padding:18px 18px;
+      border-radius:22px;
+      border:1px solid rgba(214,183,119,.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+        linear-gradient(135deg, #111111, #101010);
+      box-shadow:0 18px 38px rgba(0,0,0,.20);
+    }
+
+    .ultra-proof-top{
+      color:#f0d7a8;
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+
+    .ultra-proof-bottom{
+      color:#e1e1e1;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    /* COMPARE */
     .compare-wrap{
       display:grid;
       grid-template-columns:1fr 90px 1fr;
@@ -534,6 +461,7 @@
       backdrop-filter:blur(8px);
     }
 
+    /* TESTIMONIALS */
     .testimonials{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -559,6 +487,7 @@
       color:#999;
     }
 
+    /* PRICE */
     .badge-urgency{
       display:inline-block;
       margin-bottom:14px;
@@ -614,115 +543,62 @@
       text-align:center;
     }
 
-    .reveal{
-      opacity:0;
-      transform:translateY(22px);
-      transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .reveal.show{
-      opacity:1;
-      transform:translateY(0);
-    }
-
     @media (max-width:980px){
-      .hero-grid{
-        grid-template-columns:1fr;
-        min-height:auto;
-        padding:28px;
+      .ultra-hero{
+        min-height:88vh;
+        padding:0 20px;
       }
 
-      .hero-left{
-        max-width:none;
-        text-align:center;
+      .ultra-hero-inner{
+        margin-left:24px;
+        max-width:620px;
       }
 
-      .subtitle{
-        margin:0 auto;
-      }
-
-      .hero-note,
-      .hero-meta,
-      .buttons{
-        justify-content:center;
-      }
-
-      .hero-right{
-        min-height:470px;
-      }
-
-      .floating-card{
-        right:10px;
-        bottom:16px;
-      }
-
-      .conversion-band{
+      .ultra-proof-band{
         grid-template-columns:1fr 1fr;
-      }
-
-      .band-item:nth-child(2){
-        border-right:none;
+        margin-top:-26px;
       }
     }
 
     @media (max-width:768px){
-      .hero{
-        padding:18px 0 20px;
+      .ultra-hero{
+        min-height:84vh;
+        align-items:flex-end;
+        padding:0 16px 28px;
       }
 
-      .hero-shell{
-        border-radius:24px;
+      .ultra-hero-overlay{
+        background:
+          linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.48) 24%, rgba(0,0,0,.80) 68%, rgba(0,0,0,.92) 100%);
       }
 
-      .hero-grid{
-        padding:20px;
-        gap:22px;
+      .ultra-hero-inner{
+        margin-left:0;
+        max-width:none;
       }
 
-      h1{
-        font-size:2.35rem;
+      .ultra-hero h1{
+        font-size:2.5rem;
       }
 
-      .buttons{
+      .ultra-hero-subtitle{
+        font-size:1rem;
+        line-height:1.7;
+      }
+
+      .ultra-hero .buttons{
         gap:12px;
       }
 
-      .btn{
+      .ultra-hero .btn{
         width:100%;
         max-width:340px;
       }
 
-      .hero-right{
-        min-height:auto;
-      }
-
-      .hero-video{
-        height:320px;
-      }
-
-      .floating-card{
-        position:relative;
-        right:auto;
-        bottom:auto;
-        margin-top:14px;
-      }
-
-      .conversion-band{
+      .ultra-proof-band{
         grid-template-columns:1fr;
-      }
-
-      .band-item{
-        border-right:none;
-        border-bottom:1px solid rgba(255,255,255,.06);
-      }
-
-      .band-item:last-child{
-        border-bottom:none;
-      }
-
-      .card{
-        border-radius:18px;
-        padding:20px 18px;
+        margin-top:0;
+        padding:16px;
       }
 
       .compare-wrap{
@@ -738,82 +614,57 @@
 </head>
 <body>
 
-  <div class="container hero reveal">
-    <div class="hero-shell">
-      <div class="hero-grid">
+  <div class="ultra-hero">
+    <img src="mockup.png" class="ultra-hero-image" alt="Mockup premium Beauty Website Modules">
+    <div class="ultra-hero-overlay"></div>
+    <div class="ultra-hero-glow"></div>
 
-        <div class="hero-left">
-          <div class="eyebrow">Modules premium pour marques beauté</div>
+    <div class="ultra-hero-inner">
+      <div class="ultra-hero-badge">Modules premium pour marques beauté</div>
 
-          <h1>
-            Ton produit mérite<br>
-            un site qui vend.
-          </h1>
+      <h1>Ton produit mérite<br>un site qui vend.</h1>
 
-          <p class="subtitle">
-            Transforme ton site en expérience premium sans coder. Pensé pour Shopify, Webflow et les créateurs no-code qui veulent un rendu haut de gamme sans passer par un web designer à 800€+.
-          </p>
+      <p class="ultra-hero-subtitle">
+        Transforme ton site en expérience premium sans coder.
+        Pensé pour Shopify, Webflow et les créateurs no-code
+        qui veulent un rendu luxe sans passer par une agence.
+      </p>
 
-          <div class="hero-note">
-            <div class="note-chip">💸 Alternative à une agence</div>
-            <div class="note-chip">⚡ Installation rapide</div>
-            <div class="note-chip">💎 Effet premium immédiat</div>
-          </div>
+      <div class="ultra-hero-chips">
+        <span>💸 Alternative à un designer à 800€+</span>
+        <span>⚡ Installation rapide</span>
+        <span>💎 Effet premium immédiat</span>
+      </div>
 
-          <div class="buttons">
-            <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn btn-secondary">Voir la démo</a>
-            <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Accéder au pack</a>
-          </div>
+      <div class="buttons">
+        <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn btn-secondary">Voir la démo</a>
+        <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Accéder au pack</a>
+      </div>
 
-          <div class="hero-meta">
-            <div><strong>14 modules</strong> prêts à l’emploi</div>
-            <div><strong>79€</strong> pour les 30 premiers</div>
-            <div><strong>Accès à vie</strong> + mises à jour</div>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="glow-orb"></div>
-
-          <div class="video-card">
-            <div class="video-topbar">
-              <div class="video-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <div class="video-titlebar"></div>
-            </div>
-
-            <video autoplay muted loop playsinline class="hero-video" poster="preview.jpg">
-              <source src="demo-video.mp4" type="video/mp4">
-            </video>
-          </div>
-
-          <div class="floating-card">
-            <div class="label">Alternative à un designer</div>
-            <div class="value"><strong>79€</strong> au lieu de 800€+</div>
-          </div>
-        </div>
-
+      <div class="ultra-hero-meta">
+        <div><strong>14 modules</strong> prêts à l’emploi</div>
+        <div><strong>79€</strong> pour les 30 premiers</div>
+        <div><strong>Accès à vie</strong> + mises à jour</div>
       </div>
     </div>
+  </div>
 
-    <div class="conversion-band reveal">
-      <div class="band-item">
-        <div class="band-top">Sans coder</div>
-        <div class="band-bottom">Tu personnalises et tu intègres sans développeur.</div>
-      </div>
-      <div class="band-item">
-        <div class="band-top">Effet premium</div>
-        <div class="band-bottom">Un rendu plus crédible dès les premières secondes.</div>
-      </div>
-      <div class="band-item">
-        <div class="band-top">Conversion</div>
-        <div class="band-bottom">Des modules pensés pour retenir, rassurer et vendre.</div>
-      </div>
-      <div class="band-item">
-        <div class="band-top">Offre de lancement</div>
-        <div class="band-bottom">79€ pour les 30 premiers, puis 139€.</div>
-      </div>
+  <div class="ultra-proof-band">
+    <div class="ultra-proof-item">
+      <div class="ultra-proof-top">Sans coder</div>
+      <div class="ultra-proof-bottom">Tu colles, tu personnalises, ça fonctionne.</div>
+    </div>
+    <div class="ultra-proof-item">
+      <div class="ultra-proof-top">Effet premium</div>
+      <div class="ultra-proof-bottom">Une vraie présence de marque dès la première seconde.</div>
+    </div>
+    <div class="ultra-proof-item">
+      <div class="ultra-proof-top">Conversion</div>
+      <div class="ultra-proof-bottom">Des modules pensés pour rassurer et faire cliquer.</div>
+    </div>
+    <div class="ultra-proof-item">
+      <div class="ultra-proof-top">Offre de lancement</div>
+      <div class="ultra-proof-bottom">79€ pour les 30 premiers, puis 139€.</div>
     </div>
   </div>
 
@@ -828,27 +679,22 @@
         <p class="card-title">🔄 Comparateur avant / après</p>
         <p class="card-text">Prouve visuellement la transformation avant même la lecture.</p>
       </div>
-
       <div class="card reveal">
         <p class="card-title">🎬 Vidéos automatiques</p>
         <p class="card-text">Capture l’attention très vite avec un rendu plus premium.</p>
       </div>
-
       <div class="card reveal">
         <p class="card-title">🎯 Quiz intelligent</p>
         <p class="card-text">Guide chaque cliente vers le bon produit plus facilement.</p>
       </div>
-
       <div class="card reveal">
         <p class="card-title">💎 Design luxe Dark & Light</p>
         <p class="card-text">Une esthétique plus crédible, plus propre, plus haut de gamme.</p>
       </div>
-
       <div class="card reveal">
         <p class="card-title">📱 100% mobile</p>
         <p class="card-text">Pensé pour là où se joue la majorité des ventes.</p>
       </div>
-
       <div class="card reveal">
         <p class="card-title">✉️ Capture email</p>
         <p class="card-text">Transforme plus de visites en audience que tu peux relancer.</p>
@@ -937,7 +783,7 @@
     </div>
   </div>
 
-  <div class="container footer reveal">
+  <div class="container footer">
     © Beauty Website Modules — Tous droits réservés
   </div>
 
