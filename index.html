@@ -1,290 +1,957 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beauty Website Modules</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beauty Website Modules</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<style>
-body{
-margin:0;
-background:#0b0b0b;
-color:#fff;
-font-family:'Manrope',sans-serif;
-}
+  <style>
+    :root{
+      --bg:#090909;
+      --bg-2:#111111;
+      --panel:#141414;
+      --panel-2:#101010;
+      --text:#ffffff;
+      --muted:#d0d0d0;
+      --muted-2:#a8a8a8;
+      --line:rgba(255,255,255,.08);
+      --gold-1:#d6b777;
+      --gold-2:#b9924f;
+      --gold-3:#f0d7a8;
+      --shadow:0 20px 60px rgba(0,0,0,.34);
+    }
 
-/* HERO */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
 
-.hero{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center;
-padding:80px 20px;
-max-width:1200px;
-margin:auto;
-}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:'Manrope',sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(214,183,119,.08), transparent 28%),
+        radial-gradient(circle at 80% 15%, rgba(214,183,119,.05), transparent 24%),
+        linear-gradient(180deg,#090909 0%, #0d0d0d 100%);
+      overflow-x:hidden;
+    }
 
-h1{
-font-family:'Playfair Display',serif;
-font-size:48px;
-line-height:1.1;
-}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-20%;
+      pointer-events:none;
+      background:radial-gradient(circle at 50% 50%, rgba(214,183,119,.04), transparent 35%);
+      filter:blur(70px);
+      animation:ambientGlow 10s ease-in-out infinite alternate;
+      z-index:0;
+    }
 
-.subtitle{
-color:#cfcfcf;
-margin-top:20px;
-font-size:16px;
-}
+    @keyframes ambientGlow{
+      from{transform:translateY(0) scale(1)}
+      to{transform:translateY(-14px) scale(1.04)}
+    }
 
-.btn{
-padding:14px 28px;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-display:inline-block;
-margin-top:20px;
-}
+    .container{
+      position:relative;
+      z-index:1;
+      max-width:1180px;
+      margin:auto;
+      padding:0 20px;
+    }
 
-.btn-primary{
-background:linear-gradient(135deg,#d6b777,#b9924f);
-color:#000;
-}
+    .hero{
+      padding:32px 0 24px;
+    }
 
-.btn-secondary{
-border:1px solid #777;
-color:#fff;
-}
+    .hero-shell{
+      overflow:hidden;
+      border-radius:30px;
+      border:1px solid rgba(214,183,119,.14);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
+        radial-gradient(circle at 20% 10%, rgba(214,183,119,.07), transparent 32%),
+        linear-gradient(135deg, #0e0e0e 0%, #121212 100%);
+      box-shadow:var(--shadow);
+    }
 
-/* MOCKUP */
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:34px;
+      align-items:center;
+      padding:42px;
+      min-height:640px;
+    }
 
-.mockup{
-background:#111;
-border-radius:20px;
-padding:20px;
-border:1px solid rgba(255,255,255,.1);
-box-shadow:0 20px 60px rgba(0,0,0,.4);
-}
+    .hero-left{
+      text-align:left;
+      max-width:620px;
+    }
 
-.mockup-inner{
-height:300px;
-border-radius:12px;
-background:linear-gradient(135deg,#2b1a14,#000);
-display:flex;
-align-items:center;
-justify-content:center;
-color:#d6b777;
-font-size:18px;
-}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(214,183,119,.24);
+      background:rgba(255,255,255,.02);
+      color:#e8d2a1;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:22px;
+    }
 
-/* BAND */
+    h1{
+      margin:0 0 16px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.5rem,5.6vw,4.8rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
 
-.band{
-max-width:1200px;
-margin:auto;
-background:#111;
-padding:20px;
-border-radius:12px;
-text-align:center;
-color:#ccc;
-}
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:1.06rem;
+      line-height:1.8;
+      max-width:590px;
+    }
 
-/* SECTIONS */
+    .hero-note{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:22px;
+    }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:60px 20px;
-text-align:center;
-}
+    .note-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.025);
+      color:#e8d2a1;
+      font-size:13px;
+    }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:30px;
-}
+    .buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
 
-.card{
-background:#151515;
-padding:25px;
-border-radius:15px;
-border:1px solid rgba(255,255,255,.05);
-}
+    .btn{
+      position:relative;
+      overflow:hidden;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:15px 28px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.01em;
+      transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease, opacity .28s ease;
+    }
 
-/* COMPARE */
+    .btn:hover{
+      transform:translateY(-3px);
+    }
 
-.compare{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-margin-top:30px;
-}
+    .btn-primary{
+      color:#111;
+      background:linear-gradient(135deg,var(--gold-1),var(--gold-2));
+      box-shadow:0 10px 30px rgba(185,146,79,.20), inset 0 1px 0 rgba(255,255,255,.35);
+    }
 
-/* TESTIMONIAL */
+    .btn-primary::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:-120%;
+      width:60%;
+      height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.38), transparent);
+      transform:skewX(-20deg);
+      animation:shimmer 3.2s ease-in-out infinite;
+    }
 
-.testimonial{
-background:#151515;
-padding:20px;
-border-radius:15px;
-margin-top:20px;
-}
+    @keyframes shimmer{
+      0%{left:-120%}
+      55%{left:140%}
+      100%{left:140%}
+    }
 
-/* PRICE */
+    .btn-secondary{
+      color:#fff;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.03);
+      backdrop-filter:blur(8px);
+    }
 
-.price{
-margin-top:30px;
-font-size:22px;
-}
+    .btn-secondary:hover{
+      border-color:rgba(214,183,119,.45);
+      box-shadow:0 8px 24px rgba(214,183,119,.08);
+    }
 
-.price strong{
-color:#d6b777;
-font-size:34px;
-}
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      margin-top:26px;
+      color:var(--muted-2);
+      font-size:14px;
+    }
 
-.badge{
-color:#d6b777;
-margin-bottom:10px;
-font-size:14px;
-}
+    .hero-meta strong{
+      color:#fff;
+    }
 
-.stock{
-color:#d6b777;
-margin-top:10px;
-}
+    .hero-right{
+      position:relative;
+      min-height:560px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-/* MOBILE */
+    .glow-orb{
+      position:absolute;
+      width:430px;
+      height:430px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(214,183,119,.18), rgba(214,183,119,.04) 45%, transparent 70%);
+      filter:blur(18px);
+      animation:floatOrb 6s ease-in-out infinite alternate;
+    }
 
-@media(max-width:768px){
-.hero{
-grid-template-columns:1fr;
-text-align:center;
-}
+    @keyframes floatOrb{
+      from{transform:translateY(0) scale(1)}
+      to{transform:translateY(-12px) scale(1.04)}
+    }
 
-h1{
-font-size:32px;
-}
-}
-</style>
+    .video-card{
+      position:relative;
+      width:min(100%, 540px);
+      border-radius:28px;
+      padding:14px;
+      border:1px solid rgba(214,183,119,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow:0 28px 70px rgba(0,0,0,.40);
+      overflow:hidden;
+    }
+
+    .video-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:8px 6px 14px;
+    }
+
+    .video-dots{
+      display:flex;
+      gap:7px;
+    }
+
+    .video-dots span{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:rgba(255,255,255,.25);
+    }
+
+    .video-titlebar{
+      width:52%;
+      height:12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+    }
+
+    .hero-video{
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      display:block;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.06);
+      background:#120e0c;
+    }
+
+    .floating-card{
+      position:absolute;
+      right:-10px;
+      bottom:24px;
+      min-width:190px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(214,183,119,.20);
+      background:rgba(13,13,13,.80);
+      backdrop-filter:blur(14px);
+      box-shadow:0 18px 45px rgba(0,0,0,.30);
+    }
+
+    .floating-card .label{
+      color:#c8c8c8;
+      font-size:12px;
+      margin-bottom:6px;
+    }
+
+    .floating-card .value{
+      color:#fff;
+      font-size:1.08rem;
+      font-weight:700;
+    }
+
+    .floating-card .value strong{
+      color:var(--gold-3);
+      font-size:1.35rem;
+    }
+
+    .conversion-band{
+      margin-top:18px;
+      padding:16px 18px;
+      border:1px solid rgba(214,183,119,.16);
+      border-radius:22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.028), rgba(255,255,255,.015)),
+        linear-gradient(135deg, #111111, #101010);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      box-shadow:0 16px 38px rgba(0,0,0,.18);
+    }
+
+    .band-item{
+      padding:10px 12px;
+      border-right:1px solid rgba(255,255,255,.06);
+    }
+
+    .band-item:last-child{border-right:none}
+
+    .band-top{
+      color:#f0d7a8;
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:6px;
+    }
+
+    .band-bottom{
+      color:#e2e2e2;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:34px;
+      padding-top:26px;
+    }
+
+    .section-title{
+      margin:0 0 10px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.7rem,3vw,2.4rem);
+      text-align:center;
+    }
+
+    .section-text{
+      color:var(--muted);
+      max-width:760px;
+      margin:0 auto;
+      line-height:1.7;
+      text-align:center;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+      margin-top:28px;
+    }
+
+    .card{
+      position:relative;
+      padding:24px 22px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+        linear-gradient(180deg, var(--panel), var(--panel-2));
+      text-align:left;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+      transition:transform .32s ease, border-color .32s ease, box-shadow .32s ease;
+      overflow:hidden;
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:auto -20% -55% auto;
+      width:160px;
+      height:160px;
+      background:radial-gradient(circle, rgba(214,183,119,.15), transparent 65%);
+      filter:blur(18px);
+      opacity:.55;
+      transition:opacity .32s ease, transform .32s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(214,183,119,.26);
+      box-shadow:0 16px 40px rgba(0,0,0,.28);
+    }
+
+    .card:hover::after{
+      opacity:.9;
+      transform:scale(1.08);
+    }
+
+    .card-title{
+      font-size:1rem;
+      font-weight:700;
+      margin:0 0 6px;
+    }
+
+    .card-text{
+      color:var(--muted);
+      font-size:.96rem;
+      line-height:1.6;
+      margin:0;
+    }
+
+    .compare-wrap{
+      display:grid;
+      grid-template-columns:1fr 90px 1fr;
+      gap:18px;
+      align-items:center;
+      margin-top:30px;
+    }
+
+    .compare-card{
+      position:relative;
+      padding:28px 24px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+        linear-gradient(180deg, var(--panel), var(--panel-2));
+      text-align:left;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+
+    .compare-card-gold{
+      border-color:rgba(214,183,119,.28);
+      box-shadow:0 16px 40px rgba(185,146,79,.10);
+    }
+
+    .compare-card-gold::after{
+      content:"";
+      position:absolute;
+      inset:auto -10% -45% auto;
+      width:180px;
+      height:180px;
+      background:radial-gradient(circle, rgba(214,183,119,.18), transparent 65%);
+      filter:blur(18px);
+    }
+
+    .compare-label{
+      font-size:.9rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:#d7d7d7;
+      margin-bottom:10px;
+    }
+
+    .compare-price{
+      font-family:'Playfair Display',serif;
+      line-height:1;
+      margin-bottom:10px;
+    }
+
+    .compare-old{
+      font-size:3rem;
+      color:#ffffff;
+      opacity:.82;
+    }
+
+    .compare-new{
+      font-size:3.2rem;
+      color:#f2d7a2;
+    }
+
+    .compare-note{
+      color:#e7cf9e;
+      font-size:.92rem;
+      margin-bottom:16px;
+    }
+
+    .compare-list{
+      list-style:none;
+      padding:0;
+      margin:18px 0 0;
+    }
+
+    .compare-list li{
+      position:relative;
+      padding-left:22px;
+      margin-bottom:12px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .compare-list li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      top:0;
+      color:#e7cf9e;
+      font-size:1.1rem;
+      line-height:1.2;
+    }
+
+    .compare-vs{
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:auto;
+      font-weight:700;
+      letter-spacing:.12em;
+      color:#f2d7a2;
+      border:1px solid rgba(214,183,119,.24);
+      background:rgba(255,255,255,.02);
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+      backdrop-filter:blur(8px);
+    }
+
+    .testimonials{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:18px;
+      margin-top:30px;
+    }
+
+    .testimonial{
+      padding:22px;
+      border-radius:20px;
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.06);
+      text-align:left;
+      font-size:.95rem;
+      color:#ddd;
+      line-height:1.6;
+    }
+
+    .testimonial span{
+      display:block;
+      margin-top:10px;
+      font-size:13px;
+      color:#999;
+    }
+
+    .badge-urgency{
+      display:inline-block;
+      margin-bottom:14px;
+      padding:8px 16px;
+      border-radius:999px;
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#f2d7a2;
+      border:1px solid rgba(214,183,119,.3);
+      background:rgba(214,183,119,.08);
+      box-shadow:0 8px 20px rgba(214,183,119,.08);
+      backdrop-filter:blur(6px);
+    }
+
+    .price-wrap{
+      margin-top:18px;
+      display:inline-block;
+      padding:18px 24px;
+      border-radius:24px;
+      border:1px solid rgba(214,183,119,.20);
+      background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
+      box-shadow:0 14px 40px rgba(0,0,0,.18);
+    }
+
+    .price{
+      margin:0;
+      font-size:1.02rem;
+      color:var(--muted);
+      line-height:1.8;
+      text-align:center;
+    }
+
+    .price strong{
+      color:#f2d7a2;
+      font-size:2rem;
+      font-weight:700;
+    }
+
+    .stock{
+      margin-top:10px;
+      font-size:14px;
+      color:#e7cf9e;
+      opacity:.9;
+      text-align:center;
+    }
+
+    .footer{
+      margin-top:70px;
+      padding:0 0 30px;
+      color:#8d8d8d;
+      font-size:13px;
+      text-align:center;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(22px);
+      transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:980px){
+      .hero-grid{
+        grid-template-columns:1fr;
+        min-height:auto;
+        padding:28px;
+      }
+
+      .hero-left{
+        max-width:none;
+        text-align:center;
+      }
+
+      .subtitle{
+        margin:0 auto;
+      }
+
+      .hero-note,
+      .hero-meta,
+      .buttons{
+        justify-content:center;
+      }
+
+      .hero-right{
+        min-height:470px;
+      }
+
+      .floating-card{
+        right:10px;
+        bottom:16px;
+      }
+
+      .conversion-band{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .band-item:nth-child(2){
+        border-right:none;
+      }
+    }
+
+    @media (max-width:768px){
+      .hero{
+        padding:18px 0 20px;
+      }
+
+      .hero-shell{
+        border-radius:24px;
+      }
+
+      .hero-grid{
+        padding:20px;
+        gap:22px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+
+      .buttons{
+        gap:12px;
+      }
+
+      .btn{
+        width:100%;
+        max-width:340px;
+      }
+
+      .hero-right{
+        min-height:auto;
+      }
+
+      .hero-video{
+        height:320px;
+      }
+
+      .floating-card{
+        position:relative;
+        right:auto;
+        bottom:auto;
+        margin-top:14px;
+      }
+
+      .conversion-band{
+        grid-template-columns:1fr;
+      }
+
+      .band-item{
+        border-right:none;
+        border-bottom:1px solid rgba(255,255,255,.06);
+      }
+
+      .band-item:last-child{
+        border-bottom:none;
+      }
+
+      .card{
+        border-radius:18px;
+        padding:20px 18px;
+      }
+
+      .compare-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .compare-vs{
+        width:72px;
+        height:72px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- HERO -->
+  <div class="container hero reveal">
+    <div class="hero-shell">
+      <div class="hero-grid">
 
-<div class="hero">
+        <div class="hero-left">
+          <div class="eyebrow">Modules premium pour marques beauté</div>
 
-<div>
-<h1>Ton produit mérite<br>un site qui vend</h1>
+          <h1>
+            Ton produit mérite<br>
+            un site qui vend.
+          </h1>
 
-<p class="subtitle">
-Transforme ton site en expérience premium sans coder.<br>
-Résultat similaire à une agence à 800€+, en quelques minutes.
-</p>
+          <p class="subtitle">
+            Transforme ton site en expérience premium sans coder. Pensé pour Shopify, Webflow et les créateurs no-code qui veulent un rendu haut de gamme sans passer par un web designer à 800€+.
+          </p>
 
-<a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn btn-secondary">Voir la démo</a><br>
+          <div class="hero-note">
+            <div class="note-chip">💸 Alternative à une agence</div>
+            <div class="note-chip">⚡ Installation rapide</div>
+            <div class="note-chip">💎 Effet premium immédiat</div>
+          </div>
 
-<a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Accéder au pack</a>
+          <div class="buttons">
+            <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn btn-secondary">Voir la démo</a>
+            <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Accéder au pack</a>
+          </div>
 
-</div>
+          <div class="hero-meta">
+            <div><strong>14 modules</strong> prêts à l’emploi</div>
+            <div><strong>79€</strong> pour les 30 premiers</div>
+            <div><strong>Accès à vie</strong> + mises à jour</div>
+          </div>
+        </div>
 
-<div class="mockup">
-<div class="mockup-inner">
-✨ Aperçu premium de ton futur site
-</div>
-</div>
+        <div class="hero-right">
+          <div class="glow-orb"></div>
 
-</div>
+          <div class="video-card">
+            <div class="video-topbar">
+              <div class="video-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="video-titlebar"></div>
+            </div>
 
-<!-- BAND -->
+            <video autoplay muted loop playsinline class="hero-video" poster="preview.jpg">
+              <source src="demo-video.mp4" type="video/mp4">
+            </video>
+          </div>
 
-<div class="band">
-💸 Alternative à un web designer à 800€+ — résultat premium immédiat
-</div>
+          <div class="floating-card">
+            <div class="label">Alternative à un designer</div>
+            <div class="value"><strong>79€</strong> au lieu de 800€+</div>
+          </div>
+        </div>
 
-<!-- FEATURES -->
+      </div>
+    </div>
 
-<div class="container">
+    <div class="conversion-band reveal">
+      <div class="band-item">
+        <div class="band-top">Sans coder</div>
+        <div class="band-bottom">Tu personnalises et tu intègres sans développeur.</div>
+      </div>
+      <div class="band-item">
+        <div class="band-top">Effet premium</div>
+        <div class="band-bottom">Un rendu plus crédible dès les premières secondes.</div>
+      </div>
+      <div class="band-item">
+        <div class="band-top">Conversion</div>
+        <div class="band-bottom">Des modules pensés pour retenir, rassurer et vendre.</div>
+      </div>
+      <div class="band-item">
+        <div class="band-top">Offre de lancement</div>
+        <div class="band-bottom">79€ pour les 30 premiers, puis 139€.</div>
+      </div>
+    </div>
+  </div>
 
-<h2>Ce que le pack ajoute à ton site</h2>
+  <div class="container section reveal">
+    <h2 class="section-title">Ce que le pack ajoute à ton site</h2>
+    <p class="section-text">
+      Des modules pensés pour valoriser ton produit, renforcer la confiance et augmenter la conversion sans complexité technique.
+    </p>
 
-<div class="grid">
-<div class="card">Comparateur avant/après</div>
-<div class="card">Vidéos automatiques</div>
-<div class="card">Quiz intelligent</div>
-<div class="card">Design luxe</div>
-<div class="card">100% mobile</div>
-<div class="card">Capture email</div>
-</div>
+    <div class="grid">
+      <div class="card reveal">
+        <p class="card-title">🔄 Comparateur avant / après</p>
+        <p class="card-text">Prouve visuellement la transformation avant même la lecture.</p>
+      </div>
 
-</div>
+      <div class="card reveal">
+        <p class="card-title">🎬 Vidéos automatiques</p>
+        <p class="card-text">Capture l’attention très vite avec un rendu plus premium.</p>
+      </div>
 
-<!-- COMPARE -->
+      <div class="card reveal">
+        <p class="card-title">🎯 Quiz intelligent</p>
+        <p class="card-text">Guide chaque cliente vers le bon produit plus facilement.</p>
+      </div>
 
-<div class="container">
+      <div class="card reveal">
+        <p class="card-title">💎 Design luxe Dark & Light</p>
+        <p class="card-text">Une esthétique plus crédible, plus propre, plus haut de gamme.</p>
+      </div>
 
-<h2>Ce que tu économises</h2>
+      <div class="card reveal">
+        <p class="card-title">📱 100% mobile</p>
+        <p class="card-text">Pensé pour là où se joue la majorité des ventes.</p>
+      </div>
 
-<div class="compare">
+      <div class="card reveal">
+        <p class="card-title">✉️ Capture email</p>
+        <p class="card-text">Transforme plus de visites en audience que tu peux relancer.</p>
+      </div>
+    </div>
+  </div>
 
-<div class="card">
-<strong>Web designer</strong><br><br>
-800€+<br><br>
-• délais<br>
-• modifications payantes<br>
-• dépendance
-</div>
+  <div class="container section reveal">
+    <h2 class="section-title">Ce que tu économises vs un web designer</h2>
+    <p class="section-text">
+      Pour obtenir ce type de rendu, beaucoup de créatrices paient plusieurs centaines d’euros pour quelques sections seulement. Ici, tu accèdes à une base premium complète, prête à personnaliser.
+    </p>
 
-<div class="card">
-<strong>Ce pack</strong><br><br>
-79€<br><br>
-• prêt à l’emploi<br>
-• personnalisable<br>
-• accès à vie
-</div>
+    <div class="compare-wrap">
+      <div class="compare-card reveal">
+        <div class="compare-label">Web designer freelance</div>
+        <div class="compare-price compare-old">800€+</div>
+        <ul class="compare-list">
+          <li>Quelques sections sur mesure</li>
+          <li>Délais plus longs</li>
+          <li>Allers-retours et coût plus élevé</li>
+          <li>Souvent des frais en plus pour les modifications</li>
+        </ul>
+      </div>
 
-</div>
+      <div class="compare-vs reveal">VS</div>
 
-</div>
+      <div class="compare-card compare-card-gold reveal">
+        <div class="compare-label">Beauty Website Modules</div>
+        <div class="compare-price compare-new">79€</div>
+        <div class="compare-note">pour les 30 premiers</div>
+        <ul class="compare-list">
+          <li>14 modules premium prêts à l’emploi</li>
+          <li>Installation immédiate</li>
+          <li>100% personnalisable</li>
+          <li>Accès à vie + mises à jour incluses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-<!-- TESTIMONIAL -->
+  <div class="container section reveal">
+    <h2 class="section-title">Elles utilisent déjà ces modules</h2>
 
-<div class="container">
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>“J’ai ajouté 2 modules et mon site paraît déjà beaucoup plus pro.”</p>
+        <span>— Sarah, boutique skincare</span>
+      </div>
 
-<h2>Elles utilisent déjà ces modules</h2>
+      <div class="testimonial">
+        <p>“Ça m’a évité de payer un designer, et le rendu est incroyable.”</p>
+        <span>— Lina, marque beauté</span>
+      </div>
 
-<div class="testimonial">
-“Mon site fait beaucoup plus pro maintenant”
-</div>
+      <div class="testimonial">
+        <p>“Ultra simple à installer. Et ça change tout visuellement.”</p>
+        <span>— Camille, e-commerce</span>
+      </div>
+    </div>
+  </div>
 
-<div class="testimonial">
-“Ça m’a évité de payer un designer”
-</div>
+  <div class="container section reveal">
+    <h2 class="section-title">Offre de lancement</h2>
 
-</div>
+    <div style="text-align:center;">
+      <div class="badge-urgency">
+        🔥 Offre limitée — 30 premiers seulement
+      </div>
 
-<!-- PRICE -->
+      <div class="price-wrap">
+        <p class="price">
+          🔥 <strong>79€</strong> pour les 30 premiers<br>
+          ⏳ Puis 139€<br>
+          Accès à vie
+        </p>
 
-<div class="container">
+        <div class="stock">
+          Plus que <strong>17</strong> accès à 79€
+        </div>
+      </div>
 
-<h2>Offre de lancement</h2>
+      <div class="buttons" style="justify-content:center;">
+        <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Accéder au pack</a>
+      </div>
+    </div>
+  </div>
 
-<div class="badge">🔥 30 premiers seulement</div>
+  <div class="container footer reveal">
+    © Beauty Website Modules — Tous droits réservés
+  </div>
 
-<div class="price">
-<strong>79€</strong><br>
-Puis 139€
-</div>
+  <script>
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    },{threshold:0.14});
 
-<div class="stock">
-Plus que 17 accès
-</div>
-
-<a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Acheter maintenant</a>
-
-</div>
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
 
 </body>
 </html>
