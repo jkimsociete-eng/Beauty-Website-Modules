@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beauty Website Modules</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,600;1,6..96,300;1,6..96,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --bg: #06060a;
@@ -162,7 +162,7 @@
     }
 
     .hero-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-weight: 300;
       font-size: clamp(3.2rem, 6.5vw, 6rem);
       line-height: 1.0;
@@ -272,7 +272,7 @@
     }
 
     .hero-meta-value {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 1.6rem;
       font-weight: 300;
       color: var(--gold-light);
@@ -286,38 +286,123 @@
       color: var(--muted);
     }
 
-    /* ─── TICKER ─── */
-    .ticker {
+    /* ─── BARRE D'ANNONCE ─── */
+    .announce-bar {
       width: 100%;
+      background: var(--gold);
+      position: relative;
       overflow: hidden;
-      padding: 14px 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .ticker-track {
-      display: flex;
-      gap: 48px;
-      white-space: nowrap;
-      animation: ticker 22s linear infinite;
-    }
-
-    .ticker-item {
-      font-size: 10px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      flex-shrink: 0;
+      height: 44px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      justify-content: center;
     }
 
-    .ticker-item::after {
-      content: '◆';
-      font-size: 6px;
-      opacity: .5;
+    .announce-messages {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .announce-msg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #0a0805;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .5s ease, transform .5s ease;
+      pointer-events: none;
+      padding: 0 60px;
+      text-align: center;
+    }
+
+    .announce-msg.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .announce-msg.exit {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+
+    /* Flèches clignotantes */
+    .announce-arrows {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      pointer-events: none;
+    }
+
+    .announce-arrow {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      animation: arrowPulse 1.4s ease-in-out infinite;
+    }
+
+    .announce-arrow span {
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-right: 1.5px solid rgba(10,8,5,.5);
+      border-bottom: 1.5px solid rgba(10,8,5,.5);
+      transform: rotate(-45deg);
+    }
+
+    .announce-arrow.left span {
+      transform: rotate(135deg);
+    }
+
+    .announce-arrow span:nth-child(2) { animation: arrowSeq 1.4s ease-in-out infinite .15s; }
+    .announce-arrow span:nth-child(3) { animation: arrowSeq 1.4s ease-in-out infinite .3s; }
+
+    /* Dots */
+    .announce-dots {
+      position: absolute;
+      bottom: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+    }
+
+    .announce-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(10,8,5,.25);
+      transition: background .3s ease, transform .3s ease;
+    }
+
+    .announce-dot.active {
+      background: rgba(10,8,5,.7);
+      transform: scale(1.3);
+    }
+
+    @keyframes arrowPulse {
+      0%, 100% { opacity: .35; }
+      50% { opacity: .85; }
+    }
+
+    @keyframes arrowSeq {
+      0%, 100% { opacity: .2; }
+      50% { opacity: .7; }
     }
 
     /* ─── SECTION BASE ─── */
@@ -350,7 +435,7 @@
     }
 
     .heading {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-weight: 300;
       font-size: clamp(2.2rem, 4vw, 3.6rem);
       line-height: 1.08;
@@ -407,7 +492,7 @@
     .module-item:hover::before { width: 100%; }
 
     .module-num {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 2.4rem;
       font-weight: 300;
       color: var(--gold-dim);
@@ -419,7 +504,7 @@
     .module-item:hover .module-num { color: rgba(201,169,110,.4); }
 
     .module-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 1.25rem;
       font-weight: 400;
       color: var(--text);
@@ -509,7 +594,7 @@
       background: var(--surface-2);
       border: 1px solid var(--line);
       color: var(--muted);
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 1rem;
       font-style: italic;
       padding: 10px 14px;
@@ -526,7 +611,7 @@
     }
 
     .compare-price-num {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 4rem;
       font-weight: 300;
       line-height: 1;
@@ -583,7 +668,7 @@
     }
 
     .testimonial-quote {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 1.15rem;
       font-weight: 300;
       font-style: italic;
@@ -603,7 +688,7 @@
       position: absolute;
       top: 24px;
       right: 28px;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 4rem;
       font-weight: 300;
       color: var(--gold-dim);
@@ -651,7 +736,7 @@
     }
 
     .pricing-amount {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 5rem;
       font-weight: 300;
       color: var(--gold-light);
@@ -716,7 +801,7 @@
     }
 
     .footer-brand {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: 1.1rem;
       font-weight: 300;
       letter-spacing: .08em;
@@ -748,11 +833,6 @@
     @keyframes subtleZoom {
       from { transform: scale(1); }
       to   { transform: scale(1.05); }
-    }
-
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
     }
 
     .reveal {
@@ -946,26 +1026,25 @@
   <img src="mockup.png" class="hero-mobile-img" alt="Aperçu Beauty Website Modules">
 </section>
 
-<!-- ═══ TICKER ═══ -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">Sans coder</span>
-    <span class="ticker-item">Effet premium immédiat</span>
-    <span class="ticker-item">Shopify &amp; Webflow</span>
-    <span class="ticker-item">14 modules</span>
-    <span class="ticker-item">Accès à vie</span>
-    <span class="ticker-item">Alternative à 800€+</span>
-    <span class="ticker-item">Installation rapide</span>
-    <span class="ticker-item">100% mobile</span>
-    <!-- duplicate for seamless loop -->
-    <span class="ticker-item">Sans coder</span>
-    <span class="ticker-item">Effet premium immédiat</span>
-    <span class="ticker-item">Shopify &amp; Webflow</span>
-    <span class="ticker-item">14 modules</span>
-    <span class="ticker-item">Accès à vie</span>
-    <span class="ticker-item">Alternative à 800€+</span>
-    <span class="ticker-item">Installation rapide</span>
-    <span class="ticker-item">100% mobile</span>
+<!-- ═══ BARRE D'ANNONCE ═══ -->
+<div class="announce-bar">
+  <div class="announce-messages" id="announceMessages">
+    <div class="announce-msg active">🚚 Livraison offerte dès 50€ d'achat — Code <strong>LUMIERE10</strong></div>
+    <div class="announce-msg">✨ 14 modules premium — Accès à vie inclus</div>
+    <div class="announce-msg">🔥 Offre de lancement — Plus que 17 accès à 79€</div>
+  </div>
+  <div class="announce-arrows">
+    <div class="announce-arrow left">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="announce-arrow right">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="announce-dots">
+    <div class="announce-dot active"></div>
+    <div class="announce-dot"></div>
+    <div class="announce-dot"></div>
   </div>
 </div>
 
@@ -1186,6 +1265,26 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Barre d'annonce rotative
+  const msgs = document.querySelectorAll('.announce-msg');
+  const dots = document.querySelectorAll('.announce-dot');
+  let current = 0;
+
+  function nextMsg() {
+    msgs[current].classList.remove('active');
+    msgs[current].classList.add('exit');
+    dots[current].classList.remove('active');
+
+    setTimeout(() => {
+      msgs[current].classList.remove('exit');
+      current = (current + 1) % msgs.length;
+      msgs[current].classList.add('active');
+      dots[current].classList.add('active');
+    }, 500);
+  }
+
+  setInterval(nextMsg, 3500);
 </script>
 </body>
 </html>
