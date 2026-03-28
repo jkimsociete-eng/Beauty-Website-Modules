@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide d'intégration — Lumière Beauty Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#C9A96E;--gd:#a07840;--k:#0f0e0c;--k2:#181614;--r:'Cormorant Garamond',serif;--f:'Josefin Sans',sans-serif}
+body{font-family:var(--f);background:#fafaf8;color:#1a1a1a;line-height:1.7;padding:0}
+
+/* HEADER */
+.hero{background:var(--k);padding:60px 40px;text-align:center}
+.hero-kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--g);font-weight:700;margin-bottom:16px}
+.hero-title{font-family:var(--r);font-size:clamp(32px,5vw,56px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:16px}
+.hero-title em{color:var(--g);font-style:italic}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.55);max-width:50ch;margin:0 auto 32px}
+.hero-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.badge{padding:6px 14px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(201,169,110,.3);color:var(--g);background:rgba(201,169,110,.08)}
+
+/* LAYOUT */
+.page{max-width:860px;margin:0 auto;padding:60px 28px}
+.section{margin-bottom:60px}
+.section-title{font-family:var(--r);font-size:clamp(24px,3vw,36px);font-weight:300;color:var(--k);margin-bottom:8px}
+.section-title em{color:var(--g);font-style:italic}
+.section-sub{font-size:13px;color:#888;margin-bottom:28px;max-width:55ch}
+.ey{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--g);font-weight:700;margin-bottom:8px;display:block}
+
+/* CMS CARDS */
+.cms-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px}
+.cms-card{background:#fff;border:1px solid #e8e4de;border-radius:16px;overflow:hidden;transition:all .25s}
+.cms-card:hover{border-color:var(--g);box-shadow:0 8px 32px rgba(201,169,110,.12);transform:translateY(-2px)}
+.cms-header{padding:20px 24px 14px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #f0ebe4}
+.cms-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cms-name{font-size:16px;font-weight:700;color:var(--k);letter-spacing:.04em}
+.cms-type{font-size:10px;color:#aaa;letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.cms-body{padding:16px 24px 20px}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:12px;align-items:flex-start}
+.step-num{width:22px;height:22px;border-radius:50%;background:var(--g);color:#111;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-text{font-size:12px;color:#444;line-height:1.6}
+.step-text strong{color:var(--k);font-weight:700}
+.step-text code{background:#f5f2ed;padding:1px 6px;border-radius:4px;font-size:11px;color:var(--gd);font-family:monospace}
+
+/* CODE BLOCK */
+.code-block{background:var(--k2);border-radius:12px;padding:20px 24px;margin:16px 0;position:relative;overflow:hidden}
+.code-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g),transparent)}
+.code-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.6);font-weight:700;margin-bottom:10px;display:block}
+.code-text{font-family:monospace;font-size:12px;color:rgba(255,255,255,.8);line-height:1.8;white-space:pre-wrap;word-break:break-all}
+.code-text .hl{color:var(--g)}
+.copy-btn{position:absolute;top:12px;right:12px;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.3);color:var(--g);font-family:var(--f);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:6px;cursor:pointer;transition:all .2s}
+.copy-btn:hover{background:rgba(201,169,110,.3)}
+
+/* TIPS */
+.tip{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;border-radius:12px;margin-bottom:12px}
+.tip.gold{background:#FDF5E8;border:1px solid rgba(201,169,110,.3)}
+.tip.green{background:#E8F5EE;border:1px solid #9FD4B8}
+.tip.red{background:#FDE8E8;border:1px solid #F4AAAA}
+.tip-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.tip-text{font-size:13px;line-height:1.6}
+.tip.gold .tip-text{color:#7A5A1A}
+.tip.green .tip-text{color:#1A5A3A}
+.tip.red .tip-text{color:#5A1A1A}
+
+/* PERSO TABLE */
+.perso-table{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden;margin:20px 0}
+.perso-table th{background:var(--k);color:var(--g);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:12px 16px;text-align:left;font-weight:700}
+.perso-table td{padding:12px 16px;font-size:13px;border-bottom:1px solid #f0ebe4;background:#fff;vertical-align:top}
+.perso-table tr:last-child td{border-bottom:none}
+.perso-table td:first-child{font-weight:700;color:var(--k);width:28%;font-family:monospace;font-size:11px;color:var(--gd)}
+.perso-table td:last-child{color:#666}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,#e8e4de,transparent);margin:48px 0}
+
+/* FOOTER */
+footer{background:var(--k);padding:32px;text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+
+@media(max-width:680px){
+  .cms-grid{grid-template-columns:1fr}
+  .hero{padding:40px 20px}
+  .page{padding:40px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hero">
+  <div class="hero-kicker">Documentation · Kit 14 Modules</div>
+  <h1 class="hero-title">Guide d'<em>intégration</em><br>complet</h1>
+  <p class="hero-sub">Tout ce qu'il faut savoir pour intégrer vos modules sur n'importe quel site, en moins de 10 minutes.</p>
+  <div class="hero-badges">
+    <span class="badge">WordPress</span>
+    <span class="badge">Shopify</span>
+    <span class="badge">IONOS</span>
+    <span class="badge">Webflow</span>
+    <span class="badge">Wix</span>
+    <span class="badge">Squarespace</span>
+    <span class="badge">HTML Pur</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- PRINCIPE DE BASE -->
+  <div class="section">
+    <span class="ey">Avant de commencer</span>
+    <h2 class="section-title">Le principe <em>universel</em></h2>
+    <p class="section-sub">Chaque module est un fichier HTML autonome. Pour l'intégrer, il suffit de copier son contenu dans un bloc "HTML" de votre éditeur.</p>
+
+    <div class="tip gold">
+      <div class="tip-icon">✦</div>
+      <div class="tip-text"><strong>Ce que vous copiez :</strong> Ouvrez le fichier du module (ex: <code>08-quiz.html</code>), sélectionnez tout (Ctrl+A), copiez (Ctrl+C), collez dans le bloc HTML de votre CMS.</div>
+    </div>
+    <div class="tip green">
+      <div class="tip-icon">✓</div>
+      <div class="tip-text"><strong>Vos images et vidéos</strong> sont hébergées sur Cloudinary — elles se chargent automatiquement. Vous n'avez rien à uploader sur votre site.</div>
+    </div>
+    <div class="tip red">
+      <div class="tip-icon">!</div>
+      <div class="tip-text"><strong>Ne pas utiliser</strong> le fichier <code>00-pack-complet.html</code> pour l'intégration — c'est uniquement la démo navigable. Utilisez les fichiers individuels <code>01</code> à <code>13</code>.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CMS PAR CMS -->
+  <div class="section">
+    <span class="ey">Intégration par plateforme</span>
+    <h2 class="section-title">Votre <em>CMS</em></h2>
+    <p class="section-sub">Suivez les étapes correspondant à votre plateforme.</p>
+
+    <div class="cms-grid">
+
+      <!-- WORDPRESS -->
+      <div class="cms-card">
+        <div class="cms-header">
+          <div class="cms-icon" style="background:#F0F4FF">🔵</div>
+          <div><div class="cms-name">WordPress</div><div class="cms-type">+ Elementor / Gutenberg</div></div>
+        </div>
+        <div class="cms-body">
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Tableau de bord → <strong>Pages</strong> → ouvrez la page à modifier</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Gutenberg :</strong> Cliquez + → cherchez <strong>"HTML personnalisé"</strong> → collez le code</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Elementor :</strong> Faites glisser le widget <strong>"HTML"</strong> → collez dans le champ</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Cliquez <strong>Publier / Mettre à jour</strong> → le module apparaît sur votre page</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOPIFY -->
+      <div class="cms-card">
+        <div class="cms-header">
+          <div class="cms-icon" style="background:#E8F5EE">🟢</div>
+          <div><div class="cms-name">Shopify</div><div class="cms-type">Thème + Pages</div></div>
+        </div>
+        <div class="cms-body">
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Online Store</strong> → <strong>Themes</strong> → <strong>Customize</strong></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Cliquez <strong>"Add section"</strong> → cherchez <strong>"Custom HTML"</strong> ou <strong>"Custom Liquid"</strong></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Collez le code du module dans le champ texte</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Cliquez <strong>Save</strong> → votre module est visible sur la page</div></div>
+          </div>
+          <div class="tip gold" style="margin-top:12px;padding:10px 14px">
+            <div class="tip-icon" style="font-size:14px">✦</div>
+            <div class="tip-text" style="font-size:11px">Pour une page produit : <strong>Product pages</strong> → éditez le template → ajoutez un bloc HTML dans la section voulue.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IONOS -->
+      <div class="cms-card">
+        <div class="cms-header">
+          <div class="cms-icon" style="background:#FFF0F0">🔴</div>
+          <div><div class="cms-name">IONOS</div><div class="cms-type">MyWebsite / Website Builder</div></div>
+        </div>
+        <div class="cms-body">
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Ouvrez l'éditeur IONOS → cliquez sur la section où ajouter le module</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Cliquez <strong>"+"</strong> pour ajouter un élément → cherchez <strong>"Widget HTML"</strong> ou <strong>"Code"</strong></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Double-cliquez sur le bloc → collez le code du module</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Cliquez <strong>Appliquer</strong> puis <strong>Publier</strong></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEBFLOW -->
+      <div class="cms-card">
+        <div class="cms-header">
+          <div class="cms-icon" style="background:#F0F8FF">🔷</div>
+          <div><div class="cms-name">Webflow</div><div class="cms-type">Designer</div></div>
+        </div>
+        <div class="cms-body">
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Dans le Designer, panneau gauche → <strong>"+"</strong> → Components → faites glisser un bloc <strong>"Embed"</strong></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Double-cliquez sur le bloc Embed → collez votre code</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Cliquez <strong>"Save & Close"</strong> puis <strong>Publish</strong></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WIX -->
+      <div class="cms-card">
+        <div class="cms-header">
+          <div class="cms-icon" style="background:#FFFBE8">🟡</div>
+          <div><div class="cms-name">Wix</div><div class="cms-type">Editor X / Studio</div></div>
+        </div>
+        <div class="cms-body">
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Dans l'éditeur Wix → cliquez <strong>"+"</strong> → <strong>Embed Code</strong> → <strong>"Embed HTML"</strong></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Une boîte apparaît sur la page → cliquez <strong>"Enter Code"</strong></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Collez le code → cliquez <strong>Update</strong> → redimensionnez le bloc si nécessaire</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Cliquez <strong>Publish</strong></div></div>
+          </div>
+          <div class="tip red" style="margin-top:12px;padding:10px 14px">
+            <div class="tip-icon" style="font-size:14px">!</div>
+            <div class="tip-text" style="font-size:11px">Sur Wix, <strong>agrandissez bien le bloc HTML</strong> après l'avoir ajouté — par défaut il est très petit et coupe le module.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SQUARESPACE -->
+      <div class="cms-card">
+        <div class="cms-header">
+          <div class="cms-icon" style="background:#F5F5F5">⬛</div>
+          <div><div class="cms-name">Squarespace</div><div class="cms-type">Version 7.1</div></div>
+        </div>
+        <div class="cms-body">
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Éditez votre page → cliquez <strong>"+"</strong> pour ajouter un bloc → cherchez <strong>"Code"</strong></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Collez votre code dans le champ → désactivez <strong>"Display Source"</strong></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Cliquez <strong>Apply</strong> puis <strong>Save</strong></div></div>
+          </div>
+          <div class="tip gold" style="margin-top:12px;padding:10px 14px">
+            <div class="tip-icon" style="font-size:14px">✦</div>
+            <div class="tip-text" style="font-size:11px">Squarespace nécessite un plan <strong>Business ou supérieur</strong> pour les blocs de code personnalisé.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HTML PUR -->
+      <div class="cms-card" style="grid-column:1/-1">
+        <div class="cms-header">
+          <div class="cms-icon" style="background:#F5F0FF">🟣</div>
+          <div><div class="cms-name">HTML pur / Site statique</div><div class="cms-type">Aucun CMS — fichier direct</div></div>
+        </div>
+        <div class="cms-body">
+          <div class="steps" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Ouvrez votre fichier HTML existant dans un éditeur (VS Code, Notepad++...)</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Copiez le contenu entre <code>&lt;body&gt;</code> et <code>&lt;/body&gt;</code> de votre module</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Collez-le à l'endroit voulu dans votre page existante</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Copiez aussi le bloc <code>&lt;style&gt;</code> dans votre <code>&lt;head&gt;</code> si ce n'est pas déjà fait</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PERSONNALISATION -->
+  <div class="section">
+    <span class="ey">Personnalisation</span>
+    <h2 class="section-title">Adapter à votre <em>marque</em></h2>
+    <p class="section-sub">Toutes les données sont centralisées dans un seul bloc JavaScript. Modifiez-le une fois, tout se met à jour automatiquement.</p>
+
+    <div class="code-block">
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(document.querySelector('.code-text').innerText);this.textContent='Copié ✓';setTimeout(()=>this.textContent='Copier',2000)">Copier</button>
+      <span class="code-label">Bloc SHADES — à modifier dans chaque module</span>
+      <div class="code-text"><span class="hl">const SHADES</span> = [
+  {
+    name:  <span class="hl">'Perle'</span>,          <span style="color:rgba(255,255,255,.3)">← Nom de la teinte</span>
+    sub:   <span class="hl">'Nacré'</span>,          <span style="color:rgba(255,255,255,.3)">← Sous-titre (marquee)</span>
+    desc:  <span class="hl">"Légèreté nacrée..."</span>, <span style="color:rgba(255,255,255,.3)">← Description</span>
+    color: <span class="hl">'#F2E0CC'</span>,        <span style="color:rgba(255,255,255,.3)">← Couleur de la pastille</span>
+    badge: <span class="hl">null</span>,             <span style="color:rgba(255,255,255,.3)">← null, 'New' ou 'Best'</span>
+    img:   <span class="hl">'https://...'</span>,    <span style="color:rgba(255,255,255,.3)">← URL de votre photo</span>
+  },
+  <span style="color:rgba(255,255,255,.3)">// ... répétez pour chaque teinte</span>
+];</div>
+    </div>
+
+    <table class="perso-table">
+      <thead>
+        <tr><th>Ce que vous changez</th><th>Où le trouver</th><th>Effet</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>name</td><td>Dans SHADES</td><td>Nom affiché partout — pills, quiz, sélecteur, showcase</td></tr>
+        <tr><td>color</td><td>Dans SHADES</td><td>Couleur de la pastille de teinte</td></tr>
+        <tr><td>img</td><td>Dans SHADES</td><td>Photo affichée dans tous les modules</td></tr>
+        <tr><td>VIDEO_SRCS</td><td>Juste après SHADES</td><td>Les 2 vidéos du hero vidéo et du module compact</td></tr>
+        <tr><td>--g: #C9A96E</td><td>Dans :root{} du CSS</td><td>Couleur accent dorée — change tout le kit</td></tr>
+        <tr><td>LUMIÈRE</td><td>Dans le HTML, nav</td><td>Nom de votre marque dans la navigation</td></tr>
+        <tr><td>BEAUTY10</td><td>Dans la barre annonce</td><td>Votre code promo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- THÈME DARK / LIGHT -->
+  <div class="section">
+    <span class="ey">Dark & Light</span>
+    <h2 class="section-title">Changer le <em>thème</em></h2>
+    <p class="section-sub">Chaque module supporte les 2 thèmes. Le bouton 🌙/☀️ switche tout en temps réel.</p>
+
+    <div class="code-block">
+      <span class="code-label">Forcer un thème fixe (sans toggle)</span>
+      <div class="code-text"><span style="color:rgba(255,255,255,.5)">&lt;!-- Thème sombre (défaut) --&gt;</span>
+&lt;html lang="fr" <span class="hl">data-theme="dark"</span>&gt;
+
+<span style="color:rgba(255,255,255,.5)">&lt;!-- Thème clair --&gt;</span>
+&lt;html lang="fr" <span class="hl">data-theme="light"</span>&gt;</div>
+    </div>
+
+    <div class="tip green">
+      <div class="tip-icon">✓</div>
+      <div class="tip-text">Le choix de thème est <strong>mémorisé automatiquement</strong> via localStorage — vos visiteurs retrouvent leur préférence à chaque visite.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FAQ TECHNIQUE -->
+  <div class="section">
+    <span class="ey">Questions fréquentes</span>
+    <h2 class="section-title">Problèmes <em>courants</em></h2>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+
+      <div style="padding:18px 20px;background:#fff;border:1px solid #e8e4de;border-radius:12px">
+        <div style="font-size:13px;font-weight:700;color:var(--k);margin-bottom:6px">Le module ne s'affiche pas correctement</div>
+        <div style="font-size:13px;color:#666;line-height:1.6">Vérifiez que vous avez copié <strong>tout le fichier</strong> (Ctrl+A puis Ctrl+C). Certains CMS tronquent le code si vous copiez partiellement. Sur Wix, agrandissez le bloc HTML.</div>
+      </div>
+
+      <div style="padding:18px 20px;background:#fff;border:1px solid #e8e4de;border-radius:12px">
+        <div style="font-size:13px;font-weight:700;color:var(--k);margin-bottom:6px">Les vidéos ne se chargent pas</div>
+        <div style="font-size:13px;color:#666;line-height:1.6">Vérifiez que vos URLs Cloudinary dans <code>VIDEO_SRCS</code> sont correctes et que vos vidéos sont bien publiques sur Cloudinary (pas en mode privé).</div>
+      </div>
+
+      <div style="padding:18px 20px;background:#fff;border:1px solid #e8e4de;border-radius:12px">
+        <div style="font-size:13px;font-weight:700;color:var(--k);margin-bottom:6px">Les fonts ne se chargent pas</div>
+        <div style="font-size:13px;color:#666;line-height:1.6">Les polices chargent depuis Google Fonts. Si votre site bloque les ressources externes, copiez le lien Google Fonts dans le <code>&lt;head&gt;</code> de votre thème plutôt que dans le bloc HTML.</div>
+      </div>
+
+      <div style="padding:18px 20px;background:#fff;border:1px solid #e8e4de;border-radius:12px">
+        <div style="font-size:13px;font-weight:700;color:var(--k);margin-bottom:6px">Le module est trop petit sur mobile</div>
+        <div style="font-size:13px;color:#666;line-height:1.6">Sur Wix et certains CMS, le bloc HTML a une hauteur fixe. Faites glisser le coin inférieur pour l'agrandir, ou ajoutez <code>min-height: 600px</code> au bloc conteneur.</div>
+      </div>
+
+      <div style="padding:18px 20px;background:#fff;border:1px solid #e8e4de;border-radius:12px">
+        <div style="font-size:13px;font-weight:700;color:var(--k);margin-bottom:6px">Puis-je utiliser plusieurs modules sur la même page ?</div>
+        <div style="font-size:13px;color:#666;line-height:1.6">Oui, mais attention : si vous utilisez 2 modules avec le même ID (ex: 2 quiz), renommez les IDs dans le HTML. Ex: <code>id="qs1"</code> → <code>id="qs1-b"</code> dans le second module.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <div style="text-align:center;padding:20px 0 40px">
+    <div class="ey" style="text-align:center">Support</div>
+    <h2 class="section-title" style="text-align:center">Besoin d'<em>aide ?</em></h2>
+    <p style="font-size:13px;color:#888;max-width:40ch;margin:0 auto 24px">Si vous êtes bloqué sur une intégration, contactez-nous — nous répondons sous 24h.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="/cdn-cgi/l/email-protection#cdaea2a3b9acaeb98da1b8a0a4a8bfa8e0afa8acb8b9b4e3aea2a0" style="display:inline-flex;align-items:center;padding:12px 24px;background:var(--k);color:var(--g);border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none">✉ Nous contacter</a>
+      <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules" style="display:inline-flex;align-items:center;padding:12px 24px;border:1px solid var(--g);color:var(--g);border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none">→ Voir la démo</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>Lumière Beauty Kit · Guide d'intégration · v4 Dark & Light · © 
