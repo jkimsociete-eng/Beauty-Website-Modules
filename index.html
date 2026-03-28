@@ -17,7 +17,6 @@
   --line:rgba(255,255,255,.08);
   --gold-1:#d6b777;
   --gold-2:#b9924f;
-  --gold-soft:rgba(214,183,119,.18);
 }
 
 *{box-sizing:border-box}
@@ -237,6 +236,154 @@ h1{
   margin:0;
 }
 
+.compare-wrap{
+  display:grid;
+  grid-template-columns:1fr 90px 1fr;
+  gap:18px;
+  align-items:center;
+  margin-top:30px;
+}
+
+.compare-card{
+  position:relative;
+  padding:28px 24px;
+  border-radius:24px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+    linear-gradient(180deg, var(--panel), var(--panel-2));
+  text-align:left;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+
+.compare-card-gold{
+  border-color:rgba(214,183,119,.28);
+  box-shadow:0 16px 40px rgba(185,146,79,.10);
+}
+
+.compare-card-gold::after{
+  content:"";
+  position:absolute;
+  inset:auto -10% -45% auto;
+  width:180px;
+  height:180px;
+  background:radial-gradient(circle, rgba(214,183,119,.18), transparent 65%);
+  filter:blur(18px);
+}
+
+.compare-label{
+  font-size:.9rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:#d7d7d7;
+  margin-bottom:10px;
+}
+
+.compare-price{
+  font-family:'Playfair Display',serif;
+  line-height:1;
+  margin-bottom:10px;
+}
+
+.compare-old{
+  font-size:3rem;
+  color:#ffffff;
+  opacity:.82;
+}
+
+.compare-new{
+  font-size:3.2rem;
+  color:#f2d7a2;
+}
+
+.compare-note{
+  color:#e7cf9e;
+  font-size:.92rem;
+  margin-bottom:16px;
+}
+
+.compare-list{
+  list-style:none;
+  padding:0;
+  margin:18px 0 0;
+}
+
+.compare-list li{
+  position:relative;
+  padding-left:22px;
+  margin-bottom:12px;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+.compare-list li::before{
+  content:"•";
+  position:absolute;
+  left:0;
+  top:0;
+  color:#e7cf9e;
+  font-size:1.1rem;
+  line-height:1.2;
+}
+
+.compare-vs{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  font-weight:700;
+  letter-spacing:.12em;
+  color:#f2d7a2;
+  border:1px solid rgba(214,183,119,.24);
+  background:rgba(255,255,255,.02);
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  backdrop-filter:blur(8px);
+}
+
+.testimonials{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+  margin-top:30px;
+}
+
+.testimonial{
+  padding:22px;
+  border-radius:20px;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.06);
+  text-align:left;
+  font-size:.95rem;
+  color:#ddd;
+  line-height:1.6;
+}
+
+.testimonial span{
+  display:block;
+  margin-top:10px;
+  font-size:13px;
+  color:#999;
+}
+
+.badge-urgency{
+  display:inline-block;
+  margin-bottom:14px;
+  padding:8px 16px;
+  border-radius:999px;
+  font-size:13px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#f2d7a2;
+  border:1px solid rgba(214,183,119,.3);
+  background:rgba(214,183,119,.08);
+  box-shadow:0 8px 20px rgba(214,183,119,.08);
+  backdrop-filter:blur(6px);
+}
+
 .price-wrap{
   margin-top:18px;
   display:inline-block;
@@ -258,6 +405,13 @@ h1{
   color:#f2d7a2;
   font-size:2rem;
   font-weight:700;
+}
+
+.stock{
+  margin-top:10px;
+  font-size:14px;
+  color:#e7cf9e;
+  opacity:.9;
 }
 
 .footer{
@@ -303,6 +457,15 @@ h1{
   .card{
     border-radius:18px;
     padding:20px 18px;
+  }
+
+  .compare-wrap{
+    grid-template-columns:1fr;
+  }
+
+  .compare-vs{
+    width:72px;
+    height:72px;
   }
 }
 </style>
@@ -397,7 +560,66 @@ h1{
 </div>
 
 <div class="container section reveal">
+  <h2 class="section-title">Ce que tu économises vs un web designer</h2>
+  <p class="section-text">
+    Pour obtenir ce type de rendu, beaucoup de créatrices paient plusieurs centaines d’euros pour quelques sections seulement. Ici, tu accèdes à une base premium complète, prête à personnaliser.
+  </p>
+
+  <div class="compare-wrap">
+    <div class="compare-card reveal">
+      <div class="compare-label">Web designer freelance</div>
+      <div class="compare-price compare-old">800€+</div>
+      <ul class="compare-list">
+        <li>Quelques sections sur mesure</li>
+        <li>Délais plus longs</li>
+        <li>Allers-retours et coût plus élevé</li>
+        <li>Souvent des frais en plus pour les modifications</li>
+      </ul>
+    </div>
+
+    <div class="compare-vs reveal">VS</div>
+
+    <div class="compare-card compare-card-gold reveal">
+      <div class="compare-label">Beauty Website Modules</div>
+      <div class="compare-price compare-new">79€</div>
+      <div class="compare-note">pour les 30 premiers</div>
+      <ul class="compare-list">
+        <li>14 modules premium prêts à l’emploi</li>
+        <li>Installation immédiate</li>
+        <li>100% personnalisable</li>
+        <li>Accès à vie + mises à jour incluses</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container section reveal">
+  <h2 class="section-title">Elles utilisent déjà ces modules</h2>
+
+  <div class="testimonials">
+    <div class="testimonial">
+      <p>“J’ai ajouté 2 modules et mon site paraît déjà beaucoup plus pro.”</p>
+      <span>— Sarah, boutique skincare</span>
+    </div>
+
+    <div class="testimonial">
+      <p>“Ça m’a évité de payer un designer, et le rendu est incroyable.”</p>
+      <span>— Lina, marque beauté</span>
+    </div>
+
+    <div class="testimonial">
+      <p>“Ultra simple à installer. Et ça change tout visuellement.”</p>
+      <span>— Camille, e-commerce</span>
+    </div>
+  </div>
+</div>
+
+<div class="container section reveal">
   <h2 class="section-title">Offre de lancement</h2>
+
+  <div class="badge-urgency">
+    🔥 Offre limitée — 30 premiers seulement
+  </div>
 
   <div class="price-wrap">
     <p class="price">
@@ -405,6 +627,10 @@ h1{
       ⏳ Puis 139€<br>
       Accès à vie
     </p>
+
+    <div class="stock">
+      Plus que <strong>17</strong> accès à 79€
+    </div>
   </div>
 
   <div class="buttons">
