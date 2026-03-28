@@ -10,17 +10,14 @@
   <style>
     :root{
       --bg:#090909;
-      --bg-2:#111111;
       --panel:#141414;
       --panel-2:#101010;
       --text:#ffffff;
-      --muted:#d0d0d0;
-      --muted-2:#a8a8a8;
+      --muted:#d2d2d2;
       --line:rgba(255,255,255,.08);
       --gold-1:#d6b777;
       --gold-2:#b9924f;
       --gold-3:#f0d7a8;
-      --shadow:0 20px 60px rgba(0,0,0,.34);
     }
 
     *{box-sizing:border-box}
@@ -30,10 +27,7 @@
       margin:0;
       color:var(--text);
       font-family:'Manrope',sans-serif;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(214,183,119,.08), transparent 28%),
-        radial-gradient(circle at 80% 15%, rgba(214,183,119,.05), transparent 24%),
-        linear-gradient(180deg,#090909 0%, #0d0d0d 100%);
+      background:linear-gradient(180deg,#090909 0%, #0d0d0d 100%);
       overflow-x:hidden;
     }
 
@@ -74,47 +68,28 @@
       text-decoration:none;
       font-weight:700;
       letter-spacing:.01em;
-      transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease, opacity .28s ease;
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
 
     .btn:hover{
-      transform:translateY(-3px);
+      transform:translateY(-2px);
     }
 
     .btn-primary{
       color:#111;
       background:linear-gradient(135deg,var(--gold-1),var(--gold-2));
-      box-shadow:0 10px 30px rgba(185,146,79,.20), inset 0 1px 0 rgba(255,255,255,.35);
-    }
-
-    .btn-primary::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:-120%;
-      width:60%;
-      height:100%;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.38), transparent);
-      transform:skewX(-20deg);
-      animation:ultraShimmer 3.2s ease-in-out infinite;
-    }
-
-    @keyframes ultraShimmer{
-      0%{left:-120%}
-      55%{left:140%}
-      100%{left:140%}
+      box-shadow:0 10px 30px rgba(185,146,79,.18), inset 0 1px 0 rgba(255,255,255,.35);
     }
 
     .btn-secondary{
       color:#fff;
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.16);
       background:rgba(255,255,255,.03);
       backdrop-filter:blur(8px);
     }
 
     .btn-secondary:hover{
       border-color:rgba(214,183,119,.45);
-      box-shadow:0 8px 24px rgba(214,183,119,.08);
     }
 
     .buttons{
@@ -145,27 +120,9 @@
       overflow:hidden;
     }
 
-    .card::after{
-      content:"";
-      position:absolute;
-      inset:auto -20% -55% auto;
-      width:160px;
-      height:160px;
-      background:radial-gradient(circle, rgba(214,183,119,.15), transparent 65%);
-      filter:blur(18px);
-      opacity:.55;
-      transition:opacity .32s ease, transform .32s ease;
-    }
-
     .card:hover{
-      transform:translateY(-6px);
-      border-color:rgba(214,183,119,.26);
-      box-shadow:0 16px 40px rgba(0,0,0,.28);
-    }
-
-    .card:hover::after{
-      opacity:.9;
-      transform:scale(1.08);
+      transform:translateY(-4px);
+      border-color:rgba(214,183,119,.22);
     }
 
     .card-title{
@@ -192,102 +149,95 @@
       transform:translateY(0);
     }
 
-    /* ULTRA HERO */
-    .ultra-hero{
+    /* HERO REFINED */
+    .hero-refined{
       position:relative;
       min-height:100vh;
-      width:100%;
       overflow:hidden;
       display:flex;
       align-items:center;
-      padding:0 24px;
       background:#090909;
     }
 
-    .ultra-hero-image{
+    .hero-refined-image{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
       object-fit:cover;
-      animation:heroSlowZoom 16s ease-in-out infinite alternate;
-      transform-origin:center center;
+      animation:heroZoom 18s ease-in-out infinite alternate;
     }
 
-    @keyframes heroSlowZoom{
+    @keyframes heroZoom{
       from{transform:scale(1)}
-      to{transform:scale(1.06)}
+      to{transform:scale(1.04)}
     }
 
-    .ultra-hero-overlay{
+    .hero-refined-overlay{
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.68) 34%, rgba(0,0,0,.32) 62%, rgba(0,0,0,.18) 100%);
+        linear-gradient(90deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.52) 38%, rgba(0,0,0,.18) 70%, rgba(0,0,0,.04) 100%);
     }
 
-    .ultra-hero-glow{
-      position:absolute;
-      inset:auto auto -120px -120px;
-      width:420px;
-      height:420px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(214,183,119,.16), transparent 68%);
-      filter:blur(24px);
-      pointer-events:none;
-    }
-
-    .ultra-hero-inner{
+    .hero-refined-inner{
       position:relative;
       z-index:2;
-      max-width:650px;
-      margin-left:72px;
+      max-width:1180px;
+      margin:auto;
+      width:100%;
+      padding:0 20px;
     }
 
-    .ultra-hero-badge{
+    .hero-refined-content{
+      max-width:560px;
+      padding-top:40px;
+      padding-bottom:40px;
+    }
+
+    .hero-badge{
       display:inline-block;
       padding:8px 14px;
       border-radius:999px;
-      border:1px solid rgba(214,183,119,.32);
+      border:1px solid rgba(214,183,119,.28);
       background:rgba(255,255,255,.03);
       color:#e8d2a1;
       font-size:12px;
       letter-spacing:.14em;
       text-transform:uppercase;
-      margin-bottom:24px;
+      margin-bottom:22px;
       backdrop-filter:blur(8px);
-      box-shadow:0 8px 20px rgba(0,0,0,.18);
     }
 
-    .ultra-hero h1{
+    .hero-refined h1{
       margin:0 0 16px;
       font-family:'Playfair Display',serif;
-      font-size:clamp(2.8rem,6vw,5.5rem);
+      font-size:clamp(2.6rem,5vw,4.8rem);
       line-height:1.02;
       letter-spacing:-.03em;
-      max-width:720px;
+      color:#fff;
+      text-shadow:0 4px 20px rgba(0,0,0,.55);
     }
 
-    .ultra-hero-subtitle{
+    .hero-subtitle{
       margin:0;
-      max-width:600px;
-      color:#dddddd;
-      font-size:1.08rem;
-      line-height:1.8;
-      text-shadow:0 2px 14px rgba(0,0,0,.25);
+      max-width:560px;
+      color:#dfdfdf;
+      font-size:1.05rem;
+      line-height:1.75;
+      text-shadow:0 2px 12px rgba(0,0,0,.3);
     }
 
-    .ultra-hero-chips{
+    .hero-chips{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
       margin-top:22px;
     }
 
-    .ultra-hero-chips span{
+    .hero-chips span{
       display:inline-flex;
       align-items:center;
-      gap:8px;
       padding:10px 14px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.10);
@@ -297,29 +247,22 @@
       backdrop-filter:blur(8px);
     }
 
-    .ultra-hero .buttons{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-top:28px;
-    }
-
-    .ultra-hero-meta{
+    .hero-meta{
       display:flex;
       flex-wrap:wrap;
       gap:18px;
-      margin-top:26px;
-      color:#b9b9b9;
+      margin-top:24px;
+      color:#c6c6c6;
       font-size:14px;
     }
 
-    .ultra-hero-meta strong{
-      color:#ffffff;
+    .hero-meta strong{
+      color:#fff;
     }
 
-    .ultra-proof-band{
+    .proof-band{
       max-width:1180px;
-      margin:-34px auto 0;
+      margin:-28px auto 0;
       position:relative;
       z-index:3;
       padding:0 20px;
@@ -328,17 +271,17 @@
       gap:14px;
     }
 
-    .ultra-proof-item{
-      padding:18px 18px;
+    .proof-item{
+      padding:18px;
       border-radius:22px;
-      border:1px solid rgba(214,183,119,.16);
+      border:1px solid rgba(214,183,119,.14);
       background:
         linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
         linear-gradient(135deg, #111111, #101010);
-      box-shadow:0 18px 38px rgba(0,0,0,.20);
+      box-shadow:0 18px 38px rgba(0,0,0,.18);
     }
 
-    .ultra-proof-top{
+    .proof-top{
       color:#f0d7a8;
       font-size:13px;
       letter-spacing:.08em;
@@ -346,7 +289,7 @@
       margin-bottom:7px;
     }
 
-    .ultra-proof-bottom{
+    .proof-bottom{
       color:#e1e1e1;
       font-size:14px;
       line-height:1.55;
@@ -362,7 +305,6 @@
     }
 
     .compare-card{
-      position:relative;
       padding:28px 24px;
       border-radius:24px;
       border:1px solid var(--line);
@@ -371,22 +313,10 @@
         linear-gradient(180deg, var(--panel), var(--panel-2));
       text-align:left;
       box-shadow:0 10px 30px rgba(0,0,0,.18);
-      overflow:hidden;
     }
 
     .compare-card-gold{
-      border-color:rgba(214,183,119,.28);
-      box-shadow:0 16px 40px rgba(185,146,79,.10);
-    }
-
-    .compare-card-gold::after{
-      content:"";
-      position:absolute;
-      inset:auto -10% -45% auto;
-      width:180px;
-      height:180px;
-      background:radial-gradient(circle, rgba(214,183,119,.18), transparent 65%);
-      filter:blur(18px);
+      border-color:rgba(214,183,119,.24);
     }
 
     .compare-label{
@@ -458,7 +388,6 @@
       border:1px solid rgba(214,183,119,.24);
       background:rgba(255,255,255,.02);
       box-shadow:0 10px 30px rgba(0,0,0,.18);
-      backdrop-filter:blur(8px);
     }
 
     /* TESTIMONIALS */
@@ -499,8 +428,6 @@
       color:#f2d7a2;
       border:1px solid rgba(214,183,119,.3);
       background:rgba(214,183,119,.08);
-      box-shadow:0 8px 20px rgba(214,183,119,.08);
-      backdrop-filter:blur(6px);
     }
 
     .price-wrap{
@@ -544,58 +471,47 @@
     }
 
     @media (max-width:980px){
-      .ultra-hero{
-        min-height:88vh;
-        padding:0 20px;
-      }
-
-      .ultra-hero-inner{
-        margin-left:24px;
-        max-width:620px;
-      }
-
-      .ultra-proof-band{
+      .proof-band{
         grid-template-columns:1fr 1fr;
-        margin-top:-26px;
+        margin-top:-18px;
       }
     }
 
     @media (max-width:768px){
-      .ultra-hero{
-        min-height:84vh;
+      .hero-refined{
+        min-height:88vh;
         align-items:flex-end;
-        padding:0 16px 28px;
       }
 
-      .ultra-hero-overlay{
+      .hero-refined-overlay{
         background:
-          linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.48) 24%, rgba(0,0,0,.80) 68%, rgba(0,0,0,.92) 100%);
+          linear-gradient(180deg, rgba(0,0,0,.26) 0%, rgba(0,0,0,.46) 24%, rgba(0,0,0,.80) 70%, rgba(0,0,0,.94) 100%);
       }
 
-      .ultra-hero-inner{
-        margin-left:0;
+      .hero-refined-content{
         max-width:none;
+        padding-bottom:26px;
       }
 
-      .ultra-hero h1{
-        font-size:2.5rem;
+      .hero-refined h1{
+        font-size:2.45rem;
       }
 
-      .ultra-hero-subtitle{
+      .hero-subtitle{
         font-size:1rem;
         line-height:1.7;
       }
 
-      .ultra-hero .buttons{
+      .buttons{
         gap:12px;
       }
 
-      .ultra-hero .btn{
+      .btn{
         width:100%;
         max-width:340px;
       }
 
-      .ultra-proof-band{
+      .proof-band{
         grid-template-columns:1fr;
         margin-top:0;
         padding:16px;
@@ -614,57 +530,58 @@
 </head>
 <body>
 
-  <div class="ultra-hero">
-    <img src="mockup.png" class="ultra-hero-image" alt="Mockup premium Beauty Website Modules">
-    <div class="ultra-hero-overlay"></div>
-    <div class="ultra-hero-glow"></div>
+  <div class="hero-refined">
+    <img src="mockup.png" class="hero-refined-image" alt="Mockup premium Beauty Website Modules">
+    <div class="hero-refined-overlay"></div>
 
-    <div class="ultra-hero-inner">
-      <div class="ultra-hero-badge">Modules premium pour marques beauté</div>
+    <div class="hero-refined-inner">
+      <div class="hero-refined-content">
+        <div class="hero-badge">Modules premium pour marques beauté</div>
 
-      <h1>Ton produit mérite<br>un site qui vend.</h1>
+        <h1>Ton produit mérite<br>un site qui vend.</h1>
 
-      <p class="ultra-hero-subtitle">
-        Transforme ton site en expérience premium sans coder.
-        Pensé pour Shopify, Webflow et les créateurs no-code
-        qui veulent un rendu luxe sans passer par une agence.
-      </p>
+        <p class="hero-subtitle">
+          Transforme ton site en expérience premium sans coder.
+          Pensé pour Shopify, Webflow et les créateurs no-code
+          qui veulent un rendu luxe sans passer par une agence.
+        </p>
 
-      <div class="ultra-hero-chips">
-        <span>💸 Alternative à un designer à 800€+</span>
-        <span>⚡ Installation rapide</span>
-        <span>💎 Effet premium immédiat</span>
-      </div>
+        <div class="hero-chips">
+          <span>💸 Alternative à un designer à 800€+</span>
+          <span>⚡ Installation rapide</span>
+          <span>💎 Effet premium immédiat</span>
+        </div>
 
-      <div class="buttons">
-        <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn btn-secondary">Voir la démo</a>
-        <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Accéder au pack</a>
-      </div>
+        <div class="buttons">
+          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn btn-secondary">Voir la démo</a>
+          <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Accéder au pack</a>
+        </div>
 
-      <div class="ultra-hero-meta">
-        <div><strong>14 modules</strong> prêts à l’emploi</div>
-        <div><strong>79€</strong> pour les 30 premiers</div>
-        <div><strong>Accès à vie</strong> + mises à jour</div>
+        <div class="hero-meta">
+          <div><strong>14 modules</strong> prêts à l’emploi</div>
+          <div><strong>79€</strong> pour les 30 premiers</div>
+          <div><strong>Accès à vie</strong> + mises à jour</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="ultra-proof-band">
-    <div class="ultra-proof-item">
-      <div class="ultra-proof-top">Sans coder</div>
-      <div class="ultra-proof-bottom">Tu colles, tu personnalises, ça fonctionne.</div>
+  <div class="proof-band">
+    <div class="proof-item">
+      <div class="proof-top">Sans coder</div>
+      <div class="proof-bottom">Tu colles, tu personnalises, ça fonctionne.</div>
     </div>
-    <div class="ultra-proof-item">
-      <div class="ultra-proof-top">Effet premium</div>
-      <div class="ultra-proof-bottom">Une vraie présence de marque dès la première seconde.</div>
+    <div class="proof-item">
+      <div class="proof-top">Effet premium</div>
+      <div class="proof-bottom">Une vraie présence de marque dès la première seconde.</div>
     </div>
-    <div class="ultra-proof-item">
-      <div class="ultra-proof-top">Conversion</div>
-      <div class="ultra-proof-bottom">Des modules pensés pour rassurer et faire cliquer.</div>
+    <div class="proof-item">
+      <div class="proof-top">Conversion</div>
+      <div class="proof-bottom">Des modules pensés pour rassurer et faire cliquer.</div>
     </div>
-    <div class="ultra-proof-item">
-      <div class="ultra-proof-top">Offre de lancement</div>
-      <div class="ultra-proof-bottom">79€ pour les 30 premiers, puis 139€.</div>
+    <div class="proof-item">
+      <div class="proof-top">Offre de lancement</div>
+      <div class="proof-bottom">79€ pour les 30 premiers, puis 139€.</div>
     </div>
   </div>
 
