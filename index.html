@@ -4,717 +4,1110 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beauty Website Modules</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    :root{
-      --bg:#090909;
-      --panel:#141414;
-      --panel-2:#101010;
-      --text:#ffffff;
-      --muted:#d2d2d2;
-      --line:rgba(255,255,255,.08);
-      --gold-1:#d6b777;
-      --gold-2:#b9924f;
-      --gold-3:#f0d7a8;
+    :root {
+      --bg: #06060a;
+      --surface: #0e0e14;
+      --surface-2: #13131a;
+      --gold: #c9a96e;
+      --gold-light: #e8d4a8;
+      --gold-dim: rgba(201,169,110,.18);
+      --text: #f0ece4;
+      --muted: #8a8580;
+      --line: rgba(201,169,110,.12);
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-    body{
-      margin:0;
-      color:var(--text);
-      font-family:'Manrope',sans-serif;
-      background:linear-gradient(180deg,#090909 0%, #0d0d0d 100%);
-      overflow-x:hidden;
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
     }
 
-    .container{
-      max-width:1180px;
-      margin:auto;
-      padding:0 20px;
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #04040a;
     }
 
-    .section{
-      margin-top:34px;
-      padding-top:26px;
+    /* Simulated cinematic video background */
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
     }
 
-    .section-title{
-      margin:0 0 10px;
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.7rem,3vw,2.4rem);
-      text-align:center;
-    }
-
-    .section-text{
-      color:var(--muted);
-      max-width:760px;
-      margin:0 auto;
-      line-height:1.7;
-      text-align:center;
-    }
-
-    .btn{
-      position:relative;
-      overflow:hidden;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:15px 28px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:700;
-      letter-spacing:.01em;
-      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-    }
-
-    .btn-primary{
-      color:#111;
-      background:linear-gradient(135deg,var(--gold-1),var(--gold-2));
-      box-shadow:0 10px 30px rgba(185,146,79,.18), inset 0 1px 0 rgba(255,255,255,.35);
-    }
-
-    .btn-secondary{
-      color:#fff;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.03);
-      backdrop-filter:blur(8px);
-    }
-
-    .btn-secondary:hover{
-      border-color:rgba(214,183,119,.45);
-    }
-
-    .buttons{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-top:28px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:18px;
-      margin-top:28px;
-    }
-
-    .card{
-      position:relative;
-      padding:24px 22px;
-      border-radius:22px;
-      border:1px solid var(--line);
+    .hero-canvas::before {
+      content: '';
+      position: absolute;
+      inset: -20%;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
-        linear-gradient(180deg, var(--panel), var(--panel-2));
-      text-align:left;
-      box-shadow:0 10px 30px rgba(0,0,0,.18);
-      transition:transform .32s ease, border-color .32s ease, box-shadow .32s ease;
-      overflow:hidden;
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(180,130,70,.28) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 30% 60%, rgba(100,70,30,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 40% at 50% 80%, rgba(20,10,5,.9) 0%, transparent 70%);
+      animation: ambientShift 12s ease-in-out infinite alternate;
     }
 
-    .card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(214,183,119,.22);
+    .hero-canvas::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 180px;
+      opacity: .6;
+      pointer-events: none;
     }
 
-    .card-title{
-      font-size:1rem;
-      font-weight:700;
-      margin:0 0 6px;
+    /* Animated light orb — simulates product spotlight */
+    .hero-orb {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: radial-gradient(circle, rgba(201,169,110,.22) 0%, rgba(180,120,50,.08) 40%, transparent 70%);
+      animation: orbFloat 8s ease-in-out infinite alternate;
+      pointer-events: none;
     }
 
-    .card-text{
-      color:var(--muted);
-      font-size:.96rem;
-      line-height:1.6;
-      margin:0;
+    .hero-scan {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,.03) 2px,
+        rgba(0,0,0,.03) 4px
+      );
+      pointer-events: none;
     }
 
-    .reveal{
-      opacity:0;
-      transform:translateY(22px);
-      transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
+    /* Mockup image */
+    .hero-mockup {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 58%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+      opacity: .72;
+      animation: subtleZoom 20s ease-in-out infinite alternate;
     }
 
-    .reveal.show{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    /* HERO REFINED */
-    .hero-refined{
-      position:relative;
-      min-height:100vh;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      background:#090909;
-    }
-
-    .hero-refined-image{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      animation:heroZoom 18s ease-in-out infinite alternate;
-    }
-
-    @keyframes heroZoom{
-      from{transform:scale(1)}
-      to{transform:scale(1.04)}
-    }
-
-    .hero-refined-overlay{
-      position:absolute;
-      inset:0;
+    .hero-veil {
+      position: absolute;
+      inset: 0;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.52) 38%, rgba(0,0,0,.18) 70%, rgba(0,0,0,.04) 100%);
+        linear-gradient(90deg,
+          rgba(4,4,10,1) 0%,
+          rgba(4,4,10,.92) 28%,
+          rgba(4,4,10,.55) 52%,
+          rgba(4,4,10,.1) 72%,
+          rgba(4,4,10,.05) 100%
+        ),
+        linear-gradient(180deg,
+          rgba(4,4,10,.3) 0%,
+          rgba(4,4,10,0) 30%,
+          rgba(4,4,10,0) 60%,
+          rgba(4,4,10,.7) 100%
+        );
     }
 
-    .hero-refined-inner{
-      position:relative;
-      z-index:2;
-      max-width:1180px;
-      margin:auto;
-      width:100%;
-      padding:0 20px;
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100svh;
+      padding: 80px 60px 80px;
+      max-width: 640px;
     }
 
-    .hero-refined-content{
-      max-width:560px;
-      padding-top:40px;
-      padding-bottom:40px;
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp .9s .2s forwards;
     }
 
-    .hero-badge{
-      display:inline-block;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(214,183,119,.28);
-      background:rgba(255,255,255,.03);
-      color:#e8d2a1;
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      margin-bottom:22px;
-      backdrop-filter:blur(8px);
+    .hero-eyebrow-line {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
     }
 
-    .hero-refined h1{
-      margin:0 0 16px;
-      font-family:'Playfair Display',serif;
-      font-size:clamp(2.6rem,5vw,4.8rem);
-      line-height:1.02;
-      letter-spacing:-.03em;
-      color:#fff;
-      text-shadow:0 4px 20px rgba(0,0,0,.55);
+    .hero-eyebrow-text {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
     }
 
-    .hero-subtitle{
-      margin:0;
-      max-width:560px;
-      color:#dfdfdf;
-      font-size:1.05rem;
-      line-height:1.75;
-      text-shadow:0 2px 12px rgba(0,0,0,.3);
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.2rem, 6.5vw, 6rem);
+      line-height: 1.0;
+      letter-spacing: -.01em;
+      color: var(--text);
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeUp 1s .4s forwards;
     }
 
-    .hero-chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:22px;
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
     }
 
-    .hero-chips span{
-      display:inline-flex;
-      align-items:center;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.025);
-      color:#f0d7a8;
-      font-size:13px;
-      backdrop-filter:blur(8px);
+    .hero-subtitle {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: clamp(.9rem, 1.6vw, 1.05rem);
+      line-height: 1.8;
+      color: rgba(240,236,228,.65);
+      max-width: 400px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 1s .6s forwards;
     }
 
-    .hero-meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:18px;
-      margin-top:24px;
-      color:#c6c6c6;
-      font-size:14px;
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      opacity: 0;
+      animation: fadeUp 1s .8s forwards;
     }
 
-    .hero-meta strong{
-      color:#fff;
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: var(--gold);
+      color: #0a0805;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all .35s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .proof-band{
-      max-width:1180px;
-      margin:-28px auto 0;
-      position:relative;
-      z-index:3;
-      padding:0 20px;
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:14px;
+    .btn-gold::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.15);
+      transform: translateX(-100%);
+      transition: transform .4s ease;
     }
 
-    .proof-item{
-      padding:18px;
-      border-radius:22px;
-      border:1px solid rgba(214,183,119,.14);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
-        linear-gradient(135deg, #111111, #101010);
-      box-shadow:0 18px 38px rgba(0,0,0,.18);
+    .btn-gold:hover::after { transform: translateX(0); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,169,110,.25); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 32px;
+      background: transparent;
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(240,236,228,.18);
+      transition: all .35s ease;
     }
 
-    .proof-top{
-      color:#f0d7a8;
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:7px;
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
     }
 
-    .proof-bottom{
-      color:#e1e1e1;
-      font-size:14px;
-      line-height:1.55;
+    .hero-meta {
+      display: flex;
+      gap: 32px;
+      margin-top: 44px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      opacity: 0;
+      animation: fadeUp 1s 1s forwards;
     }
 
-    /* COMPARE */
-    .compare-wrap{
-      display:grid;
-      grid-template-columns:1fr 90px 1fr;
-      gap:18px;
-      align-items:center;
-      margin-top:30px;
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .compare-card{
-      padding:28px 24px;
-      border-radius:24px;
-      border:1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
-        linear-gradient(180deg, var(--panel), var(--panel-2));
-      text-align:left;
-      box-shadow:0 10px 30px rgba(0,0,0,.18);
+    .hero-meta-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      line-height: 1;
     }
 
-    .compare-card-gold{
-      border-color:rgba(214,183,119,.24);
+    .hero-meta-label {
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    .compare-label{
-      font-size:.9rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:#d7d7d7;
-      margin-bottom:10px;
+    /* ─── TICKER ─── */
+    .ticker {
+      width: 100%;
+      overflow: hidden;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
     }
 
-    .compare-price{
-      font-family:'Playfair Display',serif;
-      line-height:1;
-      margin-bottom:10px;
+    .ticker-track {
+      display: flex;
+      gap: 48px;
+      white-space: nowrap;
+      animation: ticker 22s linear infinite;
     }
 
-    .compare-old{
-      font-size:3rem;
-      color:#ffffff;
-      opacity:.82;
+    .ticker-item {
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
-    .compare-new{
-      font-size:3.2rem;
-      color:#f2d7a2;
+    .ticker-item::after {
+      content: '◆';
+      font-size: 6px;
+      opacity: .5;
     }
 
-    .compare-note{
-      color:#e7cf9e;
-      font-size:.92rem;
-      margin-bottom:16px;
+    /* ─── SECTION BASE ─── */
+    .section {
+      padding: 100px 60px;
+      max-width: 1240px;
+      margin: 0 auto;
     }
 
-    .compare-list{
-      list-style:none;
-      padding:0;
-      margin:18px 0 0;
+    .section-header {
+      margin-bottom: 64px;
     }
 
-    .compare-list li{
-      position:relative;
-      padding-left:22px;
-      margin-bottom:12px;
-      color:var(--muted);
-      line-height:1.55;
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
     }
 
-    .compare-list li::before{
-      content:"•";
-      position:absolute;
-      left:0;
-      top:0;
-      color:#e7cf9e;
-      font-size:1.1rem;
-      line-height:1.2;
+    .label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
     }
 
-    .compare-vs{
-      width:90px;
-      height:90px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:auto;
-      font-weight:700;
-      letter-spacing:.12em;
-      color:#f2d7a2;
-      border:1px solid rgba(214,183,119,.24);
-      background:rgba(255,255,255,.02);
-      box-shadow:0 10px 30px rgba(0,0,0,.18);
+    .heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      line-height: 1.08;
+      color: var(--text);
     }
 
-    /* TESTIMONIALS */
-    .testimonials{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:18px;
-      margin-top:30px;
+    .heading em {
+      font-style: italic;
+      color: var(--gold-light);
     }
 
-    .testimonial{
-      padding:22px;
-      border-radius:20px;
-      background:rgba(255,255,255,.02);
-      border:1px solid rgba(255,255,255,.06);
-      text-align:left;
-      font-size:.95rem;
-      color:#ddd;
-      line-height:1.6;
+    .body-text {
+      font-weight: 200;
+      font-size: .95rem;
+      line-height: 1.85;
+      color: rgba(240,236,228,.55);
+      max-width: 540px;
+      margin-top: 16px;
     }
 
-    .testimonial span{
-      display:block;
-      margin-top:10px;
-      font-size:13px;
-      color:#999;
+    /* ─── MODULES GRID ─── */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
     }
 
-    /* PRICE */
-    .badge-urgency{
-      display:inline-block;
-      margin-bottom:14px;
-      padding:8px 16px;
-      border-radius:999px;
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:#f2d7a2;
-      border:1px solid rgba(214,183,119,.3);
-      background:rgba(214,183,119,.08);
+    .module-item {
+      background: var(--surface);
+      padding: 40px 32px;
+      transition: background .4s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .price-wrap{
-      margin-top:18px;
-      display:inline-block;
-      padding:18px 24px;
-      border-radius:24px;
-      border:1px solid rgba(214,183,119,.20);
-      background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
-      box-shadow:0 14px 40px rgba(0,0,0,.18);
+    .module-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width .5s ease;
     }
 
-    .price{
-      margin:0;
-      font-size:1.02rem;
-      color:var(--muted);
-      line-height:1.8;
-      text-align:center;
+    .module-item:hover { background: var(--surface-2); }
+    .module-item:hover::before { width: 100%; }
+
+    .module-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--gold-dim);
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color .4s;
     }
 
-    .price strong{
-      color:#f2d7a2;
-      font-size:2rem;
-      font-weight:700;
+    .module-item:hover .module-num { color: rgba(201,169,110,.4); }
+
+    .module-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.3;
     }
 
-    .stock{
-      margin-top:10px;
-      font-size:14px;
-      color:#e7cf9e;
-      opacity:.9;
-      text-align:center;
+    .module-desc {
+      font-size: .85rem;
+      font-weight: 200;
+      line-height: 1.75;
+      color: var(--muted);
     }
 
-    .footer{
-      margin-top:70px;
-      padding:0 0 30px;
-      color:#8d8d8d;
-      font-size:13px;
-      text-align:center;
+    /* ─── COMPARE ─── */
+    .compare-section {
+      padding: 100px 60px;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    @media (max-width:980px){
-      .proof-band{
-        grid-template-columns:1fr 1fr;
-        margin-top:-18px;
+    .compare-section .section-header { max-width: 1240px; margin: 0 auto 64px; }
+
+    .compare-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .compare-col {
+      padding: 48px 40px;
+    }
+
+    .compare-col-a {
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .compare-col-b {
+      border: 1px solid var(--gold);
+      position: relative;
+      background: linear-gradient(135deg, rgba(201,169,110,.04), rgba(201,169,110,.01));
+    }
+
+    .compare-col-b::before {
+      content: 'Recommandé';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #0a0805;
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+    }
+
+    .compare-divider {
+      width: 1px;
+      background: var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .compare-vs-badge {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      padding: 10px 14px;
+      writing-mode: vertical-rl;
+      letter-spacing: .1em;
+    }
+
+    .compare-tag {
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .compare-price-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .compare-col-a .compare-price-num { color: rgba(240,236,228,.4); }
+    .compare-col-b .compare-price-num { color: var(--gold-light); }
+
+    .compare-note { font-size: .8rem; color: var(--muted); margin-bottom: 32px; }
+    .compare-col-b .compare-note { color: var(--gold); }
+
+    .compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .compare-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .88rem;
+      font-weight: 200;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .compare-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .compare-col-a .compare-list li::before { background: rgba(255,255,255,.2); }
+    .compare-col-b .compare-list li { color: rgba(240,236,228,.75); }
+    .compare-col-b .compare-list li::before { background: var(--gold); }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      border: 1px solid var(--line);
+      padding: 36px 30px;
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.65;
+      color: rgba(240,236,228,.85);
+      margin-bottom: 24px;
+    }
+
+    .testimonial-author {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .testimonial-mark {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--gold-dim);
+      line-height: 1;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing-section {
+      padding: 100px 60px;
+      text-align: center;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+
+    .pricing-card {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--gold);
+      max-width: 420px;
+      width: 100%;
+      margin-top: 48px;
+      position: relative;
+    }
+
+    .pricing-tag {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #0a0805;
+      font-size: 9px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: 5px 20px;
+      white-space: nowrap;
+    }
+
+    .pricing-top {
+      padding: 48px 40px 32px;
+      width: 100%;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pricing-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .pricing-then {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: 8px;
+      letter-spacing: .06em;
+    }
+
+    .pricing-bottom {
+      padding: 28px 40px 40px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .pricing-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .pricing-perk {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .85rem;
+      font-weight: 200;
+      color: rgba(240,236,228,.7);
+    }
+
+    .pricing-perk::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .stock-note {
+      font-size: .8rem;
+      color: var(--gold);
+      letter-spacing: .08em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 40px 60px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: .08em;
+      color: var(--gold-light);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      letter-spacing: .1em;
+      color: var(--muted);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes ambientShift {
+      0%   { transform: translate(0%, 0%) scale(1); }
+      100% { transform: translate(3%, 2%) scale(1.06); }
+    }
+
+    @keyframes orbFloat {
+      0%   { transform: translateY(-50%) translateX(0); }
+      100% { transform: translateY(-52%) translateX(-20px); }
+    }
+
+    @keyframes subtleZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.05); }
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s ease, transform .9s cubic-bezier(.16,1,.3,1);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 100svh;
+        align-items: flex-end;
       }
-    }
 
-    @media (max-width:768px){
-      .hero-refined{
-        min-height:88vh;
-        align-items:flex-end;
+      .hero-mockup {
+        width: 100%;
+        height: 100%;
+        object-position: center 20%;
+        opacity: .55;
       }
 
-      .hero-refined-overlay{
+      .hero-veil {
         background:
-          linear-gradient(180deg, rgba(0,0,0,.26) 0%, rgba(0,0,0,.46) 24%, rgba(0,0,0,.80) 70%, rgba(0,0,0,.94) 100%);
+          linear-gradient(180deg,
+            rgba(4,4,10,.15) 0%,
+            rgba(4,4,10,.25) 20%,
+            rgba(4,4,10,.6) 50%,
+            rgba(4,4,10,.88) 70%,
+            rgba(4,4,10,.98) 100%
+          );
       }
 
-      .hero-refined-content{
-        max-width:none;
-        padding-bottom:26px;
+      .hero-orb {
+        width: 280px;
+        height: 280px;
+        right: -40px;
+        top: 20%;
+        transform: none;
       }
 
-      .hero-refined h1{
-        font-size:2.45rem;
+      .hero-inner {
+        padding: 0 24px 44px;
+        justify-content: flex-end;
+        min-height: 100svh;
+        max-width: none;
       }
 
-      .hero-subtitle{
-        font-size:1rem;
-        line-height:1.7;
+      .hero-title {
+        font-size: 3rem;
+        letter-spacing: -.02em;
       }
 
-      .buttons{
-        gap:12px;
+      .hero-subtitle {
+        font-size: .9rem;
+        max-width: none;
       }
 
-      .btn{
-        width:100%;
-        max-width:340px;
+      .hero-actions {
+        flex-direction: column;
       }
 
-      .proof-band{
-        grid-template-columns:1fr;
-        margin-top:0;
-        padding:16px;
+      .btn-gold, .btn-ghost {
+        width: 100%;
+        padding: 18px;
+        font-size: 10px;
       }
 
-      .compare-wrap{
-        grid-template-columns:1fr;
+      .hero-meta {
+        gap: 20px;
+        padding-top: 24px;
+        margin-top: 28px;
       }
 
-      .compare-vs{
-        width:72px;
-        height:72px;
+      .hero-meta-value { font-size: 1.3rem; }
+
+      .section {
+        padding: 60px 24px;
       }
+
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .module-item {
+        padding: 28px 22px;
+      }
+
+      .compare-section {
+        padding: 60px 24px;
+      }
+
+      .compare-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .compare-divider { display: none; }
+
+      .compare-col {
+        padding: 32px 24px;
+      }
+
+      .compare-col-a {
+        opacity: .6;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-section {
+        padding: 60px 24px;
+      }
+
+      footer {
+        padding: 28px 24px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .modules-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-inner { padding: 80px 40px; }
+      .section { padding: 80px 40px; }
     }
   </style>
 </head>
 <body>
 
-<div class="hero-refined">
-  <img src="mockup.png" class="hero-refined-image" alt="Mockup premium Beauty Website Modules">
-  <div class="hero-refined-overlay"></div>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-canvas"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-scan"></div>
 
-  <div class="hero-refined-inner">
-    <div class="hero-refined-content">
-      <div class="hero-badge">Modules premium pour marques beauté</div>
+  <img src="mockup.png" class="hero-mockup" alt="Beauty Website Modules — Aperçu">
+  <div class="hero-veil"></div>
 
-      <h1>Ton produit mérite<br>un site qui vend.</h1>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      <span class="hero-eyebrow-text">Modules Premium — Marques Beauté</span>
+    </div>
 
-      <p class="hero-subtitle">
-        Transforme ton site en expérience premium sans coder.
-        Pensé pour Shopify, Webflow et les créateurs no-code
-        qui veulent un rendu luxe sans passer par une agence.
-      </p>
+    <h1 class="hero-title">
+      Ton produit<br>mérite un site<br><em>qui vend.</em>
+    </h1>
 
-      <div class="hero-chips">
-        <span>💸 Alternative à un designer à 800€+</span>
-        <span>⚡ Installation rapide</span>
-        <span>💎 Effet premium immédiat</span>
+    <p class="hero-subtitle">
+      14 modules prêts à l'emploi. Pensés pour Shopify, Webflow<br>
+      et les créateurs no-code qui veulent un rendu luxe<br>
+      sans passer par une agence.
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn-gold">
+        Accéder au pack — 79€
+      </a>
+      <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn-ghost">
+        Voir la démo →
+      </a>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-value">14</span>
+        <span class="hero-meta-label">Modules inclus</span>
       </div>
-
-      <div class="buttons">
-        <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn btn-secondary">Voir la démo</a>
-        <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Accéder au pack</a>
+      <div class="hero-meta-item">
+        <span class="hero-meta-value">79€</span>
+        <span class="hero-meta-label">Prix de lancement</span>
       </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-value">∞</span>
+        <span class="hero-meta-label">Accès à vie</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="hero-meta">
-        <div><strong>14 modules</strong> prêts à l'emploi</div>
-        <div><strong>79€</strong> pour les 30 premiers</div>
-        <div><strong>Accès à vie</strong> + mises à jour</div>
+<!-- ═══ TICKER ═══ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Sans coder</span>
+    <span class="ticker-item">Effet premium immédiat</span>
+    <span class="ticker-item">Shopify &amp; Webflow</span>
+    <span class="ticker-item">14 modules</span>
+    <span class="ticker-item">Accès à vie</span>
+    <span class="ticker-item">Alternative à 800€+</span>
+    <span class="ticker-item">Installation rapide</span>
+    <span class="ticker-item">100% mobile</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Sans coder</span>
+    <span class="ticker-item">Effet premium immédiat</span>
+    <span class="ticker-item">Shopify &amp; Webflow</span>
+    <span class="ticker-item">14 modules</span>
+    <span class="ticker-item">Accès à vie</span>
+    <span class="ticker-item">Alternative à 800€+</span>
+    <span class="ticker-item">Installation rapide</span>
+    <span class="ticker-item">100% mobile</span>
+  </div>
+</div>
+
+<!-- ═══ MODULES ═══ -->
+<div class="section reveal">
+  <div class="section-header">
+    <div class="label">Ce que tu obtiens</div>
+    <h2 class="heading">14 modules.<br><em>Un site qui convertit.</em></h2>
+    <p class="body-text">
+      Chaque module est pensé pour valoriser ton produit, renforcer la confiance
+      et augmenter la conversion — sans une ligne de code.
+    </p>
+  </div>
+
+  <div class="modules-grid">
+    <div class="module-item reveal">
+      <div class="module-num">01</div>
+      <div class="module-title">Comparateur avant / après</div>
+      <div class="module-desc">Prouve la transformation visuellement avant même la lecture.</div>
+    </div>
+    <div class="module-item reveal">
+      <div class="module-num">02</div>
+      <div class="module-title">Vidéos automatiques</div>
+      <div class="module-desc">Capte l'attention dès la première seconde avec un rendu cinématique.</div>
+    </div>
+    <div class="module-item reveal">
+      <div class="module-num">03</div>
+      <div class="module-title">Quiz intelligent</div>
+      <div class="module-desc">Guide chaque cliente vers le produit qui lui correspond.</div>
+    </div>
+    <div class="module-item reveal">
+      <div class="module-num">04</div>
+      <div class="module-title">Design luxe Dark &amp; Light</div>
+      <div class="module-desc">Une esthétique premium qui inspire immédiatement confiance.</div>
+    </div>
+    <div class="module-item reveal">
+      <div class="module-num">05</div>
+      <div class="module-title">100% mobile first</div>
+      <div class="module-desc">Pensé là où se joue la majorité des ventes.</div>
+    </div>
+    <div class="module-item reveal">
+      <div class="module-num">06</div>
+      <div class="module-title">Capture email</div>
+      <div class="module-desc">Transforme les visites en audience que tu peux relancer.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COMPARE ═══ -->
+<div class="compare-section">
+  <div class="section-header reveal">
+    <div class="label">La différence</div>
+    <h2 class="heading">Ce que tu <em>économises.</em></h2>
+    <p class="body-text">
+      Pour ce rendu, la plupart des créatrices paient plusieurs centaines d'euros
+      pour quelques sections seulement.
+    </p>
+  </div>
+
+  <div class="compare-inner">
+    <div class="compare-col compare-col-a reveal">
+      <div class="compare-tag">Web designer freelance</div>
+      <div class="compare-price-num">800€+</div>
+      <div class="compare-note">quelques sections sur mesure</div>
+      <ul class="compare-list">
+        <li>Sections limitées</li>
+        <li>Délais plus longs</li>
+        <li>Allers-retours coûteux</li>
+        <li>Modifications facturées en plus</li>
+      </ul>
+    </div>
+
+    <div class="compare-divider">
+      <span class="compare-vs-badge">vs</span>
+    </div>
+
+    <div class="compare-col compare-col-b reveal">
+      <div class="compare-tag">Beauty Website Modules</div>
+      <div class="compare-price-num">79€</div>
+      <div class="compare-note">pour les 30 premiers — puis 139€</div>
+      <ul class="compare-list">
+        <li>14 modules premium inclus</li>
+        <li>Installation immédiate</li>
+        <li>100% personnalisable</li>
+        <li>Accès à vie + mises à jour</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<div class="section reveal">
+  <div class="section-header">
+    <div class="label">Elles l'utilisent déjà</div>
+    <h2 class="heading">Ce qu'elles <em>en disent.</em></h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <span class="testimonial-mark">"</span>
+      <p class="testimonial-quote">J'ai ajouté 2 modules et mon site paraît déjà beaucoup plus professionnel.</p>
+      <span class="testimonial-author">Sarah — boutique skincare</span>
+    </div>
+    <div class="testimonial-card reveal">
+      <span class="testimonial-mark">"</span>
+      <p class="testimonial-quote">Ça m'a évité de payer un designer, et le rendu est vraiment incroyable.</p>
+      <span class="testimonial-author">Lina — marque beauté</span>
+    </div>
+    <div class="testimonial-card reveal">
+      <span class="testimonial-mark">"</span>
+      <p class="testimonial-quote">Ultra simple à installer. Et ça change tout visuellement, dès le premier module.</p>
+      <span class="testimonial-author">Camille — e-commerce</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PRICING ═══ -->
+<div class="pricing-section reveal">
+  <div class="label" style="justify-content:center;">Offre de lancement</div>
+  <h2 class="heading" style="font-size:clamp(2rem,4vw,3.2rem);">
+    30 accès.<br><em>Il en reste 17.</em>
+  </h2>
+
+  <div style="display:flex;justify-content:center;">
+    <div class="pricing-card">
+      <div class="pricing-tag">🔥 Offre limitée</div>
+      <div class="pricing-top">
+        <div class="pricing-amount">79€</div>
+        <div class="pricing-then">Puis 139€ — accès à vie</div>
+      </div>
+      <div class="pricing-bottom">
+        <div class="pricing-perks">
+          <div class="pricing-perk">14 modules premium prêts à l'emploi</div>
+          <div class="pricing-perk">Installation immédiate, sans coder</div>
+          <div class="pricing-perk">Compatible Shopify &amp; Webflow</div>
+          <div class="pricing-perk">Mises à jour incluses à vie</div>
+        </div>
+        <div class="stock-note">Plus que 17 accès à ce prix</div>
+        <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn-gold" style="width:100%;">
+          Accéder au pack maintenant
+        </a>
+        <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html#collection" class="btn-ghost" style="width:100%;">
+          Voir la démo d'abord
+        </a>
       </div>
     </div>
   </div>
 </div>
 
-  <div class="proof-band">
-    <div class="proof-item">
-      <div class="proof-top">Sans coder</div>
-      <div class="proof-bottom">Tu colles, tu personnalises, ça fonctionne.</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-top">Effet premium</div>
-      <div class="proof-bottom">Une vraie présence de marque dès la première seconde.</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-top">Conversion</div>
-      <div class="proof-bottom">Des modules pensés pour rassurer et faire cliquer.</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-top">Offre de lancement</div>
-      <div class="proof-bottom">79€ pour les 30 premiers, puis 139€.</div>
-    </div>
-  </div>
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <span class="footer-brand">Beauty Website Modules</span>
+  <span class="footer-copy">© 2026 — Tous droits réservés</span>
+</footer>
 
-  <div class="container section reveal">
-    <h2 class="section-title">Ce que le pack ajoute à ton site</h2>
-    <p class="section-text">
-      Des modules pensés pour valoriser ton produit, renforcer la confiance et augmenter la conversion sans complexité technique.
-    </p>
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('show');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
 
-    <div class="grid">
-      <div class="card reveal">
-        <p class="card-title">🔄 Comparateur avant / après</p>
-        <p class="card-text">Prouve visuellement la transformation avant même la lecture.</p>
-      </div>
-      <div class="card reveal">
-        <p class="card-title">🎬 Vidéos automatiques</p>
-        <p class="card-text">Capture l’attention très vite avec un rendu plus premium.</p>
-      </div>
-      <div class="card reveal">
-        <p class="card-title">🎯 Quiz intelligent</p>
-        <p class="card-text">Guide chaque cliente vers le bon produit plus facilement.</p>
-      </div>
-      <div class="card reveal">
-        <p class="card-title">💎 Design luxe Dark & Light</p>
-        <p class="card-text">Une esthétique plus crédible, plus propre, plus haut de gamme.</p>
-      </div>
-      <div class="card reveal">
-        <p class="card-title">📱 100% mobile</p>
-        <p class="card-text">Pensé pour là où se joue la majorité des ventes.</p>
-      </div>
-      <div class="card reveal">
-        <p class="card-title">✉️ Capture email</p>
-        <p class="card-text">Transforme plus de visites en audience que tu peux relancer.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="container section reveal">
-    <h2 class="section-title">Ce que tu économises vs un web designer</h2>
-    <p class="section-text">
-      Pour obtenir ce type de rendu, beaucoup de créatrices paient plusieurs centaines d’euros pour quelques sections seulement. Ici, tu accèdes à une base premium complète, prête à personnaliser.
-    </p>
-
-    <div class="compare-wrap">
-      <div class="compare-card reveal">
-        <div class="compare-label">Web designer freelance</div>
-        <div class="compare-price compare-old">800€+</div>
-        <ul class="compare-list">
-          <li>Quelques sections sur mesure</li>
-          <li>Délais plus longs</li>
-          <li>Allers-retours et coût plus élevé</li>
-          <li>Souvent des frais en plus pour les modifications</li>
-        </ul>
-      </div>
-
-      <div class="compare-vs reveal">VS</div>
-
-      <div class="compare-card compare-card-gold reveal">
-        <div class="compare-label">Beauty Website Modules</div>
-        <div class="compare-price compare-new">79€</div>
-        <div class="compare-note">pour les 30 premiers</div>
-        <ul class="compare-list">
-          <li>14 modules premium prêts à l’emploi</li>
-          <li>Installation immédiate</li>
-          <li>100% personnalisable</li>
-          <li>Accès à vie + mises à jour incluses</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="container section reveal">
-    <h2 class="section-title">Elles utilisent déjà ces modules</h2>
-
-    <div class="testimonials">
-      <div class="testimonial">
-        <p>“J’ai ajouté 2 modules et mon site paraît déjà beaucoup plus pro.”</p>
-        <span>— Sarah, boutique skincare</span>
-      </div>
-
-      <div class="testimonial">
-        <p>“Ça m’a évité de payer un designer, et le rendu est incroyable.”</p>
-        <span>— Lina, marque beauté</span>
-      </div>
-
-      <div class="testimonial">
-        <p>“Ultra simple à installer. Et ça change tout visuellement.”</p>
-        <span>— Camille, e-commerce</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="container section reveal">
-    <h2 class="section-title">Offre de lancement</h2>
-
-    <div style="text-align:center;">
-      <div class="badge-urgency">
-        🔥 Offre limitée — 30 premiers seulement
-      </div>
-
-      <div class="price-wrap">
-        <p class="price">
-          🔥 <strong>79€</strong> pour les 30 premiers<br>
-          ⏳ Puis 139€<br>
-          Accès à vie
-        </p>
-
-        <div class="stock">
-          Plus que <strong>17</strong> accès à 79€
-        </div>
-      </div>
-
-      <div class="buttons" style="justify-content:center;">
-        <a href="https://lumirebeauty.gumroad.com/l/demo" class="btn btn-primary">Accéder au pack</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="container footer">
-    © Beauty Website Modules — Tous droits réservés
-  </div>
-
-  <script>
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-        }
-      });
-    },{threshold:0.14});
-
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-  </script>
-
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
