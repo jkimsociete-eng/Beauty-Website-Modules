@@ -13,7 +13,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        :root { --gold: #C9A96E; --ink: #060606; }
+        :root { --gold: #C9A96E; --gold-bright: #F2D492; --ink: #060606; }
         body { font-family: 'Inter', sans-serif; background-color: var(--ink); color: white; overflow-x: hidden; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         
@@ -33,7 +33,6 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Modal Démo */
         #demo-modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.98); backdrop-filter: blur(15px); }
         .modal-content { background: #0f0f0f; border: 1px solid var(--gold); border-radius: 30px; width: 95%; max-width: 1100px; height: 85vh; overflow: hidden; position: relative; }
         
@@ -96,33 +95,40 @@
         </div>
     </div>
 
-    <!-- DOCK FIXE -->
-    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md">
-        <div class="bg-black/60 backdrop-blur-xl rounded-full px-8 py-4 flex items-center justify-between border border-white/10 shadow-2xl">
-            <span class="font-serif italic text-2xl gold-shimmer">L.</span>
-            <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="bg-[var(--gold)] text-black px-6 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest">Acheter 79€</a>
+    <!-- DOCK FIXE AVEC OFFRE DE LANCEMENT -->
+    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-lg">
+        <div class="bg-black/80 backdrop-blur-2xl rounded-full px-6 py-3 flex items-center justify-between border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            <div class="flex items-center gap-4">
+                <span class="font-serif italic text-2xl gold-shimmer">L.</span>
+                <div class="h-4 w-px bg-white/10 hidden sm:block"></div>
+                <span class="text-[8px] font-bold uppercase tracking-widest text-[var(--gold-bright)] opacity-90 hidden sm:block">Offre de lancement</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-[7px] font-bold uppercase tracking-widest text-white/40 sm:hidden">Offre limitée</span>
+                <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="bg-[var(--gold)] text-black px-5 py-2.5 rounded-full text-[9px] font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">Acheter 79€</a>
+            </div>
         </div>
     </div>
 
     <script>
         lucide.createIcons();
 
-        // Liste complète basée sur vos fichiers GitHub
+        // Liste complète avec images corrigées et stables
         const modules = [
-            { id: "01", title: "Barre d'annonce", file: "01-barre-annonce.html", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=500&q=60" },
-            { id: "02", title: "Hero Slideshow", file: "02-hero-slideshow.html", img: "https://images.unsplash.com/photo-1526045431048-f857369aba09?auto=format&fit=crop&w=500&q=60" },
-            { id: "03", title: "Vidéo Compacte", file: "03-video-compact.html", img: "https://images.unsplash.com/photo-1596462502278-27bfad4503e6?auto=format&fit=crop&w=500&q=60" },
-            { id: "04", title: "Vidéo Fullscreen", file: "04-video-full.html", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=60" },
-            { id: "05", title: "Hero Panel", file: "05-hero-panel.html", img: "https://images.unsplash.com/photo-1515377666659-7678cb10ee03?auto=format&fit=crop&w=500&q=60" },
-            { id: "06", title: "Marquee Défilant", file: "06-marquee.html", img: "https://images.unsplash.com/photo-1527633412826-79f502f48043?auto=format&fit=crop&w=500&q=60" },
-            { id: "07", title: "Comparateur", file: "07-comparateur.html", img: "https://images.unsplash.com/photo-1512203530485-25a7d33973e8?auto=format&fit=crop&w=500&q=60" },
-            { id: "08", title: "Quiz Teinte", file: "08-quiz.html", img: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=500&q=60" },
-            { id: "09", title: "Sélecteur Visuel", file: "09-selecteur.html", img: "https://images.unsplash.com/photo-1522338223523-dcacaf132d93?auto=format&fit=crop&w=500&q=60" },
-            { id: "10", title: "Guide des Tailles", file: "10-guide-tailles.html", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=500&q=60" },
-            { id: "11", title: "Showcase Produit", file: "11-showcase.html", img: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=500&q=60" },
-            { id: "12", title: "Dock Interactif", file: "12-dock.html", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=500&q=60" },
-            { id: "13", title: "Capture Email", file: "13-email-valeurs.html", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=500&q=60" },
-            { id: "00", title: "Pack Complet", file: "00-pack-complet.html", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=60" }
+            { id: "01", title: "Barre d'annonce", file: "01-barre-annonce.html", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=800&q=80" },
+            { id: "02", title: "Hero Slideshow", file: "02-hero-slideshow.html", img: "https://images.unsplash.com/photo-1596462502278-27bfad4503e6?auto=format&fit=crop&w=800&q=80" },
+            { id: "03", title: "Vidéo Compacte", file: "03-video-compact.html", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" },
+            { id: "04", title: "Vidéo Fullscreen", file: "04-video-full.html", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" },
+            { id: "05", title: "Hero Panel", file: "05-hero-panel.html", img: "https://images.unsplash.com/photo-1515377666659-7678cb10ee03?auto=format&fit=crop&w=800&q=80" },
+            { id: "06", title: "Marquee Défilant", file: "06-marquee.html", img: "https://images.unsplash.com/photo-1527633412826-79f502f48043?auto=format&fit=crop&w=800&q=80" },
+            { id: "07", title: "Comparateur", file: "07-comparateur.html", img: "https://images.unsplash.com/photo-1512203530485-25a7d33973e8?auto=format&fit=crop&w=800&q=80" },
+            { id: "08", title: "Quiz Teinte", file: "08-quiz.html", img: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80" },
+            { id: "09", title: "Sélecteur Visuel", file: "09-selecteur.html", img: "https://images.unsplash.com/photo-1522338223523-dcacaf132d93?auto=format&fit=crop&w=800&q=80" },
+            { id: "10", title: "Guide des Tailles", file: "10-guide-tailles.html", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" },
+            { id: "11", title: "Showcase Produit", file: "11-showcase.html", img: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=800&q=80" },
+            { id: "12", title: "Dock Interactif", file: "12-dock.html", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" },
+            { id: "13", title: "Capture Email", file: "13-email-valeurs.html", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=800&q=80" },
+            { id: "00", title: "Pack Complet", file: "00-pack-complet.html", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" }
         ];
 
         const grid = document.getElementById('grid');
