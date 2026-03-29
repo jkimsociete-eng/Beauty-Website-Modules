@@ -1,174 +1,309 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMIÈRE Beauty — Pack Expert 14 Modules</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Inter:wght@200;400;600;700&display=swap" rel="stylesheet">
-
+    <title>LUMIÈRE | Digital Luxury Modules</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <style>
-        :root { --gold: #C9A96E; --gold-bright: #F2D492; --ink: #060606; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--ink); color: white; overflow-x: hidden; }
-        .font-serif { font-family: 'Cormorant Garamond', serif; }
-        
+        :root {
+            --gold: #C9A96E;
+            --gold-light: #E5D1A4;
+            --ink: #060606;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--ink);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
         .gold-shimmer {
-            background: linear-gradient(90deg, #8a6d3b, #f2d492, #8a6d3b);
+            background: linear-gradient(to right, #C9A96E 20%, #E5D1A4 40%, #E5D1A4 60%, #C9A96E 80%);
             background-size: 200% auto;
+            color: transparent;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-clip: text;
             animation: shimmer 4s linear infinite;
         }
-        @keyframes shimmer { to { background-position: 200% center; } }
 
-        .video-overlay {
-            background: linear-gradient(to bottom, rgba(6,6,6,0.5), rgba(6,6,6,0.3), rgba(6,6,6,1));
+        @keyframes shimmer {
+            to { background-position: 200% center; }
         }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+        }
 
-        #demo-modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.98); backdrop-filter: blur(15px); }
-        .modal-content { background: #0f0f0f; border: 1px solid var(--gold); border-radius: 30px; width: 95%; max-width: 1100px; height: 85vh; overflow: hidden; position: relative; }
-        
-        .module-card { background: #0f0f0f; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s ease; cursor: pointer; }
-        .module-card:hover { border-color: var(--gold); transform: translateY(-8px); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
 
-        iframe { background: white; }
-        ::-webkit-scrollbar { display: none; }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .module-card:hover img {
+            transform: scale(1.05);
+        }
+
+        #demo-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--gold);
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--ink); }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
-    <section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <video autoplay muted loop playsinline class="h-full w-full object-cover">
+            <video autoplay muted loop playsinline class="h-full w-full object-cover opacity-60 scale-105">
                 <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 video-overlay"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black"></div>
         </div>
 
-        <div class="relative z-10 text-center px-6">
-            <span class="reveal text-[10px] font-bold uppercase tracking-[0.5em] text-[var(--gold)] mb-6 block">Collection 2026</span>
-            <h1 class="reveal text-6xl md:text-9xl font-serif leading-none mb-8">
-                L'Art de la<br><span class="gold-shimmer italic">Conversion.</span>
+        <div class="relative z-10 text-center px-6 max-w-5xl">
+            <span class="text-[10px] uppercase tracking-[0.4em] text-[var(--gold)] mb-6 block reveal">L'excellence Digitale</span>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-light leading-none mb-8 reveal">
+                LUMIÈRE <br>
+                <span class="gold-shimmer italic">Beauty Pack</span>
             </h1>
-            <p class="reveal text-xs md:text-sm font-light tracking-[0.2em] uppercase opacity-60 mb-12 max-w-lg mx-auto">14 Modules Premium pour élever votre marque</p>
-            <div class="reveal flex flex-col md:flex-row gap-6 justify-center items-center">
-                <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="bg-[var(--gold)] text-black px-12 py-5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-white transition-all w-full md:w-auto text-center">Acheter le Pack</a>
-                <a href="#catalogue" class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100">Explorer les démos <i data-lucide="arrow-down" class="w-4 h-4"></i></a>
+            <p class="text-lg md:text-xl text-white/60 font-light max-w-2xl mx-auto mb-12 reveal">
+                14 modules interactifs conçus pour transformer votre boutique en une expérience de luxe immersive.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 reveal">
+                <a href="#modules" class="px-10 py-4 bg-white text-black rounded-full font-semibold hover:bg-[var(--gold)] hover:text-white transition-all duration-500">Explorer les modules</a>
+                <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="px-10 py-4 border border-white/20 rounded-full font-semibold hover:bg-white/10 transition-all">Obtenir le pack complet</a>
             </div>
         </div>
     </section>
 
-    <!-- CATALOGUE -->
-    <section id="catalogue" class="py-32 px-6 bg-[#060606]">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-5xl md:text-7xl font-serif mb-4">Le Catalogue</h2>
-                <p class="text-white/30 text-xs uppercase tracking-widest">Cliquez sur une carte pour tester le module</p>
+    <!-- Modules Grid -->
+    <section id="modules" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div class="max-w-2xl">
+                <h2 class="text-4xl md:text-6xl font-light mb-6 reveal">La Collection <span class="italic">2026</span></h2>
+                <p class="text-white/50 text-lg reveal">Chaque module est optimisé pour la conversion, le SEO et la performance mobile.</p>
             </div>
+            <div class="text-right reveal">
+                <span class="text-5xl font-light text-[var(--gold)]">14</span>
+                <p class="text-[10px] uppercase tracking-widest text-white/40">Modules Inclus</p>
+            </div>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="grid">
-                <!-- Les 14 modules seront injectés ici -->
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="module-container">
+            <!-- Modules will be injected here -->
         </div>
     </section>
 
-    <!-- MODAL DE DÉMO -->
-    <div id="demo-modal" class="flex items-center justify-center p-4">
-        <div class="modal-content flex flex-col shadow-2xl">
-            <div class="p-6 border-b border-white/10 flex justify-between items-center bg-black">
-                <h3 id="modal-title" class="font-serif text-xl md:text-2xl text-[var(--gold)]">Démo</h3>
-                <button onclick="closeDemo()" class="text-white/50 hover:text-white flex items-center gap-2 text-[10px] uppercase font-bold">Fermer <i data-lucide="x" class="w-5 h-5"></i></button>
+    <!-- Pricing Section -->
+    <section class="py-32 px-6">
+        <div class="max-w-4xl mx-auto glass-panel p-12 md:p-20 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent"></div>
+            
+            <h2 class="text-4xl md:text-6xl font-light mb-8 reveal">Investissez dans l'Exceptionnel</h2>
+            <p class="text-white/60 text-lg mb-12 max-w-xl mx-auto reveal">
+                Accès à vie aux 14 modules, mises à jour gratuites et documentation premium.
+            </p>
+            
+            <div class="mb-12 reveal">
+                <span class="text-white/40 line-through text-2xl mr-4">199€</span>
+                <span class="text-7xl font-light text-[var(--gold)]">79€</span>
+                <p class="text-[10px] uppercase tracking-[0.3em] text-white/40 mt-4">Offre limitée aux 30 premiers clients</p>
             </div>
-            <div class="flex-1 relative">
-                <iframe id="demo-frame" src="" class="w-full h-full border-none"></iframe>
-                <div id="loader" class="absolute inset-0 bg-black flex items-center justify-center text-[var(--gold)] font-serif italic text-xl">Expérience en cours de chargement...</div>
+
+            <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="inline-block px-12 py-5 bg-[var(--gold)] text-black rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl reveal">
+                Acheter le pack complet
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-32 px-6 max-w-3xl mx-auto">
+        <h2 class="text-4xl font-light mb-16 text-center reveal italic">Questions Fréquentes</h2>
+        <div class="space-y-6" id="faq-container">
+            <!-- FAQ items injected here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 text-center">
+        <p class="serif italic text-2xl mb-8">LUMIÈRE</p>
+        <p class="text-white/30 text-[10px] uppercase tracking-widest">© 2026 LUMIÈRE Beauty. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Navigation Dock -->
+    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-xl">
+        <div class="glass-panel px-4 py-3 flex items-center justify-between shadow-2xl border-white/10">
+            <div class="flex items-center gap-4">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black font-black text-xs">L.</div>
+                <div class="hidden sm:block h-4 w-[1px] bg-white/10"></div>
+                <!-- Offre de lancement -->
+                <div class="flex items-center gap-2">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--gold)] opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--gold)]"></span>
+                    </span>
+                    <span class="text-[9px] uppercase tracking-widest text-[var(--gold)] font-bold">Offre de lancement</span>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <span class="text-xs font-light text-white/60">79€</span>
+                <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="bg-[var(--gold)] text-black px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">Acheter</a>
             </div>
         </div>
     </div>
 
-    <!-- DOCK FIXE AVEC OFFRE DE LANCEMENT -->
-    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-lg">
-        <div class="bg-black/80 backdrop-blur-2xl rounded-full px-6 py-3 flex items-center justify-between border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-            <div class="flex items-center gap-4">
-                <span class="font-serif italic text-2xl gold-shimmer">L.</span>
-                <div class="h-4 w-px bg-white/10 hidden sm:block"></div>
-                <span class="text-[8px] font-bold uppercase tracking-widest text-[var(--gold-bright)] opacity-90 hidden sm:block">Offre de lancement</span>
-            </div>
-            <div class="flex items-center gap-3">
-                <span class="text-[7px] font-bold uppercase tracking-widest text-white/40 sm:hidden">Offre limitée</span>
-                <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="bg-[var(--gold)] text-black px-5 py-2.5 rounded-full text-[9px] font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">Acheter 79€</a>
-            </div>
+    <!-- Demo Modal -->
+    <div id="demo-modal">
+        <div class="absolute top-6 right-6 z-[110]">
+            <button onclick="closeDemo()" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-white"></i>
+            </button>
         </div>
+        <div id="loader-container" class="absolute inset-0 flex items-center justify-center z-[105]">
+            <div class="loader"></div>
+        </div>
+        <iframe id="demo-frame" src="" class="w-full h-full border-none relative z-[100]"></iframe>
     </div>
 
     <script>
-        lucide.createIcons();
-
-        // Liste complète avec images corrigées et stables
+        // Modules Data with Curated Luxury Images
         const modules = [
-            { id: "01", title: "Barre d'annonce", file: "01-barre-annonce.html", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=800&q=80" },
-            { id: "02", title: "Hero Slideshow", file: "02-hero-slideshow.html", img: "https://images.unsplash.com/photo-1596462502278-27bfad4503e6?auto=format&fit=crop&w=800&q=80" },
-            { id: "03", title: "Vidéo Compacte", file: "03-video-compact.html", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" },
-            { id: "04", title: "Vidéo Fullscreen", file: "04-video-full.html", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" },
-            { id: "05", title: "Hero Panel", file: "05-hero-panel.html", img: "https://images.unsplash.com/photo-1515377666659-7678cb10ee03?auto=format&fit=crop&w=800&q=80" },
-            { id: "06", title: "Marquee Défilant", file: "06-marquee.html", img: "https://images.unsplash.com/photo-1527633412826-79f502f48043?auto=format&fit=crop&w=800&q=80" },
-            { id: "07", title: "Comparateur", file: "07-comparateur.html", img: "https://images.unsplash.com/photo-1512203530485-25a7d33973e8?auto=format&fit=crop&w=800&q=80" },
-            { id: "08", title: "Quiz Teinte", file: "08-quiz.html", img: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80" },
-            { id: "09", title: "Sélecteur Visuel", file: "09-selecteur.html", img: "https://images.unsplash.com/photo-1522338223523-dcacaf132d93?auto=format&fit=crop&w=800&q=80" },
-            { id: "10", title: "Guide des Tailles", file: "10-guide-tailles.html", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" },
-            { id: "11", title: "Showcase Produit", file: "11-showcase.html", img: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=800&q=80" },
-            { id: "12", title: "Dock Interactif", file: "12-dock.html", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" },
-            { id: "13", title: "Capture Email", file: "13-email-valeurs.html", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=800&q=80" },
-            { id: "00", title: "Pack Complet", file: "00-pack-complet.html", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" }
+            { id: '00', title: 'Pack Complet', file: '00-pack-complet.html', img: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=800&q=80' },
+            { id: '01', title: 'Barre d\'Annonce', file: '01-barre-annonce.html', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80' },
+            { id: '02', title: 'Hero Slideshow', file: '02-hero-slideshow.html', img: 'https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?auto=format&fit=crop&w=800&q=80' },
+            { id: '03', title: 'Vidéo Compacte', file: '03-video-compact.html', img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80' },
+            { id: '04', title: 'Vidéo Fullscreen', file: '04-video-full.html', img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80' },
+            { id: '05', title: 'Hero Panel', file: '05-hero-panel.html', img: 'https://images.unsplash.com/photo-1570172234445-0e3929609373?auto=format&fit=crop&w=800&q=80' },
+            { id: '06', title: 'Marquee Logos', file: '06-marquee.html', img: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80' },
+            { id: '07', title: 'Comparateur Avant/Après', file: '07-comparateur.html', img: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=800&q=80' },
+            { id: '08', title: 'Quiz Diagnostic', file: '08-quiz.html', img: 'https://images.unsplash.com/photo-1590156221122-c748e7898783?auto=format&fit=crop&w=800&q=80' },
+            { id: '09', title: 'Sélecteur de Teintes', file: '09-selecteur.html', img: 'https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?auto=format&fit=crop&w=800&q=80' },
+            { id: '10', title: 'Guide des Tailles', file: '10-guide-tailles.html', img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=800&q=80' },
+            { id: '11', title: 'Showcase Produit', file: '11-showcase.html', img: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=800&q=80' },
+            { id: '12', title: 'Dock Interactif', file: '12-dock.html', img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80' },
+            { id: '13', title: 'Email & Valeurs', file: '13-email-valeurs.html', img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=800&q=80' }
         ];
 
-        const grid = document.getElementById('grid');
-        modules.forEach(m => {
+        const faqs = [
+            { q: "Comment installer les modules ?", a: "L'installation se fait par simple copier-coller du code HTML/CSS dans votre boutique Shopify, WooCommerce ou site sur mesure." },
+            { q: "Les modules sont-ils responsives ?", a: "Oui, chaque module est conçu avec une approche Mobile-First pour garantir une expérience parfaite sur tous les écrans." },
+            { q: "Puis-je personnaliser les couleurs ?", a: "Absolument. Le code est structuré pour que vous puissiez modifier les variables de couleurs et polices en quelques secondes." }
+        ];
+
+        // Render Modules
+        const container = document.getElementById('module-container');
+        modules.forEach((m, i) => {
             const card = document.createElement('div');
-            card.className = 'reveal module-card rounded-[30px] overflow-hidden group';
-            card.onclick = () => openDemo(m.title, m.file);
+            card.className = 'module-card group relative overflow-hidden rounded-3xl glass-panel reveal';
+            card.style.transitionDelay = `${i * 50}ms`;
             card.innerHTML = `
-                <div class="h-56 overflow-hidden relative">
-                    <img src="${m.img}" class="w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent"></div>
-                    <span class="absolute top-6 left-6 font-serif text-4xl opacity-20 group-hover:opacity-100 group-hover:text-[var(--gold)] transition-all">${m.id}</span>
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="${m.img}" alt="${m.title}" class="w-full h-full object-cover transition-transform duration-700 grayscale-[0.3] group-hover:grayscale-0" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
                 </div>
-                <div class="p-8">
-                    <h3 class="text-xl font-serif mb-4 group-hover:text-[var(--gold)] transition-colors">${m.title}</h3>
-                    <div class="flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest text-[var(--gold)]">Tester le module <i data-lucide="play" class="w-3 h-3"></i></div>
+                <div class="absolute bottom-0 left-0 w-full p-8">
+                    <span class="text-[9px] uppercase tracking-widest text-[var(--gold)] mb-2 block">Module ${m.id}</span>
+                    <h3 class="text-2xl font-light mb-6">${m.title}</h3>
+                    <button onclick="openDemo('${m.file}')" class="w-full py-4 border border-white/20 rounded-xl text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Voir la démo</button>
                 </div>
             `;
-            grid.appendChild(card);
+            container.appendChild(card);
         });
 
-        function openDemo(title, file) {
-            document.getElementById('modal-title').textContent = title;
-            document.getElementById('demo-frame').src = file;
-            document.getElementById('demo-modal').style.display = 'flex';
-            document.getElementById('loader').style.display = 'flex';
-            document.getElementById('demo-frame').onload = () => {
-                document.getElementById('loader').style.display = 'none';
+        // Render FAQ
+        const faqContainer = document.getElementById('faq-container');
+        faqs.forEach(f => {
+            const item = document.createElement('div');
+            item.className = 'glass-panel p-8 reveal';
+            item.innerHTML = `
+                <h3 class="text-xl font-medium mb-4 flex justify-between items-center cursor-pointer" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                    ${f.q}
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-[var(--gold)]"></i>
+                </h3>
+                <p class="text-white/50 font-light leading-relaxed hidden">${f.a}</p>
+            `;
+            faqContainer.appendChild(item);
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('demo-modal');
+        const frame = document.getElementById('demo-frame');
+        const loader = document.getElementById('loader-container');
+
+        function openDemo(file) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            loader.style.display = 'flex';
+            frame.src = file;
+            frame.onload = () => {
+                loader.style.display = 'none';
             };
         }
 
         function closeDemo() {
-            document.getElementById('demo-modal').style.display = 'none';
-            document.getElementById('demo-frame').src = '';
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            frame.src = '';
         }
 
+        // Reveal Animation
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
         }, { threshold: 0.1 });
+
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Initialize Lucide
+        lucide.createIcons();
     </script>
 </body>
 </html>
