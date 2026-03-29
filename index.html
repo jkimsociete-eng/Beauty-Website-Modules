@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beauty Website Modules — 14 modules premium pour sites beauté</title>
+  <title>Beauty Website Modules — Pack premium pour sites beauté</title>
   <meta
     name="description"
-    content="14 modules premium pour transformer un site beauté en machine à vendre. Démo cliquable, design premium, 100% mobile."
+    content="14 modules premium pour transformer un site beauté en machine à vendre. Démo cliquable, design luxe-tech, prêt à intégrer."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,19 +18,19 @@
 
   <style>
     :root{
-      --bg:#09090b;
-      --bg-2:#111114;
-      --panel:#121217;
-      --panel-2:#17171d;
-      --line:rgba(255,255,255,.08);
-      --line-soft:rgba(255,255,255,.05);
+      --bg:#070709;
+      --bg2:#0c0c10;
+      --panel:#111117;
+      --panel2:#15151c;
       --text:#f7f2ea;
-      --muted:#b7aea3;
+      --muted:#b9aea1;
+      --line:rgba(255,255,255,.08);
+      --line2:rgba(255,255,255,.05);
       --gold:#d4af73;
-      --gold-2:#b98b4a;
-      --gold-soft:rgba(212,175,115,.14);
-      --white-soft:rgba(255,255,255,.74);
-      --shadow:0 22px 60px rgba(0,0,0,.38);
+      --gold2:#b98b4a;
+      --gold3:#f2ddb3;
+      --goldSoft:rgba(212,175,115,.12);
+      --shadow:0 24px 70px rgba(0,0,0,.42);
       --radius:26px;
       --max:1240px;
     }
@@ -41,22 +41,23 @@
       font-family:'Inter',sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 15% 0%, rgba(212,175,115,.12), transparent 26%),
-        radial-gradient(circle at 90% 10%, rgba(255,255,255,.05), transparent 22%),
-        linear-gradient(180deg,#080809 0%, #0c0c0f 100%);
+        radial-gradient(circle at 18% 0%, rgba(212,175,115,.11), transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(135,95,255,.06), transparent 18%),
+        linear-gradient(180deg,#060607 0%, #0b0b10 100%);
       line-height:1.55;
+      overflow-x:hidden;
     }
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
 
     .container{
-      width:min(var(--max), calc(100% - 28px));
+      width:min(var(--max), calc(100% - 26px));
       margin:0 auto;
     }
 
     .section{
-      padding:92px 0;
+      padding:96px 0;
       position:relative;
     }
 
@@ -68,11 +69,11 @@
       border-radius:999px;
       border:1px solid rgba(212,175,115,.24);
       background:rgba(212,175,115,.08);
-      color:#f0d8ad;
+      color:#efd7aa;
       font-size:.8rem;
-      font-weight:700;
-      text-transform:uppercase;
+      font-weight:800;
       letter-spacing:.08em;
+      text-transform:uppercase;
       backdrop-filter:blur(10px);
     }
 
@@ -82,38 +83,45 @@
       height:8px;
       border-radius:50%;
       background:linear-gradient(180deg,var(--gold),#fff0cd);
-      box-shadow:0 0 18px rgba(212,175,115,.55);
+      box-shadow:0 0 16px rgba(212,175,115,.52);
     }
 
-    h1,h2,h3{
+    h1,h2,h3,h4{
       font-family:'Cormorant Garamond',serif;
-      line-height:1.02;
+      line-height:1;
       letter-spacing:-.02em;
     }
 
     h1{
-      font-size:clamp(2.8rem,6.2vw,5.7rem);
+      font-size:clamp(2.8rem, 6vw, 5.9rem);
       margin-top:18px;
-      max-width:820px;
+      max-width:900px;
     }
 
     h2{
-      font-size:clamp(2.1rem,4vw,3.6rem);
+      font-size:clamp(2.15rem, 4vw, 3.8rem);
       margin-bottom:16px;
     }
 
     h3{
-      font-size:1.35rem;
+      font-size:1.75rem;
     }
 
-    .lead{
-      font-size:clamp(1.03rem,1.5vw,1.17rem);
-      color:var(--white-soft);
+    p.lead{
+      font-size:clamp(1.03rem, 1.6vw, 1.16rem);
       max-width:760px;
+      color:rgba(255,255,255,.76);
       margin-top:20px;
     }
 
     .muted{color:var(--muted)}
+
+    .gold-text{
+      background:linear-gradient(180deg,var(--gold3) 0%, #ddb978 42%, var(--gold2) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
 
     .btn-row{
       display:flex;
@@ -123,31 +131,32 @@
     }
 
     .btn{
-      min-height:54px;
+      min-height:56px;
       padding:0 24px;
       border-radius:999px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      font-weight:700;
+      font-weight:800;
       font-size:1rem;
       transition:.25s ease;
       border:1px solid transparent;
       cursor:pointer;
+      white-space:nowrap;
     }
 
     .btn-primary{
       background:linear-gradient(180deg,#e2c185 0%, #c89853 100%);
-      color:#1c1309;
+      color:#1a1208;
       box-shadow:
-        0 14px 36px rgba(212,175,115,.2),
+        0 16px 38px rgba(212,175,115,.22),
         inset 0 1px 0 rgba(255,255,255,.42);
     }
 
     .btn-primary:hover{
       transform:translateY(-2px);
       box-shadow:
-        0 18px 42px rgba(212,175,115,.26),
+        0 20px 44px rgba(212,175,115,.28),
         inset 0 1px 0 rgba(255,255,255,.42);
     }
 
@@ -169,7 +178,8 @@
       align-items:center;
       position:relative;
       overflow:hidden;
-      padding:38px 0 54px;
+      padding:40px 0 56px;
+      isolation:isolate;
     }
 
     .hero::before{
@@ -177,22 +187,25 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 20% 30%, rgba(212,175,115,.13), transparent 26%),
-        linear-gradient(90deg, rgba(8,8,10,.9) 0%, rgba(8,8,10,.78) 42%, rgba(8,8,10,.48) 70%, rgba(8,8,10,.2) 100%);
-      z-index:0;
+        linear-gradient(90deg, rgba(7,7,9,.95) 0%, rgba(7,7,9,.84) 42%, rgba(7,7,9,.56) 70%, rgba(7,7,9,.2) 100%);
+      z-index:-2;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(212,175,115,.1), transparent 24%),
+        radial-gradient(circle at 84% 18%, rgba(125,96,255,.08), transparent 18%);
+      z-index:-3;
     }
 
     .hero-grid{
-      position:relative;
-      z-index:1;
       display:grid;
-      grid-template-columns:1.04fr .96fr;
-      gap:34px;
+      grid-template-columns:1.02fr .98fr;
+      gap:40px;
       align-items:center;
-    }
-
-    .hero-copy{
-      padding:18px 0;
     }
 
     .hero-proof{
@@ -207,55 +220,70 @@
       border-radius:999px;
       background:rgba(255,255,255,.045);
       border:1px solid rgba(255,255,255,.08);
-      color:#e0d8cd;
+      color:#dfd4c7;
       font-size:.88rem;
       font-weight:600;
     }
 
-    .hero-benefits{
+    .hero-stats{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
       gap:12px;
-      margin-top:24px;
+      margin-top:26px;
       max-width:760px;
     }
 
-    .hero-benefits div{
-      padding:14px 16px;
+    .hero-stat{
+      padding:15px 16px;
       border-radius:18px;
-      background:rgba(255,255,255,.04);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
       border:1px solid rgba(255,255,255,.08);
-      color:#e8ddd1;
-      font-size:.94rem;
-      font-weight:600;
-      backdrop-filter:blur(8px);
+      box-shadow:0 14px 34px rgba(0,0,0,.18);
+      backdrop-filter:blur(10px);
     }
 
-    .hero-device{
+    .hero-stat strong{
+      display:block;
+      font-size:1.08rem;
+      color:#fff2dc;
+    }
+
+    .hero-stat span{
+      display:block;
+      margin-top:4px;
+      font-size:.88rem;
+      color:#c8bcad;
+    }
+
+    .hero-card{
       position:relative;
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.1);
       border-radius:30px;
-      padding:18px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(16px);
-    }
-
-    .device-screen{
-      border-radius:24px;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
       background:
-        linear-gradient(180deg, rgba(212,175,115,.08), rgba(212,175,115,0) 30%),
-        linear-gradient(180deg,#0c0c10 0%, #111117 100%);
-      min-height:560px;
-      position:relative;
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+        linear-gradient(180deg, #0d0d12 0%, #13131a 100%);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.42),
+        inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter:blur(18px);
     }
 
-    .device-topbar{
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top left, rgba(212,175,115,.14), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(120,90,255,.08), transparent 25%);
+      pointer-events:none;
+    }
+
+    .hero-card-top{
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:16px;
       padding:16px 18px;
       border-bottom:1px solid rgba(255,255,255,.06);
       background:rgba(255,255,255,.02);
@@ -271,139 +299,113 @@
       width:8px;
       height:8px;
       border-radius:50%;
-      background:rgba(255,255,255,.16);
+      background:rgba(255,255,255,.18);
     }
 
-    .topbar-title{
-      font-size:.84rem;
-      color:#d8ccbc;
-      font-weight:600;
-      letter-spacing:.04em;
+    .hero-card-title{
+      font-size:.82rem;
+      color:#dfd3c3;
+      font-weight:700;
+      letter-spacing:.06em;
       text-transform:uppercase;
     }
 
-    .device-body{
-      padding:22px;
-    }
-
-    .mini-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
+    .hero-card-live{
+      padding:7px 10px;
       border-radius:999px;
       border:1px solid rgba(212,175,115,.22);
       background:rgba(212,175,115,.08);
-      color:#efd8ad;
-      font-size:.76rem;
-      font-weight:700;
+      color:#efd7aa;
+      font-size:.7rem;
+      font-weight:800;
       letter-spacing:.08em;
       text-transform:uppercase;
     }
 
-    .mini-title{
-      margin-top:18px;
-      font-family:'Cormorant Garamond',serif;
-      font-size:2.2rem;
-      line-height:1;
-      max-width:420px;
+    .hero-card-body{
+      position:relative;
+      padding:26px;
     }
 
-    .mini-text{
-      margin-top:14px;
-      color:#c9beb2;
-      max-width:420px;
-      font-size:.98rem;
-    }
-
-    .device-cards{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:24px;
-    }
-
-    .device-card{
-      padding:16px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08);
-      min-height:112px;
-    }
-
-    .device-card strong{
-      display:block;
-      font-size:1rem;
-      margin-bottom:7px;
-      color:#fff3de;
-    }
-
-    .device-card span{
-      display:block;
-      color:#bfb2a4;
-      font-size:.9rem;
-    }
-
-    .device-cta{
-      margin-top:18px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .mini-btn{
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      font-size:.92rem;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.1);
-      background:rgba(255,255,255,.04);
-      color:#f4ede4;
-    }
-
-    .mini-btn.gold{
-      background:linear-gradient(180deg,#e2c185 0%, #c89853 100%);
-      color:#1b1309;
-      border-color:transparent;
-    }
-
-    .hero-floating{
+    .hero-mini-card{
       position:absolute;
-      right:-16px;
-      bottom:24px;
-      width:min(250px,72%);
-      display:grid;
-      gap:12px;
+      z-index:3;
+      width:210px;
+      padding:16px;
+      border-radius:20px;
+      background:rgba(10,10,14,.72);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(14px);
+      box-shadow:0 18px 40px rgba(0,0,0,.28);
     }
 
-    .floating-box{
-      padding:14px 16px;
-      border-radius:18px;
-      background:rgba(11,11,15,.82);
-      border:1px solid rgba(255,255,255,.08);
-      backdrop-filter:blur(10px);
-      box-shadow:0 12px 30px rgba(0,0,0,.24);
+    .hero-mini-card.left{
+      left:18px;
+      top:24px;
     }
 
-    .floating-box strong{
-      display:block;
-      color:#fff2db;
+    .hero-mini-card.right{
+      right:18px;
+      bottom:26px;
+    }
+
+    .hero-mini-card .kicker{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:#d7b57c;
+      font-weight:800;
+    }
+
+    .hero-mini-card .value{
+      margin-top:8px;
       font-size:1.08rem;
+      color:#fff2dc;
+      font-weight:800;
     }
 
-    .floating-box span{
-      display:block;
-      margin-top:4px;
-      color:#cdbfb1;
+    .hero-mini-card p{
+      margin-top:8px;
       font-size:.88rem;
+      color:#cbbfb1;
+      line-height:1.45;
+    }
+
+    .mockup-wrap{
+      position:relative;
+      z-index:2;
+      width:min(78%, 520px);
+      margin:0 auto;
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:#0f1015;
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.34),
+        0 0 0 1px rgba(255,255,255,.03) inset;
+    }
+
+    .hero-card-bottom{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:16px 18px 18px;
+      border-top:1px solid rgba(255,255,255,.06);
+      background:rgba(255,255,255,.018);
+    }
+
+    .pill{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color:#ddd2c6;
+      font-size:.8rem;
+      font-weight:700;
     }
 
     .section-head{
-      max-width:760px;
+      max-width:780px;
       margin-bottom:34px;
     }
 
@@ -442,11 +444,43 @@
       font-weight:700;
     }
 
+    .modules-section{
+      overflow:hidden;
+    }
+
+    .modules-section::before{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      background:rgba(212,175,115,.08);
+      filter:blur(70px);
+      top:40px;
+      left:-80px;
+      pointer-events:none;
+    }
+
+    .modules-section::after{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      background:rgba(125,96,255,.07);
+      filter:blur(70px);
+      right:-60px;
+      bottom:10px;
+      pointer-events:none;
+    }
+
     .modules-grid{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
       gap:18px;
       margin-top:30px;
+      position:relative;
+      z-index:1;
     }
 
     .module-card{
@@ -465,7 +499,9 @@
       content:"";
       position:absolute;
       inset:0;
-      background:radial-gradient(circle at top left, rgba(212,175,115,.12), transparent 35%);
+      background:
+        radial-gradient(circle at top left, rgba(212,175,115,.13), transparent 35%),
+        linear-gradient(180deg, transparent, rgba(255,255,255,.02));
       opacity:0;
       transition:.28s ease;
       pointer-events:none;
@@ -484,7 +520,7 @@
     .module-link{
       display:block;
       padding:24px;
-      min-height:220px;
+      min-height:238px;
       position:relative;
     }
 
@@ -515,7 +551,7 @@
       border-radius:999px;
       border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.04);
-      font-size:.76rem;
+      font-size:.74rem;
       font-weight:700;
       text-transform:uppercase;
       letter-spacing:.07em;
@@ -525,16 +561,16 @@
     .module-title{
       margin-top:18px;
       font-family:'Cormorant Garamond',serif;
-      font-size:1.8rem;
+      font-size:1.9rem;
       line-height:1;
-      max-width:260px;
+      max-width:280px;
     }
 
     .module-desc{
       margin-top:12px;
       color:#b9aea2;
       font-size:.95rem;
-      max-width:300px;
+      max-width:310px;
     }
 
     .module-footer{
@@ -559,9 +595,9 @@
       transform:translateX(4px);
     }
 
-    .impact-grid{
+    .offer-grid{
       display:grid;
-      grid-template-columns:.92fr 1.08fr;
+      grid-template-columns:.94fr 1.06fr;
       gap:22px;
       margin-top:28px;
     }
@@ -618,28 +654,118 @@
       color:#d4af73;
     }
 
-    .cta-band{
-      margin-top:30px;
-      padding:26px;
-      border-radius:24px;
+    .pricing-card{
+      position:relative;
+      overflow:hidden;
       background:
         radial-gradient(circle at top left, rgba(212,175,115,.14), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
       border:1px solid rgba(212,175,115,.18);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      flex-wrap:wrap;
     }
 
-    .cta-band p{
+    .pricing-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent, rgba(255,255,255,.015));
+      pointer-events:none;
+    }
+
+    .price-big{
+      font-size:4rem;
+      font-weight:800;
+      line-height:1;
+      margin-top:10px;
+      color:#fff2dc;
+      font-family:'Cormorant Garamond',serif;
+    }
+
+    .price-small{
+      margin-top:6px;
+      color:#cabfb1;
+      font-size:.96rem;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(212,175,115,.1);
+      border:1px solid rgba(212,175,115,.22);
+      color:#efd8ad;
+      font-size:.75rem;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    .badge::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:linear-gradient(180deg,var(--gold),#fff0cd);
+      box-shadow:0 0 14px rgba(212,175,115,.5);
+    }
+
+    .stack{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .stack .item{
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.06);
+      color:#e6dbcf;
+    }
+
+    .faq-grid{
+      display:grid;
+      gap:16px;
+      margin-top:26px;
+    }
+
+    .faq{
+      padding:22px 24px;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .faq h3{
+      font-size:1.45rem;
+      margin-bottom:10px;
+    }
+
+    .final-cta{
+      text-align:center;
+      padding:36px;
+      border-radius:28px;
+      background:
+        radial-gradient(circle at top left, rgba(212,175,115,.14), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+      border:1px solid rgba(212,175,115,.18);
+      box-shadow:var(--shadow);
+    }
+
+    .final-cta h2{
+      margin-bottom:12px;
+    }
+
+    .final-cta p{
       max-width:760px;
+      margin:0 auto;
       color:#e5dacd;
     }
 
     .footer{
-      padding:36px 0 60px;
+      padding:38px 0 60px;
       color:#a89d90;
       text-align:center;
       font-size:.95rem;
@@ -659,7 +785,7 @@
     @media (max-width: 1100px){
       .hero-grid,
       .problem-grid,
-      .impact-grid{
+      .offer-grid{
         grid-template-columns:1fr;
       }
 
@@ -671,8 +797,20 @@
         min-height:auto;
       }
 
-      .device-screen{
-        min-height:520px;
+      .hero-mini-card.left,
+      .hero-mini-card.right{
+        position:static;
+        width:100%;
+        margin-bottom:14px;
+      }
+
+      .mockup-wrap{
+        width:100%;
+        max-width:720px;
+      }
+
+      .hero-card-body{
+        display:block;
       }
     }
 
@@ -682,15 +820,15 @@
       }
 
       .section{
-        padding:70px 0;
+        padding:72px 0;
       }
 
       h1{
-        font-size:clamp(2.2rem,10vw,3.6rem);
+        font-size:clamp(2.2rem, 10vw, 3.8rem);
       }
 
       h2{
-        font-size:clamp(1.8rem,8vw,2.8rem);
+        font-size:clamp(1.85rem, 8vw, 2.9rem);
       }
 
       .btn-row{
@@ -702,7 +840,7 @@
         width:100%;
       }
 
-      .hero-benefits{
+      .hero-stats{
         grid-template-columns:1fr;
       }
 
@@ -714,16 +852,6 @@
         font-size:.8rem;
       }
 
-      .device-cards{
-        grid-template-columns:1fr;
-      }
-
-      .hero-floating{
-        position:static;
-        width:100%;
-        margin-top:14px;
-      }
-
       .modules-grid{
         grid-template-columns:1fr;
       }
@@ -733,15 +861,15 @@
       }
 
       .vs{
-        min-height:20px;
+        min-height:18px;
       }
 
       .module-link{
-        min-height:210px;
+        min-height:220px;
       }
 
-      .device-screen{
-        min-height:auto;
+      .price-big{
+        font-size:3.2rem;
       }
     }
   </style>
@@ -750,116 +878,108 @@
 
   <header class="hero" id="top">
     <div class="container hero-grid">
-      <div class="hero-copy reveal">
-        <div class="eyebrow">Modules premium pour marques beauté</div>
 
-        <h1>14 modules premium pour transformer ton site beauté en machine à vendre</h1>
+      <div class="hero-copy reveal">
+        <div class="eyebrow">Premium UI kit pour marques beauté</div>
+
+        <h1>
+          Transforme un site beauté classique en
+          <span class="gold-text">expérience luxe-tech qui vend</span>
+        </h1>
 
         <p class="lead">
-          Un pack de modules interactifs pensé pour les marques beauté qui veulent un site plus luxe,
-          plus crédible et surtout plus efficace pour convertir.
+          14 modules premium pensés pour rendre un site plus désirable, plus interactif
+          et plus crédible — sans refaire toute la boutique.
         </p>
 
         <div class="hero-proof">
+          <span>Démo cliquable</span>
           <span>100% mobile</span>
           <span>Copier / coller</span>
           <span>Shopify</span>
           <span>IONOS</span>
           <span>WordPress</span>
-          <span>Wix</span>
         </div>
 
         <div class="btn-row">
-          <a class="btn btn-primary" href="#modules">Voir les modules</a>
-          <a class="btn btn-ghost" href="https://lumirebeauty.gumroad.com/" target="_blank" rel="noopener noreferrer">Accéder au pack</a>
+          <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
+            Acheter le pack maintenant
+          </a>
+          <a class="btn btn-ghost" href="#modules">
+            Voir les démos
+          </a>
         </div>
 
-        <div class="hero-benefits">
-          <div>✔ Effet premium immédiat</div>
-          <div>✔ Plus d’engagement produit</div>
-          <div>✔ Démo cliquable module par module</div>
-        </div>
-      </div>
-
-      <div class="hero-device reveal">
-        <div class="device-screen">
-          <div class="device-topbar">
-            <div class="dots">
-              <span></span><span></span><span></span>
-            </div>
-            <div class="topbar-title">Beauty Website Modules</div>
-            <div class="dots">
-              <span></span>
-            </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>14 modules</strong>
+            <span>prêts à intégrer</span>
           </div>
-
-          <div class="device-body">
-            <div class="mini-badge">Pack premium • 14 modules</div>
-
-            <div class="mini-title">
-              Transforme un site classique en expérience beauté haut de gamme
-            </div>
-
-            <div class="mini-text">
-              Hero vidéo, comparateur avant/après, quiz, sélecteurs, email capture,
-              animations premium et modules orientés conversion.
-            </div>
-
-            <div class="device-cards">
-              <div class="device-card">
-                <strong>Dark & Light</strong>
-                <span>Deux ambiances premium pour mieux coller à la marque.</span>
-              </div>
-              <div class="device-card">
-                <strong>100% responsive</strong>
-                <span>Pensé mobile, sans casser le rendu desktop.</span>
-              </div>
-              <div class="device-card">
-                <strong>Démo cliquable</strong>
-                <span>Chaque module peut renvoyer vers son exemple live.</span>
-              </div>
-              <div class="device-card">
-                <strong>Rapide à intégrer</strong>
-                <span>Parfait pour booster un site sans le refaire entièrement.</span>
-              </div>
-            </div>
-
-            <div class="device-cta">
-              <a href="#modules" class="mini-btn gold">Explorer les modules</a>
-              <a href="https://lumirebeauty.gumroad.com/" target="_blank" rel="noopener noreferrer" class="mini-btn">Voir l’offre</a>
-            </div>
+          <div class="hero-stat">
+            <strong>Design premium</strong>
+            <span>valeur perçue immédiate</span>
           </div>
-        </div>
-
-        <div class="hero-floating">
-          <div class="floating-box">
-            <strong>14 modules inclus</strong>
-            <span>Un vrai pack, pas juste une seule section isolée.</span>
-          </div>
-          <div class="floating-box">
-            <strong>Chaque carte = une démo</strong>
-            <span>Tu peux remettre les liens live sur chaque module.</span>
+          <div class="hero-stat">
+            <strong>Gain de temps</strong>
+            <span>sans refaire tout le site</span>
           </div>
         </div>
       </div>
+
+      <div class="hero-card reveal">
+        <div class="hero-card-top">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="hero-card-title">Beauty Website Modules</div>
+          <div class="hero-card-live">Live preview</div>
+        </div>
+
+        <div class="hero-card-body">
+          <div class="hero-mini-card left">
+            <div class="kicker">Premium system</div>
+            <div class="value">Dark / Light UI</div>
+            <p>Un rendu plus éditorial, plus moderne, plus désirable.</p>
+          </div>
+
+          <div class="mockup-wrap">
+            <img src="mockup.png" alt="Aperçu premium du pack Beauty Website Modules" />
+          </div>
+
+          <div class="hero-mini-card right">
+            <div class="kicker">Conversion first</div>
+            <div class="value">Démos cliquables</div>
+            <p>Chaque module peut être exploré séparément pour prouver sa valeur.</p>
+          </div>
+        </div>
+
+        <div class="hero-card-bottom">
+          <div class="pill">Hero</div>
+          <div class="pill">Video</div>
+          <div class="pill">Quiz</div>
+          <div class="pill">Comparator</div>
+          <div class="pill">Guide</div>
+          <div class="pill">Email</div>
+        </div>
+      </div>
+
     </div>
   </header>
 
   <main>
+
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <div class="eyebrow">Bloc 1 — problème / solution</div>
-          <h2>Ton site peut être beau… sans être assez puissant pour vendre</h2>
+          <div class="eyebrow">Pourquoi ce pack existe</div>
+          <h2>Ton site peut être beau… sans être assez fort pour convertir</h2>
           <p class="lead">
-            Beaucoup de marques ont un bon produit, une jolie identité, mais un site trop plat,
-            trop statique, pas assez immersif. Résultat : la valeur perçue baisse et la visiteuse part trop vite.
+            Beaucoup de marques ont un bon produit et une jolie identité, mais un site trop plat,
+            pas assez immersif, pas assez convaincant. Résultat : la visiteuse regarde… puis part.
           </p>
         </div>
 
         <div class="problem-grid">
           <div class="glass-card reveal">
-            <h3>Ce qui freine souvent les conversions</h3>
+            <h3>Ce qui bloque souvent les ventes</h3>
             <ul class="bullet-list">
               <li>Pas assez d’interactivité dans les premières secondes</li>
               <li>Pas assez de relief premium dans le design</li>
@@ -871,14 +991,14 @@
           <div class="glass-card reveal">
             <h3>Ce pack corrige ça immédiatement</h3>
             <p class="muted" style="margin-top:14px;">
-              Avec ces modules, tu ajoutes du mouvement, de la preuve visuelle, de la personnalisation
-              et un vrai sentiment de marque haut de gamme — sans refaire tout ton site.
+              Avec ces modules, tu ajoutes du mouvement, de la preuve visuelle,
+              de la personnalisation et une vraie sensation de marque haut de gamme.
             </p>
-            <div class="accent">👉 Tu gardes ton site actuel, mais tu montes d’un gros cran en perception et en efficacité.</div>
+            <div class="accent">👉 Tu gardes ton site actuel, mais tu augmentes fortement sa valeur perçue.</div>
             <ul class="bullet-list">
               <li>Des sections qui captent mieux l’attention</li>
+              <li>Des démos concrètes pour mieux vendre</li>
               <li>Des modules qui valorisent le produit</li>
-              <li>Des démos plus parlantes pour vendre</li>
               <li>Une expérience plus premium dès le premier scroll</li>
             </ul>
           </div>
@@ -886,41 +1006,33 @@
       </div>
     </section>
 
-    <section class="section" id="modules">
+    <section class="section modules-section" id="modules">
       <div class="container">
         <div class="section-head reveal">
-          <div class="eyebrow">Bloc 2 — modules cliquables</div>
-          <h2>14 modules premium avec démos individuelles</h2>
+          <div class="eyebrow">Modules premium avec démos</div>
+          <h2>Explore chaque module comme une pièce premium de ton système de vente</h2>
           <p class="lead">
-            Là, chaque carte peut renvoyer vers sa propre démo. Donc on garde le côté premium,
-            mais on ajoute aussi le côté concret : la personne clique, voit le rendu, comprend la valeur.
+            Chaque carte ouvre une vraie démo. Le visiteur ne lit pas seulement une promesse :
+            il voit immédiatement le rendu, l’expérience et la valeur du module.
           </p>
         </div>
 
         <div class="modules-grid" id="modulesGrid"></div>
-
-        <div class="cta-band reveal">
-          <p>
-            Astuce conversion : une page premium + des cartes modules cliquables = beaucoup plus crédible qu’une simple liste.
-            Le visiteur voit directement que ce n’est pas du blabla.
-          </p>
-          <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/" target="_blank" rel="noopener noreferrer">Voir le pack complet</a>
-        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <div class="eyebrow">Bloc 3 — impact / ROI</div>
+          <div class="eyebrow">Offre / ROI</div>
           <h2>Le moyen le plus rapide de rendre un site beauté plus fort sans payer une refonte complète</h2>
           <p class="lead">
-            Tu n’as pas forcément besoin de refaire tout le site. Parfois, quelques très bons modules changent déjà
-            complètement la perception de marque et la manière dont le produit est présenté.
+            Tu n’as pas forcément besoin de refaire tout le site. Quelques très bons modules peuvent déjà changer
+            la perception de marque, le temps passé sur la page et la clarté de l’offre.
           </p>
         </div>
 
-        <div class="impact-grid">
+        <div class="offer-grid">
           <div class="glass-card reveal">
             <h3>Ce que ça change concrètement</h3>
             <ul class="bullet-list">
@@ -930,10 +1042,7 @@
               <li>Un rendu plus luxe et plus crédible</li>
               <li>Une offre mieux comprise par la visiteuse</li>
             </ul>
-          </div>
 
-          <div class="glass-card reveal">
-            <h3>Ce que tu économises vs une création sur mesure</h3>
             <div class="compare">
               <div class="compare-box">
                 <h3>Freelance / agence</h3>
@@ -953,29 +1062,108 @@
                 <div class="price">Pack prêt</div>
                 <ul>
                   <li>14 modules dans le même univers</li>
-                  <li>Démo visible immédiatement</li>
+                  <li>Démos visibles immédiatement</li>
                   <li>Réutilisable sur plusieurs pages</li>
                   <li>Installation plus simple et plus rapide</li>
                 </ul>
               </div>
             </div>
-
-            <div class="accent">👉 Un seul bon module peut déjà faire monter la valeur perçue. Là, tu en montres 14.</div>
           </div>
-        </div>
 
-        <div class="cta-band reveal">
-          <p>
-            Le vrai move premium ici, ce n’est pas juste “avoir un beau site”.
-            C’est montrer une offre claire, désirable, concrète, avec des démos qui prouvent la qualité.
-          </p>
-          <div class="btn-row" style="margin-top:0;">
-            <a class="btn btn-primary" href="#top">Revoir le hero</a>
-            <a class="btn btn-ghost" href="https://lumirebeauty.gumroad.com/" target="_blank" rel="noopener noreferrer">Acheter / voir l’offre</a>
+          <div class="glass-card pricing-card reveal">
+            <div class="badge">Offre directe</div>
+            <h3 style="margin-top:14px;">Pack complet Beauty Website Modules</h3>
+            <div class="price-big">79€</div>
+            <div class="price-small">Paiement unique • accès immédiat</div>
+
+            <div class="stack">
+              <div class="item">✔ 14 modules premium</div>
+              <div class="item">✔ Démo de chaque module</div>
+              <div class="item">✔ Compatible avec les sites qui acceptent du HTML</div>
+              <div class="item">✔ Rendu premium pensé mobile</div>
+              <div class="item">✔ Gain de temps énorme vs création sur mesure</div>
+            </div>
+
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
+                Acheter maintenant
+              </a>
+              <a class="btn btn-ghost" href="#modules">
+                Voir d’abord les démos
+              </a>
+            </div>
+
+            <p class="muted" style="margin-top:18px;">
+              Idéal pour marques beauté, skincare, makeup, accessoires ou créateurs qui veulent un site plus premium sans passer par une refonte complète.
+            </p>
           </div>
         </div>
       </div>
     </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">FAQ rapide</div>
+          <h2>Les questions qu’on se pose avant d’acheter</h2>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq reveal">
+            <h3>Est-ce que c’est seulement pour Shopify ?</h3>
+            <p class="muted">
+              Non. Le pack est pensé pour les sites qui acceptent du HTML ou des intégrations similaires :
+              Shopify, IONOS, WordPress, Wix, Webflow, GitHub Pages et autres solutions proches.
+            </p>
+          </div>
+
+          <div class="faq reveal">
+            <h3>Est-ce que je dois refaire tout mon site ?</h3>
+            <p class="muted">
+              Non. Justement, l’intérêt du pack est d’ajouter des sections plus premium sans repartir de zéro.
+            </p>
+          </div>
+
+          <div class="faq reveal">
+            <h3>Pourquoi acheter ce pack au lieu de faire développer une section ?</h3>
+            <p class="muted">
+              Parce qu’un seul module sur mesure peut déjà coûter plusieurs centaines d’euros.
+              Ici, tu obtiens une collection cohérente de modules prêts à l’emploi pour un prix bien plus accessible.
+            </p>
+          </div>
+
+          <div class="faq reveal">
+            <h3>Est-ce qu’on peut voir le rendu avant d’acheter ?</h3>
+            <p class="muted">
+              Oui. C’est exactement le but des cartes démo ci-dessus : montrer concrètement la qualité du pack.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="final-cta reveal">
+          <div class="eyebrow" style="margin-bottom:16px;">Dernier écran</div>
+          <h2>Tu peux garder un site “correct”… ou passer à une vraie perception premium</h2>
+          <p>
+            Si tu veux que ton site beauté paraisse plus haut de gamme, retienne plus l’attention
+            et présente mieux ton offre, ce pack a été conçu exactement pour ça.
+          </p>
+
+          <div class="btn-row" style="justify-content:center;">
+            <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
+              Oui, je veux le pack
+            </a>
+            <a class="btn btn-ghost" href="#top">
+              Revoir le hero
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
@@ -987,102 +1175,102 @@
   <script>
     const moduleLinks = [
       {
+        num: "00",
+        tag: "Pack",
+        title: "Pack complet",
+        desc: "Vue d’ensemble du pack dans son univers premium complet.",
+        url: "00-pack-complet.html"
+      },
+      {
         num: "01",
-        tag: "Hero",
-        title: "Hero Vidéo Premium",
-        desc: "Capte l’attention dès le premier écran avec une vraie sensation de marque haut de gamme.",
-        url: "#"
+        tag: "Header",
+        title: "Barre d’annonce",
+        desc: "Ajoute une bande premium pour promos, messages clés ou réassurance.",
+        url: "01-barre-annonce.html"
       },
       {
         num: "02",
-        tag: "Proof",
-        title: "Avant / Après",
-        desc: "Montre la transformation de manière ultra claire et plus convaincante.",
-        url: "#"
+        tag: "Hero",
+        title: "Hero slideshow",
+        desc: "Un hero plus immersif pour capter l’attention dès le premier écran.",
+        url: "02-hero-slideshow.html"
       },
       {
         num: "03",
-        tag: "Quiz",
-        title: "Quiz Produit",
-        desc: "Guide la cliente vers le bon produit au lieu de la laisser hésiter.",
-        url: "#"
+        tag: "Video",
+        title: "Vidéo compacte",
+        desc: "Une section vidéo élégante qui valorise ton produit sans écraser la page.",
+        url: "03-video-compact.html"
       },
       {
         num: "04",
-        tag: "Shade",
-        title: "Shade Finder",
-        desc: "Rend la sélection plus intuitive, plus premium et plus engageante.",
-        url: "#"
+        tag: "Video",
+        title: "Vidéo fullscreen",
+        desc: "Version plus impactante pour un effet marque plus haut de gamme.",
+        url: "04-video-full.html"
       },
       {
         num: "05",
-        tag: "Routine",
-        title: "Routine Builder",
-        desc: "Crée un parcours intelligent pour pousser plusieurs produits.",
-        url: "#"
+        tag: "Hero",
+        title: "Hero panel",
+        desc: "Un hero éditorial structuré pour donner une vraie présence premium.",
+        url: "05-hero-panel.html"
       },
       {
         num: "06",
-        tag: "Email",
-        title: "Email Capture",
-        desc: "Récupère plus de leads sans casser l’esthétique du site.",
-        url: "#"
+        tag: "Motion",
+        title: "Marquee",
+        desc: "Défilement fluide pour logos, bénéfices, teintes ou messages de preuve.",
+        url: "06-marquee.html"
       },
       {
         num: "07",
-        tag: "Story",
-        title: "Brand Story",
-        desc: "Renforce la désirabilité de la marque avec une section plus éditoriale.",
-        url: "#"
+        tag: "Proof",
+        title: "Comparateur",
+        desc: "Avant / après ou comparaison visuelle pour mieux démontrer le résultat.",
+        url: "07-comparateur.html"
       },
       {
         num: "08",
-        tag: "Review",
-        title: "Avis Premium",
-        desc: "Mets en scène les retours clientes dans un rendu plus luxe.",
-        url: "#"
+        tag: "Quiz",
+        title: "Quiz produit",
+        desc: "Guide l’utilisateur vers le bon produit avec une expérience interactive.",
+        url: "08-quiz.html"
       },
       {
         num: "09",
-        tag: "Slider",
-        title: "Product Slider",
-        desc: "Expose plusieurs produits ou variantes dans un format plus vivant.",
-        url: "#"
+        tag: "Selector",
+        title: "Sélecteur",
+        desc: "Sélection plus intuitive, plus engageante et plus premium.",
+        url: "09-selecteur.html"
       },
       {
         num: "10",
         tag: "Guide",
-        title: "Guide Interactif",
-        desc: "Réduit les hésitations et rassure avant l’achat.",
-        url: "#"
+        title: "Guide tailles",
+        desc: "Réduit l’hésitation et rassure avant le passage à l’achat.",
+        url: "10-guide-tailles.html"
       },
       {
         num: "11",
-        tag: "Dark",
-        title: "Dark Mode",
-        desc: "Donne un rendu éditorial plus intense et premium.",
-        url: "#"
+        tag: "Showcase",
+        title: "Showcase",
+        desc: "Présente la marque ou les produits dans une mise en scène plus éditoriale.",
+        url: "11-showcase.html"
       },
       {
         num: "12",
-        tag: "Light",
-        title: "Light Mode",
-        desc: "Version plus clean et lumineuse pour les marques plus soft.",
-        url: "#"
+        tag: "Dock",
+        title: "Dock",
+        desc: "Bloc navigation / accès rapide avec une touche moderne et premium.",
+        url: "12-dock.html"
       },
       {
         num: "13",
-        tag: "Bundle",
-        title: "Offer Block",
-        desc: "Présente une offre ou un pack d’une façon plus vendeuse.",
-        url: "#"
-      },
-      {
-        num: "14",
-        tag: "CTA",
-        title: "Conversion CTA",
-        desc: "Un bloc final qui pousse vraiment à cliquer et passer à l’action.",
-        url: "#"
+        tag: "Email",
+        title: "Email + valeurs",
+        desc: "Capture email et arguments clés dans une section plus vendeuse.",
+        url: "13-email-valeurs.html"
       }
     ];
 
