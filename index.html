@@ -418,6 +418,7 @@
       text-transform:uppercase;
       flex:1;
       text-align:center;
+      cursor:pointer;
     }
 
     .hero-card-live{
@@ -431,6 +432,7 @@
       letter-spacing:.08em;
       text-transform:uppercase;
       transition:.22s ease;
+      cursor:pointer;
     }
 
     .hero-card-live:hover{
@@ -600,6 +602,7 @@
       box-shadow:0 14px 30px rgba(0,0,0,.24);
       backdrop-filter:blur(14px);
       transition:all .2s ease;
+      cursor:pointer;
     }
 
     .hero-chip:hover{
@@ -766,6 +769,7 @@
       box-shadow:var(--shadow);
       transition:.28s ease;
       transform-style:preserve-3d;
+      cursor:pointer;
     }
 
     .module-card::before{
@@ -1171,7 +1175,252 @@
       font-size:.95rem;
     }
 
+    /* ===================== */
+    /* MODAL DEMO SYSTEM     */
+    /* ===================== */
+
+    .demo-modal-overlay{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      background:rgba(4,4,6,.88);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .3s ease;
+    }
+
+    .demo-modal-overlay.open{
+      opacity:1;
+      pointer-events:all;
+    }
+
+    .demo-modal{
+      position:relative;
+      width:100%;
+      max-width:1100px;
+      height:min(88vh, 820px);
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:#0b0b10;
+      box-shadow:
+        0 48px 120px rgba(0,0,0,.62),
+        0 0 0 1px rgba(212,175,115,.08) inset;
+      display:flex;
+      flex-direction:column;
+      transform:translateY(28px) scale(.97);
+      transition:transform .35s cubic-bezier(.22,.8,.2,1), opacity .3s ease;
+      opacity:0;
+    }
+
+    .demo-modal-overlay.open .demo-modal{
+      transform:translateY(0) scale(1);
+      opacity:1;
+    }
+
+    .demo-modal-bar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:13px 18px;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      flex:0 0 auto;
+    }
+
+    .demo-modal-bar-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .demo-modal-dots{
+      display:flex;
+      gap:6px;
+    }
+
+    .demo-modal-dots span{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+    }
+
+    .demo-modal-dots span:nth-child(1){ background:#ff5f57; }
+    .demo-modal-dots span:nth-child(2){ background:#febc2e; }
+    .demo-modal-dots span:nth-child(3){ background:#28c840; }
+
+    .demo-modal-title{
+      font-size:.82rem;
+      font-weight:700;
+      color:#dfd3c3;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    .demo-modal-tag{
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(212,175,115,.20);
+      background:rgba(212,175,115,.08);
+      color:#efd7aa;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    .demo-modal-bar-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .demo-modal-nav{
+      display:flex;
+      gap:6px;
+    }
+
+    .demo-modal-nav-btn{
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:#ddd2c6;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:.2s ease;
+      font-size:1rem;
+    }
+
+    .demo-modal-nav-btn:hover{
+      background:rgba(212,175,115,.12);
+      border-color:rgba(212,175,115,.26);
+      color:#f1dec0;
+      transform:scale(1.06);
+    }
+
+    .demo-modal-close{
+      width:36px;
+      height:36px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:#ddd2c6;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:.2s ease;
+      font-size:1.1rem;
+    }
+
+    .demo-modal-close:hover{
+      background:rgba(255,80,80,.14);
+      border-color:rgba(255,80,80,.28);
+      color:#ffaaaa;
+      transform:scale(1.06);
+    }
+
+    .demo-modal-iframe-wrap{
+      flex:1;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .demo-modal-iframe{
+      width:100%;
+      height:100%;
+      border:none;
+      display:block;
+    }
+
+    .demo-modal-loader{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      background:#0b0b10;
+      transition:opacity .3s ease;
+      pointer-events:none;
+    }
+
+    .demo-modal-loader.hidden{
+      opacity:0;
+    }
+
+    .demo-modal-spinner{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      border:2px solid rgba(212,175,115,.16);
+      border-top-color:var(--gold);
+      animation:spin .8s linear infinite;
+    }
+
+    .demo-modal-loader p{
+      color:#c8b99a;
+      font-size:.88rem;
+      font-weight:600;
+    }
+
+    .demo-modal-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 18px;
+      border-top:1px solid rgba(255,255,255,.06);
+      background:rgba(255,255,255,.018);
+      flex:0 0 auto;
+      flex-wrap:wrap;
+    }
+
+    .demo-modal-counter{
+      font-size:.82rem;
+      color:#9e9184;
+      font-weight:600;
+    }
+
+    .demo-modal-buy{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#e2c185,#c89853);
+      color:#1a1208;
+      font-size:.88rem;
+      font-weight:800;
+      box-shadow:0 8px 22px rgba(212,175,115,.22);
+      transition:.2s ease;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+    }
+
+    .demo-modal-buy:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 28px rgba(212,175,115,.30);
+    }
+
     /* ANIMATIONS */
+    @keyframes spin{
+      to{ transform:rotate(360deg); }
+    }
+
     @keyframes floatSoft {
       0% { transform: translateY(0px) translateX(0px); }
       50% { transform: translateY(-8px) translateX(2px); }
@@ -1198,14 +1447,8 @@
     }
 
     @keyframes fadeLift {
-      from {
-        opacity:0;
-        transform:translateY(24px);
-      }
-      to {
-        opacity:1;
-        transform:translateY(0);
-      }
+      from { opacity:0; transform:translateY(24px); }
+      to { opacity:1; transform:translateY(0); }
     }
 
     @keyframes slowRotate {
@@ -1285,7 +1528,7 @@
       transform:translateY(0) scale(1);
     }
 
-    /* MOBILE UPGRADE */
+    /* MOBILE */
     @media (max-width: 1100px){
       .hero-grid,
       .problem-grid,
@@ -1331,6 +1574,10 @@
         position:static;
         display:inline-flex;
         margin:10px 10px 0 0;
+      }
+
+      .demo-modal{
+        height:min(92vh, 900px);
       }
     }
 
@@ -1449,6 +1696,30 @@
       .final-cta{
         padding:34px 20px;
       }
+
+      .demo-modal{
+        height:90vh;
+        border-radius:20px;
+      }
+
+      .demo-modal-bar{
+        padding:10px 14px;
+      }
+
+      .demo-modal-title{
+        font-size:.72rem;
+      }
+
+      .demo-modal-footer{
+        padding:10px 14px;
+      }
+
+      .demo-modal-nav-btn,
+      .demo-modal-close{
+        width:30px;
+        height:30px;
+        font-size:.9rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -1461,6 +1732,52 @@
   </style>
 </head>
 <body>
+
+  <!-- DEMO MODAL -->
+  <div class="demo-modal-overlay" id="demoOverlay" role="dialog" aria-modal="true" aria-label="Démo module">
+    <div class="demo-modal" id="demoModal">
+      <div class="demo-modal-bar">
+        <div class="demo-modal-bar-left">
+          <div class="demo-modal-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="demo-modal-title" id="demoModalTitle">Module</div>
+          <div class="demo-modal-tag" id="demoModalTag">Demo</div>
+        </div>
+        <div class="demo-modal-bar-right">
+          <div class="demo-modal-nav">
+            <button class="demo-modal-nav-btn" id="demoPrev" title="Module précédent" aria-label="Module précédent">←</button>
+            <button class="demo-modal-nav-btn" id="demoNext" title="Module suivant" aria-label="Module suivant">→</button>
+          </div>
+          <button class="demo-modal-close" id="demoClose" title="Fermer" aria-label="Fermer la démo">✕</button>
+        </div>
+      </div>
+      <div class="demo-modal-iframe-wrap">
+        <div class="demo-modal-loader" id="demoLoader">
+          <div class="demo-modal-spinner"></div>
+          <p>Chargement de la démo…</p>
+        </div>
+        <iframe
+          class="demo-modal-iframe"
+          id="demoIframe"
+          title="Démo module"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+        ></iframe>
+      </div>
+      <div class="demo-modal-footer">
+        <span class="demo-modal-counter" id="demoCounter">1 / 14</span>
+        <a
+          class="demo-modal-buy"
+          href="https://lumirebeauty.gumroad.com/l/pdlbdu"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ✦ Acheter le pack
+        </a>
+      </div>
+    </div>
+  </div>
 
   <header class="hero" id="top">
     <div class="hero-bg-noise"></div>
@@ -1528,12 +1845,12 @@
           <div class="hero-card" id="hero3dCard">
             <div class="hero-card-top">
               <div class="dots"><span></span><span></span><span></span></div>
-              <a href="00-pack-complet.html" target="_blank" rel="noopener noreferrer" class="hero-card-title">
+              <span class="hero-card-title" onclick="openDemo(0)">
                 Premium Website Modules
-              </a>
-              <a href="00-pack-complet.html" target="_blank" rel="noopener noreferrer" class="hero-card-live">
+              </span>
+              <span class="hero-card-live" onclick="openDemo(0)">
                 Live preview
-              </a>
+              </span>
             </div>
 
             <div class="hero-card-body">
@@ -1558,18 +1875,10 @@
                 <img src="mockup.png" alt="Aperçu premium du pack Premium Website Modules" />
               </div>
 
-              <a href="02-hero-slideshow.html" target="_blank" rel="noopener noreferrer" class="hero-chip hero-chip-1 layer" data-depth="26">
-                Hero
-              </a>
-              <a href="03-video-compact.html" target="_blank" rel="noopener noreferrer" class="hero-chip hero-chip-2 layer" data-depth="20">
-                Video
-              </a>
-              <a href="08-quiz.html" target="_blank" rel="noopener noreferrer" class="hero-chip hero-chip-3 layer" data-depth="24">
-                Quiz
-              </a>
-              <a href="07-comparateur.html" target="_blank" rel="noopener noreferrer" class="hero-chip hero-chip-4 layer" data-depth="17">
-                Comparator
-              </a>
+              <span class="hero-chip hero-chip-1 layer" data-depth="26" onclick="openDemo(2)">Hero</span>
+              <span class="hero-chip hero-chip-2 layer" data-depth="20" onclick="openDemo(3)">Video</span>
+              <span class="hero-chip hero-chip-3 layer" data-depth="24" onclick="openDemo(8)">Quiz</span>
+              <span class="hero-chip hero-chip-4 layer" data-depth="17" onclick="openDemo(7)">Comparator</span>
 
               <div class="hero-float-badge badge-top layer" data-depth="28">
                 <span class="hero-badge-label">UI premium</span>
@@ -1583,13 +1892,13 @@
             </div>
 
             <div class="hero-card-bottom">
-              <a href="02-hero-slideshow.html" class="pill" target="_blank" rel="noopener noreferrer">Hero</a>
-              <a href="03-video-compact.html" class="pill" target="_blank" rel="noopener noreferrer">Video</a>
-              <a href="08-quiz.html" class="pill" target="_blank" rel="noopener noreferrer">Quiz</a>
-              <a href="07-comparateur.html" class="pill" target="_blank" rel="noopener noreferrer">Comparator</a>
-              <a href="10-guide-tailles.html" class="pill" target="_blank" rel="noopener noreferrer">Guide</a>
-              <a href="13-email-valeurs.html" class="pill" target="_blank" rel="noopener noreferrer">Email</a>
-              <a href="#modules" class="pill">Tous les modules</a>
+              <span class="pill" onclick="openDemo(2)">Hero</span>
+              <span class="pill" onclick="openDemo(3)">Video</span>
+              <span class="pill" onclick="openDemo(8)">Quiz</span>
+              <span class="pill" onclick="openDemo(7)">Comparator</span>
+              <span class="pill" onclick="openDemo(10)">Guide</span>
+              <span class="pill" onclick="openDemo(13)">Email</span>
+              <a class="pill" href="#modules">Tous les modules</a>
             </div>
           </div>
         </div>
@@ -1615,10 +1924,10 @@
           <div class="glass-card reveal">
             <h3>Ce qui freine souvent les ventes</h3>
             <ul class="bullet-list">
-              <li>Pas assez d’interactivité dans les premières secondes</li>
+              <li>Pas assez d'interactivité dans les premières secondes</li>
               <li>Pas assez de relief premium dans le design</li>
-              <li>Pas de parcours clair pour guider vers l’action</li>
-              <li>Une impression trop “template” ou trop “site builder”</li>
+              <li>Pas de parcours clair pour guider vers l'action</li>
+              <li>Une impression trop "template" ou trop "site builder"</li>
             </ul>
           </div>
 
@@ -1630,9 +1939,9 @@
             </p>
             <div class="accent">👉 Tu gardes ton site actuel, mais tu augmentes fortement sa valeur perçue.</div>
             <ul class="bullet-list">
-              <li>Des sections qui captent mieux l’attention</li>
+              <li>Des sections qui captent mieux l'attention</li>
               <li>Des démos concrètes pour mieux vendre</li>
-              <li>Des modules qui valorisent l’offre</li>
+              <li>Des modules qui valorisent l'offre</li>
               <li>Une expérience plus premium dès le premier scroll</li>
             </ul>
           </div>
@@ -1646,8 +1955,8 @@
           <div class="eyebrow">Modules premium avec démos</div>
           <h2>Explore chaque module comme une pièce premium de ton système de vente</h2>
           <p class="lead">
-            Chaque carte ouvre une vraie démo. On ne lit pas seulement une promesse :
-            on voit immédiatement le rendu, l’expérience et la qualité.
+            Clique sur une carte pour ouvrir la démo directement ici.
+            Tu peux naviguer entre les modules sans jamais quitter la page.
           </p>
         </div>
 
@@ -1661,8 +1970,8 @@
           <div class="eyebrow">Offre / ROI</div>
           <h2>Le moyen le plus rapide de rendre un site plus fort sans payer une refonte complète</h2>
           <p class="lead">
-            Tu n’as pas forcément besoin de refaire toute la boutique. Quelques très bons modules peuvent déjà changer
-            la perception de marque, le temps passé sur la page et la clarté de l’offre.
+            Tu n'as pas forcément besoin de refaire toute la boutique. Quelques très bons modules peuvent déjà changer
+            la perception de marque, le temps passé sur la page et la clarté de l'offre.
           </p>
         </div>
 
@@ -1672,7 +1981,7 @@
             <ul class="bullet-list">
               <li>Plus de temps passé sur la page</li>
               <li>Plus de clics sur les CTA</li>
-              <li>Une meilleure mise en valeur du produit ou de l’offre</li>
+              <li>Une meilleure mise en valeur du produit ou de l'offre</li>
               <li>Un rendu plus luxe et plus crédible</li>
               <li>Une expérience mieux comprise par le visiteur</li>
             </ul>
@@ -1753,7 +2062,7 @@
       <div class="container">
         <div class="faq-grid">
           <div class="faq reveal">
-            <h3>Est-ce que c’est seulement pour un type de site précis ?</h3>
+            <h3>Est-ce que c'est seulement pour un type de site précis ?</h3>
             <p class="muted">
               Non. Le pack est pensé pour les sites qui acceptent du HTML ou des intégrations similaires :
               Shopify, IONOS, WordPress, Wix, Webflow, GitHub Pages et autres solutions proches.
@@ -1763,7 +2072,7 @@
           <div class="faq reveal">
             <h3>Est-ce que je dois refaire tout mon site ?</h3>
             <p class="muted">
-              Non. L’intérêt du pack est justement d’ajouter des sections plus premium sans repartir de zéro.
+              Non. L'intérêt du pack est justement d'ajouter des sections plus premium sans repartir de zéro.
             </p>
           </div>
         </div>
@@ -1774,9 +2083,9 @@
       <div class="container">
         <div class="final-cta reveal">
           <div class="eyebrow" style="margin-bottom:16px;">Dernier écran</div>
-          <h2>Tu peux garder un site “correct”… ou passer à une vraie perception premium</h2>
+          <h2>Tu peux garder un site "correct"… ou passer à une vraie perception premium</h2>
           <p>
-            Si tu veux que ton site paraisse plus haut de gamme, retienne plus l’attention
+            Si tu veux que ton site paraisse plus haut de gamme, retienne plus l'attention
             et présente mieux ton offre, ce pack a été conçu exactement pour ça.
           </p>
           <div class="final-subline">
@@ -1805,27 +2114,87 @@
 
   <script>
     const moduleLinks = [
-      { num: "00", tag: "Pack", title: "Pack complet", desc: "Vue d’ensemble du pack dans son univers premium complet.", url: "00-pack-complet.html" },
-      { num: "01", tag: "Header", title: "Barre d’annonce", desc: "Ajoute une bande premium pour promos, messages clés ou réassurance.", url: "01-barre-annonce.html" },
-      { num: "02", tag: "Hero", title: "Hero slideshow", desc: "Un hero plus immersif pour capter l’attention dès le premier écran.", url: "02-hero-slideshow.html" },
+      { num: "00", tag: "Pack", title: "Pack complet", desc: "Vue d'ensemble du pack dans son univers premium complet.", url: "00-pack-complet.html" },
+      { num: "01", tag: "Header", title: "Barre d'annonce", desc: "Ajoute une bande premium pour promos, messages clés ou réassurance.", url: "01-barre-annonce.html" },
+      { num: "02", tag: "Hero", title: "Hero slideshow", desc: "Un hero plus immersif pour capter l'attention dès le premier écran.", url: "02-hero-slideshow.html" },
       { num: "03", tag: "Video", title: "Vidéo compacte", desc: "Une section vidéo élégante qui valorise ton offre sans écraser la page.", url: "03-video-compact.html" },
       { num: "04", tag: "Video", title: "Vidéo fullscreen", desc: "Version plus impactante pour un effet marque plus haut de gamme.", url: "04-video-full.html" },
       { num: "05", tag: "Hero", title: "Hero panel", desc: "Un hero éditorial structuré pour donner une vraie présence premium.", url: "05-hero-panel.html" },
       { num: "06", tag: "Motion", title: "Marquee", desc: "Défilement fluide pour logos, bénéfices ou messages de preuve.", url: "06-marquee.html" },
       { num: "07", tag: "Proof", title: "Comparateur", desc: "Avant / après ou comparaison visuelle pour mieux démontrer le résultat.", url: "07-comparateur.html" },
-      { num: "08", tag: "Quiz", title: "Quiz produit", desc: "Guide l’utilisateur vers la bonne option avec une expérience interactive.", url: "08-quiz.html" },
+      { num: "08", tag: "Quiz", title: "Quiz produit", desc: "Guide l'utilisateur vers la bonne option avec une expérience interactive.", url: "08-quiz.html" },
       { num: "09", tag: "Selector", title: "Sélecteur", desc: "Sélection plus intuitive, plus engageante et plus premium.", url: "09-selecteur.html" },
-      { num: "10", tag: "Guide", title: "Guide tailles", desc: "Réduit l’hésitation et rassure avant le passage à l’action.", url: "10-guide-tailles.html" },
+      { num: "10", tag: "Guide", title: "Guide tailles", desc: "Réduit l'hésitation et rassure avant le passage à l'action.", url: "10-guide-tailles.html" },
       { num: "11", tag: "Showcase", title: "Showcase", desc: "Présente la marque ou les produits dans une mise en scène plus éditoriale.", url: "11-showcase.html" },
       { num: "12", tag: "Dock", title: "Dock", desc: "Bloc navigation / accès rapide avec une touche moderne et premium.", url: "12-dock.html" },
       { num: "13", tag: "Email", title: "Email + valeurs", desc: "Capture email et arguments clés dans une section plus vendeuse.", url: "13-email-valeurs.html" }
     ];
 
+    // ── Modal system ──────────────────────────────────────────────
+    let currentDemoIndex = 0;
+
+    const overlay   = document.getElementById('demoOverlay');
+    const iframe    = document.getElementById('demoIframe');
+    const loader    = document.getElementById('demoLoader');
+    const titleEl   = document.getElementById('demoModalTitle');
+    const tagEl     = document.getElementById('demoModalTag');
+    const counterEl = document.getElementById('demoCounter');
+
+    function openDemo(index) {
+      currentDemoIndex = index;
+      const mod = moduleLinks[index];
+
+      titleEl.textContent = mod.title;
+      tagEl.textContent   = mod.tag;
+      counterEl.textContent = `${index + 1} / ${moduleLinks.length}`;
+
+      loader.classList.remove('hidden');
+      iframe.src = '';
+
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      requestAnimationFrame(() => {
+        iframe.src = mod.url;
+      });
+    }
+
+    function closeDemo() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => { iframe.src = ''; }, 350);
+    }
+
+    function navigateDemo(direction) {
+      const next = (currentDemoIndex + direction + moduleLinks.length) % moduleLinks.length;
+      openDemo(next);
+    }
+
+    iframe.addEventListener('load', () => {
+      loader.classList.add('hidden');
+    });
+
+    document.getElementById('demoClose').addEventListener('click', closeDemo);
+    document.getElementById('demoPrev').addEventListener('click', () => navigateDemo(-1));
+    document.getElementById('demoNext').addEventListener('click', () => navigateDemo(1));
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeDemo();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!overlay.classList.contains('open')) return;
+      if (e.key === 'Escape')      closeDemo();
+      if (e.key === 'ArrowRight')  navigateDemo(1);
+      if (e.key === 'ArrowLeft')   navigateDemo(-1);
+    });
+
+    // ── Build modules grid ────────────────────────────────────────
     const modulesGrid = document.getElementById("modulesGrid");
     if (modulesGrid) {
-      modulesGrid.innerHTML = moduleLinks.map(module => `
-        <article class="module-card reveal">
-          <a class="module-link" href="${module.url}" target="_blank" rel="noopener noreferrer">
+      modulesGrid.innerHTML = moduleLinks.map((module, i) => `
+        <article class="module-card reveal" onclick="openDemo(${i})">
+          <div class="module-link">
             <div class="module-top">
               <div class="module-num">${module.num}</div>
               <div class="module-tag">${module.tag}</div>
@@ -1836,96 +2205,76 @@
               <span>Voir la démo</span>
               <span>→</span>
             </div>
-          </a>
+          </div>
         </article>
       `).join("");
     }
 
+    // ── Reveal on scroll ─────────────────────────────────────────
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-        }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.12 });
 
     reveals.forEach(el => observer.observe(el));
 
+    // ── 3D hero tilt ─────────────────────────────────────────────
     const heroWrap = document.getElementById('hero3dWrap');
     const heroCard = document.getElementById('hero3dCard');
-    const layers = heroCard ? heroCard.querySelectorAll('.layer') : [];
+    const layers   = heroCard ? heroCard.querySelectorAll('.layer') : [];
     const centerGlow = document.querySelector('.hero-center-glow');
 
     const isDesktop = () => window.matchMedia('(min-width: 1101px)').matches;
 
-    let currentX = 0;
-    let currentY = 0;
-    let targetX = 0;
-    let targetY = 0;
-    let rafId = null;
+    let currentX = 0, currentY = 0, targetX = 0, targetY = 0;
 
     function animate3D() {
       currentX += (targetX - currentX) * 0.08;
       currentY += (targetY - currentY) * 0.08;
 
       if (heroCard && isDesktop()) {
-        heroCard.style.transform = `
-          rotateX(${currentY}deg)
-          rotateY(${currentX}deg)
-          scale3d(1.01,1.01,1.01)
-        `;
+        heroCard.style.transform = `rotateX(${currentY}deg) rotateY(${currentX}deg) scale3d(1.01,1.01,1.01)`;
       }
 
       if (isDesktop()) {
         layers.forEach(layer => {
           const depth = Number(layer.dataset.depth || 10);
-          const moveX = (currentX / 16) * depth;
-          const moveY = (currentY / 16) * depth;
-          layer.style.transform = `translate3d(${moveX}px, ${-moveY}px, ${depth}px)`;
+          layer.style.transform = `translate3d(${(currentX/16)*depth}px, ${-(currentY/16)*depth}px, ${depth}px)`;
         });
       }
 
-      rafId = requestAnimationFrame(animate3D);
+      requestAnimationFrame(animate3D);
     }
 
     if (heroWrap && heroCard) {
       heroWrap.addEventListener('mousemove', (e) => {
         if (!isDesktop()) return;
-
         const rect = heroWrap.getBoundingClientRect();
         const px = (e.clientX - rect.left) / rect.width;
         const py = (e.clientY - rect.top) / rect.height;
-
         targetX = (px - 0.5) * 14;
         targetY = (0.5 - py) * 12;
-
         if (centerGlow) {
           centerGlow.style.left = `${px * 100}%`;
-          centerGlow.style.top = `${py * 100}%`;
+          centerGlow.style.top  = `${py * 100}%`;
         }
       });
 
       heroWrap.addEventListener('mouseleave', () => {
-        targetX = 0;
-        targetY = 0;
-
-        if (centerGlow) {
-          centerGlow.style.left = `50%`;
-          centerGlow.style.top = `50%`;
-        }
+        targetX = 0; targetY = 0;
+        if (centerGlow) { centerGlow.style.left = '50%'; centerGlow.style.top = '50%'; }
       });
-
-      rafId = requestAnimationFrame(animate3D);
 
       window.addEventListener('resize', () => {
         if (!isDesktop()) {
           heroCard.style.transform = 'none';
-          layers.forEach(layer => {
-            layer.style.transform = '';
-          });
+          layers.forEach(l => l.style.transform = '');
         }
       });
+
+      animate3D();
     }
   </script>
 </body>
