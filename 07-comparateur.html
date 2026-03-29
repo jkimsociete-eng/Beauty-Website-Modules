@@ -14,11 +14,8 @@
   --gold-soft:#e7d3ab;
   --gold-deep:#a47a42;
   --bg:#0b0a08;
-  --bg-2:#12100d;
   --panel:#16130f;
-  --panel-2:#1a1713;
   --line:rgba(201,169,110,.14);
-  --line-2:rgba(255,255,255,.08);
   --text:#f7f3ed;
   --text-soft:rgba(247,243,237,.76);
   --text-fade:rgba(247,243,237,.42);
@@ -35,7 +32,6 @@ body{
   color:var(--text);
   background:
     radial-gradient(900px 500px at 50% -10%, rgba(201,169,110,.14), transparent 62%),
-    radial-gradient(700px 400px at 10% 20%, rgba(255,255,255,.03), transparent 60%),
     linear-gradient(180deg, #090806 0%, #0c0b09 36%, #0f0d0b 100%);
   min-height:100vh;
   overflow-x:hidden;
@@ -43,14 +39,14 @@ body{
 
 .page{
   min-height:100vh;
-  padding:72px 20px;
+  padding:48px 18px;
   display:flex;
   align-items:center;
 }
 
 .wrap{
   width:100%;
-  max-width:1040px;
+  max-width:980px;
   margin:0 auto;
 }
 
@@ -65,7 +61,7 @@ body{
 
 .title{
   font-family:var(--serif);
-  font-size:clamp(38px,5vw,72px);
+  font-size:clamp(34px,5vw,66px);
   line-height:.96;
   font-weight:300;
   letter-spacing:-.02em;
@@ -84,7 +80,7 @@ body{
   font-size:14px;
   line-height:1.85;
   font-weight:300;
-  margin-bottom:34px;
+  margin-bottom:30px;
 }
 
 .card{
@@ -112,7 +108,7 @@ body{
 .card-head{
   position:relative;
   z-index:2;
-  padding:26px 28px 18px;
+  padding:24px 22px 18px;
   text-align:center;
   border-bottom:1px solid rgba(255,255,255,.05);
 }
@@ -153,7 +149,7 @@ body{
   position:relative;
   width:100%;
   aspect-ratio:1.58 / 1;
-  min-height:420px;
+  min-height:380px;
   max-height:78vh;
   background:#070707;
   overflow:hidden;
@@ -184,11 +180,6 @@ body{
   backface-visibility:hidden;
   transform:scale(1.012);
   transform-origin:center;
-}
-
-/* Ajuste ICI le placement global du visage */
-.compare-after,
-.compare-before-img{
   object-position:center 28%;
 }
 
@@ -312,8 +303,7 @@ body{
   gap:16px;
   padding:18px 22px 22px;
   border-top:1px solid rgba(255,255,255,.05);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.018), rgba(255,255,255,.006));
+  background:linear-gradient(180deg, rgba(255,255,255,.018), rgba(255,255,255,.006));
   flex-wrap:wrap;
 }
 
@@ -380,34 +370,6 @@ body{
   background:rgba(201,169,110,.55);
 }
 
-.theme-btn{
-  position:fixed;
-  top:16px;
-  right:16px;
-  z-index:999;
-  border:1px solid rgba(201,169,110,.14);
-  background:rgba(15,12,9,.64);
-  backdrop-filter:blur(14px);
-  color:var(--text-soft);
-  border-radius:999px;
-  padding:9px 15px;
-  display:flex;
-  align-items:center;
-  gap:7px;
-  font-size:10px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  font-weight:700;
-  cursor:pointer;
-  transition:all .24s var(--ease);
-}
-
-.theme-btn:hover{
-  color:var(--gold);
-  border-color:rgba(201,169,110,.38);
-  transform:translateY(-1px);
-}
-
 @media (max-width:860px){
   .compare-stage{
     aspect-ratio:1.04 / 1;
@@ -425,11 +387,11 @@ body{
 
 @media (max-width:560px){
   .page{
-    padding:48px 14px;
+    padding:32px 12px;
     align-items:flex-start;
   }
   .title{
-    font-size:clamp(34px,10vw,48px);
+    font-size:clamp(30px,10vw,46px);
   }
   .sub{
     font-size:13px;
@@ -477,17 +439,12 @@ body{
 </head>
 <body>
 
-<button class="theme-btn" id="themeBtn">
-  <span id="themeIcon">🌙</span>
-  <span id="themeText">Dark</span>
-</button>
-
 <div class="page">
   <div class="wrap">
     <div class="eyebrow">Module 07 — Comparateur avant / après</div>
     <h1 class="title">Voyez la <em>transformation</em></h1>
     <p class="sub">
-      Un comparateur pensé comme une vraie expérience premium&nbsp;: fluide, tactile, élégant et calibré pour sublimer le visuel avant / après sans casser le cadrage du visage.
+      Un comparateur pensé comme une vraie expérience premium : fluide, tactile, élégant et calibré pour sublimer le visuel avant / après sans casser le cadrage du visage.
     </p>
 
     <section class="card">
@@ -531,9 +488,7 @@ body{
 
         <div class="compare-ui">
           <span class="compare-label">Teinte :</span>
-
           <div class="swatches" id="swatches"></div>
-
           <div class="meta">
             <span>Desktop & mobile</span>
             <span class="meta-dot"></span>
@@ -564,52 +519,6 @@ const PAIRS = [
   }
 ];
 
-const root = document.documentElement;
-const themeBtn = document.getElementById('themeBtn');
-const themeIcon = document.getElementById('themeIcon');
-const themeText = document.getElementById('themeText');
-
-function setTheme(theme){
-  if(theme === 'light'){
-    root.style.setProperty('--bg','#f7f3ec');
-    root.style.setProperty('--bg-2','#efe9df');
-    root.style.setProperty('--panel','#fbf7f1');
-    root.style.setProperty('--panel-2','#f3eee6');
-    root.style.setProperty('--line','rgba(201,169,110,.25)');
-    root.style.setProperty('--line-2','rgba(15,12,9,.08)');
-    root.style.setProperty('--text','#16120d');
-    root.style.setProperty('--text-soft','rgba(22,18,13,.72)');
-    root.style.setProperty('--text-fade','rgba(22,18,13,.42)');
-    document.body.style.background =
-      'radial-gradient(900px 500px at 50% -10%, rgba(201,169,110,.16), transparent 62%), radial-gradient(700px 400px at 10% 20%, rgba(0,0,0,.02), transparent 60%), linear-gradient(180deg, #f8f4ed 0%, #f3ede5 36%, #eee7de 100%)';
-    themeIcon.textContent = '☀️';
-    themeText.textContent = 'Light';
-    localStorage.setItem('lm-theme', 'light');
-  } else {
-    root.style.setProperty('--bg','#0b0a08');
-    root.style.setProperty('--bg-2','#12100d');
-    root.style.setProperty('--panel','#16130f');
-    root.style.setProperty('--panel-2','#1a1713');
-    root.style.setProperty('--line','rgba(201,169,110,.14)');
-    root.style.setProperty('--line-2','rgba(255,255,255,.08)');
-    root.style.setProperty('--text','#f7f3ed');
-    root.style.setProperty('--text-soft','rgba(247,243,237,.76)');
-    root.style.setProperty('--text-fade','rgba(247,243,237,.42)');
-    document.body.style.background =
-      'radial-gradient(900px 500px at 50% -10%, rgba(201,169,110,.14), transparent 62%), radial-gradient(700px 400px at 10% 20%, rgba(255,255,255,.03), transparent 60%), linear-gradient(180deg, #090806 0%, #0c0b09 36%, #0f0d0b 100%)';
-    themeIcon.textContent = '🌙';
-    themeText.textContent = 'Dark';
-    localStorage.setItem('lm-theme', 'dark');
-  }
-}
-
-setTheme(localStorage.getItem('lm-theme') || 'dark');
-
-themeBtn.addEventListener('click', () => {
-  const current = localStorage.getItem('lm-theme') || 'dark';
-  setTheme(current === 'dark' ? 'light' : 'dark');
-});
-
 const stage = document.getElementById('compareStage');
 const beforeMask = document.getElementById('beforeMask');
 const beforeImg = document.getElementById('beforeImg');
@@ -636,7 +545,6 @@ function positionFromClientX(clientX){
 
 function onPointerDown(e){
   isDragging = true;
-  stage.classList.add('dragging');
   if(e.touches && e.touches[0]){
     positionFromClientX(e.touches[0].clientX);
   } else {
@@ -655,7 +563,6 @@ function onPointerMove(e){
 
 function onPointerUp(){
   isDragging = false;
-  stage.classList.remove('dragging');
 }
 
 function preload(url){
