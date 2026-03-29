@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beauty Website Modules — Pack premium pour sites beauté</title>
+  <title>Premium Website Modules — Pack premium pour sites & e-commerce</title>
   <meta
     name="description"
-    content="14 modules premium pour transformer un site beauté en machine à vendre. Démo cliquable, design luxe-tech, prêt à intégrer."
+    content="Un pack premium de modules pour transformer un site en expérience plus haut de gamme, plus interactive et plus vendeuse."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,18 +18,19 @@
 
   <style>
     :root{
-      --bg:#070709;
-      --bg2:#0c0c10;
-      --panel:#111117;
-      --panel2:#15151c;
+      --bg:#060607;
+      --bg2:#0b0b10;
+      --panel:#101017;
+      --panel2:#15151d;
       --text:#f7f2ea;
-      --muted:#b9aea1;
+      --muted:#b8ada0;
       --line:rgba(255,255,255,.08);
       --line2:rgba(255,255,255,.05);
       --gold:#d4af73;
       --gold2:#b98b4a;
       --gold3:#f2ddb3;
       --goldSoft:rgba(212,175,115,.12);
+      --purpleSoft:rgba(120,90,255,.08);
       --shadow:0 24px 70px rgba(0,0,0,.42);
       --radius:26px;
       --max:1240px;
@@ -41,8 +42,8 @@
       font-family:'Inter',sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 18% 0%, rgba(212,175,115,.11), transparent 28%),
-        radial-gradient(circle at 88% 8%, rgba(135,95,255,.06), transparent 18%),
+        radial-gradient(circle at 18% 0%, rgba(212,175,115,.10), transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(125,96,255,.06), transparent 18%),
         linear-gradient(180deg,#060607 0%, #0b0b10 100%);
       line-height:1.55;
       overflow-x:hidden;
@@ -52,7 +53,7 @@
     img{max-width:100%;display:block}
 
     .container{
-      width:min(var(--max), calc(100% - 26px));
+      width:min(var(--max), calc(100% - 24px));
       margin:0 auto;
     }
 
@@ -93,22 +94,22 @@
     }
 
     h1{
-      font-size:clamp(2.8rem, 6vw, 5.9rem);
+      font-size:clamp(2.7rem, 6vw, 5.9rem);
       margin-top:18px;
-      max-width:900px;
+      max-width:920px;
     }
 
     h2{
-      font-size:clamp(2.15rem, 4vw, 3.8rem);
+      font-size:clamp(2.05rem, 4vw, 3.8rem);
       margin-bottom:16px;
     }
 
     h3{
-      font-size:1.75rem;
+      font-size:1.7rem;
     }
 
     p.lead{
-      font-size:clamp(1.03rem, 1.6vw, 1.16rem);
+      font-size:clamp(1.02rem, 1.6vw, 1.15rem);
       max-width:760px;
       color:rgba(255,255,255,.76);
       margin-top:20px;
@@ -172,13 +173,14 @@
       transform:translateY(-2px);
     }
 
+    /* HERO */
     .hero{
       min-height:100vh;
       display:flex;
       align-items:center;
       position:relative;
       overflow:hidden;
-      padding:40px 0 56px;
+      padding:38px 0 54px;
       isolation:isolate;
     }
 
@@ -187,7 +189,7 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(7,7,9,.95) 0%, rgba(7,7,9,.84) 42%, rgba(7,7,9,.56) 70%, rgba(7,7,9,.2) 100%);
+        linear-gradient(90deg, rgba(7,7,9,.95) 0%, rgba(7,7,9,.84) 42%, rgba(7,7,9,.58) 70%, rgba(7,7,9,.22) 100%);
       z-index:-2;
     }
 
@@ -196,9 +198,22 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 18% 20%, rgba(212,175,115,.1), transparent 24%),
+        radial-gradient(circle at 18% 20%, rgba(212,175,115,.10), transparent 24%),
         radial-gradient(circle at 84% 18%, rgba(125,96,255,.08), transparent 18%);
       z-index:-3;
+    }
+
+    .hero-noise{
+      position:absolute;
+      inset:0;
+      opacity:.05;
+      pointer-events:none;
+      z-index:-1;
+      background-image:
+        radial-gradient(circle at 20% 20%, #fff 0.7px, transparent 0.8px),
+        radial-gradient(circle at 80% 40%, #fff 0.7px, transparent 0.8px),
+        radial-gradient(circle at 40% 80%, #fff 0.7px, transparent 0.8px);
+      background-size: 140px 140px, 180px 180px, 220px 220px;
     }
 
     .hero-grid{
@@ -402,6 +417,15 @@
       color:#ddd2c6;
       font-size:.8rem;
       font-weight:700;
+      transition:.22s ease;
+      cursor:pointer;
+    }
+
+    .pill:hover{
+      background:rgba(212,175,115,.12);
+      border-color:rgba(212,175,115,.28);
+      transform:translateY(-1px);
+      color:#f1dec0;
     }
 
     .section-head{
@@ -444,6 +468,7 @@
       font-weight:700;
     }
 
+    /* MODULES */
     .modules-section{
       overflow:hidden;
     }
@@ -595,6 +620,7 @@
       transform:translateX(4px);
     }
 
+    /* OFFER */
     .offer-grid{
       display:grid;
       grid-template-columns:.94fr 1.06fr;
@@ -724,6 +750,7 @@
       color:#e6dbcf;
     }
 
+    /* FAQ + CTA */
     .faq-grid{
       display:grid;
       gap:16px;
@@ -877,19 +904,21 @@
 <body>
 
   <header class="hero" id="top">
+    <div class="hero-noise"></div>
+
     <div class="container hero-grid">
 
       <div class="hero-copy reveal">
-        <div class="eyebrow">Premium UI kit pour marques beauté</div>
+        <div class="eyebrow">Premium UI kit pour sites & e-commerce</div>
 
         <h1>
-          Transforme un site beauté classique en
-          <span class="gold-text">expérience luxe-tech qui vend</span>
+          Transforme ton site en
+          <span class="gold-text">expérience premium qui vend</span>
         </h1>
 
         <p class="lead">
-          14 modules premium pensés pour rendre un site plus désirable, plus interactif
-          et plus crédible — sans refaire toute la boutique.
+          Un pack de modules conçu pour rendre une marque plus haut de gamme,
+          plus interactive et plus crédible — sans refaire tout le site.
         </p>
 
         <div class="hero-proof">
@@ -903,7 +932,7 @@
 
         <div class="btn-row">
           <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
-            Acheter le pack maintenant
+            Acheter le pack
           </a>
           <a class="btn btn-ghost" href="#modules">
             Voir les démos
@@ -929,7 +958,7 @@
       <div class="hero-card reveal">
         <div class="hero-card-top">
           <div class="dots"><span></span><span></span><span></span></div>
-          <div class="hero-card-title">Beauty Website Modules</div>
+          <div class="hero-card-title">Premium Website Modules</div>
           <div class="hero-card-live">Live preview</div>
         </div>
 
@@ -941,23 +970,24 @@
           </div>
 
           <div class="mockup-wrap">
-            <img src="mockup.png" alt="Aperçu premium du pack Beauty Website Modules" />
+            <img src="mockup.png" alt="Aperçu premium du pack Premium Website Modules" />
           </div>
 
           <div class="hero-mini-card right">
             <div class="kicker">Conversion first</div>
             <div class="value">Démos cliquables</div>
-            <p>Chaque module peut être exploré séparément pour prouver sa valeur.</p>
+            <p>Chaque module peut être exploré séparément pour montrer sa valeur.</p>
           </div>
         </div>
 
         <div class="hero-card-bottom">
-          <div class="pill">Hero</div>
-          <div class="pill">Video</div>
-          <div class="pill">Quiz</div>
-          <div class="pill">Comparator</div>
-          <div class="pill">Guide</div>
-          <div class="pill">Email</div>
+          <a href="02-hero-slideshow.html" class="pill" target="_blank" rel="noopener noreferrer">Hero</a>
+          <a href="03-video-compact.html" class="pill" target="_blank" rel="noopener noreferrer">Video</a>
+          <a href="08-quiz.html" class="pill" target="_blank" rel="noopener noreferrer">Quiz</a>
+          <a href="07-comparateur.html" class="pill" target="_blank" rel="noopener noreferrer">Comparator</a>
+          <a href="10-guide-tailles.html" class="pill" target="_blank" rel="noopener noreferrer">Guide</a>
+          <a href="13-email-valeurs.html" class="pill" target="_blank" rel="noopener noreferrer">Email</a>
+          <a href="#modules" class="pill">Tous les modules</a>
         </div>
       </div>
 
@@ -972,18 +1002,18 @@
           <div class="eyebrow">Pourquoi ce pack existe</div>
           <h2>Ton site peut être beau… sans être assez fort pour convertir</h2>
           <p class="lead">
-            Beaucoup de marques ont un bon produit et une jolie identité, mais un site trop plat,
-            pas assez immersif, pas assez convaincant. Résultat : la visiteuse regarde… puis part.
+            Beaucoup de marques ont un bon produit et une belle identité, mais un site trop plat,
+            trop statique ou pas assez immersif. Résultat : la valeur perçue baisse et le visiteur part trop vite.
           </p>
         </div>
 
         <div class="problem-grid">
           <div class="glass-card reveal">
-            <h3>Ce qui bloque souvent les ventes</h3>
+            <h3>Ce qui freine souvent les ventes</h3>
             <ul class="bullet-list">
               <li>Pas assez d’interactivité dans les premières secondes</li>
               <li>Pas assez de relief premium dans le design</li>
-              <li>Pas de parcours clair pour guider vers le bon produit</li>
+              <li>Pas de parcours clair pour guider vers l’action</li>
               <li>Une impression trop “template” ou trop “site builder”</li>
             </ul>
           </div>
@@ -992,13 +1022,13 @@
             <h3>Ce pack corrige ça immédiatement</h3>
             <p class="muted" style="margin-top:14px;">
               Avec ces modules, tu ajoutes du mouvement, de la preuve visuelle,
-              de la personnalisation et une vraie sensation de marque haut de gamme.
+              de la personnalisation et une vraie sensation de marque plus haut de gamme.
             </p>
             <div class="accent">👉 Tu gardes ton site actuel, mais tu augmentes fortement sa valeur perçue.</div>
             <ul class="bullet-list">
               <li>Des sections qui captent mieux l’attention</li>
               <li>Des démos concrètes pour mieux vendre</li>
-              <li>Des modules qui valorisent le produit</li>
+              <li>Des modules qui valorisent l’offre</li>
               <li>Une expérience plus premium dès le premier scroll</li>
             </ul>
           </div>
@@ -1012,8 +1042,8 @@
           <div class="eyebrow">Modules premium avec démos</div>
           <h2>Explore chaque module comme une pièce premium de ton système de vente</h2>
           <p class="lead">
-            Chaque carte ouvre une vraie démo. Le visiteur ne lit pas seulement une promesse :
-            il voit immédiatement le rendu, l’expérience et la valeur du module.
+            Chaque carte ouvre une vraie démo. On ne lit pas seulement une promesse :
+            on voit immédiatement le rendu, l’expérience et la qualité.
           </p>
         </div>
 
@@ -1025,9 +1055,9 @@
       <div class="container">
         <div class="section-head reveal">
           <div class="eyebrow">Offre / ROI</div>
-          <h2>Le moyen le plus rapide de rendre un site beauté plus fort sans payer une refonte complète</h2>
+          <h2>Le moyen le plus rapide de rendre un site plus fort sans payer une refonte complète</h2>
           <p class="lead">
-            Tu n’as pas forcément besoin de refaire tout le site. Quelques très bons modules peuvent déjà changer
+            Tu n’as pas forcément besoin de refaire toute la boutique. Quelques très bons modules peuvent déjà changer
             la perception de marque, le temps passé sur la page et la clarté de l’offre.
           </p>
         </div>
@@ -1038,9 +1068,9 @@
             <ul class="bullet-list">
               <li>Plus de temps passé sur la page</li>
               <li>Plus de clics sur les CTA</li>
-              <li>Une meilleure mise en valeur du produit</li>
+              <li>Une meilleure mise en valeur du produit ou de l’offre</li>
               <li>Un rendu plus luxe et plus crédible</li>
-              <li>Une offre mieux comprise par la visiteuse</li>
+              <li>Une expérience mieux comprise par le visiteur</li>
             </ul>
 
             <div class="compare">
@@ -1058,7 +1088,7 @@
               <div class="vs">vs</div>
 
               <div class="compare-box">
-                <h3>Beauty Website Modules</h3>
+                <h3>Premium Website Modules</h3>
                 <div class="price">Pack prêt</div>
                 <ul>
                   <li>14 modules dans le même univers</li>
@@ -1072,7 +1102,7 @@
 
           <div class="glass-card pricing-card reveal">
             <div class="badge">Offre directe</div>
-            <h3 style="margin-top:14px;">Pack complet Beauty Website Modules</h3>
+            <h3 style="margin-top:14px;">Pack complet Premium Website Modules</h3>
             <div class="price-big">79€</div>
             <div class="price-small">Paiement unique • accès immédiat</div>
 
@@ -1089,12 +1119,12 @@
                 Acheter maintenant
               </a>
               <a class="btn btn-ghost" href="#modules">
-                Voir d’abord les démos
+                Voir les démos
               </a>
             </div>
 
             <p class="muted" style="margin-top:18px;">
-              Idéal pour marques beauté, skincare, makeup, accessoires ou créateurs qui veulent un site plus premium sans passer par une refonte complète.
+              Idéal pour marques, e-commerce, créateurs et projets qui veulent un site plus premium sans passer par une refonte complète.
             </p>
           </div>
         </div>
@@ -1110,7 +1140,7 @@
 
         <div class="faq-grid">
           <div class="faq reveal">
-            <h3>Est-ce que c’est seulement pour Shopify ?</h3>
+            <h3>Est-ce que c’est seulement pour un type de site précis ?</h3>
             <p class="muted">
               Non. Le pack est pensé pour les sites qui acceptent du HTML ou des intégrations similaires :
               Shopify, IONOS, WordPress, Wix, Webflow, GitHub Pages et autres solutions proches.
@@ -1120,7 +1150,7 @@
           <div class="faq reveal">
             <h3>Est-ce que je dois refaire tout mon site ?</h3>
             <p class="muted">
-              Non. Justement, l’intérêt du pack est d’ajouter des sections plus premium sans repartir de zéro.
+              Non. L’intérêt du pack est justement d’ajouter des sections plus premium sans repartir de zéro.
             </p>
           </div>
 
@@ -1135,7 +1165,7 @@
           <div class="faq reveal">
             <h3>Est-ce qu’on peut voir le rendu avant d’acheter ?</h3>
             <p class="muted">
-              Oui. C’est exactement le but des cartes démo ci-dessus : montrer concrètement la qualité du pack.
+              Oui. C’est exactement le rôle des démos : montrer concrètement la qualité et le niveau du pack.
             </p>
           </div>
         </div>
@@ -1148,7 +1178,7 @@
           <div class="eyebrow" style="margin-bottom:16px;">Dernier écran</div>
           <h2>Tu peux garder un site “correct”… ou passer à une vraie perception premium</h2>
           <p>
-            Si tu veux que ton site beauté paraisse plus haut de gamme, retienne plus l’attention
+            Si tu veux que ton site paraisse plus haut de gamme, retienne plus l’attention
             et présente mieux ton offre, ce pack a été conçu exactement pour ça.
           </p>
 
@@ -1168,7 +1198,7 @@
 
   <footer class="footer">
     <div class="container">
-      Beauty Website Modules © 2026 — Démo premium
+      Premium Website Modules © 2026
     </div>
   </footer>
 
@@ -1199,7 +1229,7 @@
         num: "03",
         tag: "Video",
         title: "Vidéo compacte",
-        desc: "Une section vidéo élégante qui valorise ton produit sans écraser la page.",
+        desc: "Une section vidéo élégante qui valorise ton offre sans écraser la page.",
         url: "03-video-compact.html"
       },
       {
@@ -1220,7 +1250,7 @@
         num: "06",
         tag: "Motion",
         title: "Marquee",
-        desc: "Défilement fluide pour logos, bénéfices, teintes ou messages de preuve.",
+        desc: "Défilement fluide pour logos, bénéfices ou messages de preuve.",
         url: "06-marquee.html"
       },
       {
@@ -1234,7 +1264,7 @@
         num: "08",
         tag: "Quiz",
         title: "Quiz produit",
-        desc: "Guide l’utilisateur vers le bon produit avec une expérience interactive.",
+        desc: "Guide l’utilisateur vers la bonne option avec une expérience interactive.",
         url: "08-quiz.html"
       },
       {
@@ -1248,7 +1278,7 @@
         num: "10",
         tag: "Guide",
         title: "Guide tailles",
-        desc: "Réduit l’hésitation et rassure avant le passage à l’achat.",
+        desc: "Réduit l’hésitation et rassure avant le passage à l’action.",
         url: "10-guide-tailles.html"
       },
       {
