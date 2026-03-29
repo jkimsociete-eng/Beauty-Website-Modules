@@ -35,9 +35,8 @@
       color:#fff;
       font-family:'Inter',sans-serif;
       background:
-        radial-gradient(circle at top, rgba(201,169,110,.09), transparent 20%),
-        radial-gradient(circle at 85% 10%, rgba(201,169,110,.05), transparent 14%),
-        radial-gradient(circle at 10% 55%, rgba(255,255,255,.03), transparent 18%),
+        radial-gradient(circle at top, rgba(201,169,110,.08), transparent 20%),
+        radial-gradient(circle at 85% 10%, rgba(201,169,110,.05), transparent 15%),
         linear-gradient(180deg,#060606 0%,#040404 100%);
       overflow-x:hidden;
       -webkit-font-smoothing:antialiased;
@@ -68,8 +67,8 @@
     .glass-panel{
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       border:1px solid var(--border);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
       border-radius:28px;
       box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
     }
@@ -113,7 +112,7 @@
       padding:.58rem .95rem;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.11);
-      background:rgba(0,0,0,.28);
+      background:rgba(0,0,0,.22);
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
       font-size:10px;
@@ -121,7 +120,7 @@
       letter-spacing:.22em;
       font-weight:800;
       color:var(--gold-2);
-      box-shadow:0 0 0 1px rgba(201,169,110,.06), 0 0 24px rgba(201,169,110,.12);
+      box-shadow:0 0 0 1px rgba(201,169,110,.06), 0 0 24px rgba(201,169,110,.1);
     }
 
     .status-dot{
@@ -190,8 +189,8 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      transform:scale(1.06);
-      opacity:.36;
+      transform:scale(1.04);
+      opacity:.62;
       z-index:0;
     }
 
@@ -200,8 +199,8 @@
       inset:0;
       z-index:1;
       background:
-        radial-gradient(circle at center, transparent 20%, rgba(0,0,0,.24) 52%, rgba(0,0,0,.72) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.22) 35%, rgba(0,0,0,.90) 100%);
+        radial-gradient(circle at center, transparent 20%, rgba(0,0,0,.14) 52%, rgba(0,0,0,.50) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.48) 0%, rgba(0,0,0,.14) 38%, rgba(0,0,0,.66) 100%);
     }
 
     .hero-noise{
@@ -209,23 +208,23 @@
       inset:0;
       z-index:2;
       pointer-events:none;
-      opacity:.14;
+      opacity:.08;
       background-image:
         radial-gradient(circle at 20% 18%, rgba(255,255,255,.07) 0, transparent 20%),
-        radial-gradient(circle at 80% 28%, rgba(201,169,110,.12) 0, transparent 22%),
+        radial-gradient(circle at 80% 28%, rgba(201,169,110,.10) 0, transparent 22%),
         radial-gradient(circle at 55% 78%, rgba(255,255,255,.04) 0, transparent 18%);
       mix-blend-mode:screen;
     }
 
     .hero-beam{
       position:absolute;
-      right:-140px;
+      right:-120px;
       top:50%;
-      width:620px;
-      height:620px;
+      width:560px;
+      height:560px;
       transform:translateY(-50%);
       border-radius:50%;
-      background:radial-gradient(circle, rgba(201,169,110,.17) 0%, rgba(201,169,110,0) 68%);
+      background:radial-gradient(circle, rgba(201,169,110,.12) 0%, rgba(201,169,110,0) 68%);
       filter:blur(12px);
       z-index:2;
       pointer-events:none;
@@ -237,14 +236,15 @@
       width:min(1280px, calc(100% - 40px));
       margin:0 auto;
       display:grid;
-      grid-template-columns:1.02fr .98fr;
-      gap:32px;
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      gap:28px;
       align-items:center;
-      padding:110px 0 80px;
+      padding:110px 0 90px;
     }
 
     .hero-copy{
       max-width:700px;
+      min-width:0;
     }
 
     .hero-proof{
@@ -254,7 +254,7 @@
       font-size:11px;
       text-transform:uppercase;
       letter-spacing:.18em;
-      color:rgba(255,255,255,.4);
+      color:rgba(255,255,255,.42);
     }
 
     .hero-proof span{
@@ -263,38 +263,39 @@
 
     .mockup-card{
       position:relative;
-      min-height:660px;
+      min-height:620px;
       border-radius:32px;
       overflow:hidden;
       background:
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.1);
       box-shadow:
-        0 26px 80px rgba(0,0,0,.48),
+        0 26px 80px rgba(0,0,0,.45),
         inset 0 1px 0 rgba(255,255,255,.05),
-        0 0 30px rgba(201,169,110,.08);
+        0 0 30px rgba(201,169,110,.06);
       backdrop-filter:blur(16px);
       -webkit-backdrop-filter:blur(16px);
+      min-width:0;
     }
 
     .mockup-bg{
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at top right, rgba(201,169,110,.18), transparent 22%),
+        radial-gradient(circle at top right, rgba(201,169,110,.16), transparent 22%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
     }
 
     .mockup-screen{
       position:absolute;
-      inset:22px;
-      border-radius:26px;
+      inset:18px;
+      border-radius:24px;
       overflow:hidden;
       background:#0b0b0b;
       border:1px solid rgba(255,255,255,.08);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.04),
-        0 18px 45px rgba(0,0,0,.35);
+        0 18px 45px rgba(0,0,0,.32);
     }
 
     .preview-stage{
@@ -326,45 +327,59 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.28) 44%, rgba(0,0,0,.14));
+        linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.24) 42%, rgba(0,0,0,.08));
     }
 
     .mockup-label{
       position:absolute;
-      top:18px;
-      left:18px;
+      top:16px;
+      left:16px;
       display:inline-flex;
       align-items:center;
       gap:.55rem;
-      padding:.5rem .85rem;
+      padding:.48rem .8rem;
       border-radius:999px;
-      background:rgba(0,0,0,.35);
+      background:rgba(0,0,0,.32);
       border:1px solid rgba(255,255,255,.08);
       font-size:10px;
       text-transform:uppercase;
       letter-spacing:.2em;
       color:var(--gold-2);
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
       z-index:4;
+      max-width:calc(100% - 32px);
     }
 
     .mockup-copy{
       position:absolute;
-      left:24px;
-      right:24px;
-      bottom:118px;
+      left:20px;
+      right:20px;
+      bottom:120px;
       z-index:4;
+      max-width:calc(100% - 40px);
+    }
+
+    .mockup-copy h3{
+      max-width:560px;
+      line-height:1.05;
+      margin:0 0 12px 0;
+    }
+
+    .mockup-copy p{
+      max-width:520px;
+      margin:0;
     }
 
     .mockup-floating{
       position:absolute;
-      right:18px;
-      bottom:18px;
-      width:min(270px, calc(100% - 36px));
-      border-radius:24px;
-      padding:18px;
-      background:rgba(10,10,10,.76);
+      right:16px;
+      bottom:16px;
+      width:250px;
+      max-width:calc(100% - 32px);
+      border-radius:22px;
+      padding:16px;
+      background:rgba(10,10,10,.78);
       border:1px solid rgba(255,255,255,.1);
       backdrop-filter:blur(16px);
       -webkit-backdrop-filter:blur(16px);
@@ -389,8 +404,8 @@
 
     .preview-dots{
       position:absolute;
-      left:24px;
-      bottom:26px;
+      left:20px;
+      bottom:20px;
       display:flex;
       gap:8px;
       z-index:5;
@@ -400,7 +415,7 @@
       width:9px;
       height:9px;
       border-radius:999px;
-      background:rgba(255,255,255,.18);
+      background:rgba(255,255,255,.2);
       border:1px solid rgba(255,255,255,.1);
       transition:all .3s ease;
     }
@@ -415,7 +430,7 @@
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:14px;
-      margin-top:-54px;
+      margin-top:-42px;
       position:relative;
       z-index:6;
     }
@@ -486,7 +501,7 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at var(--mx) var(--my), rgba(201,169,110,.17), transparent 26%);
+        radial-gradient(circle at var(--mx) var(--my), rgba(201,169,110,.15), transparent 26%);
       opacity:0;
       transition:opacity .25s ease;
       pointer-events:none;
@@ -626,12 +641,12 @@
     }
 
     .floating-dock{
-      background:linear-gradient(180deg, rgba(15,15,15,.86), rgba(7,7,7,.93));
-      border:1px solid rgba(255,255,255,.09);
-      box-shadow:0 18px 60px rgba(0,0,0,.45);
-      backdrop-filter:blur(22px);
-      -webkit-backdrop-filter:blur(22px);
-      border-radius:26px;
+      background:linear-gradient(180deg, rgba(15,15,15,.82), rgba(7,7,7,.92));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 18px 60px rgba(0,0,0,.42);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border-radius:24px;
     }
 
     #demo-modal{
@@ -669,53 +684,176 @@
     ::-webkit-scrollbar-thumb{background:#222;border-radius:999px}
     ::-webkit-scrollbar-thumb:hover{background:#4c3b1f}
 
-    @media (max-width: 1100px){
+    @media (max-width: 1180px){
       .hero-grid{
         grid-template-columns:1fr;
         gap:24px;
-        padding:110px 0 70px;
+        padding:110px 0 90px;
       }
+
       .hero-copy{
         max-width:100%;
         text-align:center;
       }
+
+      .hero-copy p{
+        margin-left:auto;
+        margin-right:auto;
+      }
+
       .hero-proof{
         justify-content:center;
       }
+
       .mockup-card{
         min-height:560px;
+        max-width:760px;
+        margin:0 auto;
       }
     }
 
     @media (max-width: 768px){
       .hero{
-        min-height:100svh;
+        min-height:auto;
       }
+
       .hero-video{
-        opacity:.33;
-        transform:scale(1.1);
+        opacity:.68;
+        transform:scale(1.08);
       }
+
+      .hero-overlay{
+        background:
+          radial-gradient(circle at center, transparent 16%, rgba(0,0,0,.12) 52%, rgba(0,0,0,.44) 100%),
+          linear-gradient(180deg, rgba(0,0,0,.46) 0%, rgba(0,0,0,.14) 40%, rgba(0,0,0,.64) 100%);
+      }
+
+      .hero-grid{
+        width:min(100%, calc(100% - 28px));
+        padding:92px 0 40px;
+        gap:18px;
+      }
+
+      .hero-copy h1{
+        font-size:4.2rem !important;
+        line-height:.92 !important;
+      }
+
+      .hero-copy .hero-sub{
+        font-size:1.05rem !important;
+        line-height:1.5 !important;
+      }
+
       .mockup-card{
-        min-height:500px;
+        min-height:430px;
+        border-radius:24px;
       }
+
       .mockup-screen{
-        inset:14px;
-        border-radius:22px;
+        inset:12px;
+        border-radius:18px;
       }
+
+      .mockup-label{
+        top:12px;
+        left:12px;
+        font-size:9px;
+        padding:.42rem .72rem;
+      }
+
       .mockup-copy{
-        left:18px;
-        right:18px;
-        bottom:108px;
+        left:14px;
+        right:14px;
+        bottom:94px;
       }
+
+      .mockup-copy h3{
+        font-size:2rem !important;
+        line-height:1.02 !important;
+        max-width:100%;
+      }
+
+      .mockup-copy p{
+        font-size:.95rem !important;
+        line-height:1.4 !important;
+        max-width:100%;
+      }
+
+      .mockup-floating{
+        right:12px;
+        bottom:12px;
+        left:12px;
+        width:auto;
+        max-width:none;
+        padding:14px;
+      }
+
+      .preview-dots{
+        left:14px;
+        bottom:14px;
+      }
+
       .stats-row{
         grid-template-columns:1fr;
-        margin-top:-30px;
+        margin-top:0;
+        padding-top:10px;
       }
+
       .module-card{
         min-height:500px;
       }
+
       .hero-proof{
         gap:10px 14px;
+        justify-content:center;
+      }
+
+      .dock-wrap{
+        width:calc(100% - 18px) !important;
+        bottom:10px !important;
+      }
+
+      .floating-dock{
+        padding:10px 12px !important;
+        border-radius:18px;
+      }
+
+      .dock-note{
+        display:none !important;
+      }
+
+      .dock-price{
+        font-size:1rem !important;
+      }
+
+      .dock-btn{
+        padding:10px 14px !important;
+        font-size:9px !important;
+      }
+    }
+
+    @media (max-width: 520px){
+      .hero-copy h1{
+        font-size:3.4rem !important;
+      }
+
+      .hero-proof{
+        font-size:10px;
+        letter-spacing:.12em;
+      }
+
+      .top-badge{
+        font-size:9px;
+        letter-spacing:.16em;
+        padding:.5rem .8rem;
+      }
+
+      .mockup-copy h3{
+        font-size:1.65rem !important;
+      }
+
+      .mockup-copy p{
+        font-size:.88rem !important;
       }
     }
   </style>
@@ -754,12 +892,12 @@
           L’Excellence Digitale
         </p>
 
-        <h1 class="text-5xl md:text-7xl xl:text-8xl leading-[0.92] font-light mb-6 reveal">
+        <h1 class="text-6xl md:text-7xl xl:text-8xl leading-[0.92] font-light mb-6 reveal">
           LUMIÈRE<br>
           <span class="gold-shimmer italic">Beauty Pack</span>
         </h1>
 
-        <p class="text-base md:text-xl text-white/62 font-light max-w-2xl mb-10 reveal">
+        <p class="hero-sub text-lg md:text-xl text-white/72 font-light max-w-2xl mb-10 reveal">
           14 modules premium conçus pour faire paraître une boutique beauté plus luxe, plus moderne, plus crédible et surtout beaucoup plus vendeuse.
         </p>
 
@@ -805,24 +943,24 @@
 
             <div class="mockup-label">
               <span class="status-dot"></span>
-              Aperçu Premium
+              Aperçu premium
             </div>
 
             <div class="mockup-copy">
               <p class="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)] mb-3">Beauty conversion system</p>
-              <h3 class="text-3xl md:text-4xl serif font-light leading-tight mb-3">Des modules qui changent instantanément la perception de la marque</h3>
-              <p class="text-sm md:text-base text-white/60 max-w-lg">
-                Hero, quiz, comparateur, sélecteur, email capture, dock premium, sections immersives.
+              <h3 class="text-4xl md:text-5xl serif font-light mb-3">Des modules qui changent instantanément la perception de la marque</h3>
+              <p class="text-base text-white/72">
+                Hero, quiz, comparateur, sélecteur, sections immersives et éléments premium pensés pour mieux convertir.
               </p>
             </div>
 
             <div class="mockup-floating">
               <div class="flex items-center justify-between mb-3">
                 <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--gold)]">Impact visuel</span>
-                <span class="text-white/55 text-xs">Premium</span>
+                <span class="text-white/60 text-xs">Premium</span>
               </div>
               <div class="mini-bar mb-4"><span></span></div>
-              <div class="grid grid-cols-2 gap-3 text-xs text-white/60">
+              <div class="grid grid-cols-2 gap-3 text-xs text-white/66">
                 <div class="rounded-2xl border border-white/8 bg-white/[.03] px-3 py-3">
                   <div class="text-[var(--gold)] text-lg serif">14</div>
                   <div>Modules inclus</div>
@@ -973,7 +1111,7 @@
   </footer>
 
   <!-- DOCK -->
-  <div class="fixed bottom-4 md:bottom-7 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl">
+  <div class="dock-wrap fixed bottom-4 md:bottom-7 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl">
     <div class="floating-dock px-4 md:px-5 py-3.5 flex items-center justify-between gap-3">
       <div class="flex items-center gap-3 md:gap-4 min-w-0">
         <div class="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center font-black text-xs shrink-0">L.</div>
@@ -985,15 +1123,15 @@
               Offre de lancement
             </span>
           </div>
-          <p class="hidden md:block text-[11px] text-white/38 mt-1">
+          <p class="dock-note hidden md:block text-[11px] text-white/38 mt-1">
             14 modules premium • <span id="spots-dock">17</span> places restantes
           </p>
         </div>
       </div>
 
       <div class="flex items-center gap-3 shrink-0">
-        <span class="text-lg md:text-xl font-light text-white/68">79€</span>
-        <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="cta-primary px-5 md:px-6 py-2.5 md:py-3 rounded-full text-[10px] font-black uppercase tracking-[0.18em]">
+        <span class="dock-price text-lg md:text-xl font-light text-white/68">79€</span>
+        <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="dock-btn cta-primary px-5 md:px-6 py-2.5 md:py-3 rounded-full text-[10px] font-black uppercase tracking-[0.18em]">
           Acheter
         </a>
       </div>
@@ -1060,12 +1198,10 @@
       }
     ];
 
-    // Spots
     document.getElementById('spots-inline').textContent = spotsRemaining;
     document.getElementById('spots-pricing').textContent = spotsRemaining;
     document.getElementById('spots-dock').textContent = spotsRemaining;
 
-    // Render modules
     const container = document.getElementById('module-container');
 
     modules.forEach((m, i) => {
@@ -1129,7 +1265,6 @@
       container.appendChild(card);
     });
 
-    // FAQ
     const faqContainer = document.getElementById('faq-container');
 
     faqs.forEach((f, i) => {
@@ -1157,7 +1292,6 @@
       faqContainer.appendChild(item);
     });
 
-    // Modal
     const modal = document.getElementById('demo-modal');
     const frame = document.getElementById('demo-frame');
     const loader = document.getElementById('loader-container');
@@ -1208,7 +1342,6 @@
       }
     });
 
-    // Reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1220,7 +1353,6 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Counters
     const counters = document.querySelectorAll('.counter');
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1247,7 +1379,6 @@
 
     counters.forEach(counter => counterObserver.observe(counter));
 
-    // Preview slider in mockup
     const slides = document.querySelectorAll('.preview-slide');
     const dots = document.querySelectorAll('.preview-dot');
     let currentSlide = 0;
@@ -1264,9 +1395,8 @@
     setInterval(() => {
       currentSlide = (currentSlide + 1) % slides.length;
       showSlide(currentSlide);
-    }, 2800);
+    }, 3200);
 
-    // Image fallback for preview slider too
     document.querySelectorAll('.preview-slide img').forEach(img => {
       img.addEventListener('error', () => {
         if (img.src !== fallbackImage) {
