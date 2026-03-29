@@ -13,18 +13,22 @@
 
   <style>
     :root{
-      --gold:#C9A96E;
-      --gold-2:#E5D1A4;
-      --gold-3:#F4E9D0;
+      --gold:#c9a96e;
+      --gold-2:#e9d7b4;
+      --gold-3:#f5ead4;
+      --gold-soft:rgba(201,169,110,.18);
       --ink:#050505;
-      --ink-2:#0B0B0B;
-      --ink-3:#121212;
+      --ink-2:#0a0a0a;
+      --ink-3:#111111;
       --panel:rgba(255,255,255,.05);
-      --panel-2:rgba(255,255,255,.03);
+      --panel-2:rgba(255,255,255,.025);
       --border:rgba(255,255,255,.09);
-      --white-soft:rgba(255,255,255,.72);
+      --border-strong:rgba(255,255,255,.14);
+      --text-soft:rgba(255,255,255,.75);
+      --text-fade:rgba(255,255,255,.46);
       --shadow:0 18px 60px rgba(0,0,0,.38);
-      --shadow-strong:0 30px 90px rgba(0,0,0,.5);
+      --shadow-strong:0 36px 110px rgba(0,0,0,.58);
+      --radius:30px;
     }
 
     *{box-sizing:border-box}
@@ -35,8 +39,8 @@
       color:#fff;
       font-family:'Inter',sans-serif;
       background:
-        radial-gradient(circle at top, rgba(201,169,110,.08), transparent 20%),
-        radial-gradient(circle at 85% 10%, rgba(201,169,110,.05), transparent 15%),
+        radial-gradient(circle at top, rgba(201,169,110,.07), transparent 20%),
+        radial-gradient(circle at 85% 10%, rgba(201,169,110,.04), transparent 15%),
         linear-gradient(180deg,#060606 0%,#040404 100%);
       overflow-x:hidden;
       -webkit-font-smoothing:antialiased;
@@ -51,13 +55,15 @@
     img{display:block;max-width:100%}
     button{font:inherit}
 
+    .gold-text{color:var(--gold-2)}
+
     .gold-shimmer{
-      background:linear-gradient(90deg,#b98947 0%,#e8d3a8 28%,#f5ecd5 50%,#dfbf82 72%,#b98947 100%);
+      background:linear-gradient(90deg,#b88946 0%,#ecdab7 28%,#f8eed9 50%,#dfbe83 72%,#b88946 100%);
       background-size:200% auto;
       color:transparent;
       -webkit-background-clip:text;
       background-clip:text;
-      animation:shimmer 4s linear infinite;
+      animation:shimmer 5s linear infinite;
     }
 
     @keyframes shimmer{
@@ -65,11 +71,11 @@
     }
 
     .glass-panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
       border:1px solid var(--border);
       backdrop-filter:blur(18px);
       -webkit-backdrop-filter:blur(18px);
-      border-radius:28px;
+      border-radius:var(--radius);
       box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
     }
 
@@ -83,7 +89,7 @@
       inset:0;
       border-radius:inherit;
       padding:1px;
-      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));
+      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,0));
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
@@ -96,8 +102,8 @@
       opacity:0;
       transform:translateY(28px);
       transition:
-        opacity .85s cubic-bezier(.2,.8,.2,1),
-        transform .85s cubic-bezier(.2,.8,.2,1);
+        opacity .9s cubic-bezier(.2,.8,.2,1),
+        transform .9s cubic-bezier(.2,.8,.2,1);
     }
 
     .reveal.active{
@@ -108,19 +114,22 @@
     .top-badge{
       display:inline-flex;
       align-items:center;
-      gap:.6rem;
-      padding:.58rem .95rem;
+      gap:.65rem;
+      padding:.62rem 1rem;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.11);
-      background:rgba(0,0,0,.22);
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.26);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
       font-size:10px;
       text-transform:uppercase;
       letter-spacing:.22em;
       font-weight:800;
       color:var(--gold-2);
-      box-shadow:0 0 0 1px rgba(201,169,110,.06), 0 0 24px rgba(201,169,110,.1);
+      box-shadow:
+        0 0 0 1px rgba(201,169,110,.05),
+        0 0 30px rgba(201,169,110,.08),
+        inset 0 1px 0 rgba(255,255,255,.04);
     }
 
     .status-dot{
@@ -129,7 +138,7 @@
       height:8px;
       border-radius:999px;
       background:var(--gold);
-      box-shadow:0 0 18px rgba(201,169,110,.4);
+      box-shadow:0 0 18px rgba(201,169,110,.42);
       flex-shrink:0;
     }
 
@@ -148,24 +157,26 @@
     }
 
     .cta-primary{
-      background:linear-gradient(180deg,#f0ddb6 0%, #c99d57 100%);
+      background:linear-gradient(180deg,#f6e7c9 0%, #c99b56 100%);
       color:#111;
+      border:1px solid rgba(255,255,255,.22);
       box-shadow:
-        0 16px 36px rgba(201,169,110,.22),
-        inset 0 1px 0 rgba(255,255,255,.34);
+        0 20px 48px rgba(201,169,110,.25),
+        inset 0 1px 0 rgba(255,255,255,.48);
       transition:transform .3s ease, box-shadow .3s ease, filter .3s ease;
     }
 
     .cta-primary:hover{
       transform:translateY(-2px) scale(1.02);
       box-shadow:
-        0 24px 45px rgba(201,169,110,.28),
-        inset 0 1px 0 rgba(255,255,255,.4);
-      filter:saturate(1.04);
+        0 26px 56px rgba(201,169,110,.30),
+        inset 0 1px 0 rgba(255,255,255,.55);
+      filter:saturate(1.05);
     }
 
     .cta-secondary{
       transition:all .3s ease;
+      background:rgba(255,255,255,.025);
     }
 
     .cta-secondary:hover{
@@ -189,9 +200,10 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      transform:scale(1.04);
-      opacity:.62;
+      transform:scale(1.06);
+      opacity:.48;
       z-index:0;
+      filter:saturate(.88) contrast(1.03) brightness(.82);
     }
 
     .hero-overlay{
@@ -199,8 +211,10 @@
       inset:0;
       z-index:1;
       background:
-        radial-gradient(circle at center, transparent 20%, rgba(0,0,0,.14) 52%, rgba(0,0,0,.50) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.48) 0%, rgba(0,0,0,.14) 38%, rgba(0,0,0,.66) 100%);
+        radial-gradient(circle at 68% 36%, rgba(201,169,110,.13), transparent 18%),
+        radial-gradient(circle at 82% 20%, rgba(255,255,255,.05), transparent 15%),
+        linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.52) 38%, rgba(0,0,0,.34) 68%, rgba(0,0,0,.44) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.05) 42%, rgba(0,0,0,.56) 100%);
     }
 
     .hero-noise{
@@ -220,12 +234,12 @@
       position:absolute;
       right:-120px;
       top:50%;
-      width:560px;
-      height:560px;
+      width:700px;
+      height:700px;
       transform:translateY(-50%);
       border-radius:50%;
-      background:radial-gradient(circle, rgba(201,169,110,.12) 0%, rgba(201,169,110,0) 68%);
-      filter:blur(12px);
+      background:radial-gradient(circle, rgba(201,169,110,.15) 0%, rgba(201,169,110,0) 68%);
+      filter:blur(24px);
       z-index:2;
       pointer-events:none;
     }
@@ -233,18 +247,50 @@
     .hero-grid{
       position:relative;
       z-index:3;
-      width:min(1280px, calc(100% - 40px));
+      width:min(1380px, calc(100% - 40px));
       margin:0 auto;
       display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-      gap:28px;
+      grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+      gap:34px;
       align-items:center;
-      padding:110px 0 90px;
+      padding:118px 0 96px;
     }
 
     .hero-copy{
-      max-width:700px;
+      max-width:620px;
       min-width:0;
+    }
+
+    .hero-line{
+      width:120px;
+      height:1px;
+      background:linear-gradient(to right, rgba(201,169,110,.95), rgba(201,169,110,0));
+      margin:0 0 1.25rem 0;
+    }
+
+    .hero-kicker{
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.44em;
+      color:var(--gold);
+      margin:0 0 1.2rem 0;
+    }
+
+    .hero-title{
+      font-size:clamp(4.2rem, 8vw, 7.2rem);
+      line-height:.88;
+      font-weight:300;
+      margin:0 0 1.3rem 0;
+      letter-spacing:-.03em;
+    }
+
+    .hero-sub{
+      font-size:1.08rem;
+      line-height:1.7;
+      color:rgba(255,255,255,.76);
+      max-width:560px;
+      margin:0 0 2rem 0;
+      font-weight:300;
     }
 
     .hero-proof{
@@ -254,48 +300,86 @@
       font-size:11px;
       text-transform:uppercase;
       letter-spacing:.18em;
-      color:rgba(255,255,255,.42);
+      color:rgba(255,255,255,.40);
     }
 
-    .hero-proof span{
-      white-space:nowrap;
+    .hero-proof span{white-space:nowrap}
+
+    .hero-footnote{
+      margin-top:18px;
+      font-size:10px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.28);
+    }
+
+    .mockup-shell{
+      position:relative;
+    }
+
+    .mockup-shell::before{
+      content:"";
+      position:absolute;
+      inset:-24px;
+      border-radius:40px;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(201,169,110,.18), transparent 28%),
+        radial-gradient(circle at 28% 84%, rgba(255,255,255,.04), transparent 24%);
+      filter:blur(22px);
+      pointer-events:none;
+      z-index:0;
     }
 
     .mockup-card{
       position:relative;
-      min-height:620px;
-      border-radius:32px;
+      min-height:720px;
+      border-radius:36px;
       overflow:hidden;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.1);
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
       box-shadow:
-        0 26px 80px rgba(0,0,0,.45),
+        0 34px 105px rgba(0,0,0,.54),
         inset 0 1px 0 rgba(255,255,255,.05),
-        0 0 30px rgba(201,169,110,.06);
+        0 0 44px rgba(201,169,110,.05);
       backdrop-filter:blur(16px);
       -webkit-backdrop-filter:blur(16px);
       min-width:0;
+      z-index:1;
+    }
+
+    .mockup-card::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:inherit;
+      background:
+        linear-gradient(120deg, transparent 28%, rgba(201,169,110,.18), transparent 72%);
+      opacity:.58;
+      pointer-events:none;
+      filter:blur(20px);
+      z-index:1;
     }
 
     .mockup-bg{
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at top right, rgba(201,169,110,.16), transparent 22%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+        radial-gradient(circle at top right, rgba(201,169,110,.18), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
     }
 
     .mockup-screen{
       position:absolute;
-      inset:18px;
-      border-radius:24px;
+      inset:20px;
+      border-radius:28px;
       overflow:hidden;
       background:#0b0b0b;
       border:1px solid rgba(255,255,255,.08);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.04),
         0 18px 45px rgba(0,0,0,.32);
+      z-index:2;
     }
 
     .preview-stage{
@@ -309,37 +393,48 @@
       position:absolute;
       inset:0;
       opacity:0;
-      transition:opacity .9s ease;
+      transition:opacity 1.05s ease, transform 1.2s ease;
+      transform:scale(1.03);
     }
 
     .preview-slide.active{
       opacity:1;
+      transform:scale(1);
     }
 
     .preview-slide img{
       width:100%;
       height:100%;
       object-fit:cover;
-      transform:scale(1.02);
+      transform:scale(1.03);
     }
 
     .preview-grad{
       position:absolute;
       inset:0;
       background:
-        linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.24) 42%, rgba(0,0,0,.08));
+        linear-gradient(to top, rgba(0,0,0,.97) 0%, rgba(0,0,0,.84) 22%, rgba(0,0,0,.42) 50%, rgba(0,0,0,.10) 100%);
+      z-index:2;
+    }
+
+    .preview-vignette{
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at center, transparent 38%, rgba(0,0,0,.16) 100%);
+      pointer-events:none;
+      z-index:2;
     }
 
     .mockup-label{
       position:absolute;
-      top:16px;
-      left:16px;
+      top:18px;
+      left:18px;
       display:inline-flex;
       align-items:center;
       gap:.55rem;
-      padding:.48rem .8rem;
+      padding:.52rem .86rem;
       border-radius:999px;
-      background:rgba(0,0,0,.32);
+      background:rgba(18,18,18,.52);
       border:1px solid rgba(255,255,255,.08);
       font-size:10px;
       text-transform:uppercase;
@@ -348,43 +443,72 @@
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
       z-index:4;
-      max-width:calc(100% - 32px);
+      max-width:calc(100% - 36px);
+    }
+
+    .mockup-bottom{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      z-index:4;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 270px;
+      gap:18px;
+      align-items:end;
     }
 
     .mockup-copy{
-      position:absolute;
-      left:20px;
-      right:20px;
-      bottom:120px;
-      z-index:4;
-      max-width:calc(100% - 40px);
+      min-width:0;
+      padding-right:4px;
     }
 
-    .mockup-copy h3{
-      max-width:560px;
-      line-height:1.05;
+    .mockup-copy .eyebrow{
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.30em;
+      color:var(--gold);
       margin:0 0 12px 0;
     }
 
+    .mockup-sep{
+      width:84px;
+      height:1px;
+      background:linear-gradient(to right, #c9a96e, transparent);
+      margin:0 0 14px 0;
+    }
+
+    .mockup-copy h3{
+      max-width:100%;
+      line-height:1.00;
+      margin:0 0 12px 0;
+      font-size:clamp(2.5rem, 3.8vw, 4.3rem);
+      text-wrap:balance;
+      text-shadow:0 2px 16px rgba(0,0,0,.35);
+      letter-spacing:-.02em;
+    }
+
     .mockup-copy p{
-      max-width:520px;
+      max-width:92%;
       margin:0;
+      color:rgba(255,255,255,.76);
+      font-size:1rem;
+      line-height:1.6;
     }
 
     .mockup-floating{
-      position:absolute;
-      right:16px;
-      bottom:16px;
-      width:250px;
-      max-width:calc(100% - 32px);
-      border-radius:22px;
+      width:100%;
+      min-width:0;
+      border-radius:24px;
       padding:16px;
-      background:rgba(10,10,10,.78);
-      border:1px solid rgba(255,255,255,.1);
-      backdrop-filter:blur(16px);
-      -webkit-backdrop-filter:blur(16px);
-      box-shadow:0 16px 40px rgba(0,0,0,.35);
-      z-index:4;
+      background:
+        linear-gradient(180deg, rgba(18,18,18,.84), rgba(8,8,8,.88));
+      border:1px solid rgba(255,255,255,.10);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,.36),
+        inset 0 1px 0 rgba(255,255,255,.03);
     }
 
     .mini-bar{
@@ -392,14 +516,22 @@
       border-radius:999px;
       background:rgba(255,255,255,.08);
       overflow:hidden;
+      box-shadow:inset 0 1px 2px rgba(0,0,0,.3);
     }
 
     .mini-bar > span{
       display:block;
-      width:78%;
+      width:84%;
       height:100%;
       background:linear-gradient(90deg, var(--gold), var(--gold-2));
       box-shadow:0 0 18px rgba(201,169,110,.35);
+    }
+
+    .floating-mini-card{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      padding:12px 12px 11px;
     }
 
     .preview-dots{
@@ -415,13 +547,13 @@
       width:9px;
       height:9px;
       border-radius:999px;
-      background:rgba(255,255,255,.2);
-      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.09);
       transition:all .3s ease;
     }
 
     .preview-dot.active{
-      width:28px;
+      width:30px;
       background:linear-gradient(90deg,var(--gold),var(--gold-2));
       box-shadow:0 0 18px rgba(201,169,110,.35);
     }
@@ -430,13 +562,13 @@
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:14px;
-      margin-top:-42px;
+      margin-top:-50px;
       position:relative;
       z-index:6;
     }
 
     .stat-card{
-      padding:22px 18px;
+      padding:24px 18px;
       text-align:center;
       border-radius:24px;
       border:1px solid rgba(255,255,255,.08);
@@ -453,7 +585,7 @@
 
     .value-card{
       border-radius:26px;
-      padding:28px 24px;
+      padding:30px 24px;
       background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.08);
       box-shadow:0 18px 50px rgba(0,0,0,.28);
@@ -467,8 +599,8 @@
     }
 
     .value-icon{
-      width:54px;
-      height:54px;
+      width:56px;
+      height:56px;
       border-radius:18px;
       display:flex;
       align-items:center;
@@ -508,9 +640,7 @@
       z-index:2;
     }
 
-    .module-card:hover::after{
-      opacity:1;
-    }
+    .module-card:hover::after{opacity:1}
 
     .module-media{
       position:relative;
@@ -529,9 +659,7 @@
       transition:opacity .35s ease, transform .8s ease, filter .45s ease;
     }
 
-    .module-card.loaded .module-image{
-      opacity:1;
-    }
+    .module-card.loaded .module-image{opacity:1}
 
     .module-card:hover .module-image{
       transform:scale(1.08);
@@ -548,9 +676,7 @@
       z-index:1;
     }
 
-    .module-card:hover .module-sheen{
-      transform:translateX(120%);
-    }
+    .module-card:hover .module-sheen{transform:translateX(120%)}
 
     .image-loader{
       position:absolute;
@@ -566,9 +692,7 @@
       100%{background-position:-220% 0}
     }
 
-    .module-card.loaded .image-loader{
-      display:none;
-    }
+    .module-card.loaded .image-loader{display:none}
 
     .module-number{
       display:inline-flex;
@@ -601,8 +725,8 @@
       top:-180px;
       left:50%;
       transform:translateX(-50%);
-      width:520px;
-      height:520px;
+      width:560px;
+      height:560px;
       border-radius:50%;
       background:radial-gradient(circle, rgba(201,169,110,.14) 0%, rgba(201,169,110,0) 68%);
       pointer-events:none;
@@ -624,24 +748,15 @@
       transition:grid-template-rows .35s ease;
     }
 
-    .faq-answer > div{
-      overflow:hidden;
-    }
+    .faq-answer > div{overflow:hidden}
 
-    .faq-item.open .faq-answer{
-      grid-template-rows:1fr;
-    }
+    .faq-item.open .faq-answer{grid-template-rows:1fr}
 
-    .faq-icon{
-      transition:transform .3s ease;
-    }
-
-    .faq-item.open .faq-icon{
-      transform:rotate(180deg);
-    }
+    .faq-icon{transition:transform .3s ease}
+    .faq-item.open .faq-icon{transform:rotate(180deg)}
 
     .floating-dock{
-      background:linear-gradient(180deg, rgba(15,15,15,.82), rgba(7,7,7,.92));
+      background:linear-gradient(180deg, rgba(15,15,15,.84), rgba(7,7,7,.94));
       border:1px solid rgba(255,255,255,.08);
       box-shadow:0 18px 60px rgba(0,0,0,.42);
       backdrop-filter:blur(20px);
@@ -687,8 +802,8 @@
     @media (max-width: 1180px){
       .hero-grid{
         grid-template-columns:1fr;
-        gap:24px;
-        padding:110px 0 90px;
+        gap:28px;
+        padding:108px 0 88px;
       }
 
       .hero-copy{
@@ -696,20 +811,38 @@
         text-align:center;
       }
 
+      .hero-line{
+        margin-left:auto;
+        margin-right:auto;
+      }
+
       .hero-copy p{
         margin-left:auto;
         margin-right:auto;
       }
 
-      .hero-proof{
-        justify-content:center;
-      }
+      .hero-proof{justify-content:center}
+      .hero-footnote{text-align:center}
 
       .mockup-card{
-        min-height:560px;
-        max-width:760px;
+        min-height:660px;
+        max-width:860px;
         margin:0 auto;
       }
+    }
+
+    @media (max-width: 900px){
+      .mockup-bottom{
+        grid-template-columns:1fr;
+        gap:12px;
+        left:14px;
+        right:14px;
+        bottom:14px;
+      }
+
+      .mockup-copy{order:1}
+      .mockup-floating{order:2}
+      .mockup-copy p{max-width:100%}
     }
 
     @media (max-width: 768px){
@@ -718,34 +851,34 @@
       }
 
       .hero-video{
-        opacity:.68;
-        transform:scale(1.08);
+        opacity:.58;
+        transform:scale(1.10);
       }
 
       .hero-overlay{
         background:
-          radial-gradient(circle at center, transparent 16%, rgba(0,0,0,.12) 52%, rgba(0,0,0,.44) 100%),
-          linear-gradient(180deg, rgba(0,0,0,.46) 0%, rgba(0,0,0,.14) 40%, rgba(0,0,0,.64) 100%);
+          radial-gradient(circle at center, transparent 14%, rgba(0,0,0,.18) 52%, rgba(0,0,0,.50) 100%),
+          linear-gradient(180deg, rgba(0,0,0,.60) 0%, rgba(0,0,0,.22) 42%, rgba(0,0,0,.72) 100%);
       }
 
       .hero-grid{
         width:min(100%, calc(100% - 28px));
-        padding:92px 0 40px;
+        padding:92px 0 42px;
         gap:18px;
       }
 
-      .hero-copy h1{
-        font-size:4.2rem !important;
-        line-height:.92 !important;
+      .hero-title{
+        font-size:4.2rem;
+        line-height:.92;
       }
 
-      .hero-copy .hero-sub{
-        font-size:1.05rem !important;
-        line-height:1.5 !important;
+      .hero-sub{
+        font-size:1.02rem;
+        line-height:1.55;
       }
 
       .mockup-card{
-        min-height:430px;
+        min-height:560px;
         border-radius:24px;
       }
 
@@ -761,31 +894,26 @@
         padding:.42rem .72rem;
       }
 
-      .mockup-copy{
-        left:14px;
-        right:14px;
-        bottom:94px;
+      .mockup-bottom{
+        left:12px;
+        right:12px;
+        bottom:12px;
+        gap:10px;
       }
 
       .mockup-copy h3{
-        font-size:2rem !important;
+        font-size:1.95rem !important;
         line-height:1.02 !important;
-        max-width:100%;
       }
 
       .mockup-copy p{
-        font-size:.95rem !important;
+        font-size:.92rem !important;
         line-height:1.4 !important;
-        max-width:100%;
       }
 
       .mockup-floating{
-        right:12px;
-        bottom:12px;
-        left:12px;
-        width:auto;
-        max-width:none;
         padding:14px;
+        border-radius:18px;
       }
 
       .preview-dots{
@@ -799,9 +927,7 @@
         padding-top:10px;
       }
 
-      .module-card{
-        min-height:500px;
-      }
+      .module-card{min-height:500px}
 
       .hero-proof{
         gap:10px 14px;
@@ -818,14 +944,8 @@
         border-radius:18px;
       }
 
-      .dock-note{
-        display:none !important;
-      }
-
-      .dock-price{
-        font-size:1rem !important;
-      }
-
+      .dock-note{display:none !important}
+      .dock-price{font-size:1rem !important}
       .dock-btn{
         padding:10px 14px !important;
         font-size:9px !important;
@@ -833,8 +953,8 @@
     }
 
     @media (max-width: 520px){
-      .hero-copy h1{
-        font-size:3.4rem !important;
+      .hero-title{
+        font-size:3.35rem;
       }
 
       .hero-proof{
@@ -849,18 +969,19 @@
       }
 
       .mockup-copy h3{
-        font-size:1.65rem !important;
+        font-size:1.6rem !important;
       }
 
       .mockup-copy p{
-        font-size:.88rem !important;
+        font-size:.86rem !important;
       }
+
+      .mockup-floating .grid{gap:10px}
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
   <section class="hero">
     <video
       class="hero-video"
@@ -879,7 +1000,6 @@
     <div class="hero-beam"></div>
 
     <div class="hero-grid">
-      <!-- LEFT -->
       <div class="hero-copy">
         <div class="reveal mb-6">
           <span class="top-badge">
@@ -888,20 +1008,20 @@
           </span>
         </div>
 
-        <p class="text-[10px] md:text-[11px] uppercase tracking-[0.42em] text-[var(--gold)] mb-6 reveal">
-          L’Excellence Digitale
-        </p>
+        <div class="hero-line reveal"></div>
 
-        <h1 class="text-6xl md:text-7xl xl:text-8xl leading-[0.92] font-light mb-6 reveal">
+        <p class="hero-kicker reveal">L’Excellence Digitale</p>
+
+        <h1 class="hero-title reveal">
           LUMIÈRE<br>
           <span class="gold-shimmer italic">Beauty Pack</span>
         </h1>
 
-        <p class="hero-sub text-lg md:text-xl text-white/72 font-light max-w-2xl mb-10 reveal">
-          14 modules premium conçus pour faire paraître une boutique beauté plus luxe, plus moderne, plus crédible et surtout beaucoup plus vendeuse.
+        <p class="hero-sub reveal">
+          Une direction visuelle premium pensée pour transformer instantanément la perception d’une boutique beauté.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-5 mb-10 reveal">
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-5 mb-8 reveal">
           <a href="#modules" class="cta-primary px-9 py-4 rounded-full text-[11px] font-extrabold uppercase tracking-[0.2em]">
             Explorer les modules
           </a>
@@ -919,63 +1039,76 @@
           <span>•</span>
           <span>Conversion-focused</span>
         </div>
+
+        <p class="hero-footnote reveal">
+          UTILISÉ PAR DES MARQUES BEAUTÉ EN EUROPE
+        </p>
       </div>
 
-      <!-- RIGHT -->
       <div class="reveal">
-        <div class="mockup-card">
-          <div class="mockup-bg"></div>
+        <div class="mockup-shell">
+          <div class="mockup-card">
+            <div class="mockup-bg"></div>
 
-          <div class="mockup-screen">
-            <div class="preview-stage" id="preview-stage">
-              <div class="preview-slide active">
-                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80" alt="Preview slide 1" loading="eager" decoding="async" referrerpolicy="no-referrer">
-              </div>
-              <div class="preview-slide">
-                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1400&q=80" alt="Preview slide 2" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-              </div>
-              <div class="preview-slide">
-                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1400&q=80" alt="Preview slide 3" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-              </div>
-            </div>
-
-            <div class="preview-grad"></div>
-
-            <div class="mockup-label">
-              <span class="status-dot"></span>
-              Aperçu premium
-            </div>
-
-            <div class="mockup-copy">
-              <p class="text-[10px] uppercase tracking-[0.28em] text-[var(--gold)] mb-3">Beauty conversion system</p>
-              <h3 class="text-4xl md:text-5xl serif font-light mb-3">Des modules qui changent instantanément la perception de la marque</h3>
-              <p class="text-base text-white/72">
-                Hero, quiz, comparateur, sélecteur, sections immersives et éléments premium pensés pour mieux convertir.
-              </p>
-            </div>
-
-            <div class="mockup-floating">
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--gold)]">Impact visuel</span>
-                <span class="text-white/60 text-xs">Premium</span>
-              </div>
-              <div class="mini-bar mb-4"><span></span></div>
-              <div class="grid grid-cols-2 gap-3 text-xs text-white/66">
-                <div class="rounded-2xl border border-white/8 bg-white/[.03] px-3 py-3">
-                  <div class="text-[var(--gold)] text-lg serif">14</div>
-                  <div>Modules inclus</div>
+            <div class="mockup-screen">
+              <div class="preview-stage" id="preview-stage">
+                <div class="preview-slide active">
+                  <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1600&q=80" alt="Preview slide 1" loading="eager" decoding="async" referrerpolicy="no-referrer">
                 </div>
-                <div class="rounded-2xl border border-white/8 bg-white/[.03] px-3 py-3">
-                  <div class="text-[var(--gold)] text-lg serif">79€</div>
-                  <div>Offre actuelle</div>
+                <div class="preview-slide">
+                  <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1600&q=80" alt="Preview slide 2" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                </div>
+                <div class="preview-slide">
+                  <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1600&q=80" alt="Preview slide 3" loading="lazy" decoding="async" referrerpolicy="no-referrer">
                 </div>
               </div>
-            </div>
 
-            <div class="preview-dots" id="preview-dots">
-              <span class="preview-dot active"></span>
-              <span class="preview-dot"></span>
-              <span class="preview-dot"></span>
+              <div class="preview-grad"></div>
+              <div class="preview-vignette"></div>
+
+              <div class="mockup-label">
+                <span class="status-dot"></span>
+                Aperçu premium
+              </div>
+
+              <div class="mockup-bottom">
+                <div class="mockup-copy">
+                  <p class="eyebrow">Beauty conversion system</p>
+                  <div class="mockup-sep"></div>
+                  <h3>
+                    Des modules qui élèvent la marque dès le premier regard
+                  </h3>
+                  <p>
+                    Hero, quiz, comparateur, sélecteur, sections immersives et éléments premium pensés pour créer plus d’impact visuel et mieux convertir.
+                  </p>
+                </div>
+
+                <div class="mockup-floating">
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--gold)]">Impact visuel</span>
+                    <span class="text-white/60 text-xs">Premium</span>
+                  </div>
+
+                  <div class="mini-bar mb-4"><span></span></div>
+
+                  <div class="grid grid-cols-2 gap-3 text-xs text-white/66">
+                    <div class="floating-mini-card">
+                      <div class="text-[var(--gold)] text-lg serif">14</div>
+                      <div>Modules inclus</div>
+                    </div>
+                    <div class="floating-mini-card">
+                      <div class="text-[var(--gold)] text-lg serif">79€</div>
+                      <div>Offre actuelle</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="preview-dots" id="preview-dots">
+                <span class="preview-dot active"></span>
+                <span class="preview-dot"></span>
+                <span class="preview-dot"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -983,7 +1116,6 @@
     </div>
   </section>
 
-  <!-- STATS -->
   <section class="px-5 md:px-6">
     <div class="max-w-6xl mx-auto stats-row">
       <div class="stat-card reveal">
@@ -1001,7 +1133,6 @@
     </div>
   </section>
 
-  <!-- VALUE -->
   <section class="py-24 md:py-28 px-5 md:px-6 max-w-7xl mx-auto">
     <div class="max-w-2xl mb-14">
       <h2 class="text-4xl md:text-6xl font-light mb-4 reveal">
@@ -1039,7 +1170,6 @@
     </div>
   </section>
 
-  <!-- MODULES -->
   <section id="modules" class="py-8 md:py-16 px-5 md:px-6 max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-14 md:mb-20">
       <div class="max-w-2xl">
@@ -1062,7 +1192,6 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="module-container"></div>
   </section>
 
-  <!-- PRICING -->
   <section class="py-20 md:py-24 px-5 md:px-6">
     <div class="pricing-wrap glass-panel soft-border max-w-5xl mx-auto p-8 md:p-14 lg:p-20 text-center">
       <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--gold)]/75 to-transparent"></div>
@@ -1094,7 +1223,6 @@
     </div>
   </section>
 
-  <!-- FAQ -->
   <section class="py-10 md:py-16 px-5 md:px-6 max-w-3xl mx-auto">
     <h2 class="text-4xl md:text-5xl font-light mb-14 text-center italic reveal">
       Questions fréquentes
@@ -1102,7 +1230,6 @@
     <div class="space-y-5" id="faq-container"></div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="py-16 md:py-20 px-6 border-t border-white/5 text-center">
     <p class="serif italic text-2xl md:text-3xl mb-4">LUMIÈRE</p>
     <p class="text-white/28 text-[10px] uppercase tracking-[0.28em]">
@@ -1110,7 +1237,6 @@
     </p>
   </footer>
 
-  <!-- DOCK -->
   <div class="dock-wrap fixed bottom-4 md:bottom-7 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl">
     <div class="floating-dock px-4 md:px-5 py-3.5 flex items-center justify-between gap-3">
       <div class="flex items-center gap-3 md:gap-4 min-w-0">
@@ -1138,7 +1264,6 @@
     </div>
   </div>
 
-  <!-- DEMO MODAL -->
   <div id="demo-modal">
     <div class="absolute top-4 right-4 md:top-6 md:right-6 z-[130]">
       <button onclick="closeDemo()" class="w-12 h-12 rounded-full bg-white/8 border border-white/10 flex items-center justify-center hover:bg-white/14 transition-colors">
@@ -1395,7 +1520,7 @@
     setInterval(() => {
       currentSlide = (currentSlide + 1) % slides.length;
       showSlide(currentSlide);
-    }, 3200);
+    }, 3800);
 
     document.querySelectorAll('.preview-slide img').forEach(img => {
       img.addEventListener('error', () => {
