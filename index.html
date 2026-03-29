@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMIÈRE Beauty — Premium Web Modules</title>
+    <title>LUMIÈRE Beauty — L'Excellence Digitale</title>
     
-    <!-- Fonts de Luxe -->
+    <!-- Fonts de Prestige -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind & Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,235 +17,216 @@
     <style>
         :root {
             --gold: #C9A96E;
-            --gold-light: #e8d5b0;
-            --ink: #0f0e0c;
-            --phi: 1.618; /* Le Nombre d'Or pour les proportions */
-        }
-
-        [data-theme="light"] {
-            --bg: #ffffff;
-            --bg-alt: #f7f4ef;
-            --text: #0f0e0c;
-            --text-muted: rgba(15, 14, 12, 0.6);
-            --border: rgba(201, 169, 110, 0.25);
-        }
-
-        [data-theme="dark"] {
-            --bg: #0f0e0c;
-            --bg-alt: #181614;
-            --text: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.5);
-            --border: rgba(201, 169, 110, 0.15);
+            --gold-bright: #F2D492;
+            --ink: #060606;
         }
 
         body {
-            font-family: 'Josefin Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            transition: background 0.5s ease, color 0.5s ease;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--ink);
+            color: white;
             overflow-x: hidden;
         }
 
         .font-serif { font-family: 'Cormorant Garamond', serif; }
 
-        /* Animations de révélation au scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+        /* Effet de texte doré animé */
+        .gold-shimmer {
+            background: linear-gradient(90deg, #8a6d3b, #f2d492, #8a6d3b);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s linear infinite;
         }
-        .reveal.active {
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        /* Overlay Vidéo Sophistiqué */
+        .video-overlay {
+            background: linear-gradient(to bottom, 
+                rgba(6,6,6,0.4) 0%, 
+                rgba(6,6,6,0.2) 50%, 
+                rgba(6,6,6,0.9) 100%);
+        }
+
+        /* Dock de Navigation style Luxe */
+        .glass-dock {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Animations d'entrée */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            filter: blur(10px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-up.active {
             opacity: 1;
             transform: translateY(0);
+            filter: blur(0);
         }
 
-        /* Bouton Luxe */
-        .btn-luxe {
-            background: var(--gold);
-            color: #111;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-size: 10px;
-            padding: 18px 35px;
-            border-radius: 999px;
-            transition: all 0.4s ease;
-        }
-        .btn-luxe:hover {
-            background: var(--text);
-            color: var(--bg);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        /* Grille de modules */
+        /* Cartes Modules */
         .module-card {
-            background: var(--bg-alt);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-            transition: all 0.4s ease;
+            background: #0f0f0f;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .module-card:hover {
             border-color: var(--gold);
-            transform: translateY(-5px);
+            background: #151515;
+            transform: scale(1.02);
         }
 
-        /* Switch Thème */
-        #theme-btn {
-            position: fixed;
-            top: 25px;
-            right: 25px;
-            z-index: 1000;
-            padding: 10px 20px;
-            border-radius: 999px;
-            border: 1px solid var(--border);
-            background: var(--bg);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Effet 3D uniquement sur Desktop */
-        @media (min-width: 1024px) {
-            .perspective { perspective: 1200px; }
-            .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease-out; }
-        }
+        /* Scrollbar invisible */
+        ::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body>
 
-    <button id="theme-btn" onclick="toggleTheme()">
-        <span id="theme-icon">🌙</span> <span id="theme-text">Dark Mode</span>
-    </button>
-
-    <!-- Header / Hero -->
-    <header class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        <div class="absolute inset-0 opacity-20 pointer-events-none">
-            <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,var(--gold),transparent_70%)]"></div>
+    <!-- Hero Section avec Vidéo Waouh -->
+    <section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <!-- La Vidéo Background -->
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline class="h-full w-full object-cover scale-105">
+                <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 video-overlay"></div>
         </div>
 
-        <div class="max-w-5xl text-center z-10">
-            <div class="reveal inline-block mb-8">
-                <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#C9A96E]">Collection Signature</span>
+        <!-- Contenu Hero -->
+        <div class="relative z-10 text-center px-6 max-w-5xl">
+            <div class="reveal-up inline-block mb-6">
+                <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-[var(--gold)]">The 2026 Collection</span>
             </div>
-            <h1 class="reveal text-6xl md:text-9xl font-serif leading-none mb-10">
-                La beauté,<br><em class="italic opacity-80">à votre image.</em>
+            <h1 class="reveal-up text-6xl md:text-9xl font-serif leading-none mb-8">
+                L'Art de la<br>
+                <span class="gold-shimmer italic">Conversion.</span>
             </h1>
-            <p class="reveal text-lg md:text-xl font-light tracking-wide opacity-60 max-w-2xl mx-auto mb-12 leading-relaxed">
-                Un système de modules premium conçu pour élever la perception de votre marque et transformer chaque visite en expérience mémorable.
+            <p class="reveal-up text-sm md:text-base font-light tracking-[0.2em] uppercase opacity-70 max-w-xl mx-auto mb-12">
+                Élevez votre interface. Captivez vos clients.
             </p>
-            <div class="reveal flex flex-col md:flex-row items-center justify-center gap-6">
-                <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="btn-luxe">Acquérir le Pack</a>
-                <a href="#catalogue" class="text-[10px] font-bold uppercase tracking-[0.2em] border-b border-current pb-1 opacity-50 hover:opacity-100 transition-opacity">Découvrir les modules</a>
+            <div class="reveal-up flex flex-col md:flex-row items-center justify-center gap-8">
+                <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="bg-[var(--gold)] text-black px-12 py-5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-white transition-all duration-500">
+                    Acheter le Pack Complet
+                </a>
+                <a href="#catalogue" class="group flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-all">
+                    Explorer le catalogue <i data-lucide="chevron-down" class="w-4 h-4 group-hover:translate-y-1 transition-transform"></i>
+                </a>
             </div>
         </div>
-    </header>
 
-    <!-- Section Catalogue -->
-    <section id="catalogue" class="py-32 px-6">
+        <!-- Indicateur de scroll -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 animate-bounce">
+            <i data-lucide="mouse" class="w-5 h-5"></i>
+        </div>
+    </section>
+
+    <!-- Catalogue de Modules -->
+    <section id="catalogue" class="py-32 px-6 bg-[#060606]">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
-                <div class="max-w-xl">
-                    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C9A96E] mb-4 block">Le Catalogue</span>
-                    <h2 class="text-5xl font-serif">14 Modules d'Excellence</h2>
-                </div>
-                <p class="text-sm opacity-50 mt-6 md:mt-0">Prêts à l'intégration · Optimisés SEO & Mobile</p>
+            <div class="mb-24 text-center reveal-up">
+                <h2 class="text-5xl md:text-7xl font-serif mb-6">Les 14 Modules</h2>
+                <div class="h-px w-24 bg-[var(--gold)] mx-auto opacity-30"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="module-grid">
-                <!-- Les modules seront injectés ici par JS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="module-grid">
+                <!-- Injection dynamique des 14 modules -->
             </div>
         </div>
     </section>
 
-    <!-- Section ROI -->
-    <section class="py-32 px-6 bg-[var(--bg-alt)] border-y border-[var(--border)]">
-        <div class="max-w-4xl mx-auto text-center reveal">
-            <h2 class="text-4xl md:text-6xl font-serif mb-12">L'investissement qui redéfinit votre conversion</h2>
-            <div class="grid md:grid-cols-3 gap-12">
-                <div>
-                    <div class="text-3xl font-serif text-[#C9A96E] mb-2">+45%</div>
-                    <div class="text-[10px] font-bold uppercase tracking-widest opacity-50">Temps de session</div>
+    <!-- Section ROI / Preuve -->
+    <section class="py-40 px-6 bg-white text-black">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div class="reveal-up">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-[#8a6d3b] mb-4 block">Performance</span>
+                <h2 class="text-5xl md:text-7xl font-serif leading-tight mb-8">Pourquoi choisir Lumière ?</h2>
+                <p class="text-lg opacity-70 leading-relaxed mb-10">
+                    Chaque module a été testé pour maximiser la rétention utilisateur. Ce n'est pas seulement du design, c'est une machine à vendre.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-xs">01</div>
+                        <span class="font-bold text-sm uppercase tracking-widest">Installation en 2 minutes</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-xs">02</div>
+                        <span class="font-bold text-sm uppercase tracking-widest">Zéro dépendance externe</span>
+                    </div>
                 </div>
-                <div>
-                    <div class="text-3xl font-serif text-[#C9A96E] mb-2">x2.4</div>
-                    <div class="text-[10px] font-bold uppercase tracking-widest opacity-50">Taux de clic CTA</div>
-                </div>
-                <div>
-                    <div class="text-3xl font-serif text-[#C9A96E] mb-2">Instant</div>
-                    <div class="text-[10px] font-bold uppercase tracking-widest opacity-50">Valeur perçue</div>
-                </div>
+            </div>
+            <div class="reveal-up relative aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover" alt="Luxe">
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-20 text-center">
-        <div class="font-serif text-4xl mb-6 gold-gradient-text">LUMIÈRE</div>
-        <div class="flex justify-center gap-8 mb-10 opacity-40 text-[10px] font-bold uppercase tracking-widest">
-            <a href="#">Instagram</a>
-            <a href="#">Twitter</a>
-            <a href="#">Gumroad</a>
+    <!-- Dock de Navigation Flottant -->
+    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-2xl">
+        <div class="glass-dock rounded-full px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <span class="font-serif italic text-xl gold-shimmer">L.</span>
+                <div class="h-4 w-px bg-white/10"></div>
+                <span class="text-[9px] font-bold uppercase tracking-widest opacity-50 hidden md:block">14 Modules Premium</span>
+            </div>
+            <div class="flex gap-2">
+                <a href="https://lumirebeauty.gumroad.com/l/pdlbdu" class="bg-[var(--gold)] text-black px-6 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">
+                    Acheter 79€
+                </a>
+            </div>
         </div>
-        <p class="text-[9px] font-bold uppercase tracking-[0.3em] opacity-20">© 2026 Lumière Beauty Kit — Tous droits réservés</p>
+    </div>
+
+    <footer class="py-32 bg-[#060606] text-center">
+        <div class="font-serif text-5xl mb-8 gold-shimmer italic">Lumière</div>
+        <p class="text-[10px] font-bold uppercase tracking-[0.5em] opacity-20">© 2026 Crafted for Excellence</p>
     </footer>
 
     <script>
-        // Initialisation des icônes
         lucide.createIcons();
 
-        // Gestion du Thème
-        function toggleTheme() {
-            const html = document.documentElement;
-            const isDark = html.getAttribute('data-theme') === 'dark';
-            const nextTheme = isDark ? 'light' : 'dark';
-            html.setAttribute('data-theme', nextTheme);
-            document.getElementById('theme-icon').textContent = isDark ? '☀️' : '🌙';
-            document.getElementById('theme-text').textContent = isDark ? 'Light Mode' : 'Dark Mode';
-        }
-
-        // Données des 14 Modules (Liste Complète)
+        // Les 14 Modules (Liste Complète)
         const modules = [
-            { id: "01", tag: "Header", title: "Barre d'annonce", desc: "Bandeau premium pour vos offres et codes promo." },
-            { id: "02", tag: "Hero", title: "Hero Slideshow", desc: "Immersion totale avec transition fluide de visuels." },
-            { id: "03", tag: "Video", title: "Vidéo Compacte", desc: "Section vidéo élégante pour vos démonstrations produits." },
-            { id: "04", tag: "Video", title: "Vidéo Fullscreen", desc: "Impact visuel maximal pour votre storytelling de marque." },
-            { id: "05", tag: "Hero", title: "Hero Panel", desc: "Structure éditoriale pour présenter vos gammes phares." },
-            { id: "06", tag: "Motion", title: "Marquee Défilant", desc: "Preuve sociale et logos en mouvement perpétuel." },
-            { id: "07", tag: "Proof", title: "Comparateur", desc: "Slider Avant/Après pour prouver l'efficacité de vos produits." },
-            { id: "08", tag: "Quiz", title: "Quiz Teinte", desc: "Guide interactif pour aider le client à choisir sa nuance." },
-            { id: "09", tag: "Selector", title: "Sélecteur Visuel", desc: "Navigation intuitive entre les variantes de produits." },
-            { id: "10", tag: "Guide", title: "Guide des Tailles", desc: "Outil de réassurance pour réduire les retours clients." },
-            { id: "11", tag: "Showcase", title: "Showcase Produit", desc: "Mise en scène luxueuse des détails de votre offre." },
-            { id: "12", tag: "Dock", title: "Dock Interactif", desc: "Menu flottant moderne pour un accès rapide aux valeurs." },
-            { id: "13", tag: "Email", title: "Capture Email", desc: "Section de conversion haute performance pour votre newsletter." },
-            { id: "00", tag: "Pack", title: "Pack Complet", desc: "L'ensemble des 14 modules dans un univers cohérent." }
+            { id: "01", tag: "Header", title: "Barre d'annonce", desc: "Optimisez vos annonces promotionnelles." },
+            { id: "02", tag: "Hero", title: "Hero Slideshow", desc: "Transitions fluides et immersives." },
+            { id: "03", tag: "Video", title: "Vidéo Compacte", desc: "Démonstration produit élégante." },
+            { id: "04", tag: "Video", title: "Vidéo Fullscreen", desc: "Storytelling à fort impact." },
+            { id: "05", tag: "Hero", title: "Hero Panel", desc: "Structure éditoriale de luxe." },
+            { id: "06", tag: "Motion", title: "Marquee Défilant", desc: "Preuve sociale dynamique." },
+            { id: "07", tag: "Proof", title: "Comparateur", desc: "Slider Avant/Après interactif." },
+            { id: "08", tag: "Quiz", title: "Quiz Teinte", desc: "Recommandation personnalisée." },
+            { id: "09", tag: "Selector", title: "Sélecteur Visuel", desc: "Choix de variantes intuitif." },
+            { id: "10", tag: "Guide", title: "Guide des Tailles", desc: "Réassurance client maximale." },
+            { id: "11", tag: "Showcase", title: "Showcase Produit", desc: "Mise en scène de détails." },
+            { id: "12", tag: "Dock", title: "Dock Interactif", desc: "Navigation flottante moderne." },
+            { id: "13", tag: "Email", title: "Capture Email", desc: "Conversion newsletter boostée." },
+            { id: "00", tag: "Pack", title: "Pack Complet", desc: "L'écosystème complet." }
         ];
 
-        // Injection des cartes
         const grid = document.getElementById('module-grid');
-        modules.forEach((m, i) => {
+        modules.forEach((m) => {
             const card = document.createElement('div');
-            card.className = 'reveal module-card group cursor-pointer';
+            card.className = 'reveal-up module-card p-10 rounded-[30px] group cursor-pointer';
             card.innerHTML = `
-                <div class="flex justify-between items-start mb-10">
-                    <span class="font-serif text-4xl opacity-20 group-hover:opacity-100 group-hover:text-[#C9A96E] transition-all">${m.id}</span>
-                    <span class="text-[9px] font-bold uppercase tracking-widest opacity-30 border border-current px-2 py-1 rounded">${m.tag}</span>
+                <div class="flex justify-between items-start mb-12">
+                    <span class="font-serif text-5xl opacity-10 group-hover:opacity-100 group-hover:text-[var(--gold)] transition-all duration-700">${m.id}</span>
+                    <span class="text-[8px] font-bold uppercase tracking-[0.2em] opacity-40 border border-white/10 px-3 py-1 rounded-full">${m.tag}</span>
                 </div>
-                <h3 class="text-2xl font-serif mb-4">${m.title}</h3>
-                <p class="text-sm font-light leading-relaxed opacity-50 mb-10">${m.desc}</p>
-                <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#C9A96E] opacity-0 group-hover:opacity-100 transition-all">
-                    Voir la démo <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                </div>
+                <h3 class="text-2xl font-serif mb-4 group-hover:translate-x-2 transition-transform duration-500">${m.title}</h3>
+                <p class="text-xs font-light leading-relaxed opacity-40 mb-10">${m.desc}</p>
+                <div class="h-px w-full bg-white/5 group-hover:bg-[var(--gold)] transition-colors duration-700"></div>
             `;
             grid.appendChild(card);
         });
 
-        // Animation au scroll (Intersection Observer)
+        // Intersection Observer pour les animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -254,28 +235,14 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
 
-        // Effet Tilt (Desktop uniquement)
-        if (window.innerWidth > 1024) {
-            document.addEventListener('mousemove', (e) => {
-                const cards = document.querySelectorAll('.module-card');
-                cards.forEach(card => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
-                        const xc = rect.width / 2;
-                        const yc = rect.height / 2;
-                        const dx = x - xc;
-                        const dy = y - yc;
-                        card.style.transform = `rotateY(${dx / 20}deg) rotateX(${-dy / 20}deg) translateY(-5px)`;
-                    } else {
-                        card.style.transform = '';
-                    }
-                });
-            });
-        }
+        // Animation au mouvement de la souris (Hero)
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 50;
+            const moveY = (e.clientY - window.innerHeight / 2) / 50;
+            document.querySelector('video').style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
+        });
     </script>
 </body>
 </html>
