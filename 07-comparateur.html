@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,6 @@
 :root{
   --gold:#c9a96e;
   --gold-soft:#e7d3ab;
-  --gold-deep:#a47a42;
   --bg:#0b0a08;
   --panel:#16130f;
   --line:rgba(201,169,110,.14);
@@ -39,7 +38,7 @@ body{
 
 .page{
   min-height:100vh;
-  padding:48px 18px;
+  padding:36px 14px;
   display:flex;
   align-items:center;
 }
@@ -61,7 +60,7 @@ body{
 
 .title{
   font-family:var(--serif);
-  font-size:clamp(34px,5vw,66px);
+  font-size:clamp(30px,5vw,64px);
   line-height:.96;
   font-weight:300;
   letter-spacing:-.02em;
@@ -78,17 +77,16 @@ body{
   max-width:56ch;
   color:var(--text-soft);
   font-size:14px;
-  line-height:1.85;
+  line-height:1.8;
   font-weight:300;
-  margin-bottom:30px;
+  margin-bottom:28px;
 }
 
 .card{
   position:relative;
   border-radius:var(--radius);
   overflow:hidden;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+  background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
   border:1px solid var(--line);
   box-shadow:var(--shadow);
   backdrop-filter:blur(14px);
@@ -108,7 +106,7 @@ body{
 .card-head{
   position:relative;
   z-index:2;
-  padding:24px 22px 18px;
+  padding:24px 20px 18px;
   text-align:center;
   border-bottom:1px solid rgba(255,255,255,.05);
 }
@@ -156,31 +154,31 @@ body{
   cursor:ew-resize;
   touch-action:none;
   isolation:isolate;
+  --pos:52%;
 }
 
 .compare-stage::before{
   content:"";
   position:absolute;
   inset:0;
-  z-index:3;
+  z-index:4;
   pointer-events:none;
   background:
     linear-gradient(180deg, rgba(0,0,0,.04), transparent 22%, transparent 76%, rgba(0,0,0,.12)),
     radial-gradient(700px 300px at 50% -10%, rgba(255,255,255,.03), transparent 70%);
 }
 
-.compare-after,
-.compare-before-img{
+.compare-img{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
+  object-position:center 28%;
   display:block;
-  backface-visibility:hidden;
   transform:scale(1.012);
   transform-origin:center;
-  object-position:center 28%;
+  backface-visibility:hidden;
 }
 
 .compare-after{
@@ -189,39 +187,18 @@ body{
 }
 
 .compare-before{
-  position:absolute;
-  inset:0 auto 0 0;
-  width:52%;
-  height:100%;
-  overflow:hidden;
-  z-index:4;
-  border-right:1px solid rgba(201,169,110,.94);
-  box-shadow:
-    12px 0 32px rgba(0,0,0,.18),
-    1px 0 0 rgba(255,255,255,.08);
-}
-
-.compare-before::after{
-  content:"";
-  position:absolute;
-  top:0;
-  right:-24px;
-  width:48px;
-  height:100%;
-  pointer-events:none;
-  background:linear-gradient(90deg, rgba(201,169,110,.18), rgba(201,169,110,0));
-}
-
-.compare-before-img{
   z-index:2;
   filter:brightness(.88) saturate(.92) contrast(1.02);
+  clip-path:inset(0 calc(100% - var(--pos)) 0 0);
+  -webkit-clip-path:inset(0 calc(100% - var(--pos)) 0 0);
 }
 
+/* Ligne de séparation */
 .compare-line{
   position:absolute;
   top:0;
   bottom:0;
-  left:52%;
+  left:var(--pos);
   width:1px;
   transform:translateX(-50%);
   z-index:5;
@@ -238,10 +215,23 @@ body{
     0 0 2px rgba(255,255,255,.25);
 }
 
+.compare-line::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  transform:translateX(-50%);
+  width:40px;
+  height:100%;
+  background:linear-gradient(90deg, rgba(201,169,110,.18), rgba(201,169,110,0));
+  pointer-events:none;
+}
+
+/* Handle */
 .compare-handle{
   position:absolute;
   top:50%;
-  left:52%;
+  left:var(--pos);
   transform:translate(-50%,-50%);
   width:62px;
   height:62px;
@@ -324,7 +314,6 @@ body{
 }
 
 .swatch{
-  position:relative;
   width:30px;
   height:30px;
   border-radius:999px;
@@ -333,8 +322,7 @@ body{
   transition:
     transform .28s var(--ease),
     box-shadow .28s var(--ease),
-    border-color .28s var(--ease),
-    opacity .28s var(--ease);
+    border-color .28s var(--ease);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.18),
     0 6px 16px rgba(0,0,0,.18);
@@ -375,8 +363,7 @@ body{
     aspect-ratio:1.04 / 1;
     min-height:430px;
   }
-  .compare-after,
-  .compare-before-img{
+  .compare-img{
     object-position:center 24%;
   }
   .compare-handle{
@@ -387,7 +374,7 @@ body{
 
 @media (max-width:560px){
   .page{
-    padding:32px 12px;
+    padding:28px 10px;
     align-items:flex-start;
   }
   .title{
@@ -408,8 +395,7 @@ body{
     aspect-ratio:1 / 1.14;
     min-height:360px;
   }
-  .compare-after,
-  .compare-before-img{
+  .compare-img{
     object-position:center 22%;
   }
   .compare-handle{
@@ -444,7 +430,7 @@ body{
     <div class="eyebrow">Module 07 — Comparateur avant / après</div>
     <h1 class="title">Voyez la <em>transformation</em></h1>
     <p class="sub">
-      Un comparateur pensé comme une vraie expérience premium : fluide, tactile, élégant et calibré pour sublimer le visuel avant / après sans casser le cadrage du visage.
+      Un comparateur premium où les deux visuels restent parfaitement fixes. Seule la zone révélée bouge, jamais l’image.
     </p>
 
     <section class="card">
@@ -457,20 +443,18 @@ body{
       <div class="compare">
         <div class="compare-stage" id="compareStage" aria-label="Comparateur avant après">
           <img
-            class="compare-after"
+            class="compare-img compare-after"
             id="afterImg"
             src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138182676_tqrpej.png"
             alt="Résultat après"
           />
 
-          <div class="compare-before" id="beforeMask">
-            <img
-              class="compare-before-img"
-              id="beforeImg"
-              src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-before-1774138178538_vxllx7.png"
-              alt="Résultat avant"
-            />
-          </div>
+          <img
+            class="compare-img compare-before"
+            id="beforeImg"
+            src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-before-1774138178538_vxllx7.png"
+            alt="Résultat avant"
+          />
 
           <div class="compare-line" id="compareLine"></div>
 
@@ -520,11 +504,8 @@ const PAIRS = [
 ];
 
 const stage = document.getElementById('compareStage');
-const beforeMask = document.getElementById('beforeMask');
 const beforeImg = document.getElementById('beforeImg');
 const afterImg = document.getElementById('afterImg');
-const line = document.getElementById('compareLine');
-const handle = document.getElementById('compareHandle');
 const swatches = document.getElementById('swatches');
 
 let isDragging = false;
@@ -532,9 +513,7 @@ let currentPercent = 52;
 
 function setComparePosition(percent){
   currentPercent = Math.max(0, Math.min(100, percent));
-  beforeMask.style.width = currentPercent + '%';
-  line.style.left = currentPercent + '%';
-  handle.style.left = currentPercent + '%';
+  stage.style.setProperty('--pos', currentPercent + '%');
 }
 
 function positionFromClientX(clientX){
@@ -583,14 +562,13 @@ async function swapPair(pair){
     setTimeout(() => {
       beforeImg.src = pair.before;
       afterImg.src = pair.after;
+
       beforeImg.onload = () => { beforeImg.style.opacity = '1'; };
       afterImg.onload = () => { afterImg.style.opacity = '1'; };
-      setComparePosition(currentPercent);
     }, 120);
   } catch(err){
     beforeImg.src = pair.before;
     afterImg.src = pair.after;
-    setComparePosition(currentPercent);
   }
 }
 
