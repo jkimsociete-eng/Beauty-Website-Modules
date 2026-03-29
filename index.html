@@ -32,6 +32,7 @@
       --goldSoft:rgba(212,175,115,.12);
       --purpleSoft:rgba(120,90,255,.08);
       --shadow:0 24px 70px rgba(0,0,0,.42);
+      --shadow-strong:0 40px 100px rgba(0,0,0,.52);
       --radius:26px;
       --max:1240px;
     }
@@ -85,6 +86,33 @@
       border-radius:50%;
       background:linear-gradient(180deg,var(--gold),#fff0cd);
       box-shadow:0 0 16px rgba(212,175,115,.52);
+    }
+
+    .limit-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-top:16px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:#f3e7d2;
+      font-size:.86rem;
+      font-weight:700;
+      backdrop-filter:blur(10px);
+    }
+
+    .limit-badge strong{
+      color:#fff2dc;
+    }
+
+    .limit-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(180deg,#ffcf88,#d68b39);
+      box-shadow:0 0 16px rgba(255,180,80,.45);
     }
 
     h1,h2,h3,h4{
@@ -173,6 +201,10 @@
       transform:translateY(-2px);
     }
 
+    .btn-wide{
+      min-width:220px;
+    }
+
     /* HERO */
     .hero{
       min-height:100vh;
@@ -180,7 +212,7 @@
       align-items:center;
       position:relative;
       overflow:hidden;
-      padding:38px 0 54px;
+      padding:38px 0 56px;
       isolation:isolate;
     }
 
@@ -189,8 +221,8 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(7,7,9,.95) 0%, rgba(7,7,9,.84) 42%, rgba(7,7,9,.58) 70%, rgba(7,7,9,.22) 100%);
-      z-index:-2;
+        linear-gradient(90deg, rgba(7,7,9,.95) 0%, rgba(7,7,9,.84) 42%, rgba(7,7,9,.56) 72%, rgba(7,7,9,.22) 100%);
+      z-index:-3;
     }
 
     .hero::after{
@@ -198,22 +230,67 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 18% 20%, rgba(212,175,115,.10), transparent 24%),
-        radial-gradient(circle at 84% 18%, rgba(125,96,255,.08), transparent 18%);
-      z-index:-3;
+        radial-gradient(circle at 18% 16%, rgba(212,175,115,.10), transparent 24%),
+        radial-gradient(circle at 85% 20%, rgba(92,74,255,.10), transparent 18%);
+      z-index:-4;
     }
 
-    .hero-noise{
+    .hero-bg-noise{
       position:absolute;
       inset:0;
       opacity:.05;
       pointer-events:none;
-      z-index:-1;
+      z-index:-2;
       background-image:
         radial-gradient(circle at 20% 20%, #fff 0.7px, transparent 0.8px),
         radial-gradient(circle at 80% 40%, #fff 0.7px, transparent 0.8px),
         radial-gradient(circle at 40% 80%, #fff 0.7px, transparent 0.8px);
-      background-size: 140px 140px, 180px 180px, 220px 220px;
+      background-size:140px 140px, 180px 180px, 220px 220px;
+    }
+
+    .hero-bg-grid{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.07;
+      z-index:-1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px);
+      background-size:72px 72px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.55), transparent 86%);
+    }
+
+    .hero-glow{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(80px);
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    .hero-glow-1{
+      width:280px;
+      height:280px;
+      background:rgba(212,175,115,.12);
+      top:80px;
+      right:18%;
+    }
+
+    .hero-glow-2{
+      width:240px;
+      height:240px;
+      background:rgba(95,74,255,.10);
+      bottom:70px;
+      right:5%;
+    }
+
+    .hero-glow-3{
+      width:200px;
+      height:200px;
+      background:rgba(255,255,255,.05);
+      top:35%;
+      left:48%;
     }
 
     .hero-grid{
@@ -270,6 +347,15 @@
       color:#c8bcad;
     }
 
+    .hero-stage{
+      position:relative;
+    }
+
+    .hero-3d-wrap{
+      perspective:1600px;
+      perspective-origin:center center;
+    }
+
     .hero-card{
       position:relative;
       border-radius:30px;
@@ -282,6 +368,15 @@
         0 30px 80px rgba(0,0,0,.42),
         inset 0 1px 0 rgba(255,255,255,.06);
       backdrop-filter:blur(18px);
+      transform-style:preserve-3d;
+      will-change:transform;
+      transition:transform .18s ease-out, box-shadow .25s ease;
+    }
+
+    .hero-card:hover{
+      box-shadow:
+        0 40px 100px rgba(0,0,0,.48),
+        inset 0 1px 0 rgba(255,255,255,.06);
     }
 
     .hero-card::before{
@@ -338,8 +433,61 @@
     }
 
     .hero-card-body{
+      min-height:560px;
       position:relative;
       padding:26px;
+      overflow:hidden;
+    }
+
+    .hero-depth-ring{
+      position:absolute;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.06);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .hero-depth-ring.ring-1{
+      width:420px;
+      height:420px;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      box-shadow:0 0 40px rgba(212,175,115,.06) inset;
+    }
+
+    .hero-depth-ring.ring-2{
+      width:520px;
+      height:520px;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      opacity:.55;
+    }
+
+    .hero-center-glow{
+      position:absolute;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle, rgba(212,175,115,.18) 0%, rgba(212,175,115,.08) 34%, rgba(212,175,115,0) 70%);
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      filter:blur(20px);
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .layer{
+      transform-style:preserve-3d;
+      transition:transform .16s ease-out;
+      will-change:transform;
+    }
+
+    .layer-soft{
+      backdrop-filter:blur(16px);
     }
 
     .hero-mini-card{
@@ -348,20 +496,21 @@
       width:210px;
       padding:16px;
       border-radius:20px;
-      background:rgba(10,10,14,.72);
+      background:
+        linear-gradient(180deg, rgba(9,9,13,.82), rgba(9,9,13,.68));
       border:1px solid rgba(255,255,255,.1);
       backdrop-filter:blur(14px);
       box-shadow:0 18px 40px rgba(0,0,0,.28);
     }
 
     .hero-mini-card.left{
-      left:18px;
-      top:24px;
+      left:14px;
+      top:18px;
     }
 
     .hero-mini-card.right{
-      right:18px;
-      bottom:26px;
+      right:14px;
+      bottom:22px;
     }
 
     .hero-mini-card .kicker{
@@ -389,7 +538,7 @@
     .mockup-wrap{
       position:relative;
       z-index:2;
-      width:min(78%, 520px);
+      width:min(76%, 500px);
       margin:0 auto;
       border-radius:26px;
       overflow:hidden;
@@ -398,7 +547,95 @@
       box-shadow:
         0 24px 60px rgba(0,0,0,.34),
         0 0 0 1px rgba(255,255,255,.03) inset;
+      transform:translateZ(34px);
     }
+
+    .mockup-wrap::before{
+      content:"";
+      position:absolute;
+      inset:-12px;
+      border-radius:34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
+      z-index:-1;
+      filter:blur(10px);
+    }
+
+    .mockup-wrap::after{
+      content:"";
+      position:absolute;
+      top:0;
+      left:-25%;
+      width:30%;
+      height:100%;
+      background:linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,.09) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform:skewX(-18deg);
+      pointer-events:none;
+      animation:shimmerLine 5.5s ease-in-out infinite;
+    }
+
+    .hero-chip{
+      position:absolute;
+      z-index:3;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(11,11,16,.78);
+      border:1px solid rgba(255,255,255,.10);
+      color:#f1e6d4;
+      font-size:.82rem;
+      font-weight:800;
+      box-shadow:0 14px 30px rgba(0,0,0,.24);
+      backdrop-filter:blur(14px);
+      transition:all .2s ease;
+    }
+
+    .hero-chip:hover{
+      background:rgba(212,175,115,.12);
+      border-color:rgba(212,175,115,.26);
+      transform:translateY(-1px);
+    }
+
+    .hero-chip-1{ left:12%; bottom:17%; }
+    .hero-chip-2{ left:22%; bottom:9%; }
+    .hero-chip-3{ right:18%; top:18%; }
+    .hero-chip-4{ right:10%; top:31%; }
+
+    .hero-float-badge{
+      position:absolute;
+      z-index:3;
+      min-width:170px;
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(10,10,14,.76);
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:0 18px 40px rgba(0,0,0,.28);
+      backdrop-filter:blur(14px);
+    }
+
+    .hero-badge-label{
+      display:block;
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:#d7b57c;
+      font-weight:800;
+      margin-bottom:6px;
+    }
+
+    .hero-float-badge strong{
+      display:block;
+      color:#fff2dc;
+      font-size:1rem;
+      line-height:1.2;
+    }
+
+    .badge-top{ top:10%; right:16%; }
+    .badge-bottom{ bottom:14%; left:16%; }
 
     .hero-card-bottom{
       display:flex;
@@ -428,6 +665,7 @@
       color:#f1dec0;
     }
 
+    /* CONTENT */
     .section-head{
       max-width:780px;
       margin-bottom:34px;
@@ -468,7 +706,7 @@
       font-weight:700;
     }
 
-    /* MODULES */
+    /* MODULES ULTRA ANIMATED */
     .modules-section{
       overflow:hidden;
     }
@@ -518,6 +756,7 @@
       border:1px solid rgba(255,255,255,.08);
       box-shadow:var(--shadow);
       transition:.28s ease;
+      transform-style:preserve-3d;
     }
 
     .module-card::before{
@@ -532,8 +771,23 @@
       pointer-events:none;
     }
 
+    .module-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,.03) 32%,
+        transparent 65%
+      );
+      transform:translateX(-120%);
+      transition:transform .7s ease;
+      pointer-events:none;
+    }
+
     .module-card:hover{
-      transform:translateY(-5px);
+      transform:translateY(-7px) rotateX(2deg);
       border-color:rgba(212,175,115,.24);
       box-shadow:0 22px 50px rgba(0,0,0,.26);
     }
@@ -542,10 +796,14 @@
       opacity:1;
     }
 
+    .module-card:hover::after{
+      transform:translateX(120%);
+    }
+
     .module-link{
       display:block;
       padding:24px;
-      min-height:238px;
+      min-height:250px;
       position:relative;
     }
 
@@ -569,6 +827,7 @@
       background:linear-gradient(180deg,#e1c084,#c49450);
       box-shadow:0 8px 22px rgba(212,175,115,.18);
       flex:0 0 auto;
+      transition:.25s ease;
     }
 
     .module-tag{
@@ -581,6 +840,7 @@
       text-transform:uppercase;
       letter-spacing:.07em;
       color:#d4c7b7;
+      transition:.25s ease;
     }
 
     .module-title{
@@ -589,6 +849,7 @@
       font-size:1.9rem;
       line-height:1;
       max-width:280px;
+      transition:.25s ease;
     }
 
     .module-desc{
@@ -596,6 +857,7 @@
       color:#b9aea2;
       font-size:.95rem;
       max-width:310px;
+      transition:.25s ease;
     }
 
     .module-footer{
@@ -620,7 +882,22 @@
       transform:translateX(4px);
     }
 
-    /* OFFER */
+    .module-card:hover .module-title{
+      color:#fff3dd;
+    }
+
+    .module-card:hover .module-num{
+      box-shadow:0 12px 24px rgba(212,175,115,.28);
+      transform:translateY(-1px);
+    }
+
+    .module-card:hover .module-tag{
+      background:rgba(212,175,115,.10);
+      border-color:rgba(212,175,115,.22);
+      color:#efd7aa;
+    }
+
+    /* PRICING ULTRA PREMIUM */
     .offer-grid{
       display:grid;
       grid-template-columns:.94fr 1.06fr;
@@ -689,11 +966,25 @@
       border:1px solid rgba(212,175,115,.18);
     }
 
-    .pricing-card::after{
+    .pricing-card::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, transparent, rgba(255,255,255,.015));
+      background:
+        linear-gradient(180deg, transparent, rgba(255,255,255,.015));
+      pointer-events:none;
+    }
+
+    .pricing-card::after{
+      content:"";
+      position:absolute;
+      top:-30%;
+      right:-10%;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:rgba(212,175,115,.10);
+      filter:blur(60px);
       pointer-events:none;
     }
 
@@ -736,6 +1027,37 @@
       box-shadow:0 0 14px rgba(212,175,115,.5);
     }
 
+    .stock-bar{
+      margin-top:16px;
+    }
+
+    .stock-line{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      font-size:.9rem;
+      color:#dfd2c1;
+      margin-bottom:10px;
+    }
+
+    .stock-track{
+      width:100%;
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .stock-fill{
+      width:43.33%;
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,#e9c98f 0%, #d4af73 45%, #b98b4a 100%);
+      box-shadow:0 0 20px rgba(212,175,115,.35);
+    }
+
     .stack{
       display:grid;
       gap:14px;
@@ -750,7 +1072,71 @@
       color:#e6dbcf;
     }
 
-    /* FAQ + CTA */
+    .pricing-note{
+      margin-top:14px;
+      color:#d8cbb9;
+      font-size:.92rem;
+    }
+
+    /* CTA FINAL CINEMATIC */
+    .final-cta{
+      position:relative;
+      text-align:center;
+      padding:44px 32px;
+      border-radius:32px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at top left, rgba(212,175,115,.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120,90,255,.08), transparent 25%),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+      border:1px solid rgba(212,175,115,.18);
+      box-shadow:var(--shadow-strong);
+    }
+
+    .final-cta::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(255,255,255,.04) 30%, transparent 60%);
+      transform:translateX(-120%);
+      animation:ctaSweep 8s ease-in-out infinite;
+      pointer-events:none;
+    }
+
+    .final-cta::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:34px;
+      padding:1px;
+      background:linear-gradient(120deg, rgba(255,255,255,.06), rgba(212,175,115,.18), rgba(255,255,255,.03));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      pointer-events:none;
+      opacity:.65;
+    }
+
+    .final-cta h2{
+      margin-bottom:12px;
+    }
+
+    .final-cta p{
+      max-width:760px;
+      margin:0 auto;
+      color:#e5dacd;
+    }
+
+    .final-subline{
+      margin-top:14px;
+      color:#d9cbb8;
+      font-weight:700;
+      font-size:.95rem;
+    }
+
     .faq-grid{
       display:grid;
       gap:16px;
@@ -770,27 +1156,6 @@
       margin-bottom:10px;
     }
 
-    .final-cta{
-      text-align:center;
-      padding:36px;
-      border-radius:28px;
-      background:
-        radial-gradient(circle at top left, rgba(212,175,115,.14), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
-      border:1px solid rgba(212,175,115,.18);
-      box-shadow:var(--shadow);
-    }
-
-    .final-cta h2{
-      margin-bottom:12px;
-    }
-
-    .final-cta p{
-      max-width:760px;
-      margin:0 auto;
-      color:#e5dacd;
-    }
-
     .footer{
       padding:38px 0 60px;
       color:#a89d90;
@@ -798,15 +1163,117 @@
       font-size:.95rem;
     }
 
+    /* ANIMATIONS */
+    @keyframes floatSoft {
+      0% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-8px) translateX(2px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    @keyframes floatSoftReverse {
+      0% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(7px) translateX(-3px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity:.35; transform: scale(1); }
+      50% { opacity:.58; transform: scale(1.06); }
+      100% { opacity:.35; transform: scale(1); }
+    }
+
+    @keyframes shimmerLine {
+      0% { transform: translateX(-120%) skewX(-18deg); opacity:0; }
+      20% { opacity:.35; }
+      50% { opacity:.65; }
+      100% { transform: translateX(140%) skewX(-18deg); opacity:0; }
+    }
+
+    @keyframes fadeLift {
+      from {
+        opacity:0;
+        transform:translateY(24px);
+      }
+      to {
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes slowRotate {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes ctaSweep {
+      0% { transform:translateX(-120%); opacity:0; }
+      20% { opacity:.35; }
+      45% { opacity:.5; }
+      100% { transform:translateX(120%); opacity:0; }
+    }
+
+    .hero-copy > *{
+      animation:fadeLift .8s ease both;
+    }
+
+    .hero-copy > *:nth-child(1){ animation-delay:.05s; }
+    .hero-copy > *:nth-child(2){ animation-delay:.12s; }
+    .hero-copy > *:nth-child(3){ animation-delay:.18s; }
+    .hero-copy > *:nth-child(4){ animation-delay:.26s; }
+    .hero-copy > *:nth-child(5){ animation-delay:.34s; }
+    .hero-copy > *:nth-child(6){ animation-delay:.42s; }
+
+    .hero-card{
+      animation:fadeLift .95s ease .12s both;
+    }
+
+    .hero-glow-1{ animation:pulseGlow 7s ease-in-out infinite; }
+    .hero-glow-2{ animation:pulseGlow 9s ease-in-out infinite; }
+    .hero-glow-3{ animation:pulseGlow 8s ease-in-out infinite; }
+    .hero-center-glow{ animation:pulseGlow 6s ease-in-out infinite; }
+    .hero-depth-ring.ring-1{ animation:slowRotate 20s linear infinite; }
+    .hero-depth-ring.ring-2{ animation:slowRotate 28s linear infinite reverse; }
+
+    .hero-mini-card.left{ animation:floatSoft 5.5s ease-in-out infinite; }
+    .hero-mini-card.right{ animation:floatSoftReverse 6.2s ease-in-out infinite; }
+
+    .hero-float-badge.badge-top{ animation:floatSoft 6.5s ease-in-out infinite; }
+    .hero-float-badge.badge-bottom{ animation:floatSoftReverse 7s ease-in-out infinite; }
+
+    .hero-chip-1{ animation:floatSoft 6s ease-in-out infinite; }
+    .hero-chip-2{ animation:floatSoftReverse 5.8s ease-in-out infinite; }
+    .hero-chip-3{ animation:floatSoft 6.8s ease-in-out infinite; }
+    .hero-chip-4{ animation:floatSoftReverse 7.4s ease-in-out infinite; }
+
+    .btn,
+    .pill,
+    .module-card,
+    .hero-chip,
+    .hero-mini-card,
+    .hero-float-badge,
+    .hero-stat{
+      will-change:transform, box-shadow, background, border-color;
+    }
+
+    .hero-stat:hover,
+    .hero-mini-card:hover,
+    .hero-float-badge:hover{
+      transform:translateY(-3px);
+      border-color:rgba(212,175,115,.22);
+      box-shadow:0 20px 42px rgba(0,0,0,.28);
+    }
+
     .reveal{
       opacity:0;
-      transform:translateY(20px);
-      transition:all .7s ease;
+      transform:translateY(24px) scale(.985);
+      transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22,.8,.2,1);
     }
 
     .reveal.visible{
       opacity:1;
-      transform:translateY(0);
+      transform:translateY(0) scale(1);
     }
 
     @media (max-width: 1100px){
@@ -824,6 +1291,26 @@
         min-height:auto;
       }
 
+      .hero-card-body{
+        min-height:auto;
+      }
+
+      .hero-chip,
+      .hero-float-badge{
+        position:static;
+        display:inline-flex;
+        margin:10px 10px 0 0;
+      }
+
+      .hero-depth-ring{
+        display:none;
+      }
+
+      .hero-center-glow{
+        width:260px;
+        height:260px;
+      }
+
       .hero-mini-card.left,
       .hero-mini-card.right{
         position:static;
@@ -834,10 +1321,6 @@
       .mockup-wrap{
         width:100%;
         max-width:720px;
-      }
-
-      .hero-card-body{
-        display:block;
       }
     }
 
@@ -898,18 +1381,59 @@
       .price-big{
         font-size:3.2rem;
       }
+
+      .hero-card-body{
+        padding:18px;
+      }
+
+      .hero-center-glow{
+        width:220px;
+        height:220px;
+        filter:blur(18px);
+      }
+
+      .hero-chip{
+        font-size:.78rem;
+        padding:9px 12px;
+      }
+
+      .hero-float-badge{
+        min-width:unset;
+        width:100%;
+      }
+
+      .final-cta{
+        padding:34px 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+      }
     }
   </style>
 </head>
 <body>
 
   <header class="hero" id="top">
-    <div class="hero-noise"></div>
+    <div class="hero-bg-noise"></div>
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-glow hero-glow-3"></div>
 
     <div class="container hero-grid">
 
       <div class="hero-copy reveal">
         <div class="eyebrow">Premium UI kit pour sites & e-commerce</div>
+
+        <div class="limit-badge">
+          <span class="limit-dot"></span>
+          <span>Offre pour les <strong>30 premiers</strong> • il reste <strong>17 places</strong></span>
+        </div>
 
         <h1>
           Transforme ton site en
@@ -931,10 +1455,10 @@
         </div>
 
         <div class="btn-row">
-          <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-primary btn-wide" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
             Acheter le pack
           </a>
-          <a class="btn btn-ghost" href="#modules">
+          <a class="btn btn-ghost btn-wide" href="#modules">
             Voir les démos
           </a>
         </div>
@@ -955,39 +1479,71 @@
         </div>
       </div>
 
-      <div class="hero-card reveal">
-        <div class="hero-card-top">
-          <div class="dots"><span></span><span></span><span></span></div>
-          <div class="hero-card-title">Premium Website Modules</div>
-          <div class="hero-card-live">Live preview</div>
-        </div>
+      <div class="hero-stage reveal">
+        <div class="hero-3d-wrap" id="hero3dWrap">
+          <div class="hero-card" id="hero3dCard">
+            <div class="hero-card-top">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="hero-card-title">Premium Website Modules</div>
+              <div class="hero-card-live">Live preview</div>
+            </div>
 
-        <div class="hero-card-body">
-          <div class="hero-mini-card left">
-            <div class="kicker">Premium system</div>
-            <div class="value">Dark / Light UI</div>
-            <p>Un rendu plus éditorial, plus moderne, plus désirable.</p>
+            <div class="hero-card-body">
+              <div class="hero-depth-ring ring-1"></div>
+              <div class="hero-depth-ring ring-2"></div>
+
+              <div class="hero-mini-card left layer layer-soft" data-depth="18">
+                <div class="kicker">Premium system</div>
+                <div class="value">Dark / Light UI</div>
+                <p>Un rendu plus éditorial, plus moderne, plus désirable.</p>
+              </div>
+
+              <div class="hero-mini-card right layer layer-soft" data-depth="22">
+                <div class="kicker">Conversion first</div>
+                <div class="value">Démos cliquables</div>
+                <p>Chaque module peut être exploré séparément pour montrer sa valeur.</p>
+              </div>
+
+              <div class="hero-center-glow"></div>
+
+              <div class="mockup-wrap layer" data-depth="30">
+                <img src="mockup.png" alt="Aperçu premium du pack Premium Website Modules" />
+              </div>
+
+              <a href="02-hero-slideshow.html" target="_blank" rel="noopener noreferrer" class="hero-chip hero-chip-1 layer" data-depth="26">
+                Hero
+              </a>
+              <a href="03-video-compact.html" target="_blank" rel="noopener noreferrer" class="hero-chip hero-chip-2 layer" data-depth="20">
+                Video
+              </a>
+              <a href="08-quiz.html" target="_blank" rel="noopener noreferrer" class="hero-chip hero-chip-3 layer" data-depth="24">
+                Quiz
+              </a>
+              <a href="07-comparateur.html" target="_blank" rel="noopener noreferrer" class="hero-chip hero-chip-4 layer" data-depth="17">
+                Comparator
+              </a>
+
+              <div class="hero-float-badge badge-top layer" data-depth="28">
+                <span class="hero-badge-label">UI premium</span>
+                <strong>Plus de valeur perçue</strong>
+              </div>
+
+              <div class="hero-float-badge badge-bottom layer" data-depth="16">
+                <span class="hero-badge-label">Conversion</span>
+                <strong>Plus de clics utiles</strong>
+              </div>
+            </div>
+
+            <div class="hero-card-bottom">
+              <a href="02-hero-slideshow.html" class="pill" target="_blank" rel="noopener noreferrer">Hero</a>
+              <a href="03-video-compact.html" class="pill" target="_blank" rel="noopener noreferrer">Video</a>
+              <a href="08-quiz.html" class="pill" target="_blank" rel="noopener noreferrer">Quiz</a>
+              <a href="07-comparateur.html" class="pill" target="_blank" rel="noopener noreferrer">Comparator</a>
+              <a href="10-guide-tailles.html" class="pill" target="_blank" rel="noopener noreferrer">Guide</a>
+              <a href="13-email-valeurs.html" class="pill" target="_blank" rel="noopener noreferrer">Email</a>
+              <a href="#modules" class="pill">Tous les modules</a>
+            </div>
           </div>
-
-          <div class="mockup-wrap">
-            <img src="mockup.png" alt="Aperçu premium du pack Premium Website Modules" />
-          </div>
-
-          <div class="hero-mini-card right">
-            <div class="kicker">Conversion first</div>
-            <div class="value">Démos cliquables</div>
-            <p>Chaque module peut être exploré séparément pour montrer sa valeur.</p>
-          </div>
-        </div>
-
-        <div class="hero-card-bottom">
-          <a href="02-hero-slideshow.html" class="pill" target="_blank" rel="noopener noreferrer">Hero</a>
-          <a href="03-video-compact.html" class="pill" target="_blank" rel="noopener noreferrer">Video</a>
-          <a href="08-quiz.html" class="pill" target="_blank" rel="noopener noreferrer">Quiz</a>
-          <a href="07-comparateur.html" class="pill" target="_blank" rel="noopener noreferrer">Comparator</a>
-          <a href="10-guide-tailles.html" class="pill" target="_blank" rel="noopener noreferrer">Guide</a>
-          <a href="13-email-valeurs.html" class="pill" target="_blank" rel="noopener noreferrer">Email</a>
-          <a href="#modules" class="pill">Tous les modules</a>
         </div>
       </div>
 
@@ -1101,10 +1657,20 @@
           </div>
 
           <div class="glass-card pricing-card reveal">
-            <div class="badge">Offre directe</div>
+            <div class="badge">Offre limitée</div>
             <h3 style="margin-top:14px;">Pack complet Premium Website Modules</h3>
             <div class="price-big">79€</div>
             <div class="price-small">Paiement unique • accès immédiat</div>
+
+            <div class="stock-bar">
+              <div class="stock-line">
+                <span>Offre réservée aux 30 premiers</span>
+                <strong>17 places restantes</strong>
+              </div>
+              <div class="stock-track">
+                <div class="stock-fill"></div>
+              </div>
+            </div>
 
             <div class="stack">
               <div class="item">✔ 14 modules premium</div>
@@ -1114,11 +1680,15 @@
               <div class="item">✔ Gain de temps énorme vs création sur mesure</div>
             </div>
 
+            <p class="pricing-note">
+              Offre spéciale de lancement pour les 30 premiers acheteurs. Il reste actuellement 17 places.
+            </p>
+
             <div class="btn-row">
-              <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
+              <a class="btn btn-primary btn-wide" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
                 Acheter maintenant
               </a>
-              <a class="btn btn-ghost" href="#modules">
+              <a class="btn btn-ghost btn-wide" href="#modules">
                 Voir les démos
               </a>
             </div>
@@ -1181,12 +1751,15 @@
             Si tu veux que ton site paraisse plus haut de gamme, retienne plus l’attention
             et présente mieux ton offre, ce pack a été conçu exactement pour ça.
           </p>
+          <div class="final-subline">
+            Offre pour les 30 premiers • il reste 17 places
+          </div>
 
           <div class="btn-row" style="justify-content:center;">
-            <a class="btn btn-primary" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-primary btn-wide" href="https://lumirebeauty.gumroad.com/l/pdlbdu" target="_blank" rel="noopener noreferrer">
               Oui, je veux le pack
             </a>
-            <a class="btn btn-ghost" href="#top">
+            <a class="btn btn-ghost btn-wide" href="#top">
               Revoir le hero
             </a>
           </div>
@@ -1306,34 +1879,114 @@
 
     const modulesGrid = document.getElementById("modulesGrid");
 
-    modulesGrid.innerHTML = moduleLinks.map(module => `
-      <article class="module-card reveal">
-        <a class="module-link" href="${module.url}" target="_blank" rel="noopener noreferrer">
-          <div class="module-top">
-            <div class="module-num">${module.num}</div>
-            <div class="module-tag">${module.tag}</div>
-          </div>
-          <div class="module-title">${module.title}</div>
-          <div class="module-desc">${module.desc}</div>
-          <div class="module-footer">
-            <span>Voir la démo</span>
-            <span>→</span>
-          </div>
-        </a>
-      </article>
-    `).join("");
+    if (modulesGrid) {
+      modulesGrid.innerHTML = moduleLinks.map(module => `
+        <article class="module-card reveal">
+          <a class="module-link" href="${module.url}" target="_blank" rel="noopener noreferrer">
+            <div class="module-top">
+              <div class="module-num">${module.num}</div>
+              <div class="module-tag">${module.tag}</div>
+            </div>
+            <div class="module-title">${module.title}</div>
+            <div class="module-desc">${module.desc}</div>
+            <div class="module-footer">
+              <span>Voir la démo</span>
+              <span>→</span>
+            </div>
+          </a>
+        </article>
+      `).join("");
+    }
 
     const reveals = document.querySelectorAll('.reveal');
-
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.12 });
 
     reveals.forEach(el => observer.observe(el));
+
+    const heroWrap = document.getElementById('hero3dWrap');
+    const heroCard = document.getElementById('hero3dCard');
+    const layers = heroCard ? heroCard.querySelectorAll('.layer') : [];
+    const centerGlow = document.querySelector('.hero-center-glow');
+
+    const isDesktop = () => window.matchMedia('(min-width: 1101px)').matches;
+
+    let currentX = 0;
+    let currentY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let rafId = null;
+
+    function animate3D() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      if (heroCard) {
+        heroCard.style.transform = `
+          rotateX(${currentY}deg)
+          rotateY(${currentX}deg)
+          scale3d(1.01,1.01,1.01)
+        `;
+      }
+
+      layers.forEach(layer => {
+        const depth = Number(layer.dataset.depth || 10);
+        const moveX = (currentX / 16) * depth;
+        const moveY = (currentY / 16) * depth;
+        layer.style.transform = `translate3d(${moveX}px, ${-moveY}px, ${depth}px)`;
+      });
+
+      rafId = requestAnimationFrame(animate3D);
+    }
+
+    if (heroWrap && heroCard) {
+      heroWrap.addEventListener('mousemove', (e) => {
+        if (!isDesktop()) return;
+
+        const rect = heroWrap.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+
+        targetX = (px - 0.5) * 14;
+        targetY = (0.5 - py) * 12;
+
+        if (centerGlow) {
+          centerGlow.style.left = `${px * 100}%`;
+          centerGlow.style.top = `${py * 100}%`;
+        }
+      });
+
+      heroWrap.addEventListener('mouseleave', () => {
+        targetX = 0;
+        targetY = 0;
+
+        if (centerGlow) {
+          centerGlow.style.left = `50%`;
+          centerGlow.style.top = `50%`;
+        }
+      });
+
+      if (isDesktop()) {
+        rafId = requestAnimationFrame(animate3D);
+      }
+
+      window.addEventListener('resize', () => {
+        if (!isDesktop()) {
+          if (heroCard) heroCard.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+          layers.forEach(layer => {
+            const depth = Number(layer.dataset.depth || 10);
+            layer.style.transform = `translate3d(0px, 0px, ${depth}px)`;
+          });
+        } else if (!rafId) {
+          rafId = requestAnimationFrame(animate3D);
+        }
+      });
+    }
   </script>
 </body>
 </html>
