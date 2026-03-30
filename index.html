@@ -1,292 +1,903 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUMIÈRE — Modules Premium</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUMIÈRE — Modules Premium</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#090909;
+      --bg2:#121212;
+      --panel:#111111;
+      --line:rgba(255,255,255,.08);
+      --gold:#c8a96b;
+      --gold-soft:rgba(200,169,107,.22);
+      --text:#f6f1e8;
+      --muted:rgba(246,241,232,.72);
+      --radius:28px;
+      --shadow:0 20px 80px rgba(0,0,0,.45);
+    }
 
-<style>
-:root{
-  --gold:#c8a96b;
-  --bg:#0A0B0D;
-  --ratio:1.618;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at top, rgba(200,169,107,.08), transparent 30%),
+        linear-gradient(180deg,#0a0a0a 0%, #0d0d0d 40%, #080808 100%);
+      color:var(--text);
+      font-family:'Inter',sans-serif;
+    }
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:white;
-  font-family:'Inter',sans-serif;
-}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
 
-/* HERO */
+    .container{
+      width:min(1280px, calc(100% - 32px));
+      margin:0 auto;
+    }
 
-.hero{
-  position:relative;
-  height:78vh;
-  min-height:520px;
-  overflow:hidden;
-}
+    .section{
+      padding:72px 0;
+    }
 
-.hero video{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.62);
+    }
 
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9));
-}
+    .eyebrow::before{
+      content:"";
+      width:36px;
+      height:1px;
+      background:linear-gradient(90deg, transparent, var(--gold));
+      display:block;
+    }
 
-/* TEXT */
+    .title-serif{
+      font-family:'Cormorant Garamond',serif;
+      letter-spacing:.01em;
+    }
 
-.hero-content{
-  position:relative;
-  z-index:2;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:clamp(20px,5vw,80px);
-  max-width:700px;
-}
+    /* HEADER */
+    .topbar{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:50;
+      backdrop-filter:blur(18px);
+      background:linear-gradient(180deg, rgba(7,7,7,.78), rgba(7,7,7,.38));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
 
-.hero h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(34px,5vw,70px);
-  line-height:1.1;
-}
+    .topbar-inner{
+      width:min(1280px, calc(100% - 24px));
+      margin:0 auto;
+      height:68px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
 
-.hero p{
-  opacity:0.7;
-  margin-top:20px;
-  font-size:clamp(14px,1.2vw,18px);
-}
+    .brand{
+      font-family:'Cormorant Garamond',serif;
+      font-size:28px;
+      letter-spacing:.08em;
+    }
 
-/* CTA */
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+      color:rgba(255,255,255,.74);
+      font-size:13px;
+    }
 
-.cta{
-  margin-top:30px;
-  display:inline-block;
-  padding:14px 28px;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  text-transform:uppercase;
-  font-size:12px;
-  letter-spacing:2px;
-  transition:.4s;
-}
+    .nav a{
+      transition:.25s ease;
+    }
 
-.cta:hover{
-  background:var(--gold);
-  color:black;
-}
+    .nav a:hover{
+      color:var(--text);
+    }
 
-/* SECTION */
+    .nav-cta{
+      padding:11px 16px;
+      border:1px solid rgba(200,169,107,.52);
+      border-radius:999px;
+      color:var(--gold);
+      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
+    }
 
-.section{
-  padding:calc(80px * var(--ratio)) 20px;
-}
+    .nav-cta:hover{
+      background:rgba(200,169,107,.08);
+    }
 
-/* GRID */
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:100svh;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding-top:68px;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
+    .hero-media{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+    }
 
-/* CARD */
+    .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity 1.2s ease;
+      filter:saturate(.95) contrast(1.02) brightness(.82);
+      transform:scale(1.02);
+    }
 
-.card{
-  position:relative;
-  overflow:hidden;
-}
+    .hero-video.active{
+      opacity:1;
+    }
 
-.card img{
-  width:100%;
-  height:420px;
-  object-fit:cover;
-  transition:.6s;
-}
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 72% 30%, rgba(255,255,255,.05), transparent 22%),
+        linear-gradient(180deg, rgba(6,6,6,.18) 0%, rgba(6,6,6,.44) 45%, rgba(6,6,6,.88) 100%);
+    }
 
-.card:hover img{
-  transform:scale(1.05);
-}
+    .hero-overlay::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(8,8,8,.74) 0%, rgba(8,8,8,.38) 40%, rgba(8,8,8,.12) 65%, rgba(8,8,8,.48) 100%);
+      pointer-events:none;
+    }
 
-.card-content{
-  position:absolute;
-  bottom:0;
-  padding:20px;
-  background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-}
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:min(1280px, calc(100% - 32px));
+      margin:0 auto;
+      padding:76px 0 64px;
+      display:grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, .62fr);
+      gap:40px;
+      align-items:end;
+    }
 
-/* VIDEO SECTION */
+    .hero-copy{
+      max-width:760px;
+    }
 
-.video-full{
-  position:relative;
-  height:70vh;
-}
+    .hero h1{
+      margin:18px 0 0;
+      font-family:'Cormorant Garamond',serif;
+      font-weight:600;
+      font-size:clamp(44px, 7.2vw, 96px);
+      line-height:.95;
+      letter-spacing:-.02em;
+      text-wrap:balance;
+    }
 
-.video-full video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+    .hero-sub{
+      margin:22px 0 0;
+      max-width:640px;
+      color:var(--muted);
+      font-size:clamp(15px, 1.5vw, 18px);
+      line-height:1.7;
+    }
 
-/* MOBILE */
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
 
-@media(max-width:768px){
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 22px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      transition:.28s ease;
+      border:1px solid rgba(255,255,255,.12);
+    }
 
-.hero{
-  height:70vh;
-}
+    .btn-primary{
+      background:linear-gradient(180deg, rgba(212,179,115,.18), rgba(212,179,115,.08));
+      color:var(--text);
+      border-color:rgba(212,179,115,.42);
+      box-shadow:0 10px 40px rgba(0,0,0,.24), 0 0 0 1px rgba(255,255,255,.03) inset;
+    }
 
-.hero-content{
-  justify-content:flex-end;
-}
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      background:linear-gradient(180deg, rgba(212,179,115,.24), rgba(212,179,115,.12));
+    }
 
-.hero h1{
-  font-size:34px;
-}
+    .btn-secondary{
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.88);
+    }
 
-}
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.08);
+    }
 
-/* ANIMATION */
+    .hero-card{
+      justify-self:end;
+      width:min(100%, 420px);
+      padding:22px;
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(18,18,18,.76), rgba(12,12,12,.72));
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(18px);
+      box-shadow:var(--shadow);
+    }
 
-.fade-up{
-  opacity:0;
-  transform:translateY(30px);
-  transition:.8s;
-}
+    .hero-card-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
 
-.fade-up.visible{
-  opacity:1;
-  transform:none;
-}
-</style>
+    .mini-stat{
+      padding:16px;
+      border-radius:20px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .mini-stat strong{
+      display:block;
+      font-size:22px;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .mini-stat span{
+      display:block;
+      margin-top:6px;
+      font-size:12px;
+      color:rgba(255,255,255,.62);
+      line-height:1.45;
+    }
+
+    .trust-row{
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .trust-pill{
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.72);
+    }
+
+    /* MODULE 000 */
+    .feature-wrap{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .video-shell{
+      position:relative;
+      overflow:hidden;
+      border-radius:32px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#000;
+      box-shadow:var(--shadow);
+      aspect-ratio:16/9;
+    }
+
+    .video-shell video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .glow{
+      position:absolute;
+      inset:auto auto -80px -80px;
+      width:220px;
+      height:220px;
+      background:radial-gradient(circle, rgba(200,169,107,.24), transparent 70%);
+      pointer-events:none;
+      filter:blur(8px);
+    }
+
+    .content-card{
+      padding:32px;
+      border-radius:32px;
+      background:linear-gradient(180deg, rgba(18,18,18,.82), rgba(12,12,12,.92));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .content-card h2{
+      margin:14px 0 0;
+      font-size:clamp(34px, 4vw, 56px);
+      line-height:.96;
+      font-family:'Cormorant Garamond',serif;
+      font-weight:600;
+      letter-spacing:-.02em;
+    }
+
+    .content-card p{
+      margin:16px 0 0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .bullet-list{
+      margin:22px 0 0;
+      display:grid;
+      gap:12px;
+    }
+
+    .bullet{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:rgba(255,255,255,.82);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .bullet::before{
+      content:"";
+      width:8px;
+      height:8px;
+      margin-top:8px;
+      border-radius:999px;
+      background:var(--gold);
+      box-shadow:0 0 18px rgba(200,169,107,.48);
+      flex:0 0 auto;
+    }
+
+    /* MODULES GRID */
+    .grid-head{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:end;
+      margin-bottom:28px;
+    }
+
+    .grid-head h3{
+      margin:12px 0 0;
+      font-size:clamp(30px, 4vw, 50px);
+      line-height:1;
+    }
+
+    .grid-head p{
+      margin:0;
+      max-width:540px;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:14px;
+    }
+
+    .modules-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .module-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#111;
+      min-height:420px;
+      box-shadow:0 16px 50px rgba(0,0,0,.28);
+      isolation:isolate;
+    }
+
+    .module-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .7s ease, filter .7s ease;
+      filter:brightness(.9);
+    }
+
+    .module-card:hover img{
+      transform:scale(1.045);
+      filter:brightness(.98);
+    }
+
+    .module-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.04) 38%, rgba(0,0,0,.84));
+      z-index:1;
+    }
+
+    .module-meta{
+      position:absolute;
+      inset:auto 18px 18px 18px;
+      z-index:2;
+    }
+
+    .module-number{
+      display:inline-flex;
+      margin-bottom:10px;
+      padding:8px 11px;
+      border-radius:999px;
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.9);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(8px);
+    }
+
+    .module-meta h4{
+      margin:0;
+      font-size:22px;
+      line-height:1.12;
+      font-weight:600;
+    }
+
+    .module-meta p{
+      margin:8px 0 0;
+      color:rgba(255,255,255,.72);
+      font-size:13px;
+      line-height:1.6;
+      max-width:90%;
+    }
+
+    /* CTA */
+    .cta-block{
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      padding:44px 28px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at top, rgba(200,169,107,.12), transparent 35%),
+        linear-gradient(180deg, rgba(18,18,18,.95), rgba(10,10,10,.98));
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+
+    .cta-block h3{
+      margin:12px 0 0;
+      font-size:clamp(34px, 4.5vw, 60px);
+      line-height:.96;
+    }
+
+    .cta-block p{
+      max-width:680px;
+      margin:16px auto 0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .availability{
+      margin-top:14px;
+      color:var(--gold);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:11px;
+    }
+
+    /* reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.is-visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* responsive */
+    @media (max-width: 1100px){
+      .hero-inner,
+      .feature-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .hero-card{
+        justify-self:start;
+        width:min(100%, 560px);
+      }
+
+      .modules-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 760px){
+      .topbar-inner{
+        height:auto;
+        min-height:64px;
+        padding:12px 0;
+        align-items:flex-start;
+      }
+
+      .nav{
+        display:none;
+      }
+
+      .hero{
+        min-height:92svh;
+        align-items:flex-end;
+      }
+
+      .hero-inner{
+        width:min(100% - 20px, 1280px);
+        padding:54px 0 28px;
+        gap:18px;
+      }
+
+      .hero h1{
+        font-size:clamp(40px, 12vw, 64px);
+        line-height:.95;
+      }
+
+      .hero-sub{
+        font-size:14px;
+        line-height:1.65;
+      }
+
+      .hero-card{
+        padding:18px;
+        border-radius:24px;
+      }
+
+      .hero-card-grid{
+        gap:10px;
+      }
+
+      .mini-stat{
+        padding:14px;
+        border-radius:16px;
+      }
+
+      .section{
+        padding:56px 0;
+      }
+
+      .content-card{
+        padding:24px;
+        border-radius:24px;
+      }
+
+      .modules-grid{
+        grid-template-columns:1fr;
+      }
+
+      .module-card{
+        min-height:360px;
+      }
+
+      .grid-head{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .hero-actions{
+        width:100%;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- HERO VIDEO -->
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">LUMIÈRE</div>
+      <nav class="nav">
+        <a href="#pack">Pack complet</a>
+        <a href="#modules">Modules</a>
+        <a href="#demo">Démo</a>
+        <a href="#contact" class="nav-cta">Voir l’offre</a>
+      </nav>
+    </div>
+  </header>
 
-<section class="hero">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-media">
+      <video class="hero-video active" autoplay muted loop playsinline preload="auto">
+        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
+      </video>
 
-<video autoplay muted loop playsinline>
-<source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
-</video>
+      <video class="hero-video" muted loop playsinline preload="auto">
+        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880555/3762912-hd_1280_720_50fps_bybc6z.mp4" type="video/mp4">
+      </video>
 
-<div class="hero-overlay"></div>
+      <div class="hero-overlay"></div>
+    </div>
 
-<div class="hero-content fade-up">
-<h1>L’expérience digitale<br>qui fait vendre</h1>
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Digital luxury modules</span>
+        <h1>Des modules premium<br>qui rendent ton site<br>irrésistible.</h1>
+        <p class="hero-sub">
+          Une expérience visuelle plus sensuelle, plus haut de gamme, plus immersive.
+          Pensée pour capturer l’attention en quelques secondes et transformer une visite en envie d’acheter.
+        </p>
 
-<p>Modules interactifs premium pour transformer ton site en machine à conversion.</p>
+        <div class="hero-actions">
+          <a href="#pack" class="btn btn-primary">Découvrir le pack</a>
+          <a href="#modules" class="btn btn-secondary">Voir les modules</a>
+        </div>
+      </div>
 
-<a href="#" class="cta">Découvrir</a>
-</div>
+      <aside class="hero-card reveal">
+        <span class="eyebrow">Pensé conversion</span>
+        <div class="hero-card-grid">
+          <div class="mini-stat">
+            <strong>13</strong>
+            <span>modules premium prêts à intégrer</span>
+          </div>
+          <div class="mini-stat">
+            <strong>100%</strong>
+            <span>mobile, immersif et visuellement fort</span>
+          </div>
+          <div class="mini-stat">
+            <strong>Luxe</strong>
+            <span>direction artistique sombre et éditoriale</span>
+          </div>
+          <div class="mini-stat">
+            <strong>Fast</strong>
+            <span>assets Cloudinary, intégration plus fluide</span>
+          </div>
+        </div>
 
-</section>
+        <div class="trust-row">
+          <span class="trust-pill">Hero video</span>
+          <span class="trust-pill">Quiz</span>
+          <span class="trust-pill">Comparateur</span>
+          <span class="trust-pill">Showcase</span>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-<!-- MODULES GRID -->
+  <!-- PACK COMPLET / MODULE 000 -->
+  <section class="section" id="pack">
+    <div class="container">
+      <div class="feature-wrap">
+        <div class="video-shell reveal">
+          <video autoplay muted loop playsinline preload="auto">
+            <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
+          </video>
+          <div class="glow"></div>
+        </div>
 
-<section class="section">
+        <div class="content-card reveal">
+          <span class="eyebrow">Module 000</span>
+          <h2>Le pack complet qui donne immédiatement une allure premium à ta démo.</h2>
+          <p>
+            Ici on met bien la vidéo de démonstration du pack complet, pas la vidéo du hero.
+            Le but est de montrer la richesse de l’ensemble, la cohérence du système et l’impact visuel global.
+          </p>
 
-<div class="grid">
+          <div class="bullet-list">
+            <div class="bullet">Présente l’univers complet en un seul bloc fort.</div>
+            <div class="bullet">Crée un effet “wow” avant même d’entrer dans le détail.</div>
+            <div class="bullet">Installe une perception de valeur plus haute.</div>
+            <div class="bullet">Parfait pour introduire ton offre de façon cinématique.</div>
+          </div>
 
-<div class="card fade-up">
-<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png">
-<div class="card-content">
-<h3>Hero Slideshow</h3>
-</div>
-</div>
+          <div class="hero-actions" style="margin-top:26px;">
+            <a href="#modules" class="btn btn-primary">Voir tous les modules</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="card fade-up">
-<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png">
-<div class="card-content">
-<h3>Vidéo Compacte</h3>
-</div>
-</div>
+  <!-- GRID MODULES -->
+  <section class="section" id="modules">
+    <div class="container">
+      <div class="grid-head reveal">
+        <div>
+          <span class="eyebrow">Collection</span>
+          <h3 class="title-serif">Les modules qui composent l’expérience</h3>
+        </div>
+        <p>
+          J’ai gardé une présentation plus éditoriale et plus luxe, avec des cartes immersives,
+          pour que ton offre ressemble davantage à un vrai produit premium qu’à une simple liste de composants.
+        </p>
+      </div>
 
-<div class="card fade-up">
-<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png">
-<div class="card-content">
-<h3>Vidéo Full</h3>
-</div>
-</div>
+      <div class="modules-grid">
+        <article class="module-card reveal">
+          <img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png" alt="Hero slideshow">
+          <div class="module-meta">
+            <span class="module-number">01 • Header / Hero</span>
+            <h4>Hero slideshow</h4>
+            <p>Un début de page plus vivant, plus mode, plus immersif.</p>
+          </div>
+        </article>
 
-<div class="card fade-up">
-<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png">
-<div class="card-content">
-<h3>Comparateur</h3>
-</div>
-</div>
+        <article class="module-card reveal">
+          <img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png" alt="Vidéo compacte">
+          <div class="module-meta">
+            <span class="module-number">03 • Vidéo compacte</span>
+            <h4>Video compacte</h4>
+            <p>Un module plus dense, élégant, efficace pour rythmer la page.</p>
+          </div>
+        </article>
 
-<div class="card fade-up">
-<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png">
-<div class="card-content">
-<h3>Quiz</h3>
-</div>
-</div>
+        <article class="module-card reveal">
+          <img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png" alt="Vidéo full">
+          <div class="module-meta">
+            <span class="module-number">04 • Immersion</span>
+            <h4>Video full</h4>
+            <p>Une section large et cinématique pour créer l’impact.</p>
+          </div>
+        </article>
 
-<div class="card fade-up">
-<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png">
-<div class="card-content">
-<h3>Selecteur</h3>
-</div>
-</div>
+        <article class="module-card reveal">
+          <img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_892_vxoior.png" alt="Marquee">
+          <div class="module-meta">
+            <span class="module-number">06 • Mouvement</span>
+            <h4>Marquee</h4>
+            <p>Ajoute du rythme et une sensation plus contemporaine.</p>
+          </div>
+        </article>
 
-</div>
+        <article class="module-card reveal">
+          <img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png" alt="Comparateur">
+          <div class="module-meta">
+            <span class="module-number">07 • Preuve visuelle</span>
+            <h4>Comparateur</h4>
+            <p>Montre la transformation de manière directe et convaincante.</p>
+          </div>
+        </article>
 
-</section>
+        <article class="module-card reveal">
+          <img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png" alt="Quiz">
+          <div class="module-meta">
+            <span class="module-number">08 • Guidance</span>
+            <h4>Quiz intelligent</h4>
+            <p>Oriente la visiteuse vers le bon produit de manière fluide.</p>
+          </div>
+        </article>
 
-<!-- VIDEO IMMERSIVE -->
+        <article class="module-card reveal">
+          <img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png" alt="Sélecteur">
+          <div class="module-meta">
+            <span class="module-number">09 • Choix premium</span>
+            <h4>Sélecteur</h4>
+            <p>Présente les variantes avec plus de désirabilité visuelle.</p>
+          </div>
+        </article>
 
-<section class="video-full">
-<video autoplay muted loop playsinline>
-<source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
-</video>
-</section>
+        <article class="module-card reveal">
+          <img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_913_uzticg.png" alt="Guide tailles">
+          <div class="module-meta">
+            <span class="module-number">10 • Réassurance</span>
+            <h4>Guide tailles</h4>
+            <p>Réduit les hésitations et rassure immédiatement.</p>
+          </div>
+        </article>
 
-<!-- CTA FINAL -->
+        <article class="module-card reveal">
+          <img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774829261/Capture_d_%C3%A9cran_916_givuex.png" alt="Showcase">
+          <div class="module-meta">
+            <span class="module-number">11 • Showcase</span>
+            <h4>Showcase visuel</h4>
+            <p>Met en scène les contenus comme une vraie campagne premium.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-<section class="section fade-up" style="text-align:center">
+  <!-- CTA FINAL -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta-block reveal">
+        <span class="eyebrow" style="justify-content:center;">Offre premium</span>
+        <h3 class="title-serif">Une démo plus désirable.<br>Une offre qui se vend mieux.</h3>
+        <p>
+          On est sur une base bien plus cohérente maintenant : les deux vidéos “beauty” en hero pour l’atmosphère,
+          et la vraie vidéo de démonstration dans le module 000 pour présenter le pack complet.
+        </p>
+        <div class="availability">30 premières offres • il en reste 17</div>
+        <div class="hero-actions" style="justify-content:center; margin-top:24px;">
+          <a href="#pack" class="btn btn-primary">Revoir le pack</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<h2 style="font-family:Cormorant Garamond;font-size:40px;">
-Passe au niveau supérieur
-</h2>
+  <script>
+    // hero video switch
+    const heroVideos = document.querySelectorAll('.hero-video');
+    let currentVideo = 0;
 
-<p style="opacity:.7;margin-top:10px;">
-30 premières places — il en reste 17
-</p>
+    heroVideos.forEach((video, index) => {
+      if(index !== 0){
+        video.pause();
+      } else {
+        video.play().catch(()=>{});
+      }
+    });
 
-<a class="cta" href="#">Obtenir le pack</a>
+    function switchHeroVideo(){
+      const current = heroVideos[currentVideo];
+      const nextIndex = (currentVideo + 1) % heroVideos.length;
+      const next = heroVideos[nextIndex];
 
-</section>
+      next.currentTime = 0;
+      next.play().catch(()=>{});
 
-<script>
+      next.classList.add('active');
+      current.classList.remove('active');
 
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('visible');
-}
-});
-});
+      currentVideo = nextIndex;
+    }
 
-document.querySelectorAll('.fade-up').forEach(el=>{
-observer.observe(el);
-});
+    setInterval(switchHeroVideo, 6000);
 
-</script>
+    // reveal on scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.14 });
 
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
