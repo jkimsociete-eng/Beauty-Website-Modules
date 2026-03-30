@@ -3,247 +3,300 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LUMIÈRE — Modules Digitaux Premium</title>
+  <title>LUMIÈRE — Modules premium pour sites e-commerce</title>
+  <meta name="description" content="Pack de modules premium pour Shopify, IONOS, Webflow, Wix, Squarespace et sites e-commerce. Démo luxe, immersive et ultra-convertissante." />
+  <meta property="og:title" content="LUMIÈRE — Modules premium pour sites e-commerce" />
+  <meta property="og:description" content="13 modules premium pour transformer une boutique classique en expérience visuelle plus désirable, plus crédible, plus vendeuse." />
+  <meta property="og:image" content="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_889_uqzvtt.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#080808;
-      --bg-soft:#111111;
-      --panel:#131313;
-      --panel-2:#1a1a1a;
-      --line:rgba(255,255,255,.08);
-      --line-strong:rgba(255,255,255,.14);
-      --text:#f6f1e8;
-      --muted:#c9bfb0;
-      --muted-2:#9c9284;
-      --gold:#d2b06b;
-      --gold-soft:#ecd4a0;
-      --shadow:0 24px 60px rgba(0,0,0,.34);
-      --radius:24px;
-      --max:1380px;
+    :root {
+      --bg: #070707;
+      --bg-2: #0d0d0d;
+      --panel: rgba(20,20,20,.78);
+      --panel-2: rgba(255,255,255,.045);
+      --line: rgba(255,255,255,.08);
+      --line-2: rgba(255,255,255,.14);
+      --gold: #c8a96b;
+      --gold-2: #d9ba7f;
+      --gold-soft: rgba(200,169,107,.16);
+      --text: #f7f0e7;
+      --muted: rgba(247,240,231,.74);
+      --muted-2: rgba(247,240,231,.54);
+      --shadow: 0 24px 80px rgba(0,0,0,.42);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --max: 1280px;
+      --header-h: 72px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:'Inter',sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(210,176,107,.10), transparent 22%),
-        radial-gradient(circle at top right, rgba(210,176,107,.05), transparent 18%),
-        linear-gradient(180deg, #090909 0%, #070707 100%);
-      color:var(--text);
-      overflow-x:hidden;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, rgba(200,169,107,.10), transparent 24%), radial-gradient(circle at 85% 15%, rgba(200,169,107,.05), transparent 20%), linear-gradient(180deg,#080808 0%, #0d0d0d 42%, #070707 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
 
-    a{text-decoration:none;color:inherit}
-    img,video{display:block;max-width:100%}
-    button{font:inherit}
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; max-width: 100%; }
+    button, input { font: inherit; }
 
-    .container{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
     }
 
-    /* ─── TOP BAR ─────────────────────── */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:100;
-      backdrop-filter:blur(16px);
-      background:rgba(8,8,8,.65);
-      border-bottom:1px solid rgba(255,255,255,.06);
+    .section {
+      position: relative;
+      padding: 92px 0;
     }
 
-    .topbar-inner{
-      min-height:78px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .62);
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width:0;
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+      display: block;
     }
 
-    .brand-mark{
-      width:38px;
-      height:38px;
-      border-radius:50%;
-      background:
-        radial-gradient(circle at 32% 30%, rgba(255,255,255,.24), transparent 32%),
-        linear-gradient(145deg, #f0d49b, #9f7434);
-      box-shadow:0 0 0 1px rgba(255,255,255,.08), 0 8px 24px rgba(210,176,107,.24);
-      flex:0 0 auto;
+    .title-serif {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: .01em;
     }
 
-    .brand-copy{
-      min-width:0;
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid var(--line-2);
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: transform .28s ease, background .28s ease, border-color .28s ease, box-shadow .28s ease;
+      will-change: transform;
+      cursor: pointer;
     }
 
-    .brand-kicker{
-      margin:0 0 4px;
-      color:var(--gold-soft);
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      line-height:1;
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
+      transform: translateX(-130%);
+      transition: transform .8s ease;
     }
 
-    .brand-name{
-      margin:0;
-      font-family:'Cormorant Garamond',serif;
-      font-size:30px;
-      line-height:1;
-      letter-spacing:.04em;
+    .btn:hover::after {
+      transform: translateX(130%);
     }
 
-    /* ─── MODULE GRID ─────────────────────── */
-    .module-card{
-      position:relative;
-      overflow:hidden;
-      background:#131313;
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      transition:transform .3s ease, box-shadow .3s ease;
-      cursor:pointer;
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
-    .module-card:hover{
-      transform:scale(1.05);
-      box-shadow:0 4px 30px rgba(0,0,0,.24);
+    .btn-primary {
+      color: var(--text);
+      border-color: rgba(212,179,115,.42);
+      background: linear-gradient(180deg, rgba(212,179,115,.22), rgba(212,179,115,.08));
+      box-shadow: 0 10px 36px rgba(0,0,0,.25);
     }
 
-    .module-img-wrap{
-      position:relative;
-      height:220px;
+    .btn-primary:hover {
+      background: linear-gradient(180deg, rgba(212,179,115,.30), rgba(212,179,115,.12));
+      box-shadow: 0 18px 44px rgba(0,0,0,.30);
     }
 
-    .module-img-wrap img{
-      object-fit:cover;
-      object-position:center center;
-      width:100%;
-      height:100%;
-      transition:opacity .3s ease;
+    .btn-secondary {
+      background: rgba(255, 255, 255, .05);
+      color: rgba(255, 255, 255, .94);
     }
 
-    .module-body{
-      padding:16px;
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, .09);
+      border-color: rgba(255, 255, 255, .18);
     }
 
-    .module-title{
-      margin:12px 0;
-      font-family:'Cormorant Garamond',serif;
-      font-size:1.2rem;
-      color:var(--text);
-      line-height:1.2;
+    .btn-ghost {
+      background: transparent;
+      color: var(--gold);
+      border-color: rgba(200, 169, 107, .38);
     }
 
-    .module-desc{
-      color:var(--muted);
-      font-size:.9rem;
-      margin-bottom:20px;
-    }
-
-    .btn-demo{
-      background:var(--gold);
-      color:#fff;
-      padding:10px 16px;
-      border-radius:6px;
-      border:none;
-      cursor:pointer;
-      font-size:1rem;
-      font-weight:500;
-      transition:background-color .3s ease;
-    }
-
-    .btn-demo:hover{
-      background-color:var(--gold-soft);
-    }
-
-    .module-footer-row{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-    }
-
-    .module-mini-tag{
-      font-size:.8rem;
-      color:var(--muted);
-      letter-spacing:.15em;
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      z-index: 300;
+      background: linear-gradient(90deg, var(--gold), var(--gold-2));
+      box-shadow: 0 0 18px rgba(200,169,107,.45);
     }
 
     /* ─── COUNTER PLACES RESTANTES ─────────────────────── */
-    .counter{
-      font-size:2rem;
-      font-weight:700;
-      color:var(--gold);
+    .counter {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
     }
 
     /* ─── BENEFITS BAR ─────────────────────── */
-    .benefits-bar{
-      background:#111111;
-      color:var(--gold);
-      padding:16px;
-      display:flex;
-      justify-content:space-around;
-      align-items:center;
-      gap:32px;
+    .benefits-bar {
+      background: #111111;
+      color: var(--gold);
+      padding: 16px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 32px;
     }
 
-    .benefit{
-      text-align:center;
-      font-weight:500;
-      font-size:.9rem;
+    .benefit {
+      text-align: center;
+      font-weight: 500;
+      font-size: .9rem;
     }
 
-    .benefit-icon{
-      margin-bottom:8px;
+    .benefit-icon {
+      margin-bottom: 8px;
+    }
+
+    /* ─── MODULE GRID ─────────────────────── */
+    .module-card {
+      position: relative;
+      overflow: hidden;
+      background: #131313;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      transition: transform .3s ease, box-shadow .3s ease;
+      cursor: pointer;
+    }
+
+    .module-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, .24);
+    }
+
+    .module-img-wrap {
+      position: relative;
+      height: 220px;
+    }
+
+    .module-img-wrap img {
+      object-fit: cover;
+      object-position: center center;
+      width: 100%;
+      height: 100%;
+      transition: opacity .3s ease;
+    }
+
+    .module-body {
+      padding: 16px;
+    }
+
+    .module-title {
+      margin: 12px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .module-desc {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-demo {
+      background: var(--gold);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background-color .3s ease;
+    }
+
+    .btn-demo:hover {
+      background-color: var(--gold-soft);
+    }
+
+    .module-footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .module-mini-tag {
+      font-size: .8rem;
+      color: var(--muted);
+      letter-spacing: .15em;
     }
 
     /* ─── MODAL WINDOW ─────────────────────── */
     #modal {
-      display:none;
-      position:fixed;
-      top:0;
-      left:0;
-      width:100vw;
-      height:100vh;
-      background:rgba(0,0,0,.7);
-      z-index:1000;
-      justify-content:center;
-      align-items:center;
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, .7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
     }
 
     .modal-content {
-      background:white;
-      padding:32px;
-      border-radius:10px;
-      width:90%;
-      max-width:700px;
+      background: white;
+      padding: 32px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 700px;
     }
 
-    #modal-close{
-      font-size:24px;
-      cursor:pointer;
-      position:absolute;
-      top:12px;
-      right:12px;
+    #modal-close {
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 12px;
+      right: 12px;
     }
   </style>
 </head>
 
 <body>
+  <!-- HEADER -->
   <div class="topbar">
     <div class="topbar-inner container">
       <div class="brand">
@@ -256,6 +309,7 @@
     </div>
   </div>
 
+  <!-- HERO SECTION -->
   <section id="hero">
     <video autoplay muted loop>
       <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
@@ -267,6 +321,7 @@
     </div>
   </section>
 
+  <!-- BENEFITS BAR -->
   <div class="benefits-bar">
     <div class="benefit">
       <div class="benefit-icon">🌟</div>
@@ -282,6 +337,7 @@
     </div>
   </div>
 
+  <!-- MODULE CARDS GRID -->
   <div class="container">
     <div id="module-grid" class="module-grid">
       <!-- Module cards will go here dynamically -->
