@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LUMIÈRE — Pack Modules Premium</title>
-  <meta name="description" content="Modules premium interactifs pour sites beauté, e-commerce et marques visuelles. Expérience luxe, immersive, moderne et ultra-convertissante." />
+  <title>LUMIÈRE — Modules Premium</title>
+  <meta name="description" content="Pack de modules premium pour sites beauté, e-commerce et marques visuelles. Expérience luxe, immersive et ultra-convertissante." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,20 +12,21 @@
 
   <style>
     :root{
-      --bg:#080808;
+      --bg:#070707;
       --bg-soft:#101010;
-      --panel:rgba(18,18,18,.78);
+      --panel:rgba(17,17,17,.74);
       --panel-2:rgba(255,255,255,.04);
       --line:rgba(255,255,255,.08);
       --line-2:rgba(255,255,255,.14);
       --gold:#c8a96b;
+      --gold-2:#d8b77a;
       --gold-soft:rgba(200,169,107,.14);
       --text:#f5efe7;
-      --muted:rgba(245,239,231,.72);
-      --muted-2:rgba(245,239,231,.54);
-      --shadow:0 24px 80px rgba(0,0,0,.42);
+      --muted:rgba(245,239,231,.74);
+      --muted-2:rgba(245,239,231,.52);
+      --shadow:0 25px 80px rgba(0,0,0,.42);
       --radius-xl:34px;
-      --radius-lg:26px;
+      --radius-lg:28px;
       --radius-md:18px;
       --max:1280px;
     }
@@ -38,13 +39,15 @@
       font-family:'Inter',sans-serif;
       background:
         radial-gradient(circle at top, rgba(200,169,107,.08), transparent 26%),
-        linear-gradient(180deg, #090909 0%, #0d0d0d 42%, #070707 100%);
+        linear-gradient(180deg, #090909 0%, #0d0d0d 40%, #060606 100%);
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
+      overflow-x:hidden;
     }
 
     a{color:inherit;text-decoration:none}
     img,video{display:block;max-width:100%}
+    button,input{font:inherit}
 
     .container{
       width:min(var(--max), calc(100% - 32px));
@@ -53,6 +56,7 @@
 
     .section{
       padding:84px 0;
+      position:relative;
     }
 
     .eyebrow{
@@ -82,52 +86,71 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:50px;
+      min-height:52px;
       padding:0 22px;
       border-radius:999px;
       border:1px solid var(--line-2);
       font-size:12px;
       letter-spacing:.18em;
       text-transform:uppercase;
-      transition:.28s ease;
+      transition:.32s ease;
       white-space:nowrap;
+      position:relative;
+      overflow:hidden;
+      cursor:pointer;
+      will-change:transform;
+    }
+
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+      transform:translateX(-120%);
+      transition:transform .7s ease;
+    }
+
+    .btn:hover::after{
+      transform:translateX(120%);
     }
 
     .btn-primary{
       color:var(--text);
       border-color:rgba(212,179,115,.42);
-      background:linear-gradient(180deg, rgba(212,179,115,.20), rgba(212,179,115,.08));
-      box-shadow:0 10px 40px rgba(0,0,0,.22), 0 0 0 1px rgba(255,255,255,.02) inset;
+      background:linear-gradient(180deg, rgba(212,179,115,.22), rgba(212,179,115,.08));
+      box-shadow:0 10px 40px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.02) inset;
     }
 
     .btn-primary:hover{
-      transform:translateY(-1px);
-      background:linear-gradient(180deg, rgba(212,179,115,.26), rgba(212,179,115,.12));
+      transform:translateY(-2px);
+      background:linear-gradient(180deg, rgba(212,179,115,.28), rgba(212,179,115,.12));
+      box-shadow:0 18px 44px rgba(0,0,0,.3), 0 0 0 1px rgba(255,255,255,.03) inset;
     }
 
     .btn-secondary{
-      background:rgba(255,255,255,.045);
+      background:rgba(255,255,255,.05);
       color:rgba(255,255,255,.92);
     }
 
     .btn-secondary:hover{
-      background:rgba(255,255,255,.085);
+      background:rgba(255,255,255,.09);
+      transform:translateY(-2px);
     }
 
     /* Header */
     .topbar{
       position:fixed;
       inset:0 0 auto 0;
-      z-index:50;
+      z-index:100;
       backdrop-filter:blur(18px);
-      background:linear-gradient(180deg, rgba(7,7,7,.82), rgba(7,7,7,.34));
+      background:linear-gradient(180deg, rgba(7,7,7,.84), rgba(7,7,7,.34));
       border-bottom:1px solid rgba(255,255,255,.06);
     }
 
     .topbar-inner{
       width:min(var(--max), calc(100% - 24px));
       margin:0 auto;
-      min-height:68px;
+      min-height:70px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -136,7 +159,7 @@
 
     .brand{
       font-family:'Cormorant Garamond', serif;
-      font-size:28px;
+      font-size:29px;
       letter-spacing:.08em;
     }
 
@@ -149,7 +172,26 @@
       font-size:13px;
     }
 
-    .nav a{transition:.24s ease}
+    .nav a{
+      transition:.24s ease;
+      position:relative;
+    }
+
+    .nav a:not(.nav-cta)::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0;
+      height:1px;
+      background:var(--gold);
+      transition:width .3s ease;
+    }
+
+    .nav a:not(.nav-cta):hover::after{
+      width:100%;
+    }
+
     .nav a:hover{color:var(--text)}
 
     .nav-cta{
@@ -167,7 +209,7 @@
       overflow:hidden;
       display:flex;
       align-items:flex-end;
-      padding-top:68px;
+      padding-top:70px;
     }
 
     .hero-media{
@@ -183,28 +225,29 @@
       height:100%;
       object-fit:cover;
       opacity:0;
-      transition:opacity 1.15s ease;
+      transition:opacity 1.25s ease, transform 6.5s ease;
       filter:saturate(.95) contrast(1.03) brightness(.84);
-      transform:scale(1.03);
+      transform:scale(1.05);
     }
 
     .hero-video.active{
       opacity:1;
+      transform:scale(1.01);
     }
 
     .hero-overlay{
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 70% 28%, rgba(255,255,255,.05), transparent 22%),
-        linear-gradient(180deg, rgba(5,5,5,.16) 0%, rgba(5,5,5,.42) 45%, rgba(5,5,5,.92) 100%);
+        radial-gradient(circle at 72% 26%, rgba(255,255,255,.05), transparent 22%),
+        linear-gradient(180deg, rgba(5,5,5,.16) 0%, rgba(5,5,5,.42) 46%, rgba(5,5,5,.94) 100%);
     }
 
     .hero-overlay::after{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(90deg, rgba(8,8,8,.78) 0%, rgba(8,8,8,.44) 38%, rgba(8,8,8,.14) 68%, rgba(8,8,8,.48) 100%);
+      background:linear-gradient(90deg, rgba(8,8,8,.8) 0%, rgba(8,8,8,.45) 38%, rgba(8,8,8,.14) 68%, rgba(8,8,8,.5) 100%);
     }
 
     .hero-inner{
@@ -226,8 +269,8 @@
     .hero h1{
       margin:18px 0 0;
       font-family:'Cormorant Garamond', serif;
-      font-size:clamp(48px, 7.3vw, 98px);
-      line-height:.93;
+      font-size:clamp(48px, 7.4vw, 102px);
+      line-height:.92;
       letter-spacing:-.025em;
       font-weight:600;
       text-wrap:balance;
@@ -250,7 +293,7 @@
 
     .hero-panel{
       justify-self:end;
-      width:min(100%, 410px);
+      width:min(100%, 420px);
       padding:22px;
       border-radius:30px;
       background:linear-gradient(180deg, rgba(18,18,18,.76), rgba(12,12,12,.72));
@@ -271,6 +314,13 @@
       border-radius:18px;
       background:rgba(255,255,255,.035);
       border:1px solid rgba(255,255,255,.06);
+      transition:transform .3s ease, border-color .3s ease, background .3s ease;
+    }
+
+    .stat:hover{
+      transform:translateY(-2px);
+      border-color:rgba(200,169,107,.2);
+      background:rgba(255,255,255,.045);
     }
 
     .stat strong{
@@ -306,7 +356,7 @@
       color:rgba(255,255,255,.72);
     }
 
-    /* Module 000 */
+    /* Pack */
     .feature-wrap{
       display:grid;
       grid-template-columns:1.06fr .94fr;
@@ -322,12 +372,25 @@
       background:#000;
       box-shadow:var(--shadow);
       aspect-ratio:16/9;
+      min-height:320px;
+      isolation:isolate;
+    }
+
+    .video-shell::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 18% 85%, rgba(200,169,107,.12), transparent 25%);
+      z-index:1;
+      pointer-events:none;
     }
 
     .video-shell video{
       width:100%;
       height:100%;
       object-fit:cover;
+      display:block;
+      background:#000;
     }
 
     .glow{
@@ -338,6 +401,7 @@
       background:radial-gradient(circle, rgba(200,169,107,.24), transparent 70%);
       filter:blur(8px);
       pointer-events:none;
+      z-index:2;
     }
 
     .content-card{
@@ -350,7 +414,7 @@
 
     .content-card h2{
       margin:14px 0 0;
-      font-size:clamp(36px, 4.1vw, 56px);
+      font-size:clamp(36px, 4.1vw, 58px);
       line-height:.96;
       font-family:'Cormorant Garamond', serif;
       font-weight:600;
@@ -401,7 +465,7 @@
 
     .grid-head h3{
       margin:12px 0 0;
-      font-size:clamp(32px, 4vw, 50px);
+      font-size:clamp(32px, 4vw, 52px);
       line-height:1;
     }
 
@@ -428,6 +492,20 @@
       background:#111;
       box-shadow:0 16px 50px rgba(0,0,0,.28);
       isolation:isolate;
+      cursor:pointer;
+      transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+      outline:none;
+    }
+
+    .module-card:hover,
+    .module-card:focus-visible{
+      transform:translateY(-6px);
+      border-color:rgba(200,169,107,.22);
+      box-shadow:0 24px 65px rgba(0,0,0,.34);
+    }
+
+    .module-card:focus-visible{
+      box-shadow:0 0 0 2px rgba(200,169,107,.3), 0 24px 65px rgba(0,0,0,.34);
     }
 
     .module-media{
@@ -444,21 +522,25 @@
       height:100%;
       object-fit:cover;
       opacity:0;
-      transition:opacity 1s ease, transform 1.4s ease;
+      transition:opacity 1s ease, transform 1.4s ease, filter 1.4s ease;
       transform:scale(1.02);
-      filter:brightness(.9);
+      filter:brightness(.88);
+      pointer-events:none;
     }
 
     .module-slide.active{
       opacity:1;
-      transform:scale(1.07);
+      transform:scale(1.08);
+      filter:brightness(.97);
     }
 
     .module-card::after{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.06) 38%, rgba(0,0,0,.88));
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.08) 38%, rgba(0,0,0,.9)),
+        radial-gradient(circle at 20% 100%, rgba(200,169,107,.10), transparent 30%);
       z-index:1;
       pointer-events:none;
     }
@@ -496,6 +578,31 @@
       font-size:13px;
       line-height:1.62;
       max-width:92%;
+    }
+
+    .module-arrow{
+      position:absolute;
+      top:18px;
+      right:18px;
+      z-index:2;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.24);
+      display:grid;
+      place-items:center;
+      backdrop-filter:blur(10px);
+      color:rgba(255,255,255,.9);
+      font-size:18px;
+      transition:transform .3s ease, background .3s ease, border-color .3s ease;
+    }
+
+    .module-card:hover .module-arrow,
+    .module-card:focus-visible .module-arrow{
+      transform:translateX(3px);
+      background:rgba(200,169,107,.16);
+      border-color:rgba(200,169,107,.26);
     }
 
     /* CTA */
@@ -537,7 +644,7 @@
     /* Reveal */
     .reveal{
       opacity:0;
-      transform:translateY(26px);
+      transform:translateY(28px);
       transition:opacity .8s ease, transform .8s ease;
     }
 
@@ -651,11 +758,11 @@
 
   <section class="hero">
     <div class="hero-media">
-      <video class="hero-video active" autoplay muted loop playsinline preload="auto">
+      <video class="hero-video active" autoplay muted loop playsinline webkit-playsinline preload="auto">
         <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
       </video>
 
-      <video class="hero-video" muted loop playsinline preload="auto">
+      <video class="hero-video" muted loop playsinline webkit-playsinline preload="auto">
         <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880555/3762912-hd_1280_720_50fps_bybc6z.mp4" type="video/mp4">
       </video>
 
@@ -710,7 +817,16 @@
     <div class="container">
       <div class="feature-wrap">
         <div class="video-shell reveal">
-          <video autoplay muted loop playsinline preload="auto">
+          <video
+            id="packVideo"
+            autoplay
+            muted
+            loop
+            playsinline
+            webkit-playsinline
+            preload="auto"
+            poster="https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png"
+          >
             <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
           </video>
           <div class="glow"></div>
@@ -718,7 +834,7 @@
 
         <div class="content-card reveal">
           <span class="eyebrow">Module 000</span>
-          <h2>Le pack complet qui donne tout de suite une allure premium à la démo.</h2>
+          <h2>Le pack complet qui donne immédiatement une allure premium à ta démo.</h2>
           <p>
             Ici, on met bien la vraie vidéo de démonstration du pack complet.
             C’est elle qui sert d’ouverture forte avant d’entrer dans le détail des modules.
@@ -747,31 +863,32 @@
           <h3 class="title-serif">Les modules en version cinematic</h3>
         </div>
         <p>
-          Comme ton fichier contient surtout des visuels PNG par module, j’ai transformé ça en cartes premium
-          avec slideshow automatique. Ça donne une sensation beaucoup plus vivante qu’une simple image fixe. 
+          Chaque carte anime automatiquement les visuels du module et renvoie directement vers sa page de démo.
         </p>
       </div>
 
       <div class="modules-grid">
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="01-barre-annonce.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829205/Capture_d_%C3%A9cran_834_snubou.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829204/Capture_d_%C3%A9cran_836_d44oba.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
-            <span class="module-number">01 • Barre header</span>
+            <span class="module-number">01 • Barre annonce</span>
             <h4>Header premium</h4>
             <p>Un haut de page plus fort, plus propre, plus crédible dès les premières secondes.</p>
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="02-hero-slideshow.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_888_mb4bgl.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819688/Capture_d_%C3%A9cran_886_cq3l6c.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">02 • Hero slideshow</span>
             <h4>Hero slideshow</h4>
@@ -779,7 +896,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="03-video-compact.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_845_wm8nht.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829182/Capture_d_%C3%A9cran_847_tue4wf.png",
@@ -794,6 +911,7 @@
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828324/Capture_d_%C3%A9cran_862_uwos5s.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">03 • Vidéo compacte</span>
             <h4>Video compacte</h4>
@@ -801,7 +919,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="04-video-full.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_868_xhi8bc.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_869_sb7i5o.png",
@@ -812,17 +930,19 @@
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827972/Capture_d_%C3%A9cran_874_ppjc1b.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
-            <span class="module-number">04 • Video full</span>
+            <span class="module-number">04 • Vidéo full</span>
             <h4>Video full immersive</h4>
             <p>Une section large et cinématique qui donne une vraie sensation de campagne premium.</p>
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="05-hero-panel.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">05 • Hero panel</span>
             <h4>Hero panel</h4>
@@ -830,13 +950,14 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="06-marquee.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_892_vxoior.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_890_arrtyh.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_893_evgxju.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_894_sttdpd.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">06 • Marquee</span>
             <h4>Marquee premium</h4>
@@ -844,7 +965,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="07-comparateur.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_897_raqoog.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_899_efxcpa.png",
@@ -852,6 +973,7 @@
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_901_kwkbx4.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">07 • Comparateur</span>
             <h4>Comparateur</h4>
@@ -859,11 +981,12 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="08-quiz.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_904_smp8rp.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">08 • Quiz</span>
             <h4>Quiz intelligent</h4>
@@ -871,13 +994,14 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="09-selecteur.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823353/Capture_d_%C3%A9cran_907_lw67ue.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823386/Capture_d_%C3%A9cran_909_mlrnqm.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823402/Capture_d_%C3%A9cran_910_i3vkxy.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">09 • Sélecteur</span>
             <h4>Sélecteur premium</h4>
@@ -885,11 +1009,12 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="10-guide-tailles.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_913_uzticg.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_912_j9rtl3.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">10 • Guide tailles</span>
             <h4>Guide des tailles</h4>
@@ -897,12 +1022,13 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="11-showcase.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829261/Capture_d_%C3%A9cran_916_givuex.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_917_lrsxoy.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_918_g55kj1.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">11 • Showcase</span>
             <h4>Showcase visuel</h4>
@@ -910,13 +1036,14 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="12-dock.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_919_q9rpdk.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_920_rhlcom.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_921_cpvqby.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_922_lxujyw.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">12 • Dock</span>
             <h4>Dock interactif</h4>
@@ -924,11 +1051,12 @@
           </div>
         </article>
 
-        <article class="module-card reveal" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="13-email-valeurs.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_925_ceqysw.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_923_uxsko2.png"
         ]'>
           <div class="module-media"></div>
+          <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">13 • Email valeurs</span>
             <h4>Email capture / valeurs</h4>
@@ -946,9 +1074,8 @@
         <span class="eyebrow" style="justify-content:center;">Offre premium</span>
         <h3 class="title-serif">Une démo plus désirable.<br>Une offre qui se vend mieux.</h3>
         <p>
-          Cette V5 utilise exactement la logique la plus propre avec les assets que tu as donnés :
-          les vidéos beauté en hero, la vidéo de démo en module 000, puis les modules transformés
-          en covers animées à partir de tes visuels Cloudinary.
+          Hero vidéo, pack complet en immersion, modules animés et démos cliquables :
+          tout est pensé pour faire monter la valeur perçue dès les premières secondes.
         </p>
         <div class="availability">30 premières offres • il en reste 17</div>
         <div class="hero-actions" style="justify-content:center; margin-top:24px;">
@@ -959,14 +1086,17 @@
   </section>
 
   <script>
-    // HERO VIDEO SWITCH
+    // HERO VIDEOS
     const heroVideos = document.querySelectorAll('.hero-video');
     let currentHeroVideo = 0;
 
     heroVideos.forEach((video, index) => {
+      video.muted = true;
+      video.defaultMuted = true;
       if (index === 0) {
         video.classList.add('active');
-        video.play().catch(() => {});
+        const p = video.play();
+        if (p !== undefined) p.catch(() => {});
       } else {
         video.pause();
       }
@@ -978,16 +1108,44 @@
       const next = heroVideos[nextIndex];
 
       next.currentTime = 0;
-      next.play().catch(() => {});
+      const p = next.play();
+      if (p !== undefined) p.catch(() => {});
+
       next.classList.add('active');
       current.classList.remove('active');
-
       currentHeroVideo = nextIndex;
     }
 
     setInterval(switchHeroVideo, 6500);
 
-    // MODULE SLIDESHOWS
+    // PACK VIDEO FORCE PLAY
+    const packVideo = document.getElementById('packVideo');
+
+    function tryPlayPackVideo() {
+      if (!packVideo) return;
+      packVideo.muted = true;
+      packVideo.defaultMuted = true;
+      const p = packVideo.play();
+      if (p !== undefined) p.catch(() => {});
+    }
+
+    if (packVideo) {
+      packVideo.addEventListener('loadeddata', tryPlayPackVideo);
+      packVideo.addEventListener('canplay', tryPlayPackVideo);
+      window.addEventListener('load', tryPlayPackVideo);
+
+      const packObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tryPlayPackVideo();
+          }
+        });
+      }, { threshold: 0.2 });
+
+      packObserver.observe(packVideo);
+    }
+
+    // MODULE SLIDESHOWS + LINKS
     const moduleCards = document.querySelectorAll('.module-card');
 
     moduleCards.forEach((card, cardIndex) => {
@@ -1000,27 +1158,41 @@
         slides = [];
       }
 
-      if (!slides.length) return;
+      if (media && slides.length) {
+        slides.forEach((src, index) => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = '';
+          img.className = 'module-slide' + (index === 0 ? ' active' : '');
+          img.loading = index === 0 ? 'eager' : 'lazy';
+          media.appendChild(img);
+        });
 
-      slides.forEach((src, index) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = '';
-        img.className = 'module-slide' + (index === 0 ? ' active' : '');
-        img.loading = index === 0 ? 'eager' : 'lazy';
-        media.appendChild(img);
-      });
+        const slideEls = media.querySelectorAll('.module-slide');
+        let currentSlide = 0;
 
-      const slideEls = media.querySelectorAll('.module-slide');
-      let currentSlide = 0;
+        if (slideEls.length > 1) {
+          setInterval(() => {
+            slideEls[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slideEls.length;
+            slideEls[currentSlide].classList.add('active');
+          }, 2600 + (cardIndex % 3) * 300);
+        }
+      }
 
-      if (slideEls.length <= 1) return;
+      const targetLink = card.dataset.link;
+      if (targetLink) {
+        card.addEventListener('click', () => {
+          window.location.href = targetLink;
+        });
 
-      setInterval(() => {
-        slideEls[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slideEls.length;
-        slideEls[currentSlide].classList.add('active');
-      }, 2600 + (cardIndex % 3) * 350);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            window.location.href = targetLink;
+          }
+        });
+      }
     });
 
     // REVEAL ON SCROLL
