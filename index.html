@@ -298,6 +298,7 @@
     @media(max-width:880px){ .mod-grid{grid-template-columns:repeat(2,1fr)} }
     @media(max-width:520px){ .mod-grid{grid-template-columns:1fr} }
 
+    /* ─── CARD ───────────────────────────────────────── */
     .mod-card {
       position:relative; border-radius:24px; overflow:hidden;
       background:#060606; border:1px solid var(--border);
@@ -306,54 +307,75 @@
       --mx:50%; --my:50%;
     }
     .mod-card:hover { transform:translateY(-9px) scale(1.007); border-color:rgba(200,169,106,.16); box-shadow:0 36px 88px rgba(0,0,0,.52); }
-    .mod-card::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at var(--mx) var(--my),rgba(200,169,106,.13),transparent 28%); opacity:0; transition:opacity .28s; pointer-events:none; z-index:2; }
+    .mod-card::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at var(--mx) var(--my),rgba(200,169,106,.12),transparent 28%); opacity:0; transition:opacity .28s; pointer-events:none; z-index:3; }
     .mod-card:hover::after { opacity:1; }
 
-    /* ─── MOSAIC LAYOUT ──────────────────────────────── */
-    /* Card qui a plusieurs screenshots : affiche une grille de previews */
-    .mod-gallery {
+    /* ─── CARD SLIDESHOW ─────────────────────────────── */
+    .card-slides {
       position:relative;
-      width:100%;
-      overflow:hidden;
-      background:#090909;
+      width:100%; aspect-ratio:3/4;
+      overflow:hidden; background:#090909;
     }
-    /* Layout par défaut: image principale */
-    .mod-gallery.single { aspect-ratio:3/4; }
-    /* 2 images: côte à côte */
-    .mod-gallery.duo { display:grid; grid-template-columns:1fr 1fr; aspect-ratio:3/4; }
-    /* 3 images: 1 grande + 2 petites */
-    .mod-gallery.trio { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; aspect-ratio:3/4; }
-    .mod-gallery.trio .gi:first-child { grid-row:1/3; }
-    /* 4+ images: grille 2x2 */
-    .mod-gallery.quad { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; aspect-ratio:3/4; }
-    /* beaucoup d'images: grille 3x2 compacte */
-    .mod-gallery.many { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr; aspect-ratio:3/4; }
 
-    .gi {
-      overflow:hidden; position:relative;
-    }
-    .gi img {
-      width:100%; height:100%; object-fit:cover; object-position:top;
-      display:block;
+    .cs { /* card slide */
+      position:absolute; inset:0;
+      opacity:0;
+      transition:opacity .75s ease, transform .9s cubic-bezier(.16,1,.3,1);
       transform:scale(1.04);
-      transition:transform .8s cubic-bezier(.16,1,.3,1), filter .5s;
-      opacity:0; transition:opacity .4s ease, transform .8s cubic-bezier(.16,1,.3,1), filter .5s;
+      z-index:0;
     }
-    .gi img.loaded { opacity:1; }
-    .mod-card:hover .gi img { transform:scale(1.1); filter:saturate(1.04) contrast(1.03); }
+    .cs.on { opacity:1; transform:scale(1); z-index:1; }
+    .cs img {
+      width:100%; height:100%;
+      object-fit:cover; object-position:top center;
+      display:block; opacity:0;
+      transition:opacity .4s ease;
+    }
+    .cs img.loaded { opacity:1; }
 
-    .gi-sep-v { border-left:1px solid rgba(0,0,0,.5); }
-    .gi-sep-h { border-top:1px solid rgba(0,0,0,.5); }
-
-    .mod-sheen { position:absolute; inset:0; z-index:3; background:linear-gradient(118deg,transparent 14%,rgba(255,255,255,.05) 40%,transparent 62%); transform:translateX(-130%); transition:transform .78s ease; }
-    .mod-card:hover .mod-sheen { transform:translateX(130%); }
-
-    .skel { position:absolute; inset:0; background:linear-gradient(90deg,rgba(255,255,255,.018) 0%,rgba(255,255,255,.055) 50%,rgba(255,255,255,.018) 100%); background-size:280% 100%; animation:sk 1.4s linear infinite; }
+    /* Skeleton */
+    .cs-skel {
+      position:absolute; inset:0;
+      background:linear-gradient(90deg,rgba(255,255,255,.016) 0%,rgba(255,255,255,.05) 50%,rgba(255,255,255,.016) 100%);
+      background-size:280% 100%;
+      animation:sk 1.5s linear infinite;
+    }
+    .cs img.loaded ~ .cs-skel, .cs-skel.hide { display:none; }
     @keyframes sk { 0%{background-position:280% 0} 100%{background-position:-280% 0} }
 
-    .img-fade { position:absolute; inset:0; z-index:1; background:linear-gradient(to top,rgba(0,0,0,.96) 0%,rgba(0,0,0,.44) 35%,rgba(0,0,0,.06) 60%); }
+    /* Sheen */
+    .mod-sheen { position:absolute; inset:0; z-index:4; background:linear-gradient(118deg,transparent 14%,rgba(255,255,255,.055) 40%,transparent 62%); transform:translateX(-130%); transition:transform .78s ease; pointer-events:none; }
+    .mod-card:hover .mod-sheen { transform:translateX(130%); }
 
-    .mod-body { position:absolute; bottom:0; left:0; right:0; z-index:4; padding:clamp(16px,2.5vw,24px); }
+    /* Progress bar at bottom of image */
+    .card-prog {
+      position:absolute; bottom:0; left:0; right:0; height:2px; z-index:5;
+      background:rgba(255,255,255,.06);
+    }
+    .card-prog-fill {
+      height:100%; width:0%;
+      background:linear-gradient(to right, var(--gold), var(--gold-l));
+      transition:width linear;
+    }
+
+    /* Slide counter top-right */
+    .card-counter {
+      position:absolute; top:14px; right:14px; z-index:5;
+      background:rgba(8,8,8,.55); backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:999px; padding:.26rem .7rem;
+      font-size:.48rem; letter-spacing:.18em; text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+      transition:opacity .3s;
+    }
+    .mod-card:not(:hover) .card-counter { opacity:.5; }
+
+    /* Fade gradient */
+    .img-fade { position:absolute; inset:0; z-index:2; pointer-events:none;
+      background:linear-gradient(to top,rgba(0,0,0,.97) 0%,rgba(0,0,0,.46) 32%,rgba(0,0,0,.05) 58%); }
+
+    /* ─── CARD BODY ──────────────────────────────────── */
+    .mod-body { position:absolute; bottom:0; left:0; right:0; z-index:5; padding:clamp(16px,2.5vw,24px); }
     .mod-id { display:inline-block; background:rgba(8,8,8,.58); border:1px solid rgba(255,255,255,.07); backdrop-filter:blur(10px); border-radius:999px; padding:.28rem .75rem; font-size:.48rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-l); margin-bottom:8px; }
     .mod-title { font-family:'Playfair Display',serif; font-size:clamp(1.2rem,2.2vw,1.65rem); margin-bottom:13px; line-height:1.1; font-weight:300; }
     .mod-acts { display:flex; gap:9px; }
@@ -689,143 +711,20 @@
   <script>
     /* ─── DATA ──────────────────────────────────────── */
     const modules = [
-      {
-        id:'00', title:'Pack Complet',
-        file:'00-pack-complet.html',
-        layout:'single',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png'
-        ]
-      },
-      {
-        id:'01', title:'Barre d\'Annonce',
-        file:'01-barre-annonce.html',
-        layout:'duo',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829205/Capture_d_%C3%A9cran_834_snubou.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829204/Capture_d_%C3%A9cran_836_d44oba.png'
-        ]
-      },
-      {
-        id:'02', title:'Hero Slideshow',
-        file:'02-hero-slideshow.html',
-        layout:'trio',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_888_mb4bgl.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774819688/Capture_d_%C3%A9cran_886_cq3l6c.png'
-        ]
-      },
-      {
-        id:'03', title:'Vidéo Compacte',
-        file:'03-video-compact.html',
-        layout:'quad',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_845_wm8nht.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829182/Capture_d_%C3%A9cran_847_tue4wf.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_846_hqfayi.png'
-        ]
-      },
-      {
-        id:'04', title:'Vidéo Fullscreen',
-        file:'04-video-full.html',
-        layout:'quad',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_868_xhi8bc.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_869_sb7i5o.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_870_qc9ukr.png'
-        ]
-      },
-      {
-        id:'05', title:'Hero Panel',
-        file:'05-hero-panel.html',
-        layout:'single',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png'
-        ]
-      },
-      {
-        id:'06', title:'Marquee Logos',
-        file:'06-marquee.html',
-        layout:'quad',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_892_vxoior.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_890_arrtyh.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_893_evgxju.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_894_sttdpd.png'
-        ]
-      },
-      {
-        id:'07', title:'Comparateur Avant / Après',
-        file:'07-comparateur.html',
-        layout:'trio',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_897_raqoog.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_899_efxcpa.png'
-        ]
-      },
-      {
-        id:'08', title:'Quiz Diagnostic',
-        file:'08-quiz.html',
-        layout:'duo',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_904_smp8rp.png'
-        ]
-      },
-      {
-        id:'09', title:'Sélecteur de Teintes',
-        file:'09-selecteur.html',
-        layout:'quad',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774823353/Capture_d_%C3%A9cran_907_lw67ue.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774823386/Capture_d_%C3%A9cran_909_mlrnqm.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774823402/Capture_d_%C3%A9cran_910_i3vkxy.png'
-        ]
-      },
-      {
-        id:'10', title:'Guide des Tailles',
-        file:'10-guide-tailles.html',
-        layout:'duo',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_913_uzticg.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_912_j9rtl3.png'
-        ]
-      },
-      {
-        id:'11', title:'Showcase Produit',
-        file:'11-showcase.html',
-        layout:'trio',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829261/Capture_d_%C3%A9cran_916_givuex.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_917_lrsxoy.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_918_g55kj1.png'
-        ]
-      },
-      {
-        id:'12', title:'Dock Interactif',
-        file:'12-dock.html',
-        layout:'quad',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_919_q9rpdk.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_920_rhlcom.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_921_cpvqby.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_922_lxujyw.png'
-        ]
-      },
-      {
-        id:'13', title:'Email & Valeurs',
-        file:'13-email-valeurs.html',
-        layout:'duo',
-        imgs:[
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_925_ceqysw.png',
-          'https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_923_uxsko2.png'
-        ]
-      }
+      { id:'00', title:'Pack Complet',           file:'00-pack-complet.html',  imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png'] },
+      { id:'01', title:'Barre d\'Annonce',        file:'01-barre-annonce.html', imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774829205/Capture_d_%C3%A9cran_834_snubou.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774829204/Capture_d_%C3%A9cran_836_d44oba.png'] },
+      { id:'02', title:'Hero Slideshow',          file:'02-hero-slideshow.html',imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_888_mb4bgl.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774819688/Capture_d_%C3%A9cran_886_cq3l6c.png'] },
+      { id:'03', title:'Vidéo Compacte',          file:'03-video-compact.html', imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_845_wm8nht.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774829182/Capture_d_%C3%A9cran_847_tue4wf.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_846_hqfayi.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774828983/Capture_d_%C3%A9cran_851_cvrhxs.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774828982/Capture_d_%C3%A9cran_852_zsfx7v.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774828981/Capture_d_%C3%A9cran_855_joucxn.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774828981/Capture_d_%C3%A9cran_854_swx6kn.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774828325/Capture_d_%C3%A9cran_857_y0lu0e.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774828325/Capture_d_%C3%A9cran_858_djfo4e.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774828324/Capture_d_%C3%A9cran_863_ipwb3x.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774828324/Capture_d_%C3%A9cran_862_uwos5s.png'] },
+      { id:'04', title:'Vidéo Fullscreen',        file:'04-video-full.html',    imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_868_xhi8bc.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_869_sb7i5o.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_870_qc9ukr.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_872_ibyepw.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_871_hnq0wu.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827972/Capture_d_%C3%A9cran_873_cnvuqr.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827972/Capture_d_%C3%A9cran_874_ppjc1b.png'] },
+      { id:'05', title:'Hero Panel',              file:'05-hero-panel.html',    imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png'] },
+      { id:'06', title:'Marquee Logos',           file:'06-marquee.html',       imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_892_vxoior.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_890_arrtyh.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_893_evgxju.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_894_sttdpd.png'] },
+      { id:'07', title:'Comparateur Avant/Après', file:'07-comparateur.html',   imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_897_raqoog.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_899_efxcpa.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827888/Capture_d_%C3%A9cran_900_jkn2x5.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_901_kwkbx4.png'] },
+      { id:'08', title:'Quiz Diagnostic',         file:'08-quiz.html',          imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_904_smp8rp.png'] },
+      { id:'09', title:'Sélecteur de Teintes',    file:'09-selecteur.html',     imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774823353/Capture_d_%C3%A9cran_907_lw67ue.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774823386/Capture_d_%C3%A9cran_909_mlrnqm.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774823402/Capture_d_%C3%A9cran_910_i3vkxy.png'] },
+      { id:'10', title:'Guide des Tailles',       file:'10-guide-tailles.html', imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_913_uzticg.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_912_j9rtl3.png'] },
+      { id:'11', title:'Showcase Produit',        file:'11-showcase.html',      imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774829261/Capture_d_%C3%A9cran_916_givuex.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_917_lrsxoy.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_918_g55kj1.png'] },
+      { id:'12', title:'Dock Interactif',         file:'12-dock.html',          imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_919_q9rpdk.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_920_rhlcom.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_921_cpvqby.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_922_lxujyw.png'] },
+      { id:'13', title:'Email & Valeurs',         file:'13-email-valeurs.html', imgs:['https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_925_ceqysw.png','https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_923_uxsko2.png'] }
     ];
 
     const faqs = [
@@ -861,43 +760,30 @@
 
     /* ─── MODULES ────────────────────────────────────── */
     const grid = document.getElementById('mod-grid');
+    const SLIDE_DUR = 2800; // ms entre chaque slide
 
     modules.forEach((m, i) => {
       const card = document.createElement('article');
       card.className = 'mod-card r';
       card.style.transitionDelay = (i % 3 * 75) + 'ms';
 
-      // Build gallery HTML
-      const sepV = 'gi-sep-v', sepH = 'gi-sep-h';
+      const count = m.imgs.length;
 
-      let galleryHTML = '';
-      if (m.layout === 'single') {
-        galleryHTML = `<div class="mod-gallery single"><div class="gi"><div class="skel"></div><img src="${m.imgs[0]}" alt="${m.title}" loading="lazy" decoding="async"></div></div>`;
-      } else if (m.layout === 'duo') {
-        galleryHTML = `<div class="mod-gallery duo">
-          <div class="gi"><div class="skel"></div><img src="${m.imgs[0]}" alt="${m.title}" loading="lazy" decoding="async"></div>
-          <div class="gi ${sepV}"><div class="skel"></div><img src="${m.imgs[1]}" alt="${m.title}" loading="lazy" decoding="async"></div>
-        </div>`;
-      } else if (m.layout === 'trio') {
-        galleryHTML = `<div class="mod-gallery trio">
-          <div class="gi"><div class="skel"></div><img src="${m.imgs[0]}" alt="${m.title}" loading="lazy" decoding="async"></div>
-          <div class="gi ${sepV}"><div class="skel"></div><img src="${m.imgs[1]}" alt="${m.title}" loading="lazy" decoding="async"></div>
-          <div class="gi ${sepV} ${sepH}"><div class="skel"></div><img src="${m.imgs[2]}" alt="${m.title}" loading="lazy" decoding="async"></div>
-        </div>`;
-      } else if (m.layout === 'quad') {
-        galleryHTML = `<div class="mod-gallery quad">
-          <div class="gi"><div class="skel"></div><img src="${m.imgs[0]}" alt="${m.title}" loading="lazy" decoding="async"></div>
-          <div class="gi ${sepV}"><div class="skel"></div><img src="${m.imgs[1]}" alt="${m.title}" loading="lazy" decoding="async"></div>
-          <div class="gi ${sepH}"><div class="skel"></div><img src="${m.imgs[2]}" alt="${m.title}" loading="lazy" decoding="async"></div>
-          <div class="gi ${sepV} ${sepH}"><div class="skel"></div><img src="${m.imgs[3]}" alt="${m.title}" loading="lazy" decoding="async"></div>
-        </div>`;
-      }
+      // Build slides HTML
+      const slidesHTML = m.imgs.map((src, idx) => `
+        <div class="cs${idx===0?' on':''}">
+          <div class="cs-skel"></div>
+          <img src="${src}" alt="${m.title} — vue ${idx+1}" loading="${idx===0?'eager':'lazy'}" decoding="async">
+        </div>
+      `).join('');
 
       card.innerHTML = `
-        <div style="position:relative">
-          ${galleryHTML}
+        <div class="card-slides" id="cs-${m.id}">
+          ${slidesHTML}
           <div class="img-fade"></div>
           <div class="mod-sheen"></div>
+          ${count > 1 ? `<div class="card-counter" id="cc-${m.id}">1 / ${count}</div>` : ''}
+          ${count > 1 ? `<div class="card-prog"><div class="card-prog-fill" id="cp-${m.id}"></div></div>` : ''}
         </div>
         <div class="mod-body">
           <div class="mod-id">Module ${m.id}</div>
@@ -911,12 +797,18 @@
         </div>
       `;
 
-      // Lazy load with class toggle
-      card.querySelectorAll('img').forEach(img => {
-        img.addEventListener('load', () => img.classList.add('loaded'));
+      // Lazy load images
+      card.querySelectorAll('.cs img').forEach(img => {
+        img.addEventListener('load', () => {
+          img.classList.add('loaded');
+          // hide skeleton
+          const skel = img.parentElement.querySelector('.cs-skel');
+          if(skel) skel.classList.add('hide');
+        });
         img.addEventListener('error', () => img.classList.add('loaded'));
       });
 
+      // Mousemove glow
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
@@ -924,6 +816,57 @@
       });
 
       grid.appendChild(card);
+
+      // Slideshow — only if more than 1 image
+      if(count > 1) {
+        const slides = [...card.querySelectorAll('.cs')];
+        const counter = card.querySelector(`#cc-${m.id}`);
+        const progFill = card.querySelector(`#cp-${m.id}`);
+        let cur = 0;
+        let timer;
+
+        function goSlide(n) {
+          slides[cur].classList.remove('on');
+          cur = (n + count) % count;
+          slides[cur].classList.add('on');
+          if(counter) counter.textContent = `${cur+1} / ${count}`;
+          // Preload next image
+          const next = slides[(cur+1) % count].querySelector('img');
+          if(next && !next.src) next.src = next.dataset.src;
+        }
+
+        function startProg() {
+          if(!progFill) return;
+          progFill.style.transition = 'none';
+          progFill.style.width = '0%';
+          // Force reflow
+          void progFill.offsetWidth;
+          progFill.style.transition = `width ${SLIDE_DUR}ms linear`;
+          progFill.style.width = '100%';
+        }
+
+        function startAuto() {
+          startProg();
+          timer = setInterval(() => {
+            goSlide(cur + 1);
+            startProg();
+          }, SLIDE_DUR);
+        }
+
+        function stopAuto() {
+          clearInterval(timer);
+          if(progFill) { progFill.style.transition='none'; progFill.style.width='0%'; }
+        }
+
+        // Start auto when card enters viewport
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if(e.isIntersecting) startAuto();
+            else stopAuto();
+          });
+        }, {threshold: 0.2});
+        io.observe(card);
+      }
     });
 
     /* ─── FAQ ────────────────────────────────────────── */
