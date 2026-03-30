@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LUMIÈRE — Modules Premium</title>
-  <meta name="description" content="Modules premium interactifs pour transformer un site beauté en expérience luxe, immersive et ultra-convertissante." />
+  <title>LUMIÈRE — Pack Modules Premium</title>
+  <meta name="description" content="Modules premium interactifs pour sites beauté, e-commerce et marques visuelles. Expérience luxe, immersive, moderne et ultra-convertissante." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,21 +13,21 @@
   <style>
     :root{
       --bg:#080808;
-      --bg-soft:#111111;
-      --panel:rgba(16,16,16,.82);
+      --bg-soft:#101010;
+      --panel:rgba(18,18,18,.78);
       --panel-2:rgba(255,255,255,.04);
       --line:rgba(255,255,255,.08);
-      --line-2:rgba(255,255,255,.12);
+      --line-2:rgba(255,255,255,.14);
       --gold:#c8a96b;
-      --gold-soft:rgba(200,169,107,.16);
+      --gold-soft:rgba(200,169,107,.14);
       --text:#f5efe7;
       --muted:rgba(245,239,231,.72);
-      --muted-2:rgba(245,239,231,.52);
-      --shadow:0 20px 80px rgba(0,0,0,.45);
-      --radius:28px;
-      --radius-sm:18px;
+      --muted-2:rgba(245,239,231,.54);
+      --shadow:0 24px 80px rgba(0,0,0,.42);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --radius-md:18px;
       --max:1280px;
-      --g1:1.618;
     }
 
     *{box-sizing:border-box}
@@ -37,15 +37,14 @@
       color:var(--text);
       font-family:'Inter',sans-serif;
       background:
-        radial-gradient(circle at top, rgba(200,169,107,.08), transparent 30%),
-        linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 42%, #070707 100%);
+        radial-gradient(circle at top, rgba(200,169,107,.08), transparent 26%),
+        linear-gradient(180deg, #090909 0%, #0d0d0d 42%, #070707 100%);
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
     }
 
     a{color:inherit;text-decoration:none}
     img,video{display:block;max-width:100%}
-    button{font:inherit}
 
     .container{
       width:min(var(--max), calc(100% - 32px));
@@ -53,7 +52,7 @@
     }
 
     .section{
-      padding:calc(44px * var(--g1)) 0;
+      padding:84px 0;
     }
 
     .eyebrow{
@@ -70,8 +69,8 @@
       content:"";
       width:34px;
       height:1px;
-      background:linear-gradient(90deg, transparent, var(--gold));
       display:block;
+      background:linear-gradient(90deg, transparent, var(--gold));
     }
 
     .title-serif{
@@ -86,43 +85,42 @@
       min-height:50px;
       padding:0 22px;
       border-radius:999px;
+      border:1px solid var(--line-2);
       font-size:12px;
       letter-spacing:.18em;
       text-transform:uppercase;
       transition:.28s ease;
-      border:1px solid var(--line-2);
-      cursor:pointer;
       white-space:nowrap;
     }
 
     .btn-primary{
       color:var(--text);
       border-color:rgba(212,179,115,.42);
-      background:linear-gradient(180deg, rgba(212,179,115,.19), rgba(212,179,115,.08));
-      box-shadow:0 10px 40px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.02) inset;
+      background:linear-gradient(180deg, rgba(212,179,115,.20), rgba(212,179,115,.08));
+      box-shadow:0 10px 40px rgba(0,0,0,.22), 0 0 0 1px rgba(255,255,255,.02) inset;
     }
 
     .btn-primary:hover{
       transform:translateY(-1px);
-      background:linear-gradient(180deg, rgba(212,179,115,.24), rgba(212,179,115,.12));
+      background:linear-gradient(180deg, rgba(212,179,115,.26), rgba(212,179,115,.12));
     }
 
     .btn-secondary{
-      background:rgba(255,255,255,.04);
-      color:rgba(255,255,255,.9);
+      background:rgba(255,255,255,.045);
+      color:rgba(255,255,255,.92);
     }
 
     .btn-secondary:hover{
-      background:rgba(255,255,255,.08);
+      background:rgba(255,255,255,.085);
     }
 
-    /* HEADER */
+    /* Header */
     .topbar{
       position:fixed;
       inset:0 0 auto 0;
       z-index:50;
       backdrop-filter:blur(18px);
-      background:linear-gradient(180deg, rgba(7,7,7,.82), rgba(7,7,7,.38));
+      background:linear-gradient(180deg, rgba(7,7,7,.82), rgba(7,7,7,.34));
       border-bottom:1px solid rgba(255,255,255,.06);
     }
 
@@ -143,4 +141,898 @@
     }
 
     .nav{
-     
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      color:rgba(255,255,255,.74);
+      font-size:13px;
+    }
+
+    .nav a{transition:.24s ease}
+    .nav a:hover{color:var(--text)}
+
+    .nav-cta{
+      padding:10px 15px;
+      border:1px solid rgba(200,169,107,.48);
+      border-radius:999px;
+      color:var(--gold);
+      background:rgba(200,169,107,.05);
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:100svh;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding-top:68px;
+    }
+
+    .hero-media{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+    }
+
+    .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity 1.15s ease;
+      filter:saturate(.95) contrast(1.03) brightness(.84);
+      transform:scale(1.03);
+    }
+
+    .hero-video.active{
+      opacity:1;
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 70% 28%, rgba(255,255,255,.05), transparent 22%),
+        linear-gradient(180deg, rgba(5,5,5,.16) 0%, rgba(5,5,5,.42) 45%, rgba(5,5,5,.92) 100%);
+    }
+
+    .hero-overlay::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(8,8,8,.78) 0%, rgba(8,8,8,.44) 38%, rgba(8,8,8,.14) 68%, rgba(8,8,8,.48) 100%);
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      padding:84px 0 54px;
+      display:grid;
+      grid-template-columns:minmax(0, 1.05fr) minmax(320px, .60fr);
+      gap:38px;
+      align-items:end;
+    }
+
+    .hero-copy{
+      max-width:760px;
+    }
+
+    .hero h1{
+      margin:18px 0 0;
+      font-family:'Cormorant Garamond', serif;
+      font-size:clamp(48px, 7.3vw, 98px);
+      line-height:.93;
+      letter-spacing:-.025em;
+      font-weight:600;
+      text-wrap:balance;
+    }
+
+    .hero-sub{
+      margin:22px 0 0;
+      max-width:640px;
+      color:var(--muted);
+      font-size:clamp(15px, 1.45vw, 18px);
+      line-height:1.75;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+
+    .hero-panel{
+      justify-self:end;
+      width:min(100%, 410px);
+      padding:22px;
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(18,18,18,.76), rgba(12,12,12,.72));
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(18px);
+      box-shadow:var(--shadow);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .stat{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:24px;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .stat span{
+      display:block;
+      margin-top:6px;
+      font-size:12px;
+      color:rgba(255,255,255,.62);
+      line-height:1.45;
+    }
+
+    .trust-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .pill{
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.72);
+    }
+
+    /* Module 000 */
+    .feature-wrap{
+      display:grid;
+      grid-template-columns:1.06fr .94fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .video-shell{
+      position:relative;
+      overflow:hidden;
+      border-radius:var(--radius-xl);
+      border:1px solid rgba(255,255,255,.08);
+      background:#000;
+      box-shadow:var(--shadow);
+      aspect-ratio:16/9;
+    }
+
+    .video-shell video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .glow{
+      position:absolute;
+      inset:auto auto -90px -90px;
+      width:240px;
+      height:240px;
+      background:radial-gradient(circle, rgba(200,169,107,.24), transparent 70%);
+      filter:blur(8px);
+      pointer-events:none;
+    }
+
+    .content-card{
+      padding:34px;
+      border-radius:var(--radius-xl);
+      background:linear-gradient(180deg, rgba(18,18,18,.82), rgba(12,12,12,.94));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .content-card h2{
+      margin:14px 0 0;
+      font-size:clamp(36px, 4.1vw, 56px);
+      line-height:.96;
+      font-family:'Cormorant Garamond', serif;
+      font-weight:600;
+      letter-spacing:-.02em;
+    }
+
+    .content-card p{
+      margin:16px 0 0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .bullet-list{
+      margin:22px 0 0;
+      display:grid;
+      gap:12px;
+    }
+
+    .bullet{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:rgba(255,255,255,.84);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .bullet::before{
+      content:"";
+      width:8px;
+      height:8px;
+      margin-top:8px;
+      border-radius:999px;
+      background:var(--gold);
+      box-shadow:0 0 18px rgba(200,169,107,.48);
+      flex:0 0 auto;
+    }
+
+    /* Modules */
+    .grid-head{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:end;
+      margin-bottom:28px;
+    }
+
+    .grid-head h3{
+      margin:12px 0 0;
+      font-size:clamp(32px, 4vw, 50px);
+      line-height:1;
+    }
+
+    .grid-head p{
+      margin:0;
+      max-width:560px;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:14px;
+    }
+
+    .modules-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .module-card{
+      position:relative;
+      overflow:hidden;
+      min-height:420px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#111;
+      box-shadow:0 16px 50px rgba(0,0,0,.28);
+      isolation:isolate;
+    }
+
+    .module-media{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      background:#090909;
+    }
+
+    .module-slide{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity 1s ease, transform 1.4s ease;
+      transform:scale(1.02);
+      filter:brightness(.9);
+    }
+
+    .module-slide.active{
+      opacity:1;
+      transform:scale(1.07);
+    }
+
+    .module-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.06) 38%, rgba(0,0,0,.88));
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .module-meta{
+      position:absolute;
+      inset:auto 18px 18px 18px;
+      z-index:2;
+    }
+
+    .module-number{
+      display:inline-flex;
+      margin-bottom:10px;
+      padding:8px 11px;
+      border-radius:999px;
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.92);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(8px);
+    }
+
+    .module-meta h4{
+      margin:0;
+      font-size:22px;
+      line-height:1.12;
+      font-weight:600;
+    }
+
+    .module-meta p{
+      margin:8px 0 0;
+      color:rgba(255,255,255,.74);
+      font-size:13px;
+      line-height:1.62;
+      max-width:92%;
+    }
+
+    /* CTA */
+    .cta-block{
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      padding:46px 28px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at top, rgba(200,169,107,.12), transparent 35%),
+        linear-gradient(180deg, rgba(18,18,18,.95), rgba(10,10,10,.98));
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+
+    .cta-block h3{
+      margin:12px 0 0;
+      font-size:clamp(36px, 4.5vw, 60px);
+      line-height:.96;
+    }
+
+    .cta-block p{
+      max-width:700px;
+      margin:16px auto 0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .availability{
+      margin-top:14px;
+      color:var(--gold);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:11px;
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.is-visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* Responsive */
+    @media (max-width:1100px){
+      .hero-inner,
+      .feature-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .hero-panel{
+        justify-self:start;
+        width:min(100%, 560px);
+      }
+
+      .modules-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:760px){
+      .topbar-inner{
+        min-height:64px;
+        padding:10px 0;
+      }
+
+      .nav{display:none}
+
+      .hero{
+        min-height:92svh;
+      }
+
+      .hero-inner{
+        width:min(100% - 20px, var(--max));
+        padding:56px 0 28px;
+        gap:18px;
+      }
+
+      .hero h1{
+        font-size:clamp(40px, 12vw, 64px);
+      }
+
+      .hero-sub{
+        font-size:14px;
+        line-height:1.65;
+      }
+
+      .hero-panel{
+        padding:18px;
+        border-radius:24px;
+      }
+
+      .stats{
+        gap:10px;
+      }
+
+      .stat{
+        padding:14px;
+        border-radius:16px;
+      }
+
+      .section{
+        padding:58px 0;
+      }
+
+      .content-card{
+        padding:24px;
+        border-radius:24px;
+      }
+
+      .modules-grid{
+        grid-template-columns:1fr;
+      }
+
+      .module-card{
+        min-height:360px;
+      }
+
+      .grid-head{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .hero-actions{
+        width:100%;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">LUMIÈRE</div>
+      <nav class="nav">
+        <a href="#pack">Pack complet</a>
+        <a href="#modules">Modules</a>
+        <a href="#contact" class="nav-cta">Voir l’offre</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-media">
+      <video class="hero-video active" autoplay muted loop playsinline preload="auto">
+        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
+      </video>
+
+      <video class="hero-video" muted loop playsinline preload="auto">
+        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880555/3762912-hd_1280_720_50fps_bybc6z.mp4" type="video/mp4">
+      </video>
+
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Digital luxury modules</span>
+        <h1>Des modules premium<br>qui rendent ton site<br>irrésistible.</h1>
+        <p class="hero-sub">
+          Une expérience plus sensuelle, plus immersive et plus premium.
+          Pensée pour capturer l’attention immédiatement et transformer une simple visite en envie d’acheter.
+        </p>
+        <div class="hero-actions">
+          <a href="#pack" class="btn btn-primary">Découvrir le pack</a>
+          <a href="#modules" class="btn btn-secondary">Voir les modules</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal">
+        <span class="eyebrow">Pensé conversion</span>
+        <div class="stats">
+          <div class="stat">
+            <strong>13</strong>
+            <span>modules premium réunis dans une seule offre</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>mobile, immersif et visuellement fort</span>
+          </div>
+          <div class="stat">
+            <strong>Luxe</strong>
+            <span>direction artistique dark et éditoriale</span>
+          </div>
+          <div class="stat">
+            <strong>Cloud</strong>
+            <span>assets directs, faciles à intégrer</span>
+          </div>
+        </div>
+        <div class="trust-row">
+          <span class="pill">Hero vidéo</span>
+          <span class="pill">Quiz</span>
+          <span class="pill">Comparateur</span>
+          <span class="pill">Showcase</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="pack">
+    <div class="container">
+      <div class="feature-wrap">
+        <div class="video-shell reveal">
+          <video autoplay muted loop playsinline preload="auto">
+            <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
+          </video>
+          <div class="glow"></div>
+        </div>
+
+        <div class="content-card reveal">
+          <span class="eyebrow">Module 000</span>
+          <h2>Le pack complet qui donne tout de suite une allure premium à la démo.</h2>
+          <p>
+            Ici, on met bien la vraie vidéo de démonstration du pack complet.
+            C’est elle qui sert d’ouverture forte avant d’entrer dans le détail des modules.
+          </p>
+
+          <div class="bullet-list">
+            <div class="bullet">Effet “wow” immédiat dès l’arrivée sur la page.</div>
+            <div class="bullet">Perception de valeur plus haute et plus cohérente.</div>
+            <div class="bullet">Présentation globale du système avant le détail.</div>
+            <div class="bullet">Idéal pour vendre une offre premium avec plus d’impact.</div>
+          </div>
+
+          <div class="hero-actions" style="margin-top:26px;">
+            <a href="#modules" class="btn btn-primary">Explorer les modules</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="modules">
+    <div class="container">
+      <div class="grid-head reveal">
+        <div>
+          <span class="eyebrow">Collection</span>
+          <h3 class="title-serif">Les modules en version cinematic</h3>
+        </div>
+        <p>
+          Comme ton fichier contient surtout des visuels PNG par module, j’ai transformé ça en cartes premium
+          avec slideshow automatique. Ça donne une sensation beaucoup plus vivante qu’une simple image fixe. 
+        </p>
+      </div>
+
+      <div class="modules-grid">
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829205/Capture_d_%C3%A9cran_834_snubou.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829204/Capture_d_%C3%A9cran_836_d44oba.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">01 • Barre header</span>
+            <h4>Header premium</h4>
+            <p>Un haut de page plus fort, plus propre, plus crédible dès les premières secondes.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_888_mb4bgl.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819688/Capture_d_%C3%A9cran_886_cq3l6c.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">02 • Hero slideshow</span>
+            <h4>Hero slideshow</h4>
+            <p>Un hero plus vivant, plus mode, plus immersif, pour capter l’œil immédiatement.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_845_wm8nht.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829182/Capture_d_%C3%A9cran_847_tue4wf.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_846_hqfayi.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828983/Capture_d_%C3%A9cran_851_cvrhxs.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828982/Capture_d_%C3%A9cran_852_zsfx7v.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828981/Capture_d_%C3%A9cran_855_joucxn.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828981/Capture_d_%C3%A9cran_854_swx6kn.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828325/Capture_d_%C3%A9cran_857_y0lu0e.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828325/Capture_d_%C3%A9cran_858_djfo4e.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828324/Capture_d_%C3%A9cran_863_ipwb3x.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828324/Capture_d_%C3%A9cran_862_uwos5s.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">03 • Vidéo compacte</span>
+            <h4>Video compacte</h4>
+            <p>Un bloc dense, élégant et rythmé, parfait pour présenter un module sans alourdir la page.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_868_xhi8bc.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_869_sb7i5o.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_870_qc9ukr.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_872_ibyepw.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_871_hnq0wu.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827972/Capture_d_%C3%A9cran_873_cnvuqr.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827972/Capture_d_%C3%A9cran_874_ppjc1b.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">04 • Video full</span>
+            <h4>Video full immersive</h4>
+            <p>Une section large et cinématique qui donne une vraie sensation de campagne premium.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">05 • Hero panel</span>
+            <h4>Hero panel</h4>
+            <p>Un panneau éditorial qui structure le hero et lui donne plus de présence visuelle.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_892_vxoior.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_890_arrtyh.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_893_evgxju.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_894_sttdpd.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">06 • Marquee</span>
+            <h4>Marquee premium</h4>
+            <p>Ajoute du mouvement, du rythme et un côté plus contemporain à la page.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_897_raqoog.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_899_efxcpa.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827888/Capture_d_%C3%A9cran_900_jkn2x5.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_901_kwkbx4.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">07 • Comparateur</span>
+            <h4>Comparateur</h4>
+            <p>Le module de preuve visuelle qui aide le plus à faire ressentir la différence.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_904_smp8rp.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">08 • Quiz</span>
+            <h4>Quiz intelligent</h4>
+            <p>Guide la visiteuse vers la bonne option de façon fluide et plus engageante.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823353/Capture_d_%C3%A9cran_907_lw67ue.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823386/Capture_d_%C3%A9cran_909_mlrnqm.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823402/Capture_d_%C3%A9cran_910_i3vkxy.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">09 • Sélecteur</span>
+            <h4>Sélecteur premium</h4>
+            <p>Présente les choix et variantes avec plus de désirabilité et de clarté.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_913_uzticg.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_912_j9rtl3.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">10 • Guide tailles</span>
+            <h4>Guide des tailles</h4>
+            <p>Un bloc de réassurance utile qui réduit les hésitations au moment du choix.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829261/Capture_d_%C3%A9cran_916_givuex.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_917_lrsxoy.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_918_g55kj1.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">11 • Showcase</span>
+            <h4>Showcase visuel</h4>
+            <p>Met en scène le contenu comme un vrai univers de marque, plus éditorial et plus luxe.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_919_q9rpdk.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_920_rhlcom.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_921_cpvqby.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_922_lxujyw.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">12 • Dock</span>
+            <h4>Dock interactif</h4>
+            <p>Ajoute une navigation visuelle plus moderne et un effet produit plus technologique.</p>
+          </div>
+        </article>
+
+        <article class="module-card reveal" data-slides='[
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_925_ceqysw.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_923_uxsko2.png"
+        ]'>
+          <div class="module-media"></div>
+          <div class="module-meta">
+            <span class="module-number">13 • Email valeurs</span>
+            <h4>Email capture / valeurs</h4>
+            <p>Renforce le storytelling, la collecte et la cohérence de la proposition de valeur.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta-block reveal">
+        <span class="eyebrow" style="justify-content:center;">Offre premium</span>
+        <h3 class="title-serif">Une démo plus désirable.<br>Une offre qui se vend mieux.</h3>
+        <p>
+          Cette V5 utilise exactement la logique la plus propre avec les assets que tu as donnés :
+          les vidéos beauté en hero, la vidéo de démo en module 000, puis les modules transformés
+          en covers animées à partir de tes visuels Cloudinary.
+        </p>
+        <div class="availability">30 premières offres • il en reste 17</div>
+        <div class="hero-actions" style="justify-content:center; margin-top:24px;">
+          <a href="#pack" class="btn btn-primary">Revoir le pack</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // HERO VIDEO SWITCH
+    const heroVideos = document.querySelectorAll('.hero-video');
+    let currentHeroVideo = 0;
+
+    heroVideos.forEach((video, index) => {
+      if (index === 0) {
+        video.classList.add('active');
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+
+    function switchHeroVideo() {
+      const current = heroVideos[currentHeroVideo];
+      const nextIndex = (currentHeroVideo + 1) % heroVideos.length;
+      const next = heroVideos[nextIndex];
+
+      next.currentTime = 0;
+      next.play().catch(() => {});
+      next.classList.add('active');
+      current.classList.remove('active');
+
+      currentHeroVideo = nextIndex;
+    }
+
+    setInterval(switchHeroVideo, 6500);
+
+    // MODULE SLIDESHOWS
+    const moduleCards = document.querySelectorAll('.module-card');
+
+    moduleCards.forEach((card, cardIndex) => {
+      const media = card.querySelector('.module-media');
+      let slides = [];
+
+      try {
+        slides = JSON.parse(card.dataset.slides || '[]');
+      } catch (error) {
+        slides = [];
+      }
+
+      if (!slides.length) return;
+
+      slides.forEach((src, index) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        img.className = 'module-slide' + (index === 0 ? ' active' : '');
+        img.loading = index === 0 ? 'eager' : 'lazy';
+        media.appendChild(img);
+      });
+
+      const slideEls = media.querySelectorAll('.module-slide');
+      let currentSlide = 0;
+
+      if (slideEls.length <= 1) return;
+
+      setInterval(() => {
+        slideEls[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slideEls.length;
+        slideEls[currentSlide].classList.add('active');
+      }, 2600 + (cardIndex % 3) * 350);
+    });
+
+    // REVEAL ON SCROLL
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
