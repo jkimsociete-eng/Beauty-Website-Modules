@@ -137,7 +137,6 @@
       transform:translateY(-2px);
     }
 
-    /* Header */
     .topbar{
       position:fixed;
       inset:0 0 auto 0;
@@ -202,7 +201,6 @@
       background:rgba(200,169,107,.05);
     }
 
-    /* Hero */
     .hero{
       position:relative;
       min-height:100svh;
@@ -356,7 +354,6 @@
       color:rgba(255,255,255,.72);
     }
 
-    /* Pack */
     .feature-wrap{
       display:grid;
       grid-template-columns:1.06fr .94fr;
@@ -454,7 +451,6 @@
       flex:0 0 auto;
     }
 
-    /* Modules */
     .grid-head{
       display:flex;
       justify-content:space-between;
@@ -605,7 +601,6 @@
       border-color:rgba(200,169,107,.26);
     }
 
-    /* CTA */
     .cta-block{
       position:relative;
       overflow:hidden;
@@ -641,7 +636,6 @@
       font-size:11px;
     }
 
-    /* Reveal */
     .reveal{
       opacity:0;
       transform:translateY(28px);
@@ -653,7 +647,6 @@
       transform:none;
     }
 
-    /* Responsive */
     @media (max-width:1100px){
       .hero-inner,
       .feature-wrap{
@@ -939,14 +932,17 @@
         </article>
 
         <article class="module-card reveal" tabindex="0" role="link" data-link="05-hero-panel.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png"
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_889_uqzvtt.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827929/Capture_d_%C3%A9cran_887_s854oi.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827914/Capture_d_%C3%A9cran_888_rvacrp.png",
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827929/Capture_d_%C3%A9cran_886_zkzzd6.png"
         ]'>
           <div class="module-media"></div>
           <div class="module-arrow">↗</div>
           <div class="module-meta">
             <span class="module-number">05 • Hero panel</span>
             <h4>Hero panel</h4>
-            <p>Un panneau éditorial qui structure le hero et lui donne plus de présence visuelle.</p>
+            <p>Un panneau éditorial plus luxe, plus structuré, qui renforce la présence visuelle du hero.</p>
           </div>
         </article>
 
@@ -1086,7 +1082,6 @@
   </section>
 
   <script>
-    // HERO VIDEOS
     const heroVideos = document.querySelectorAll('.hero-video');
     let currentHeroVideo = 0;
 
@@ -1118,7 +1113,6 @@
 
     setInterval(switchHeroVideo, 6500);
 
-    // PACK VIDEO FORCE PLAY
     const packVideo = document.getElementById('packVideo');
 
     function tryPlayPackVideo() {
@@ -1145,7 +1139,6 @@
       packObserver.observe(packVideo);
     }
 
-    // MODULE SLIDESHOWS + LINKS
     const moduleCards = document.querySelectorAll('.module-card');
 
     moduleCards.forEach((card, cardIndex) => {
@@ -1195,7 +1188,6 @@
       }
     });
 
-    // REVEAL ON SCROLL
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
