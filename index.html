@@ -3,422 +3,371 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LUMIÈRE — Modules Premium</title>
-  <meta name="description" content="Pack de modules premium pour sites beauté, e-commerce et marques visuelles. Expérience luxe, immersive et ultra-convertissante." />
+  <title>LUMIÈRE — Modules Digitaux Premium</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    :root {
-      --bg: #070707;
-      --bg-2: #0d0d0d;
-      --panel: rgba(20, 20, 20, .78);
-      --panel-2: rgba(255, 255, 255, .045);
-      --line: rgba(255, 255, 255, .08);
-      --line-2: rgba(255, 255, 255, .14);
-      --gold: #c8a96b;
-      --gold-2: #d9ba7f;
-      --gold-soft: rgba(200, 169, 107, .16);
-      --text: #f7f0e7;
-      --muted: rgba(247, 240, 231, .74);
-      --muted-2: rgba(247, 240, 231, .54);
-      --shadow: 0 24px 80px rgba(0, 0, 0, .42);
-      --radius-xl: 34px;
-      --radius-lg: 26px;
-      --radius-md: 18px;
-      --max: 1280px;
-      --header-h: 72px;
+    :root{
+      --bg:#080808;
+      --bg-soft:#111111;
+      --panel:#131313;
+      --panel-2:#1a1a1a;
+      --line:rgba(255,255,255,.08);
+      --line-strong:rgba(255,255,255,.14);
+      --text:#f6f1e8;
+      --muted:#c9bfb0;
+      --muted-2:#9c9284;
+      --gold:#d2b06b;
+      --gold-soft:#ecd4a0;
+      --shadow:0 24px 60px rgba(0,0,0,.34);
+      --radius:24px;
+      --max:1380px;
     }
 
-    * { box-sizing: border-box }
-    html { scroll-behavior: smooth }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #080808 0%, #0d0d0d 42%, #070707 100%);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(210,176,107,.10), transparent 22%),
+        radial-gradient(circle at top right, rgba(210,176,107,.05), transparent 18%),
+        linear-gradient(180deg, #090909 0%, #070707 100%);
+      color:var(--text);
+      overflow-x:hidden;
     }
 
-    a { color: inherit; text-decoration: none }
-    img, video { display: block; max-width: 100% }
-    button, input { font: inherit }
+    a{text-decoration:none;color:inherit}
+    img,video{display:block;max-width:100%}
+    button{font:inherit}
 
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
     }
 
-    .section {
-      position: relative;
-      padding: 92px 0;
+    /* ─── TOP BAR ─────────────────────── */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(16px);
+      background:rgba(8,8,8,.65);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .62);
+    .topbar-inner{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold));
-      display: block;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
     }
 
-    .title-serif {
-      font-family: 'Cormorant Garamond', serif;
-      letter-spacing: .01em;
+    .brand-mark{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 32% 30%, rgba(255,255,255,.24), transparent 32%),
+        linear-gradient(145deg, #f0d49b, #9f7434);
+      box-shadow:0 0 0 1px rgba(255,255,255,.08), 0 8px 24px rgba(210,176,107,.24);
+      flex:0 0 auto;
     }
 
-    .btn {
-      position: relative;
-      overflow: hidden;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0 22px;
-      border-radius: 999px;
-      border: 1px solid var(--line-2);
-      font-size: 12px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      transition: transform .28s ease, background .28s ease, border-color .28s ease, box-shadow .28s ease;
-      will-change: transform;
-      cursor: pointer;
+    .brand-copy{
+      min-width:0;
     }
 
-    .btn::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .10), transparent);
-      transform: translateX(-130%);
-      transition: transform .8s ease;
+    .brand-kicker{
+      margin:0 0 4px;
+      color:var(--gold-soft);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      line-height:1;
     }
 
-    .btn:hover::after { transform: translateX(130%) }
-    .btn:hover { transform: translateY(-2px) }
-
-    .btn-primary {
-      color: var(--text);
-      border-color: rgba(212, 179, 115, .42);
-      background: linear-gradient(180deg, rgba(212, 179, 115, .22), rgba(212, 179, 115, .08));
-      box-shadow: 0 10px 36px rgba(0, 0, 0, .25);
+    .brand-name{
+      margin:0;
+      font-family:'Cormorant Garamond',serif;
+      font-size:30px;
+      line-height:1;
+      letter-spacing:.04em;
     }
 
-    .btn-primary:hover {
-      background: linear-gradient(180deg, rgba(212, 179, 115, .30), rgba(212, 179, 115, .12));
-      box-shadow: 0 18px 44px rgba(0, 0, 0, .30);
+    /* ─── MODULE GRID ─────────────────────── */
+    .module-card{
+      position:relative;
+      overflow:hidden;
+      background:#131313;
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      transition:transform .3s ease, box-shadow .3s ease;
+      cursor:pointer;
     }
 
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      z-index: 300;
-      background: linear-gradient(90deg, var(--gold), var(--gold-2));
-      box-shadow: 0 0 18px rgba(200, 169, 107, .45);
+    .module-card:hover{
+      transform:scale(1.05);
+      box-shadow:0 4px 30px rgba(0,0,0,.24);
     }
 
-    .topbar {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 200;
-      min-height: var(--header-h);
-      backdrop-filter: blur(16px);
-      background: linear-gradient(180deg, rgba(8, 8, 8, .88), rgba(8, 8, 8, .40));
-      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    .module-img-wrap{
+      position:relative;
+      height:220px;
     }
 
-    .topbar-inner {
-      width: min(var(--max), calc(100% - 24px));
-      min-height: var(--header-h);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+    .module-img-wrap img{
+      object-fit:cover;
+      object-position:center center;
+      width:100%;
+      height:100%;
+      transition:opacity .3s ease;
     }
 
-    .brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
-      letter-spacing: .10em;
-      white-space: nowrap;
+    .module-body{
+      padding:16px;
     }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-size: 13px;
-      color: rgba(255, 255, 255, .74);
+    .module-title{
+      margin:12px 0;
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.2rem;
+      color:var(--text);
+      line-height:1.2;
     }
 
-    .nav a {
-      position: relative;
-      transition: color .25s ease;
+    .module-desc{
+      color:var(--muted);
+      font-size:.9rem;
+      margin-bottom:20px;
     }
 
-    .nav a:not(.nav-cta)::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width .28s ease;
+    .btn-demo{
+      background:var(--gold);
+      color:#fff;
+      padding:10px 16px;
+      border-radius:6px;
+      border:none;
+      cursor:pointer;
+      font-size:1rem;
+      font-weight:500;
+      transition:background-color .3s ease;
     }
 
-    .nav a:not(.nav-cta):hover::after { width: 100% }
-    .nav a:hover { color: #fff }
-
-    .nav-cta {
-      padding: 10px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(200, 169, 107, .45);
-      background: rgba(200, 169, 107, .07);
-      color: var(--gold);
+    .btn-demo:hover{
+      background-color:var(--gold-soft);
     }
 
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      padding-top: var(--header-h);
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
+    .module-footer-row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
     }
 
-    .hero-media {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
+    .module-mini-tag{
+      font-size:.8rem;
+      color:var(--muted);
+      letter-spacing:.15em;
     }
 
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transform: scale(1.05);
-      transition: opacity 1.1s ease, transform 6.5s ease;
-      filter: brightness(.80) saturate(.95) contrast(1.02);
+    /* ─── COUNTER PLACES RESTANTES ─────────────────────── */
+    .counter{
+      font-size:2rem;
+      font-weight:700;
+      color:var(--gold);
     }
 
-    .hero-video.active {
-      opacity: 1;
-      transform: scale(1.01);
+    /* ─── BENEFITS BAR ─────────────────────── */
+    .benefits-bar{
+      background:#111111;
+      color:var(--gold);
+      padding:16px;
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+      gap:32px;
     }
 
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, .12) 0%, rgba(0, 0, 0, .36) 44%, rgba(0, 0, 0, .92) 100%);
+    .benefit{
+      text-align:center;
+      font-weight:500;
+      font-size:.9rem;
     }
 
-    .hero-overlay::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(8, 8, 8, .88) 0%, rgba(8, 8, 8, .54) 35%, rgba(8, 8, 8, .18) 68%, rgba(8, 8, 8, .56) 100%);
+    .benefit-icon{
+      margin-bottom:8px;
     }
 
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-      padding: 76px 0 50px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .60fr);
-      gap: 34px;
-      align-items: end;
+    /* ─── MODAL WINDOW ─────────────────────── */
+    #modal {
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100vw;
+      height:100vh;
+      background:rgba(0,0,0,.7);
+      z-index:1000;
+      justify-content:center;
+      align-items:center;
     }
 
-    .hero-copy {
-      max-width: 760px;
+    .modal-content {
+      background:white;
+      padding:32px;
+      border-radius:10px;
+      width:90%;
+      max-width:700px;
     }
 
-    .hero-copy h1 {
-      margin: 18px 0 0;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(48px, 7.5vw, 104px);
-      line-height: .92;
-      letter-spacing: -.03em;
-      font-weight: 600;
-      text-wrap: balance;
+    #modal-close{
+      font-size:24px;
+      cursor:pointer;
+      position:absolute;
+      top:12px;
+      right:12px;
     }
-
-    .hero-copy p {
-      margin: 22px 0 0;
-      max-width: 650px;
-      font-size: clamp(15px, 1.4vw, 18px);
-      line-height: 1.8;
-      color: var(--muted);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .hero-proof {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .proof-pill {
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .05);
-      border: 1px solid rgba(255, 255, 255, .07);
-      font-size: 11px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .76);
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-card {
-      justify-self: end;
-      width: min(100%, 420px);
-      padding: 22px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, rgba(18, 18, 18, .80), rgba(12, 12, 12, .76));
-      border: 1px solid rgba(255, 255, 255, .08);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-    }
-
-    .limited {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-
-    .limited-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--gold);
-      box-shadow: 0 0 14px rgba(200, 169, 107, .64);
-      animation: pulse 1.6s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1 }
-      50% { transform: scale(1.35); opacity: .6 }
-    }
-
   </style>
 </head>
+
 <body>
-
-  <!-- BARRE PROGRESSIVE DORÉE -->
-  <div class="progress-bar"></div>
-
-  <!-- HEADER NAV -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">LUMIÈRE</div>
-      <nav class="nav">
-        <a href="#pack">Pack complet</a>
-        <a href="#modules">Modules</a>
-        <a href="#contact" class="nav-cta">Voir l’offre</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- SECTION HERO -->
-  <section class="hero">
-    <div class="hero-media">
-      <video class="hero-video active" autoplay muted loop playsinline webkit-playsinline preload="auto">
-        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
-      </video>
-
-      <video class="hero-video" muted loop playsinline webkit-playsinline preload="auto">
-        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880555/3762912-hd_1280_720_50fps_bybc6z.mp4" type="video/mp4">
-      </video>
-
-      <div class="hero-overlay"></div>
-    </div>
-
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <span class="eyebrow">Digital luxury modules</span>
-        <h1>Des modules premium<br>qui rendent ton site<br>irrésistible.</h1>
-        <p class="hero-sub">
-          Une expérience plus sensuelle, plus immersive et plus premium.
-          Pensée pour capturer l’attention immédiatement et transformer une simple visite en envie d’acheter.
-        </p>
-        <div class="hero-actions">
-          <a href="#pack" class="btn btn-primary">Découvrir le pack</a>
-          <a href="#modules" class="btn btn-secondary">Voir les modules</a>
+  <div class="topbar">
+    <div class="topbar-inner container">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-copy">
+          <p class="brand-kicker">LUMIÈRE</p>
+          <h1 class="brand-name">Modules Digitaux Premium</h1>
         </div>
       </div>
+    </div>
+  </div>
 
-      <aside class="hero-panel">
-        <span class="eyebrow">Pensé conversion</span>
-        <div class="stats">
-          <div class="stat">
-            <strong>13</strong>
-            <span>modules premium réunis dans une seule offre</span>
-          </div>
-          <div class="stat">
-            <strong>100%</strong>
-            <span>mobile, immersif et visuellement fort</span>
-          </div>
-          <div class="stat">
-            <strong>Luxe</strong>
-            <span>direction artistique dark et éditoriale</span>
-          </div>
-          <div class="stat">
-            <strong>Cloud</strong>
-            <span>assets directs, faciles à intégrer</span>
-          </div>
-        </div>
-        <div class="trust-row">
-          <span class="pill">Hero vidéo</span>
-          <span class="pill">Quiz</span>
-          <span class="pill">Comparateur</span>
-          <span class="pill">Showcase</span>
-        </div>
-        <div class="limited">
-          <div class="limited-dot"></div> 
-          <span><strong>17 places restantes</strong></span>
-        </div>
-      </aside>
+  <section id="hero">
+    <video autoplay muted loop>
+      <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
+    </video>
+    <div class="container">
+      <div class="counter">
+        <span id="places-left">15</span> places restantes
+      </div>
     </div>
   </section>
 
+  <div class="benefits-bar">
+    <div class="benefit">
+      <div class="benefit-icon">🌟</div>
+      <div>Module clé en main</div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">⚡</div>
+      <div>Haute conversion</div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">📦</div>
+      <div>Pack complet</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="module-grid" class="module-grid">
+      <!-- Module cards will go here dynamically -->
+    </div>
+  </div>
+
+  <!-- Modal Window -->
+  <div id="modal">
+    <div class="modal-content">
+      <span id="modal-close">✖</span>
+      <iframe id="modal-iframe" width="100%" height="400" src="" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Handle opening and closing of the modal
+    function openModal(file) {
+      document.getElementById("modal").style.display = "flex";
+      document.getElementById("modal-iframe").src = file;
+    }
+
+    document.getElementById("modal-close").onclick = () => {
+      document.getElementById("modal").style.display = "none";
+      document.getElementById("modal-iframe").src = "";
+    }
+
+    // Module Data
+    const modules = [
+      {
+        id: '01',
+        title: 'Barre Header',
+        file: '01-barre-annonce.html',
+        img: 'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829205/Capture_d_%C3%A9cran_834_snubou.png',
+        type: 'Header',
+        badge: 'Essentiel',
+        desc: 'Barre d’annonce premium pour mettre en avant une offre ou un message clé.'
+      },
+      {
+        id: '02',
+        title: 'Hero Slideshow',
+        file: '02-hero-slideshow.html',
+        img: 'https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png',
+        type: 'Hero',
+        badge: 'Best seller',
+        desc: 'Hero visuel avec rotation d’images pour capter l’attention dès l’arrivée.'
+      },
+      {
+        id: '03',
+        title: 'Vidéo Compacte',
+        file: '03-video-compact.html',
+        img: 'https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png',
+        type: 'Vidéo',
+        badge: 'Impact visuel',
+        desc: 'Vidéo compacte pour présenter une démo ou une fonctionnalité rapidement.'
+      },
+      {
+        id: '04',
+        title: 'Vidéo Full Screen',
+        file: '04-video-full.html',
+        img: 'https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png',
+        type: 'Vidéo',
+        badge: 'Immersion',
+        desc: 'Vidéo en plein écran pour un effet plus immersif.'
+      }
+    ];
+
+    // Render the module cards
+    const grid = document.getElementById("module-grid");
+    modules.forEach((m) => {
+      const card = document.createElement("article");
+      card.className = 'module-card';
+      card.innerHTML = `
+        <div class="module-img-wrap">
+          <img src="${m.img}" alt="${m.title}">
+        </div>
+        <div class="module-body">
+          <div class="module-badge-top">${m.badge}</div>
+          <h3 class="module-title">${m.title}</h3>
+          <p class="module-desc">${m.desc}</p>
+          <div class="module-footer-row">
+            <button class="btn-demo" onclick="openModal('${m.file}')">Voir la démo</button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
 </body>
 </html>
