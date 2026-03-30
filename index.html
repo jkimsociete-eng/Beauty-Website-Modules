@@ -1,424 +1,292 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LUMIÈRE — Modules Premium</title>
-  <meta name="description" content="Pack de modules premium pour sites beauté, e-commerce et marques visuelles. Expérience luxe, immersive et ultra-convertissante." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMIÈRE — Modules Premium</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    :root {
-      --bg: #070707;
-      --bg-2: #0d0d0d;
-      --panel: rgba(20, 20, 20, .78);
-      --panel-2: rgba(255, 255, 255, .045);
-      --line: rgba(255, 255, 255, .08);
-      --line-2: rgba(255, 255, 255, .14);
-      --gold: #c8a96b;
-      --gold-2: #d9ba7f;
-      --gold-soft: rgba(200, 169, 107, .16);
-      --text: #f7f0e7;
-      --muted: rgba(247, 240, 231, .74);
-      --muted-2: rgba(247, 240, 231, .54);
-      --shadow: 0 24px 80px rgba(0, 0, 0, .42);
-      --radius-xl: 34px;
-      --radius-lg: 26px;
-      --radius-md: 18px;
-      --max: 1280px;
-      --header-h: 72px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    * { box-sizing: border-box }
-    html { scroll-behavior: smooth }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #080808 0%, #0d0d0d 42%, #070707 100%);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
-    }
+<style>
+:root{
+  --gold:#c8a96b;
+  --bg:#0A0B0D;
+  --ratio:1.618;
+}
 
-    a { color: inherit; text-decoration: none }
-    img, video { display: block; max-width: 100% }
-    button, input { font: inherit }
+body{
+  margin:0;
+  background:var(--bg);
+  color:white;
+  font-family:'Inter',sans-serif;
+}
 
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
+/* HERO */
 
-    .section {
-      position: relative;
-      padding: 92px 0;
-    }
+.hero{
+  position:relative;
+  height:78vh;
+  min-height:520px;
+  overflow:hidden;
+}
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .62);
-    }
+.hero video{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-    .eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold));
-      display: block;
-    }
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9));
+}
 
-    .title-serif {
-      font-family: 'Cormorant Garamond', serif;
-      letter-spacing: .01em;
-    }
+/* TEXT */
 
-    .btn {
-      position: relative;
-      overflow: hidden;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0 22px;
-      border-radius: 999px;
-      border: 1px solid var(--line-2);
-      font-size: 12px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      transition: transform .28s ease, background .28s ease, border-color .28s ease, box-shadow .28s ease;
-      will-change: transform;
-      cursor: pointer;
-    }
+.hero-content{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(20px,5vw,80px);
+  max-width:700px;
+}
 
-    .btn::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .10), transparent);
-      transform: translateX(-130%);
-      transition: transform .8s ease;
-    }
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,5vw,70px);
+  line-height:1.1;
+}
 
-    .btn:hover::after { transform: translateX(130%) }
-    .btn:hover { transform: translateY(-2px) }
+.hero p{
+  opacity:0.7;
+  margin-top:20px;
+  font-size:clamp(14px,1.2vw,18px);
+}
 
-    .btn-primary {
-      color: var(--text);
-      border-color: rgba(212, 179, 115, .42);
-      background: linear-gradient(180deg, rgba(212, 179, 115, .22), rgba(212, 179, 115, .08));
-      box-shadow: 0 10px 36px rgba(0, 0, 0, .25);
-    }
+/* CTA */
 
-    .btn-primary:hover {
-      background: linear-gradient(180deg, rgba(212, 179, 115, .30), rgba(212, 179, 115, .12));
-      box-shadow: 0 18px 44px rgba(0, 0, 0, .30);
-    }
+.cta{
+  margin-top:30px;
+  display:inline-block;
+  padding:14px 28px;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  text-transform:uppercase;
+  font-size:12px;
+  letter-spacing:2px;
+  transition:.4s;
+}
 
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      z-index: 300;
-      background: linear-gradient(90deg, var(--gold), var(--gold-2));
-      box-shadow: 0 0 18px rgba(200, 169, 107, .45);
-    }
+.cta:hover{
+  background:var(--gold);
+  color:black;
+}
 
-    .topbar {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 200;
-      min-height: var(--header-h);
-      backdrop-filter: blur(16px);
-      background: linear-gradient(180deg, rgba(8, 8, 8, .88), rgba(8, 8, 8, .40));
-      border-bottom: 1px solid rgba(255, 255, 255, .06);
-    }
+/* SECTION */
 
-    .topbar-inner {
-      width: min(var(--max), calc(100% - 24px));
-      min-height: var(--header-h);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
+.section{
+  padding:calc(80px * var(--ratio)) 20px;
+}
 
-    .brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
-      letter-spacing: .10em;
-      white-space: nowrap;
-    }
+/* GRID */
 
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-size: 13px;
-      color: rgba(255, 255, 255, .74);
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
 
-    .nav a {
-      position: relative;
-      transition: color .25s ease;
-    }
+/* CARD */
 
-    .nav a:not(.nav-cta)::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width .28s ease;
-    }
+.card{
+  position:relative;
+  overflow:hidden;
+}
 
-    .nav a:not(.nav-cta):hover::after { width: 100% }
-    .nav a:hover { color: #fff }
+.card img{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+  transition:.6s;
+}
 
-    .nav-cta {
-      padding: 10px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(200, 169, 107, .45);
-      background: rgba(200, 169, 107, .07);
-      color: var(--gold);
-    }
+.card:hover img{
+  transform:scale(1.05);
+}
 
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      padding-top: var(--header-h);
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-    }
+.card-content{
+  position:absolute;
+  bottom:0;
+  padding:20px;
+  background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
 
-    .hero-media {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
+/* VIDEO SECTION */
 
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transform: scale(1.05);
-      transition: opacity 1.1s ease, transform 6.5s ease;
-      filter: brightness(.80) saturate(.95) contrast(1.02);
-    }
+.video-full{
+  position:relative;
+  height:70vh;
+}
 
-    .hero-video.active {
-      opacity: 1;
-      transform: scale(1.01);
-    }
+.video-full video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, .12) 0%, rgba(0, 0, 0, .36) 44%, rgba(0, 0, 0, .92) 100%);
-    }
+/* MOBILE */
 
-    .hero-overlay::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(8, 8, 8, .88) 0%, rgba(8, 8, 8, .54) 35%, rgba(8, 8, 8, .18) 68%, rgba(8, 8, 8, .56) 100%);
-    }
+@media(max-width:768px){
 
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-      padding: 76px 0 50px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .60fr);
-      gap: 34px;
-      align-items: end;
-    }
+.hero{
+  height:70vh;
+}
 
-    .hero-copy {
-      max-width: 760px;
-    }
+.hero-content{
+  justify-content:flex-end;
+}
 
-    .hero-copy h1 {
-      margin: 18px 0 0;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(48px, 7.5vw, 104px);
-      line-height: .92;
-      letter-spacing: -.03em;
-      font-weight: 600;
-      text-wrap: balance;
-    }
+.hero h1{
+  font-size:34px;
+}
 
-    .hero-copy p {
-      margin: 22px 0 0;
-      max-width: 650px;
-      font-size: clamp(15px, 1.4vw, 18px);
-      line-height: 1.8;
-      color: var(--muted);
-    }
+}
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
+/* ANIMATION */
 
-    .hero-proof {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
+.fade-up{
+  opacity:0;
+  transform:translateY(30px);
+  transition:.8s;
+}
 
-    .proof-pill {
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .05);
-      border: 1px solid rgba(255, 255, 255, .07);
-      font-size: 11px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .76);
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-card {
-      justify-self: end;
-      width: min(100%, 420px);
-      padding: 22px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, rgba(18, 18, 18, .80), rgba(12, 12, 12, .76));
-      border: 1px solid rgba(255, 255, 255, .08);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-    }
-
-    .limited {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-
-    .limited-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--gold);
-      box-shadow: 0 0 14px rgba(200, 169, 107, .64);
-      animation: pulse 1.6s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1 }
-      50% { transform: scale(1.35); opacity: .6 }
-    }
-
-  </style>
+.fade-up.visible{
+  opacity:1;
+  transform:none;
+}
+</style>
 </head>
+
 <body>
 
-  <!-- BARRE PROGRESSIVE DORÉE -->
-  <div class="progress-bar"></div>
+<!-- HERO VIDEO -->
 
-  <!-- HEADER NAV -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">LUMIÈRE</div>
-      <nav class="nav">
-        <a href="#pack">Pack complet</a>
-        <a href="#modules">Modules</a>
-        <a href="#contact" class="nav-cta">Voir l’offre</a>
-      </nav>
-    </div>
-  </header>
+<section class="hero">
 
-  <!-- SECTION HERO -->
-  <section class="hero">
-    <div class="hero-media">
-      <video class="hero-video active" autoplay muted loop playsinline webkit-playsinline preload="auto">
-        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
-      </video>
+<video autoplay muted loop playsinline>
+<source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
+</video>
 
-      <video class="hero-video" muted loop playsinline webkit-playsinline preload="auto">
-        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880555/3762912-hd_1280_720_50fps_bybc6z.mp4" type="video/mp4">
-      </video>
+<div class="hero-overlay"></div>
 
-      <div class="hero-overlay"></div>
-    </div>
+<div class="hero-content fade-up">
+<h1>L’expérience digitale<br>qui fait vendre</h1>
 
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <span class="eyebrow">Digital luxury modules</span>
-        <h1>Des modules premium<br>qui rendent ton site<br>irrésistible.</h1>
-        <p class="hero-sub">
-          Une expérience plus sensuelle, plus immersive et plus premium.
-          Pensée pour capturer l’attention immédiatement et transformer une simple visite en envie d’acheter.
-        </p>
-        <div class="hero-actions">
-          <a href="#pack" class="btn btn-primary">Découvrir le pack</a>
-          <a href="#modules" class="btn btn-secondary">Voir les modules</a>
-        </div>
-      </div>
+<p>Modules interactifs premium pour transformer ton site en machine à conversion.</p>
 
-      <aside class="hero-panel">
-        <span class="eyebrow">Pensé conversion</span>
-        <div class="stats">
-          <div class="stat">
-            <strong>13</strong>
-            <span>modules premium réunis dans une seule offre</span>
-          </div>
-          <div class="stat">
-            <strong>100%</strong>
-            <span>mobile, immersif et visuellement fort</span>
-          </div>
-          <div class="stat">
-            <strong>Luxe</strong>
-            <span>direction artistique dark et éditoriale</span>
-          </div>
-          <div class="stat">
-            <strong>Cloud</strong>
-            <span>assets directs, faciles à intégrer</span>
-          </div>
-        </div>
-        <div class="trust-row">
-          <span class="pill">Hero vidéo</span>
-          <span class="pill">Quiz</span>
-          <span class="pill">Comparateur</span>
-          <span class="pill">Showcase</span>
-        </div>
-        <div class="limited">
-          <div class="limited-dot"></div> 
-          <span><strong>17 places restantes</strong></span>
-        </div>
-      </aside>
-    </div>
-  </section>
+<a href="#" class="cta">Découvrir</a>
+</div>
+
+</section>
+
+<!-- MODULES GRID -->
+
+<section class="section">
+
+<div class="grid">
+
+<div class="card fade-up">
+<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png">
+<div class="card-content">
+<h3>Hero Slideshow</h3>
+</div>
+</div>
+
+<div class="card fade-up">
+<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png">
+<div class="card-content">
+<h3>Vidéo Compacte</h3>
+</div>
+</div>
+
+<div class="card fade-up">
+<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png">
+<div class="card-content">
+<h3>Vidéo Full</h3>
+</div>
+</div>
+
+<div class="card fade-up">
+<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png">
+<div class="card-content">
+<h3>Comparateur</h3>
+</div>
+</div>
+
+<div class="card fade-up">
+<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png">
+<div class="card-content">
+<h3>Quiz</h3>
+</div>
+</div>
+
+<div class="card fade-up">
+<img src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png">
+<div class="card-content">
+<h3>Selecteur</h3>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- VIDEO IMMERSIVE -->
+
+<section class="video-full">
+<video autoplay muted loop playsinline>
+<source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
+</video>
+</section>
+
+<!-- CTA FINAL -->
+
+<section class="section fade-up" style="text-align:center">
+
+<h2 style="font-family:Cormorant Garamond;font-size:40px;">
+Passe au niveau supérieur
+</h2>
+
+<p style="opacity:.7;margin-top:10px;">
+30 premières places — il en reste 17
+</p>
+
+<a class="cta" href="#">Obtenir le pack</a>
+
+</section>
+
+<script>
+
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('visible');
+}
+});
+});
+
+document.querySelectorAll('.fade-up').forEach(el=>{
+observer.observe(el);
+});
+
+</script>
 
 </body>
 </html>
