@@ -137,6 +137,52 @@
       transform:translateY(-2px);
     }
 
+    /* ── MARQUEE BAND ── */
+    .marquee-band{
+      background:linear-gradient(90deg, rgba(200,169,107,.10), rgba(200,169,107,.06), rgba(200,169,107,.10));
+      border-top:1px solid rgba(200,169,107,.18);
+      border-bottom:1px solid rgba(200,169,107,.18);
+      overflow:hidden;
+      padding:13px 0;
+      white-space:nowrap;
+    }
+
+    .marquee-track{
+      display:inline-flex;
+      gap:0;
+      animation:marquee 28s linear infinite;
+      will-change:transform;
+    }
+
+    .marquee-track:hover{
+      animation-play-state:paused;
+    }
+
+    .marquee-item{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:0 28px;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.72);
+    }
+
+    .marquee-dot{
+      width:4px;
+      height:4px;
+      border-radius:999px;
+      background:var(--gold);
+      opacity:.7;
+      flex:0 0 auto;
+    }
+
+    @keyframes marquee{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
+    }
+
     .topbar{
       position:fixed;
       inset:0 0 auto 0;
@@ -601,6 +647,109 @@
       border-color:rgba(200,169,107,.26);
     }
 
+    /* ── PRICING BLOCK ── */
+    .pricing-block{
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      padding:52px 28px;
+      border:1px solid rgba(200,169,107,.22);
+      background:
+        radial-gradient(circle at top, rgba(200,169,107,.14), transparent 38%),
+        linear-gradient(180deg, rgba(18,18,18,.97), rgba(10,10,10,.99));
+      box-shadow:var(--shadow), 0 0 0 1px rgba(200,169,107,.06) inset;
+      text-align:center;
+    }
+
+    .pricing-block h3{
+      margin:14px 0 0;
+      font-size:clamp(34px, 4.2vw, 58px);
+      line-height:.96;
+    }
+
+    .pricing-block .sub{
+      max-width:660px;
+      margin:16px auto 0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .price-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      margin:32px 0 0;
+      flex-wrap:wrap;
+    }
+
+    .price-current{
+      font-family:'Cormorant Garamond', serif;
+      font-size:clamp(56px, 8vw, 88px);
+      font-weight:600;
+      line-height:1;
+      color:var(--text);
+      letter-spacing:-.02em;
+    }
+
+    .price-current sup{
+      font-size:.42em;
+      vertical-align:super;
+      color:var(--gold);
+    }
+
+    .price-old-wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:6px;
+    }
+
+    .price-old{
+      font-size:22px;
+      color:rgba(255,255,255,.36);
+      text-decoration:line-through;
+      font-family:'Cormorant Garamond', serif;
+    }
+
+    .price-badge{
+      padding:5px 12px;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      background:rgba(200,169,107,.18);
+      border:1px solid rgba(200,169,107,.32);
+      color:var(--gold);
+    }
+
+    .price-features{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin:24px 0 0;
+    }
+
+    .price-pill{
+      padding:9px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:12px;
+      letter-spacing:.06em;
+      color:rgba(255,255,255,.78);
+    }
+
+    .availability{
+      margin-top:14px;
+      color:var(--gold);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:11px;
+    }
+
     .cta-block{
       position:relative;
       overflow:hidden;
@@ -626,14 +775,6 @@
       color:var(--muted);
       line-height:1.8;
       font-size:15px;
-    }
-
-    .availability{
-      margin-top:14px;
-      color:var(--gold);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:11px;
     }
 
     .reveal{
@@ -733,6 +874,10 @@
       .btn{
         width:100%;
       }
+
+      .price-current{
+        font-size:clamp(48px, 14vw, 72px);
+      }
     }
   </style>
 </head>
@@ -744,10 +889,38 @@
       <nav class="nav">
         <a href="#pack">Pack complet</a>
         <a href="#modules">Modules</a>
-        <a href="#contact" class="nav-cta">Voir l’offre</a>
+        <a href="#pricing" class="nav-cta">Voir l'offre</a>
       </nav>
     </div>
   </header>
+
+  <!-- MARQUEE BAND -->
+  <div class="marquee-band" style="margin-top:70px;">
+    <div class="marquee-track">
+      <!-- First set -->
+      <span class="marquee-item"><span class="marquee-dot"></span>14 modules premium</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Livraison immédiate</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>79 € early bird</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item"><span class="marquee-dot"></span>14 modules premium</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Livraison immédiate</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>79 € early bird</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
+    </div>
+  </div>
 
   <section class="hero">
     <div class="hero-media">
@@ -768,11 +941,11 @@
         <h1>Des modules premium<br>qui rendent ton site<br>irrésistible.</h1>
         <p class="hero-sub">
           Une expérience plus sensuelle, plus immersive et plus premium.
-          Pensée pour capturer l’attention immédiatement et transformer une simple visite en envie d’acheter.
+          Pensée pour capturer l'attention immédiatement et transformer une simple visite en envie d'acheter.
         </p>
         <div class="hero-actions">
-          <a href="#pack" class="btn btn-primary">Découvrir le pack</a>
-          <a href="#modules" class="btn btn-secondary">Voir les modules</a>
+          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-primary">Voir la démo complète</a>
+          <a href="#modules" class="btn btn-secondary">Explorer les modules</a>
         </div>
       </div>
 
@@ -780,7 +953,7 @@
         <span class="eyebrow">Pensé conversion</span>
         <div class="stats">
           <div class="stat">
-            <strong>13</strong>
+            <strong>14</strong>
             <span>modules premium réunis dans une seule offre</span>
           </div>
           <div class="stat">
@@ -829,19 +1002,20 @@
           <span class="eyebrow">Module 000</span>
           <h2>Le pack complet qui donne immédiatement une allure premium à ta démo.</h2>
           <p>
-            Ici, on met bien la vraie vidéo de démonstration du pack complet.
-            C’est elle qui sert d’ouverture forte avant d’entrer dans le détail des modules.
+            14 modules HTML/CSS/JS prêts à intégrer sur Shopify ou Webflow.
+            Direction artistique dark luxury, animations cinématiques et expérience immersive
+            pensée pour les marques beauté qui veulent convertir davantage.
           </p>
 
           <div class="bullet-list">
-            <div class="bullet">Effet “wow” immédiat dès l’arrivée sur la page.</div>
+            <div class="bullet">Effet "wow" immédiat dès l'arrivée sur la page.</div>
             <div class="bullet">Perception de valeur plus haute et plus cohérente.</div>
             <div class="bullet">Présentation globale du système avant le détail.</div>
-            <div class="bullet">Idéal pour vendre une offre premium avec plus d’impact.</div>
+            <div class="bullet">Idéal pour vendre une offre premium avec plus d'impact.</div>
           </div>
 
           <div class="hero-actions" style="margin-top:26px;">
-            <a href="#modules" class="btn btn-primary">Explorer les modules</a>
+            <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-primary">Voir la démo VELOUR</a>
           </div>
         </div>
       </div>
@@ -862,7 +1036,7 @@
 
       <div class="modules-grid">
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="01-barre-annonce.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/01-barre-annonce.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829205/Capture_d_%C3%A9cran_834_snubou.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829204/Capture_d_%C3%A9cran_836_d44oba.png"
         ]'>
@@ -875,7 +1049,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="02-hero-slideshow.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/02-hero-slideshow.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_888_mb4bgl.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819688/Capture_d_%C3%A9cran_886_cq3l6c.png"
@@ -885,23 +1059,15 @@
           <div class="module-meta">
             <span class="module-number">02 • Hero slideshow</span>
             <h4>Hero slideshow</h4>
-            <p>Un hero plus vivant, plus mode, plus immersif, pour capter l’œil immédiatement.</p>
+            <p>Un hero plus vivant, plus mode, plus immersif, pour capter l'œil immédiatement.</p>
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="03-video-compact.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/03-video-compact.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_845_wm8nht.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829182/Capture_d_%C3%A9cran_847_tue4wf.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_846_hqfayi.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828983/Capture_d_%C3%A9cran_851_cvrhxs.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828982/Capture_d_%C3%A9cran_852_zsfx7v.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828981/Capture_d_%C3%A9cran_855_joucxn.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828981/Capture_d_%C3%A9cran_854_swx6kn.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828325/Capture_d_%C3%A9cran_857_y0lu0e.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828325/Capture_d_%C3%A9cran_858_djfo4e.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828324/Capture_d_%C3%A9cran_863_ipwb3x.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774828324/Capture_d_%C3%A9cran_862_uwos5s.png"
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_846_hqfayi.png"
         ]'>
           <div class="module-media"></div>
           <div class="module-arrow">↗</div>
@@ -912,15 +1078,11 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="04-video-full.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/04-video-full.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_868_xhi8bc.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_869_sb7i5o.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_870_qc9ukr.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_872_ibyepw.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_871_hnq0wu.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827972/Capture_d_%C3%A9cran_873_cnvuqr.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827972/Capture_d_%C3%A9cran_874_ppjc1b.png"
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_870_qc9ukr.png"
         ]'>
           <div class="module-media"></div>
           <div class="module-arrow">↗</div>
@@ -931,7 +1093,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="05-hero-panel.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/05-hero-panel.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_889_uqzvtt.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827929/Capture_d_%C3%A9cran_887_s854oi.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827914/Capture_d_%C3%A9cran_888_rvacrp.png",
@@ -946,7 +1108,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="06-marquee.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/06-marquee.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_892_vxoior.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_890_arrtyh.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_893_evgxju.png",
@@ -961,12 +1123,11 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="07-comparateur.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/07-comparateur.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_897_raqoog.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_899_efxcpa.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827888/Capture_d_%C3%A9cran_900_jkn2x5.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_901_kwkbx4.png"
+          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827888/Capture_d_%C3%A9cran_900_jkn2x5.png"
         ]'>
           <div class="module-media"></div>
           <div class="module-arrow">↗</div>
@@ -977,7 +1138,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="08-quiz.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/08-quiz.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_904_smp8rp.png"
         ]'>
@@ -990,7 +1151,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="09-selecteur.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/09-selecteur.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823353/Capture_d_%C3%A9cran_907_lw67ue.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823386/Capture_d_%C3%A9cran_909_mlrnqm.png",
@@ -1005,7 +1166,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="10-guide-tailles.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/10-guide-tailles.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_913_uzticg.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_912_j9rtl3.png"
         ]'>
@@ -1018,7 +1179,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="11-showcase.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/11-showcase.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829261/Capture_d_%C3%A9cran_916_givuex.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_917_lrsxoy.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_918_g55kj1.png"
@@ -1032,7 +1193,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="12-dock.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/12-dock.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_919_q9rpdk.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_920_rhlcom.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_921_cpvqby.png",
@@ -1047,7 +1208,7 @@
           </div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="13-email-valeurs.html" data-slides='[
+        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/13-email-valeurs.html" data-slides='[
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_925_ceqysw.png",
           "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_923_uxsko2.png"
         ]'>
@@ -1064,18 +1225,39 @@
     </div>
   </section>
 
-  <section class="section" id="contact">
+  <!-- PRICING SECTION -->
+  <section class="section" id="pricing">
     <div class="container">
-      <div class="cta-block reveal">
-        <span class="eyebrow" style="justify-content:center;">Offre premium</span>
-        <h3 class="title-serif">Une démo plus désirable.<br>Une offre qui se vend mieux.</h3>
-        <p>
-          Hero vidéo, pack complet en immersion, modules animés et démos cliquables :
-          tout est pensé pour faire monter la valeur perçue dès les premières secondes.
+      <div class="pricing-block reveal">
+        <span class="eyebrow" style="justify-content:center;">Offre early bird</span>
+        <h3 class="title-serif">Un seul pack.<br>Une expérience complète.</h3>
+        <p class="sub">
+          14 modules premium HTML/CSS/JS, guide d'intégration inclus, assets Cloudinary prêts à l'emploi.
+          Intégration immédiate sur Shopify ou Webflow.
         </p>
-        <div class="availability">30 premières offres • il en reste 17</div>
-        <div class="hero-actions" style="justify-content:center; margin-top:24px;">
-          <a href="#pack" class="btn btn-primary">Revoir le pack</a>
+
+        <div class="price-row">
+          <div class="price-current"><sup>€</sup>79</div>
+          <div class="price-old-wrap">
+            <span class="price-old">129 €</span>
+            <span class="price-badge">− 39 %</span>
+          </div>
+        </div>
+
+        <div class="price-features">
+          <span class="price-pill">14 modules HTML/CSS/JS</span>
+          <span class="price-pill">Guide d'intégration</span>
+          <span class="price-pill">Shopify &amp; Webflow</span>
+          <span class="price-pill">Assets Cloudinary</span>
+          <span class="price-pill">Livraison immédiate</span>
+          <span class="price-pill">Dark luxury aesthetic</span>
+        </div>
+
+        <div class="availability">30 premières offres · il en reste 17</div>
+
+        <div class="hero-actions" style="justify-content:center; margin-top:28px; gap:16px;">
+          <a href="https://kimjerome.gumroad.com/l/lumiere-beauty-pack" target="_blank" class="btn btn-primary" style="min-width:220px; font-size:13px;">Obtenir le pack — 79 €</a>
+          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-secondary">Voir la démo VELOUR</a>
         </div>
       </div>
     </div>
@@ -1130,9 +1312,7 @@
 
       const packObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tryPlayPackVideo();
-          }
+          if (entry.isIntersecting) tryPlayPackVideo();
         });
       }, { threshold: 0.2 });
 
@@ -1176,13 +1356,13 @@
       const targetLink = card.dataset.link;
       if (targetLink) {
         card.addEventListener('click', () => {
-          window.location.href = targetLink;
+          window.open(targetLink, '_blank');
         });
 
         card.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            window.location.href = targetLink;
+            window.open(targetLink, '_blank');
           }
         });
       }
