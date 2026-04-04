@@ -12,872 +12,288 @@
 
   <style>
     :root{
-      --bg:#070707;
-      --bg-soft:#101010;
-      --panel:rgba(17,17,17,.74);
-      --panel-2:rgba(255,255,255,.04);
-      --line:rgba(255,255,255,.08);
-      --line-2:rgba(255,255,255,.14);
-      --gold:#c8a96b;
-      --gold-2:#d8b77a;
-      --gold-soft:rgba(200,169,107,.14);
-      --text:#f5efe7;
-      --muted:rgba(245,239,231,.74);
-      --muted-2:rgba(245,239,231,.52);
-      --shadow:0 25px 80px rgba(0,0,0,.42);
-      --radius-xl:34px;
-      --radius-lg:28px;
-      --radius-md:18px;
-      --max:1280px;
+      --bg:#070707;--bg-soft:#101010;--panel:rgba(17,17,17,.74);--panel-2:rgba(255,255,255,.04);
+      --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.14);--gold:#c8a96b;--gold-2:#d8b77a;
+      --gold-soft:rgba(200,169,107,.14);--text:#f5efe7;--muted:rgba(245,239,231,.74);
+      --muted-2:rgba(245,239,231,.52);--shadow:0 25px 80px rgba(0,0,0,.42);
+      --radius-xl:34px;--radius-lg:28px;--radius-md:18px;--max:1280px;
     }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0;
-      color:var(--text);
-      font-family:'Inter',sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(200,169,107,.08), transparent 26%),
-        linear-gradient(180deg, #090909 0%, #0d0d0d 40%, #060606 100%);
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
+      margin:0;color:var(--text);font-family:'Inter',sans-serif;
+      background:radial-gradient(circle at top,rgba(200,169,107,.08),transparent 26%),linear-gradient(180deg,#090909 0%,#0d0d0d 40%,#060606 100%);
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
       overflow-x:hidden;
+      overscroll-behavior-x:none; /* fix mobile horizontal swipe */
     }
-
     a{color:inherit;text-decoration:none}
     img,video{display:block;max-width:100%}
     button,input{font:inherit}
-
-    .container{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-    }
-
-    .section{
-      padding:84px 0;
-      position:relative;
-    }
-
+    .container{width:min(var(--max),calc(100% - 32px));margin:0 auto}
+    .section{padding:84px 0;position:relative}
     .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      font-size:11px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.62);
+      display:inline-flex;align-items:center;gap:10px;font-size:11px;
+      letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.62);
     }
-
-    .eyebrow::before{
-      content:"";
-      width:34px;
-      height:1px;
-      display:block;
-      background:linear-gradient(90deg, transparent, var(--gold));
-    }
-
-    .title-serif{
-      font-family:'Cormorant Garamond', serif;
-      letter-spacing:.01em;
-    }
-
+    .eyebrow::before{content:"";width:34px;height:1px;display:block;background:linear-gradient(90deg,transparent,var(--gold))}
+    .title-serif{font-family:'Cormorant Garamond',serif;letter-spacing:.01em}
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:52px;
-      padding:0 22px;
-      border-radius:999px;
-      border:1px solid var(--line-2);
-      font-size:12px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      transition:.32s ease;
-      white-space:nowrap;
-      position:relative;
-      overflow:hidden;
-      cursor:pointer;
-      will-change:transform;
+      display:inline-flex;align-items:center;justify-content:center;min-height:52px;
+      padding:0 22px;border-radius:999px;border:1px solid var(--line-2);font-size:12px;
+      letter-spacing:.18em;text-transform:uppercase;transition:.32s ease;white-space:nowrap;
+      position:relative;overflow:hidden;cursor:pointer;will-change:transform;
     }
-
     .btn::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
-      transform:translateX(-120%);
-      transition:transform .7s ease;
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+      transform:translateX(-120%);transition:transform .7s ease;
     }
-
-    .btn:hover::after{
-      transform:translateX(120%);
-    }
-
+    .btn:hover::after{transform:translateX(120%)}
     .btn-primary{
-      color:var(--text);
-      border-color:rgba(212,179,115,.42);
-      background:linear-gradient(180deg, rgba(212,179,115,.22), rgba(212,179,115,.08));
-      box-shadow:0 10px 40px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.02) inset;
+      color:var(--text);border-color:rgba(212,179,115,.42);
+      background:linear-gradient(180deg,rgba(212,179,115,.22),rgba(212,179,115,.08));
+      box-shadow:0 10px 40px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.02) inset;
     }
-
     .btn-primary:hover{
       transform:translateY(-2px);
-      background:linear-gradient(180deg, rgba(212,179,115,.28), rgba(212,179,115,.12));
-      box-shadow:0 18px 44px rgba(0,0,0,.3), 0 0 0 1px rgba(255,255,255,.03) inset;
+      background:linear-gradient(180deg,rgba(212,179,115,.28),rgba(212,179,115,.12));
+      box-shadow:0 18px 44px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.03) inset;
     }
+    .btn-secondary{background:rgba(255,255,255,.05);color:rgba(255,255,255,.92)}
+    .btn-secondary:hover{background:rgba(255,255,255,.09);transform:translateY(-2px)}
 
-    .btn-secondary{
-      background:rgba(255,255,255,.05);
-      color:rgba(255,255,255,.92);
-    }
-
-    .btn-secondary:hover{
-      background:rgba(255,255,255,.09);
-      transform:translateY(-2px);
-    }
-
-    /* ── MARQUEE BAND ── */
-    .marquee-band{
-      background:linear-gradient(90deg, rgba(200,169,107,.10), rgba(200,169,107,.06), rgba(200,169,107,.10));
-      border-top:1px solid rgba(200,169,107,.18);
-      border-bottom:1px solid rgba(200,169,107,.18);
-      overflow:hidden;
-      padding:13px 0;
-      white-space:nowrap;
-    }
-
-    .marquee-track{
-      display:inline-flex;
-      gap:0;
-      animation:marquee 28s linear infinite;
-      will-change:transform;
-    }
-
-    .marquee-track:hover{
-      animation-play-state:paused;
-    }
-
-    .marquee-item{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:0 28px;
-      font-size:11px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.72);
-    }
-
-    .marquee-dot{
-      width:4px;
-      height:4px;
-      border-radius:999px;
-      background:var(--gold);
-      opacity:.7;
-      flex:0 0 auto;
-    }
-
-    @keyframes marquee{
-      from{transform:translateX(0)}
-      to{transform:translateX(-50%)}
-    }
-
+    /* TOPBAR */
     .topbar{
-      position:fixed;
-      inset:0 0 auto 0;
-      z-index:100;
+      position:fixed;inset:0 0 auto 0;z-index:100;
       backdrop-filter:blur(18px);
-      background:linear-gradient(180deg, rgba(7,7,7,.84), rgba(7,7,7,.34));
+      background:linear-gradient(180deg,rgba(7,7,7,.84),rgba(7,7,7,.34));
       border-bottom:1px solid rgba(255,255,255,.06);
     }
-
     .topbar-inner{
-      width:min(var(--max), calc(100% - 24px));
-      margin:0 auto;
-      min-height:70px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
+      width:min(var(--max),calc(100% - 24px));margin:0 auto;min-height:70px;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
     }
-
-    .brand{
-      font-family:'Cormorant Garamond', serif;
-      font-size:29px;
-      letter-spacing:.08em;
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      flex-wrap:wrap;
-      color:rgba(255,255,255,.74);
-      font-size:13px;
-    }
-
-    .nav a{
-      transition:.24s ease;
-      position:relative;
-    }
-
+    .brand{font-family:'Cormorant Garamond',serif;font-size:29px;letter-spacing:.08em}
+    .nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;color:rgba(255,255,255,.74);font-size:13px}
+    .nav a{transition:.24s ease;position:relative}
     .nav a:not(.nav-cta)::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-6px;
-      width:0;
-      height:1px;
-      background:var(--gold);
-      transition:width .3s ease;
+      content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;
+      background:var(--gold);transition:width .3s ease;
     }
-
-    .nav a:not(.nav-cta):hover::after{
-      width:100%;
-    }
-
+    .nav a:not(.nav-cta):hover::after{width:100%}
     .nav a:hover{color:var(--text)}
-
     .nav-cta{
-      padding:10px 15px;
-      border:1px solid rgba(200,169,107,.48);
-      border-radius:999px;
-      color:var(--gold);
-      background:rgba(200,169,107,.05);
+      padding:10px 15px;border:1px solid rgba(200,169,107,.48);border-radius:999px;
+      color:var(--gold);background:rgba(200,169,107,.05);
     }
 
+    /* HERO */
     .hero{
-      position:relative;
-      min-height:100svh;
-      overflow:hidden;
-      display:flex;
-      align-items:flex-end;
-      padding-top:70px;
+      position:relative;min-height:100svh;overflow:hidden;
+      display:flex;align-items:flex-end;padding-top:70px;
+      touch-action:pan-y; /* prevent horizontal swipe from breaking layout on iOS */
     }
-
-    .hero-media{
-      position:absolute;
-      inset:0;
-      overflow:hidden;
-    }
-
+    .hero-media{position:absolute;inset:0;overflow:hidden}
     .hero-video{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      opacity:0;
-      transition:opacity 1.25s ease, transform 6.5s ease;
-      filter:saturate(.95) contrast(1.03) brightness(.84);
-      transform:scale(1.05);
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+      opacity:0;transition:opacity 1.25s ease,transform 6.5s ease;
+      filter:saturate(.95) contrast(1.03) brightness(.84);transform:scale(1.05);
+      pointer-events:none;
     }
-
-    .hero-video.active{
-      opacity:1;
-      transform:scale(1.01);
-    }
-
+    .hero-video.active{opacity:1;transform:scale(1.01)}
     .hero-overlay{
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 72% 26%, rgba(255,255,255,.05), transparent 22%),
-        linear-gradient(180deg, rgba(5,5,5,.16) 0%, rgba(5,5,5,.42) 46%, rgba(5,5,5,.94) 100%);
+      position:absolute;inset:0;
+      background:radial-gradient(circle at 72% 26%,rgba(255,255,255,.05),transparent 22%),linear-gradient(180deg,rgba(5,5,5,.16) 0%,rgba(5,5,5,.42) 46%,rgba(5,5,5,.94) 100%);
     }
-
     .hero-overlay::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(90deg, rgba(8,8,8,.8) 0%, rgba(8,8,8,.45) 38%, rgba(8,8,8,.14) 68%, rgba(8,8,8,.5) 100%);
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg,rgba(8,8,8,.8) 0%,rgba(8,8,8,.45) 38%,rgba(8,8,8,.14) 68%,rgba(8,8,8,.5) 100%);
     }
-
     .hero-inner{
-      position:relative;
-      z-index:2;
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-      padding:84px 0 54px;
-      display:grid;
-      grid-template-columns:minmax(0, 1.05fr) minmax(320px, .60fr);
-      gap:38px;
-      align-items:end;
+      position:relative;z-index:2;width:min(var(--max),calc(100% - 32px));margin:0 auto;
+      padding:84px 0 54px;display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(320px,.60fr);gap:38px;align-items:end;
     }
-
-    .hero-copy{
-      max-width:760px;
-    }
-
+    .hero-copy{max-width:760px}
     .hero h1{
-      margin:18px 0 0;
-      font-family:'Cormorant Garamond', serif;
-      font-size:clamp(48px, 7.4vw, 102px);
-      line-height:.92;
-      letter-spacing:-.025em;
-      font-weight:600;
-      text-wrap:balance;
+      margin:18px 0 0;font-family:'Cormorant Garamond',serif;
+      font-size:clamp(48px,7.4vw,102px);line-height:.92;letter-spacing:-.025em;
+      font-weight:600;text-wrap:balance;
     }
-
-    .hero-sub{
-      margin:22px 0 0;
-      max-width:640px;
-      color:var(--muted);
-      font-size:clamp(15px, 1.45vw, 18px);
-      line-height:1.75;
-    }
-
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-top:30px;
-    }
-
+    .hero-sub{margin:22px 0 0;max-width:640px;color:var(--muted);font-size:clamp(15px,1.45vw,18px);line-height:1.75}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
     .hero-panel{
-      justify-self:end;
-      width:min(100%, 420px);
-      padding:22px;
-      border-radius:30px;
-      background:linear-gradient(180deg, rgba(18,18,18,.76), rgba(12,12,12,.72));
-      border:1px solid rgba(255,255,255,.08);
-      backdrop-filter:blur(18px);
-      box-shadow:var(--shadow);
+      justify-self:end;width:min(100%,420px);padding:22px;border-radius:30px;
+      background:linear-gradient(180deg,rgba(18,18,18,.76),rgba(12,12,12,.72));
+      border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(18px);box-shadow:var(--shadow);
     }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-      margin-top:16px;
-    }
-
+    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
     .stat{
-      padding:16px;
-      border-radius:18px;
-      background:rgba(255,255,255,.035);
-      border:1px solid rgba(255,255,255,.06);
-      transition:transform .3s ease, border-color .3s ease, background .3s ease;
+      padding:16px;border-radius:18px;background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.06);transition:transform .3s ease,border-color .3s ease,background .3s ease;
     }
-
-    .stat:hover{
-      transform:translateY(-2px);
-      border-color:rgba(200,169,107,.2);
-      background:rgba(255,255,255,.045);
-    }
-
-    .stat strong{
-      display:block;
-      font-size:24px;
-      font-weight:600;
-      color:var(--text);
-    }
-
-    .stat span{
-      display:block;
-      margin-top:6px;
-      font-size:12px;
-      color:rgba(255,255,255,.62);
-      line-height:1.45;
-    }
-
-    .trust-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:16px;
-    }
-
+    .stat:hover{transform:translateY(-2px);border-color:rgba(200,169,107,.2);background:rgba(255,255,255,.045)}
+    .stat strong{display:block;font-size:24px;font-weight:600;color:var(--text)}
+    .stat span{display:block;margin-top:6px;font-size:12px;color:rgba(255,255,255,.62);line-height:1.45}
+    .trust-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
     .pill{
-      padding:10px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.06);
-      font-size:11px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.72);
+      padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);font-size:11px;letter-spacing:.08em;
+      text-transform:uppercase;color:rgba(255,255,255,.72);
     }
 
-    .feature-wrap{
-      display:grid;
-      grid-template-columns:1.06fr .94fr;
-      gap:28px;
-      align-items:center;
+    /* MARQUEE BAND */
+    .marquee-band{
+      background:linear-gradient(90deg,rgba(200,169,107,.10),rgba(200,169,107,.06),rgba(200,169,107,.10));
+      border-top:1px solid rgba(200,169,107,.18);border-bottom:1px solid rgba(200,169,107,.18);
+      overflow:hidden;padding:13px 0;white-space:nowrap;max-width:100vw;
     }
+    .marquee-track{display:inline-flex;animation:marquee 28s linear infinite;will-change:transform}
+    .marquee-track:hover{animation-play-state:paused}
+    .marquee-item{
+      display:inline-flex;align-items:center;gap:10px;padding:0 28px;
+      font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);flex-shrink:0;
+    }
+    .marquee-dot{width:4px;height:4px;border-radius:999px;background:var(--gold);opacity:.7;flex:0 0 auto}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
+    /* FEATURE / PACK */
+    .feature-wrap{display:grid;grid-template-columns:1.06fr .94fr;gap:28px;align-items:center}
     .video-shell{
-      position:relative;
-      overflow:hidden;
-      border-radius:var(--radius-xl);
-      border:1px solid rgba(255,255,255,.08);
-      background:#000;
-      box-shadow:var(--shadow);
-      aspect-ratio:16/9;
-      min-height:320px;
-      isolation:isolate;
+      position:relative;overflow:hidden;border-radius:var(--radius-xl);
+      border:1px solid rgba(255,255,255,.08);background:#000;box-shadow:var(--shadow);
+      aspect-ratio:16/9;min-height:320px;isolation:isolate;
     }
-
     .video-shell::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at 18% 85%, rgba(200,169,107,.12), transparent 25%);
-      z-index:1;
-      pointer-events:none;
+      content:"";position:absolute;inset:0;
+      background:radial-gradient(circle at 18% 85%,rgba(200,169,107,.12),transparent 25%);
+      z-index:1;pointer-events:none;
     }
-
-    .video-shell video{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      background:#000;
-    }
-
+    .video-shell video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
     .glow{
-      position:absolute;
-      inset:auto auto -90px -90px;
-      width:240px;
-      height:240px;
-      background:radial-gradient(circle, rgba(200,169,107,.24), transparent 70%);
-      filter:blur(8px);
-      pointer-events:none;
-      z-index:2;
+      position:absolute;inset:auto auto -90px -90px;width:240px;height:240px;
+      background:radial-gradient(circle,rgba(200,169,107,.24),transparent 70%);
+      filter:blur(8px);pointer-events:none;z-index:2;
     }
-
     .content-card{
-      padding:34px;
-      border-radius:var(--radius-xl);
-      background:linear-gradient(180deg, rgba(18,18,18,.82), rgba(12,12,12,.94));
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow);
+      padding:34px;border-radius:var(--radius-xl);
+      background:linear-gradient(180deg,rgba(18,18,18,.82),rgba(12,12,12,.94));
+      border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);
     }
-
     .content-card h2{
-      margin:14px 0 0;
-      font-size:clamp(36px, 4.1vw, 58px);
-      line-height:.96;
-      font-family:'Cormorant Garamond', serif;
-      font-weight:600;
-      letter-spacing:-.02em;
+      margin:14px 0 0;font-size:clamp(36px,4.1vw,58px);line-height:.96;
+      font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:-.02em;
     }
-
-    .content-card p{
-      margin:16px 0 0;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:15px;
-    }
-
-    .bullet-list{
-      margin:22px 0 0;
-      display:grid;
-      gap:12px;
-    }
-
-    .bullet{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      color:rgba(255,255,255,.84);
-      font-size:14px;
-      line-height:1.6;
-    }
-
+    .content-card p{margin:16px 0 0;color:var(--muted);line-height:1.8;font-size:15px}
+    .bullet-list{margin:22px 0 0;display:grid;gap:12px}
+    .bullet{display:flex;gap:12px;align-items:flex-start;color:rgba(255,255,255,.84);font-size:14px;line-height:1.6}
     .bullet::before{
-      content:"";
-      width:8px;
-      height:8px;
-      margin-top:8px;
-      border-radius:999px;
-      background:var(--gold);
-      box-shadow:0 0 18px rgba(200,169,107,.48);
-      flex:0 0 auto;
+      content:"";width:8px;height:8px;margin-top:8px;border-radius:999px;background:var(--gold);
+      box-shadow:0 0 18px rgba(200,169,107,.48);flex:0 0 auto;
     }
 
-    .grid-head{
-      display:flex;
-      justify-content:space-between;
-      gap:18px;
-      align-items:end;
-      margin-bottom:28px;
-    }
-
-    .grid-head h3{
-      margin:12px 0 0;
-      font-size:clamp(32px, 4vw, 52px);
-      line-height:1;
-    }
-
-    .grid-head p{
-      margin:0;
-      max-width:560px;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:14px;
-    }
-
-    .modules-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:18px;
-    }
-
+    /* MODULES GRID */
+    .grid-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:28px}
+    .grid-head h3{margin:12px 0 0;font-size:clamp(32px,4vw,52px);line-height:1}
+    .grid-head p{margin:0;max-width:560px;color:var(--muted);line-height:1.8;font-size:14px}
+    .modules-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     .module-card{
-      position:relative;
-      overflow:hidden;
-      min-height:420px;
-      border-radius:28px;
-      border:1px solid rgba(255,255,255,.08);
-      background:#111;
-      box-shadow:0 16px 50px rgba(0,0,0,.28);
-      isolation:isolate;
-      cursor:pointer;
-      transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
-      outline:none;
+      position:relative;overflow:hidden;min-height:420px;border-radius:28px;
+      border:1px solid rgba(255,255,255,.08);background:#111;box-shadow:0 16px 50px rgba(0,0,0,.28);
+      isolation:isolate;cursor:pointer;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;outline:none;
     }
-
-    .module-card:hover,
-    .module-card:focus-visible{
-      transform:translateY(-6px);
-      border-color:rgba(200,169,107,.22);
-      box-shadow:0 24px 65px rgba(0,0,0,.34);
+    .module-card:hover,.module-card:focus-visible{
+      transform:translateY(-6px);border-color:rgba(200,169,107,.22);box-shadow:0 24px 65px rgba(0,0,0,.34);
     }
-
-    .module-card:focus-visible{
-      box-shadow:0 0 0 2px rgba(200,169,107,.3), 0 24px 65px rgba(0,0,0,.34);
-    }
-
-    .module-media{
-      position:absolute;
-      inset:0;
-      overflow:hidden;
-      background:#090909;
-    }
-
+    .module-card:focus-visible{box-shadow:0 0 0 2px rgba(200,169,107,.3),0 24px 65px rgba(0,0,0,.34)}
+    .module-media{position:absolute;inset:0;overflow:hidden;background:#090909}
     .module-slide{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      opacity:0;
-      transition:opacity 1s ease, transform 1.4s ease, filter 1.4s ease;
-      transform:scale(1.02);
-      filter:brightness(.88);
-      pointer-events:none;
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
+      transition:opacity 1s ease,transform 1.4s ease,filter 1.4s ease;
+      transform:scale(1.02);filter:brightness(.88);pointer-events:none;
     }
-
-    .module-slide.active{
-      opacity:1;
-      transform:scale(1.08);
-      filter:brightness(.97);
-    }
-
+    .module-slide.active{opacity:1;transform:scale(1.08);filter:brightness(.97)}
     .module-card::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.08) 38%, rgba(0,0,0,.9)),
-        radial-gradient(circle at 20% 100%, rgba(200,169,107,.10), transparent 30%);
-      z-index:1;
-      pointer-events:none;
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.08) 38%,rgba(0,0,0,.9)),
+        radial-gradient(circle at 20% 100%,rgba(200,169,107,.10),transparent 30%);
+      z-index:1;pointer-events:none;
     }
-
-    .module-meta{
-      position:absolute;
-      inset:auto 18px 18px 18px;
-      z-index:2;
-    }
-
+    .module-meta{position:absolute;inset:auto 18px 18px 18px;z-index:2}
     .module-number{
-      display:inline-flex;
-      margin-bottom:10px;
-      padding:8px 11px;
-      border-radius:999px;
-      font-size:10px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.92);
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.08);
-      backdrop-filter:blur(8px);
+      display:inline-flex;margin-bottom:10px;padding:8px 11px;border-radius:999px;font-size:10px;
+      letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.92);
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);
     }
-
-    .module-meta h4{
-      margin:0;
-      font-size:22px;
-      line-height:1.12;
-      font-weight:600;
-    }
-
-    .module-meta p{
-      margin:8px 0 0;
-      color:rgba(255,255,255,.74);
-      font-size:13px;
-      line-height:1.62;
-      max-width:92%;
-    }
-
+    .module-meta h4{margin:0;font-size:22px;line-height:1.12;font-weight:600}
+    .module-meta p{margin:8px 0 0;color:rgba(255,255,255,.74);font-size:13px;line-height:1.62;max-width:92%}
     .module-arrow{
-      position:absolute;
-      top:18px;
-      right:18px;
-      z-index:2;
-      width:42px;
-      height:42px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.24);
-      display:grid;
-      place-items:center;
-      backdrop-filter:blur(10px);
-      color:rgba(255,255,255,.9);
-      font-size:18px;
-      transition:transform .3s ease, background .3s ease, border-color .3s ease;
+      position:absolute;top:18px;right:18px;z-index:2;width:42px;height:42px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.24);display:grid;place-items:center;
+      backdrop-filter:blur(10px);color:rgba(255,255,255,.9);font-size:18px;
+      transition:transform .3s ease,background .3s ease,border-color .3s ease;
+    }
+    .module-card:hover .module-arrow,.module-card:focus-visible .module-arrow{
+      transform:translateX(3px);background:rgba(200,169,107,.16);border-color:rgba(200,169,107,.26);
     }
 
-    .module-card:hover .module-arrow,
-    .module-card:focus-visible .module-arrow{
-      transform:translateX(3px);
-      background:rgba(200,169,107,.16);
-      border-color:rgba(200,169,107,.26);
-    }
-
-    /* ── PRICING BLOCK ── */
+    /* PRICING */
     .pricing-block{
-      position:relative;
-      overflow:hidden;
-      border-radius:34px;
-      padding:52px 28px;
+      position:relative;overflow:hidden;border-radius:34px;padding:52px 28px;
       border:1px solid rgba(200,169,107,.22);
-      background:
-        radial-gradient(circle at top, rgba(200,169,107,.14), transparent 38%),
-        linear-gradient(180deg, rgba(18,18,18,.97), rgba(10,10,10,.99));
-      box-shadow:var(--shadow), 0 0 0 1px rgba(200,169,107,.06) inset;
-      text-align:center;
+      background:radial-gradient(circle at top,rgba(200,169,107,.14),transparent 38%),linear-gradient(180deg,rgba(18,18,18,.97),rgba(10,10,10,.99));
+      box-shadow:var(--shadow),0 0 0 1px rgba(200,169,107,.06) inset;text-align:center;
     }
-
-    .pricing-block h3{
-      margin:14px 0 0;
-      font-size:clamp(34px, 4.2vw, 58px);
-      line-height:.96;
-    }
-
-    .pricing-block .sub{
-      max-width:660px;
-      margin:16px auto 0;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:15px;
-    }
-
-    .price-row{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:14px;
-      margin:32px 0 0;
-      flex-wrap:wrap;
-    }
-
+    .pricing-block h3{margin:14px 0 0;font-size:clamp(34px,4.2vw,58px);line-height:.96}
+    .pricing-block .sub{max-width:660px;margin:16px auto 0;color:var(--muted);line-height:1.8;font-size:15px}
+    .price-row{display:flex;align-items:center;justify-content:center;gap:14px;margin:32px 0 0;flex-wrap:wrap}
     .price-current{
-      font-family:'Cormorant Garamond', serif;
-      font-size:clamp(56px, 8vw, 88px);
-      font-weight:600;
-      line-height:1;
-      color:var(--text);
-      letter-spacing:-.02em;
+      font-family:'Cormorant Garamond',serif;font-size:clamp(56px,8vw,88px);font-weight:600;
+      line-height:1;color:var(--text);letter-spacing:-.02em;
     }
-
-    .price-current sup{
-      font-size:.42em;
-      vertical-align:super;
-      color:var(--gold);
-    }
-
-    .price-old-wrap{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      gap:6px;
-    }
-
-    .price-old{
-      font-size:22px;
-      color:rgba(255,255,255,.36);
-      text-decoration:line-through;
-      font-family:'Cormorant Garamond', serif;
-    }
-
+    .price-current sup{font-size:.42em;vertical-align:super;color:var(--gold)}
+    .price-old-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+    .price-old{font-size:22px;color:rgba(255,255,255,.36);text-decoration:line-through;font-family:'Cormorant Garamond',serif}
     .price-badge{
-      padding:5px 12px;
-      border-radius:999px;
-      font-size:11px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      background:rgba(200,169,107,.18);
-      border:1px solid rgba(200,169,107,.32);
-      color:var(--gold);
+      padding:5px 12px;border-radius:999px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+      background:rgba(200,169,107,.18);border:1px solid rgba(200,169,107,.32);color:var(--gold);
     }
-
-    .price-features{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:10px;
-      margin:24px 0 0;
-    }
-
+    .price-features{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:24px 0 0}
     .price-pill{
-      padding:9px 16px;
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      font-size:12px;
-      letter-spacing:.06em;
-      color:rgba(255,255,255,.78);
+      padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.78);
     }
+    .availability{margin-top:14px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-size:11px}
 
-    .availability{
-      margin-top:14px;
-      color:var(--gold);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:11px;
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+    .reveal.is-visible{opacity:1;transform:none}
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){
+      .hero-inner,.feature-wrap{grid-template-columns:1fr}
+      .hero-panel{justify-self:start;width:min(100%,560px)}
+      .modules-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
-
-    .cta-block{
-      position:relative;
-      overflow:hidden;
-      border-radius:34px;
-      padding:46px 28px;
-      border:1px solid rgba(255,255,255,.08);
-      background:
-        radial-gradient(circle at top, rgba(200,169,107,.12), transparent 35%),
-        linear-gradient(180deg, rgba(18,18,18,.95), rgba(10,10,10,.98));
-      box-shadow:var(--shadow);
-      text-align:center;
-    }
-
-    .cta-block h3{
-      margin:12px 0 0;
-      font-size:clamp(36px, 4.5vw, 60px);
-      line-height:.96;
-    }
-
-    .cta-block p{
-      max-width:700px;
-      margin:16px auto 0;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:15px;
-    }
-
-    .reveal{
-      opacity:0;
-      transform:translateY(28px);
-      transition:opacity .8s ease, transform .8s ease;
-    }
-
-    .reveal.is-visible{
-      opacity:1;
-      transform:none;
-    }
-
-    @media (max-width:1100px){
-      .hero-inner,
-      .feature-wrap{
-        grid-template-columns:1fr;
-      }
-
-      .hero-panel{
-        justify-self:start;
-        width:min(100%, 560px);
-      }
-
-      .modules-grid{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-    }
-
-    @media (max-width:760px){
-      .topbar-inner{
-        min-height:64px;
-        padding:10px 0;
-      }
-
+    @media(max-width:760px){
+      .topbar-inner{min-height:64px;padding:10px 0}
       .nav{display:none}
-
-      .hero{
-        min-height:92svh;
-      }
-
-      .hero-inner{
-        width:min(100% - 20px, var(--max));
-        padding:56px 0 28px;
-        gap:18px;
-      }
-
-      .hero h1{
-        font-size:clamp(40px, 12vw, 64px);
-      }
-
-      .hero-sub{
-        font-size:14px;
-        line-height:1.65;
-      }
-
-      .hero-panel{
-        padding:18px;
-        border-radius:24px;
-      }
-
-      .stats{
-        gap:10px;
-      }
-
-      .stat{
-        padding:14px;
-        border-radius:16px;
-      }
-
-      .section{
-        padding:58px 0;
-      }
-
-      .content-card{
-        padding:24px;
-        border-radius:24px;
-      }
-
-      .modules-grid{
-        grid-template-columns:1fr;
-      }
-
-      .module-card{
-        min-height:360px;
-      }
-
-      .grid-head{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .hero-actions{
-        width:100%;
-      }
-
-      .btn{
-        width:100%;
-      }
-
-      .price-current{
-        font-size:clamp(48px, 14vw, 72px);
-      }
+      .hero{min-height:92svh}
+      .hero-inner{width:min(100% - 20px,var(--max));padding:56px 0 28px;gap:18px}
+      .hero h1{font-size:clamp(40px,12vw,64px)}
+      .hero-sub{font-size:14px;line-height:1.65}
+      .hero-panel{padding:18px;border-radius:24px}
+      .stats{gap:10px}
+      .stat{padding:14px;border-radius:16px}
+      .section{padding:58px 0}
+      .content-card{padding:24px;border-radius:24px}
+      .modules-grid{grid-template-columns:1fr}
+      .module-card{min-height:360px}
+      .grid-head{flex-direction:column;align-items:flex-start}
+      .hero-actions{width:100%}
+      .btn{width:100%}
+      .price-current{font-size:clamp(48px,14vw,72px)}
     }
   </style>
 </head>
@@ -894,10 +310,53 @@
     </div>
   </header>
 
-  <!-- MARQUEE BAND -->
-  <div class="marquee-band" style="margin-top:70px;">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-media">
+      <video class="hero-video active" autoplay muted loop playsinline webkit-playsinline preload="auto">
+        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
+      </video>
+      <video class="hero-video" muted loop playsinline webkit-playsinline preload="auto">
+        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880555/3762912-hd_1280_720_50fps_bybc6z.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Digital luxury modules</span>
+        <h1>Des modules premium<br>qui rendent ton site<br>irrésistible.</h1>
+        <p class="hero-sub">
+          Une expérience plus sensuelle, plus immersive et plus premium.
+          Pensée pour capturer l'attention immédiatement et transformer une simple visite en envie d'acheter.
+        </p>
+        <div class="hero-actions">
+          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-primary">Voir la démo complète</a>
+          <a href="#modules" class="btn btn-secondary">Explorer les modules</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal">
+        <span class="eyebrow">Pensé conversion</span>
+        <div class="stats">
+          <div class="stat"><strong>14</strong><span>modules premium réunis dans une seule offre</span></div>
+          <div class="stat"><strong>100%</strong><span>mobile, immersif et visuellement fort</span></div>
+          <div class="stat"><strong>Luxe</strong><span>direction artistique dark et éditoriale</span></div>
+          <div class="stat"><strong>Cloud</strong><span>assets directs, faciles à intégrer</span></div>
+        </div>
+        <div class="trust-row">
+          <span class="pill">Hero vidéo</span>
+          <span class="pill">Quiz</span>
+          <span class="pill">Comparateur</span>
+          <span class="pill">Showcase</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- MARQUEE BAND — entre hero et section pack -->
+  <div class="marquee-band">
     <div class="marquee-track">
-      <!-- First set -->
       <span class="marquee-item"><span class="marquee-dot"></span>14 modules premium</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
@@ -922,99 +381,28 @@
     </div>
   </div>
 
-  <section class="hero">
-    <div class="hero-media">
-      <video class="hero-video active" autoplay muted loop playsinline webkit-playsinline preload="auto">
-        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
-      </video>
-
-      <video class="hero-video" muted loop playsinline webkit-playsinline preload="auto">
-        <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880555/3762912-hd_1280_720_50fps_bybc6z.mp4" type="video/mp4">
-      </video>
-
-      <div class="hero-overlay"></div>
-    </div>
-
-    <div class="hero-inner">
-      <div class="hero-copy reveal">
-        <span class="eyebrow">Digital luxury modules</span>
-        <h1>Des modules premium<br>qui rendent ton site<br>irrésistible.</h1>
-        <p class="hero-sub">
-          Une expérience plus sensuelle, plus immersive et plus premium.
-          Pensée pour capturer l'attention immédiatement et transformer une simple visite en envie d'acheter.
-        </p>
-        <div class="hero-actions">
-          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-primary">Voir la démo complète</a>
-          <a href="#modules" class="btn btn-secondary">Explorer les modules</a>
-        </div>
-      </div>
-
-      <aside class="hero-panel reveal">
-        <span class="eyebrow">Pensé conversion</span>
-        <div class="stats">
-          <div class="stat">
-            <strong>14</strong>
-            <span>modules premium réunis dans une seule offre</span>
-          </div>
-          <div class="stat">
-            <strong>100%</strong>
-            <span>mobile, immersif et visuellement fort</span>
-          </div>
-          <div class="stat">
-            <strong>Luxe</strong>
-            <span>direction artistique dark et éditoriale</span>
-          </div>
-          <div class="stat">
-            <strong>Cloud</strong>
-            <span>assets directs, faciles à intégrer</span>
-          </div>
-        </div>
-        <div class="trust-row">
-          <span class="pill">Hero vidéo</span>
-          <span class="pill">Quiz</span>
-          <span class="pill">Comparateur</span>
-          <span class="pill">Showcase</span>
-        </div>
-      </aside>
-    </div>
-  </section>
-
+  <!-- PACK COMPLET -->
   <section class="section" id="pack">
     <div class="container">
       <div class="feature-wrap">
         <div class="video-shell reveal">
-          <video
-            id="packVideo"
-            autoplay
-            muted
-            loop
-            playsinline
-            webkit-playsinline
-            preload="auto"
-            poster="https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png"
-          >
+          <video id="packVideo" autoplay muted loop playsinline webkit-playsinline preload="auto"
+            poster="https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png">
             <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
           </video>
           <div class="glow"></div>
         </div>
-
         <div class="content-card reveal">
           <span class="eyebrow">Module 000</span>
           <h2>Le pack complet qui donne immédiatement une allure premium à ta démo.</h2>
-          <p>
-            14 modules HTML/CSS/JS prêts à intégrer sur Shopify ou Webflow.
-            Direction artistique dark luxury, animations cinématiques et expérience immersive
-            pensée pour les marques beauté qui veulent convertir davantage.
-          </p>
-
+          <p>14 modules HTML/CSS/JS prêts à intégrer sur Shopify ou Webflow. Direction artistique dark luxury, animations cinématiques et expérience immersive pensée pour les marques beauté qui veulent convertir davantage.</p>
           <div class="bullet-list">
             <div class="bullet">Effet "wow" immédiat dès l'arrivée sur la page.</div>
             <div class="bullet">Perception de valeur plus haute et plus cohérente.</div>
             <div class="bullet">Présentation globale du système avant le détail.</div>
             <div class="bullet">Idéal pour vendre une offre premium avec plus d'impact.</div>
           </div>
-
-          <div class="hero-actions" style="margin-top:26px;">
+          <div class="hero-actions" style="margin-top:26px">
             <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-primary">Voir la démo VELOUR</a>
           </div>
         </div>
@@ -1022,6 +410,7 @@
     </div>
   </section>
 
+  <!-- MODULES -->
   <section class="section" id="modules">
     <div class="container">
       <div class="grid-head reveal">
@@ -1029,213 +418,112 @@
           <span class="eyebrow">Collection</span>
           <h3 class="title-serif">Les modules en version cinematic</h3>
         </div>
-        <p>
-          Chaque carte anime automatiquement les visuels du module et renvoie directement vers sa page de démo.
-        </p>
+        <p>Chaque carte anime automatiquement les visuels du module et renvoie directement vers sa page de démo.</p>
       </div>
-
       <div class="modules-grid">
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/01-barre-annonce.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829205/Capture_d_%C3%A9cran_834_snubou.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829204/Capture_d_%C3%A9cran_836_d44oba.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">01 • Barre annonce</span>
-            <h4>Header premium</h4>
-            <p>Un haut de page plus fort, plus propre, plus crédible dès les premières secondes.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/01-barre-annonce.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774829205/Capture_d_%C3%A9cran_834_snubou.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829204/Capture_d_%C3%A9cran_836_d44oba.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">01 • Barre annonce</span><h4>Header premium</h4><p>Un haut de page plus fort, plus propre, plus crédible dès les premières secondes.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/02-hero-slideshow.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_888_mb4bgl.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774819688/Capture_d_%C3%A9cran_886_cq3l6c.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">02 • Hero slideshow</span>
-            <h4>Hero slideshow</h4>
-            <p>Un hero plus vivant, plus mode, plus immersif, pour capter l'œil immédiatement.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/02-hero-slideshow.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_888_mb4bgl.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774819688/Capture_d_%C3%A9cran_886_cq3l6c.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">02 • Hero slideshow</span><h4>Hero slideshow</h4><p>Un hero plus vivant, plus mode, plus immersif, pour capter l'œil immédiatement.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/03-video-compact.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_845_wm8nht.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829182/Capture_d_%C3%A9cran_847_tue4wf.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_846_hqfayi.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">03 • Vidéo compacte</span>
-            <h4>Video compacte</h4>
-            <p>Un bloc dense, élégant et rythmé, parfait pour présenter un module sans alourdir la page.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/03-video-compact.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_845_wm8nht.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829182/Capture_d_%C3%A9cran_847_tue4wf.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_846_hqfayi.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">03 • Vidéo compacte</span><h4>Video compacte</h4><p>Un bloc dense, élégant et rythmé, parfait pour présenter un module sans alourdir la page.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/04-video-full.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_868_xhi8bc.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_869_sb7i5o.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_870_qc9ukr.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">04 • Vidéo full</span>
-            <h4>Video full immersive</h4>
-            <p>Une section large et cinématique qui donne une vraie sensation de campagne premium.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/04-video-full.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_868_xhi8bc.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_869_sb7i5o.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_870_qc9ukr.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">04 • Vidéo full</span><h4>Video full immersive</h4><p>Une section large et cinématique qui donne une vraie sensation de campagne premium.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/05-hero-panel.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_889_uqzvtt.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827929/Capture_d_%C3%A9cran_887_s854oi.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827914/Capture_d_%C3%A9cran_888_rvacrp.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827929/Capture_d_%C3%A9cran_886_zkzzd6.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">05 • Hero panel</span>
-            <h4>Hero panel</h4>
-            <p>Un panneau éditorial plus luxe, plus structuré, qui renforce la présence visuelle du hero.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/05-hero-panel.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_889_uqzvtt.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827929/Capture_d_%C3%A9cran_887_s854oi.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827914/Capture_d_%C3%A9cran_888_rvacrp.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827929/Capture_d_%C3%A9cran_886_zkzzd6.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">05 • Hero panel</span><h4>Hero panel</h4><p>Un panneau éditorial plus luxe, plus structuré, qui renforce la présence visuelle du hero.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/06-marquee.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_892_vxoior.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_890_arrtyh.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_893_evgxju.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_894_sttdpd.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">06 • Marquee</span>
-            <h4>Marquee premium</h4>
-            <p>Ajoute du mouvement, du rythme et un côté plus contemporain à la page.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/06-marquee.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_892_vxoior.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_890_arrtyh.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_893_evgxju.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_894_sttdpd.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">06 • Marquee</span><h4>Marquee premium</h4><p>Ajoute du mouvement, du rythme et un côté plus contemporain à la page.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/07-comparateur.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_897_raqoog.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_899_efxcpa.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827888/Capture_d_%C3%A9cran_900_jkn2x5.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">07 • Comparateur</span>
-            <h4>Comparateur</h4>
-            <p>Le module de preuve visuelle qui aide le plus à faire ressentir la différence.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/07-comparateur.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_897_raqoog.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_899_efxcpa.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827888/Capture_d_%C3%A9cran_900_jkn2x5.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">07 • Comparateur</span><h4>Comparateur</h4><p>Le module de preuve visuelle qui aide le plus à faire ressentir la différence.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/08-quiz.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_904_smp8rp.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">08 • Quiz</span>
-            <h4>Quiz intelligent</h4>
-            <p>Guide la visiteuse vers la bonne option de façon fluide et plus engageante.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/08-quiz.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_904_smp8rp.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">08 • Quiz</span><h4>Quiz intelligent</h4><p>Guide la visiteuse vers la bonne option de façon fluide et plus engageante.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/09-selecteur.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823353/Capture_d_%C3%A9cran_907_lw67ue.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823386/Capture_d_%C3%A9cran_909_mlrnqm.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823402/Capture_d_%C3%A9cran_910_i3vkxy.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">09 • Sélecteur</span>
-            <h4>Sélecteur premium</h4>
-            <p>Présente les choix et variantes avec plus de désirabilité et de clarté.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/09-selecteur.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774823353/Capture_d_%C3%A9cran_907_lw67ue.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774823386/Capture_d_%C3%A9cran_909_mlrnqm.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774823402/Capture_d_%C3%A9cran_910_i3vkxy.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">09 • Sélecteur</span><h4>Sélecteur premium</h4><p>Présente les choix et variantes avec plus de désirabilité et de clarté.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/10-guide-tailles.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_913_uzticg.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_912_j9rtl3.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">10 • Guide tailles</span>
-            <h4>Guide des tailles</h4>
-            <p>Un bloc de réassurance utile qui réduit les hésitations au moment du choix.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/10-guide-tailles.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_913_uzticg.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_912_j9rtl3.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">10 • Guide tailles</span><h4>Guide des tailles</h4><p>Un bloc de réassurance utile qui réduit les hésitations au moment du choix.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/11-showcase.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829261/Capture_d_%C3%A9cran_916_givuex.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_917_lrsxoy.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_918_g55kj1.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">11 • Showcase</span>
-            <h4>Showcase visuel</h4>
-            <p>Met en scène le contenu comme un vrai univers de marque, plus éditorial et plus luxe.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/11-showcase.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774829261/Capture_d_%C3%A9cran_916_givuex.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_917_lrsxoy.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_918_g55kj1.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">11 • Showcase</span><h4>Showcase visuel</h4><p>Met en scène le contenu comme un vrai univers de marque, plus éditorial et plus luxe.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/12-dock.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_919_q9rpdk.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_920_rhlcom.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_921_cpvqby.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_922_lxujyw.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">12 • Dock</span>
-            <h4>Dock interactif</h4>
-            <p>Ajoute une navigation visuelle plus moderne et un effet produit plus technologique.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/12-dock.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_919_q9rpdk.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_920_rhlcom.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_921_cpvqby.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_922_lxujyw.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">12 • Dock</span><h4>Dock interactif</h4><p>Ajoute une navigation visuelle plus moderne et un effet produit plus technologique.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link" data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/13-email-valeurs.html" data-slides='[
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_925_ceqysw.png",
-          "https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_923_uxsko2.png"
-        ]'>
-          <div class="module-media"></div>
-          <div class="module-arrow">↗</div>
-          <div class="module-meta">
-            <span class="module-number">13 • Email valeurs</span>
-            <h4>Email capture / valeurs</h4>
-            <p>Renforce le storytelling, la collecte et la cohérence de la proposition de valeur.</p>
-          </div>
+        <article class="module-card reveal" tabindex="0" role="link"
+          data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/13-email-valeurs.html"
+          data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_925_ceqysw.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_923_uxsko2.png"]'>
+          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-meta"><span class="module-number">13 • Email valeurs</span><h4>Email capture / valeurs</h4><p>Renforce le storytelling, la collecte et la cohérence de la proposition de valeur.</p></div>
         </article>
 
       </div>
     </div>
   </section>
 
-  <!-- PRICING SECTION -->
+  <!-- PRICING -->
   <section class="section" id="pricing">
     <div class="container">
       <div class="pricing-block reveal">
-        <span class="eyebrow" style="justify-content:center;">Offre early bird</span>
+        <span class="eyebrow" style="justify-content:center">Offre early bird</span>
         <h3 class="title-serif">Un seul pack.<br>Une expérience complète.</h3>
-        <p class="sub">
-          14 modules premium HTML/CSS/JS, guide d'intégration inclus, assets Cloudinary prêts à l'emploi.
-          Intégration immédiate sur Shopify ou Webflow.
-        </p>
-
+        <p class="sub">14 modules premium HTML/CSS/JS, guide d'intégration inclus, assets Cloudinary prêts à l'emploi. Intégration immédiate sur Shopify ou Webflow.</p>
         <div class="price-row">
           <div class="price-current"><sup>€</sup>79</div>
           <div class="price-old-wrap">
@@ -1243,7 +531,6 @@
             <span class="price-badge">− 39 %</span>
           </div>
         </div>
-
         <div class="price-features">
           <span class="price-pill">14 modules HTML/CSS/JS</span>
           <span class="price-pill">Guide d'intégration</span>
@@ -1252,11 +539,9 @@
           <span class="price-pill">Livraison immédiate</span>
           <span class="price-pill">Dark luxury aesthetic</span>
         </div>
-
         <div class="availability">30 premières offres · il en reste 17</div>
-
-        <div class="hero-actions" style="justify-content:center; margin-top:28px; gap:16px;">
-          <a href="https://kimjerome.gumroad.com/l/lumiere-beauty-pack" target="_blank" class="btn btn-primary" style="min-width:220px; font-size:13px;">Obtenir le pack — 79 €</a>
+        <div class="hero-actions" style="justify-content:center;margin-top:28px;gap:16px">
+          <a href="https://lumirebeauty.gumroad.com/l/demo" target="_blank" class="btn btn-primary" style="min-width:220px;font-size:13px">Obtenir le pack — 79 €</a>
           <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-secondary">Voir la démo VELOUR</a>
         </div>
       </div>
@@ -1264,119 +549,61 @@
   </section>
 
   <script>
+    // Hero videos
     const heroVideos = document.querySelectorAll('.hero-video');
     let currentHeroVideo = 0;
+    heroVideos.forEach((v,i)=>{
+      v.muted=true;v.defaultMuted=true;
+      if(i===0){v.classList.add('active');const p=v.play();if(p)p.catch(()=>{})}
+      else v.pause();
+    });
+    function switchHeroVideo(){
+      const cur=heroVideos[currentHeroVideo];
+      const ni=(currentHeroVideo+1)%heroVideos.length;
+      const nxt=heroVideos[ni];
+      nxt.currentTime=0;const p=nxt.play();if(p)p.catch(()=>{});
+      nxt.classList.add('active');cur.classList.remove('active');currentHeroVideo=ni;
+    }
+    setInterval(switchHeroVideo,6500);
 
-    heroVideos.forEach((video, index) => {
-      video.muted = true;
-      video.defaultMuted = true;
-      if (index === 0) {
-        video.classList.add('active');
-        const p = video.play();
-        if (p !== undefined) p.catch(() => {});
-      } else {
-        video.pause();
+    // Pack video
+    const pv=document.getElementById('packVideo');
+    function tryPlay(){if(!pv)return;pv.muted=true;pv.defaultMuted=true;const p=pv.play();if(p)p.catch(()=>{})}
+    if(pv){
+      pv.addEventListener('loadeddata',tryPlay);pv.addEventListener('canplay',tryPlay);
+      window.addEventListener('load',tryPlay);
+      new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)tryPlay()})},{threshold:0.2}).observe(pv);
+    }
+
+    // Module cards
+    document.querySelectorAll('.module-card').forEach((card,ci)=>{
+      const media=card.querySelector('.module-media');
+      let slides=[];
+      try{slides=JSON.parse(card.dataset.slides||'[]')}catch(e){}
+      if(media&&slides.length){
+        slides.forEach((src,i)=>{
+          const img=document.createElement('img');
+          img.src=src;img.alt='';img.className='module-slide'+(i===0?' active':'');
+          img.loading=i===0?'eager':'lazy';media.appendChild(img);
+        });
+        const els=media.querySelectorAll('.module-slide');
+        let cs=0;
+        if(els.length>1){
+          setInterval(()=>{
+            els[cs].classList.remove('active');cs=(cs+1)%els.length;els[cs].classList.add('active');
+          },2600+(ci%3)*300);
+        }
+      }
+      const link=card.dataset.link;
+      if(link){
+        card.addEventListener('click',()=>window.open(link,'_blank'));
+        card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();window.open(link,'_blank')}});
       }
     });
 
-    function switchHeroVideo() {
-      const current = heroVideos[currentHeroVideo];
-      const nextIndex = (currentHeroVideo + 1) % heroVideos.length;
-      const next = heroVideos[nextIndex];
-
-      next.currentTime = 0;
-      const p = next.play();
-      if (p !== undefined) p.catch(() => {});
-
-      next.classList.add('active');
-      current.classList.remove('active');
-      currentHeroVideo = nextIndex;
-    }
-
-    setInterval(switchHeroVideo, 6500);
-
-    const packVideo = document.getElementById('packVideo');
-
-    function tryPlayPackVideo() {
-      if (!packVideo) return;
-      packVideo.muted = true;
-      packVideo.defaultMuted = true;
-      const p = packVideo.play();
-      if (p !== undefined) p.catch(() => {});
-    }
-
-    if (packVideo) {
-      packVideo.addEventListener('loadeddata', tryPlayPackVideo);
-      packVideo.addEventListener('canplay', tryPlayPackVideo);
-      window.addEventListener('load', tryPlayPackVideo);
-
-      const packObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) tryPlayPackVideo();
-        });
-      }, { threshold: 0.2 });
-
-      packObserver.observe(packVideo);
-    }
-
-    const moduleCards = document.querySelectorAll('.module-card');
-
-    moduleCards.forEach((card, cardIndex) => {
-      const media = card.querySelector('.module-media');
-      let slides = [];
-
-      try {
-        slides = JSON.parse(card.dataset.slides || '[]');
-      } catch (error) {
-        slides = [];
-      }
-
-      if (media && slides.length) {
-        slides.forEach((src, index) => {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = '';
-          img.className = 'module-slide' + (index === 0 ? ' active' : '');
-          img.loading = index === 0 ? 'eager' : 'lazy';
-          media.appendChild(img);
-        });
-
-        const slideEls = media.querySelectorAll('.module-slide');
-        let currentSlide = 0;
-
-        if (slideEls.length > 1) {
-          setInterval(() => {
-            slideEls[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slideEls.length;
-            slideEls[currentSlide].classList.add('active');
-          }, 2600 + (cardIndex % 3) * 300);
-        }
-      }
-
-      const targetLink = card.dataset.link;
-      if (targetLink) {
-        card.addEventListener('click', () => {
-          window.open(targetLink, '_blank');
-        });
-
-        card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            window.open(targetLink, '_blank');
-          }
-        });
-      }
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.14 });
-
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    // Reveal
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('is-visible')})},{threshold:0.14});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   </script>
 </body>
 </html>
