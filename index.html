@@ -184,21 +184,25 @@
       text-transform:uppercase;color:rgba(255,255,255,.72);
     }
 
-    /* MARQUEE BAND */
-    .marquee-band{
-      margin-top:70px;
+    /* BARRE ANNONCE ROTATIVE */
+    .announce-bar{
+      margin-top:82px;
       background:linear-gradient(90deg,rgba(200,169,107,.10),rgba(200,169,107,.06),rgba(200,169,107,.10));
       border-top:1px solid rgba(200,169,107,.18);border-bottom:1px solid rgba(200,169,107,.18);
-      overflow:hidden;padding:13px 0;white-space:nowrap;max-width:100vw;
+      overflow:hidden;padding:12px 16px;
     }
-    .marquee-track{display:inline-flex;animation:marquee 28s linear infinite;will-change:transform}
-    .marquee-track:hover{animation-play-state:paused}
-    .marquee-item{
-      display:inline-flex;align-items:center;gap:10px;padding:0 28px;
-      font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.72);flex-shrink:0;
+    .announce-inner{
+      width:min(var(--max),100%);margin:0 auto;
+      display:flex;align-items:center;justify-content:center;min-height:20px;
     }
-    .marquee-dot{width:4px;height:4px;border-radius:999px;background:var(--gold);opacity:.7;flex:0 0 auto}
-    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .announce-msg{
+      font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.78);
+      text-align:center;line-height:1.5;
+      transition:opacity .45s ease,transform .45s ease;
+      opacity:1;transform:translateX(0);
+    }
+    .announce-msg.slide-out{opacity:0;transform:translateX(-26px)}
+    .announce-msg.slide-in{opacity:0;transform:translateX(26px);transition:none}
 
     /* FEATURE / PACK */
     .feature-wrap{display:grid;grid-template-columns:1.06fr .94fr;gap:28px;align-items:center}
@@ -345,8 +349,8 @@
     /* ACCESSIBILITÉ : réduit les animations si demandé par le système */
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
-      .marquee-track{animation:none}
       .reveal{opacity:1;transform:none;transition:none}
+      .announce-msg{transition:opacity .3s ease;transform:none!important}
       .hero-video{transition:opacity .3s ease;transform:none}
       .module-slide{transition:opacity .3s ease;transform:none}
       .btn,.btn::after,.stat,.module-card{transition:none}
@@ -361,7 +365,7 @@
     }
     @media(max-width:760px){
       .topbar-inner{min-height:64px;padding:10px 0}
-      .marquee-band{margin-top:64px}
+      .announce-bar{margin-top:74px}
       .nav{display:none}
       .hero{min-height:92svh}
       .hero-inner{width:min(100% - 20px,var(--max));padding:56px 0 28px;gap:18px}
@@ -396,30 +400,10 @@
     </div>
   </header>
 
-  <!-- MARQUEE BAND -->
-  <div class="marquee-band" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item"><span class="marquee-dot"></span>13 modules + page complète</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Téléchargement immédiat</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>79 € prix de lancement</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
-      <!-- Duplicate for seamless loop -->
-      <span class="marquee-item"><span class="marquee-dot"></span>13 modules + page complète</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Téléchargement immédiat</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>79 € prix de lancement</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
+  <!-- BARRE ANNONCE ROTATIVE (module 01 en action) -->
+  <div class="announce-bar" role="status" aria-live="polite">
+    <div class="announce-inner">
+      <span class="announce-msg" id="announceMsg">13 modules premium + la page complète assemblée</span>
     </div>
   </div>
 
@@ -686,6 +670,31 @@
   </footer>
 
   <script>
+    // Barre d'annonce rotative (module 01 en action sur notre propre page)
+    const announceMessages=[
+      "13 modules premium + la page complète assemblée",
+      "79 € prix de lancement — passe à 129 € le 1er septembre",
+      "Shopify & Webflow : copie, colle, c'est en ligne",
+      "Guide d'intégration inclus · téléchargement immédiat"
+    ];
+    const announceEl=document.getElementById('announceMsg');
+    if(announceEl && announceMessages.length>1){
+      let ai=0;
+      setInterval(()=>{
+        announceEl.classList.add('slide-out');
+        setTimeout(()=>{
+          ai=(ai+1)%announceMessages.length;
+          announceEl.textContent=announceMessages[ai];
+          announceEl.classList.remove('slide-out');
+          announceEl.classList.add('slide-in');
+          requestAnimationFrame(()=>requestAnimationFrame(()=>{
+            announceEl.style.transition='';
+            announceEl.classList.remove('slide-in');
+          }));
+        },460);
+      },4200);
+    }
+
     // Hero videos
     const heroVideos = document.querySelectorAll('.hero-video');
     let currentHeroVideo = 0;
