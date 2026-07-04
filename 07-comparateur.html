@@ -188,6 +188,7 @@ body{
 
 .compare-before{
   z-index:2;
+  filter:saturate(.58) brightness(.90) contrast(.95);
   filter:brightness(.88) saturate(.92) contrast(1.02);
   clip-path:inset(0 calc(100% - var(--pos)) 0 0);
   -webkit-clip-path:inset(0 calc(100% - var(--pos)) 0 0);
@@ -211,20 +212,8 @@ body{
     rgba(201,169,110,.14)
   );
   box-shadow:
-    0 0 22px rgba(201,169,110,.26),
-    0 0 2px rgba(255,255,255,.25);
-}
-
-.compare-line::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  transform:translateX(-50%);
-  width:40px;
-  height:100%;
-  background:linear-gradient(90deg, rgba(201,169,110,.18), rgba(201,169,110,0));
-  pointer-events:none;
+    0 0 6px rgba(201,169,110,.30),
+    0 0 1px rgba(0,0,0,.35);
 }
 
 /* Handle */
@@ -452,7 +441,7 @@ body{
           <img
             class="compare-img compare-before"
             id="beforeImg"
-            src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-before-1774138178538_vxllx7.png"
+            src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138182676_tqrpej.png"
             alt="Résultat avant"
           />
 
@@ -460,9 +449,8 @@ body{
 
           <div class="compare-handle" id="compareHandle">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="14 6 8 12 14 18"></polyline>
-              <polyline points="10 6 4 12 10 18"></polyline>
-              <polyline points="10 6 16 12 10 18" opacity=".5"></polyline>
+              <polyline points="9 7 4 12 9 17"></polyline>
+              <polyline points="15 7 20 12 15 17"></polyline>
             </svg>
           </div>
 
@@ -488,22 +476,26 @@ body{
 const PAIRS = [
   {
     color:'#F2E0CC',
-    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-before-1774138178538_vxllx7.png',
+    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138182676_tqrpej.png',
     after:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138182676_tqrpej.png'
   },
   {
     color:'#D4A574',
-    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-before-1774138211931_udftwf.png',
+    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143518/glowup-after-1774138214841_ejukds.png',
     after:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143518/glowup-after-1774138214841_ejukds.png'
   },
   {
     color:'#B8865A',
-    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-before-1774138230884_luw2sx.png',
+    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138233177_bky2nu.png',
     after:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138233177_bky2nu.png'
   }
 ];
 
 const stage = document.getElementById('compareStage');
+/* NOTE : dans cette démo, "avant" et "après" utilisent la même image,
+   l'effet "avant" (peau terne) est créé par le filtre CSS .compare-before.
+   Avec vos vraies photos avant/après : mettez vos deux URLs dans les paires
+   ci-dessus et supprimez la ligne "filter" de .compare-before. */
 const beforeImg = document.getElementById('beforeImg');
 const afterImg = document.getElementById('afterImg');
 const swatches = document.getElementById('swatches');
