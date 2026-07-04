@@ -3,11 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LUMIÈRE — Modules Premium</title>
-  <meta name="description" content="Pack de modules premium pour sites beauté, e-commerce et marques visuelles. Expérience luxe, immersive et ultra-convertissante." />
+
+  <!-- SEO -->
+  <title>LUMIÈRE — 13 modules HTML premium + page complète pour marques beauté | 79 €</title>
+  <meta name="description" content="Pack de 13 modules HTML/CSS/JS premium + page complète assemblée pour boutiques beauté Shopify & Webflow. Hero vidéo, quiz, comparateur avant/après. Design dark luxury, guide d'intégration inclus. 79 € prix de lancement." />
+  <link rel="canonical" href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/" />
+
+  <!-- Open Graph (partage TikTok, Instagram, Facebook, LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="LUMIÈRE" />
+  <meta property="og:title" content="LUMIÈRE — 13 modules premium + page complète pour marques beauté" />
+  <meta property="og:description" content="Des modules HTML/CSS/JS qui rendent ta boutique beauté irrésistible. Copie, colle, ça fonctionne. 79 € prix de lancement." />
+  <meta property="og:url" content="https://jkimsociete-eng.github.io/Beauty-Website-Modules/" />
+  <meta property="og:image" content="https://jkimsociete-eng.github.io/Beauty-Website-Modules/mockup.png" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LUMIÈRE — 13 modules premium + page complète pour marques beauté" />
+  <meta name="twitter:description" content="Des modules HTML/CSS/JS qui rendent ta boutique beauté irrésistible. 79 € prix de lancement." />
+  <meta name="twitter:image" content="https://jkimsociete-eng.github.io/Beauty-Website-Modules/mockup.png" />
+
+  <!-- Données structurées produit (Google) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LUMIÈRE — Pack 13 modules HTML premium + page complète",
+    "description": "13 modules HTML/CSS/JS premium + page complète assemblée pour boutiques beauté Shopify et Webflow. Guide d'intégration inclus.",
+    "image": "https://jkimsociete-eng.github.io/Beauty-Website-Modules/mockup.png",
+    "brand": { "@type": "Brand", "name": "LUMIÈRE" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://lumirebeauty.gumroad.com/l/demo",
+      "priceCurrency": "EUR",
+      "price": "79.00",
+      "priceValidUntil": "2026-09-01",
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "KIMYNJ" }
+    }
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -25,7 +65,7 @@
       background:radial-gradient(circle at top,rgba(200,169,107,.08),transparent 26%),linear-gradient(180deg,#090909 0%,#0d0d0d 40%,#060606 100%);
       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
       overflow-x:hidden;
-      overscroll-behavior-x:none; /* fix mobile horizontal swipe */
+      overscroll-behavior-x:none;
     }
     a{color:inherit;text-decoration:none}
     img,video{display:block;max-width:100%}
@@ -50,6 +90,7 @@
       transform:translateX(-120%);transition:transform .7s ease;
     }
     .btn:hover::after{transform:translateX(120%)}
+    .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
     .btn-primary{
       color:var(--text);border-color:rgba(212,179,115,.42);
       background:linear-gradient(180deg,rgba(212,179,115,.22),rgba(212,179,115,.08));
@@ -92,7 +133,7 @@
     .hero{
       position:relative;min-height:100svh;overflow:hidden;
       display:flex;align-items:flex-end;padding-top:70px;
-      touch-action:pan-y; /* prevent horizontal swipe from breaking layout on iOS */
+      touch-action:pan-y;
     }
     .hero-media{position:absolute;inset:0;overflow:hidden}
     .hero-video{
@@ -265,16 +306,44 @@
       border:1px solid rgba(255,255,255,.08);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.78);
     }
     .availability{margin-top:14px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-size:11px}
+    .reassurance{margin-top:18px;font-size:12px;color:var(--muted-2);letter-spacing:.04em}
+
+    /* FAQ */
+    .faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:34px}
+    .faq-item{
+      padding:24px;border-radius:22px;background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.07);
+    }
+    .faq-item h4{margin:0;font-size:16px;font-weight:600;color:var(--text)}
+    .faq-item p{margin:10px 0 0;font-size:14px;line-height:1.7;color:var(--muted)}
+
+    /* FOOTER */
+    .footer{border-top:1px solid var(--line);padding:40px 0 34px;margin-top:30px}
+    .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:flex-start}
+    .footer-legal{margin:0;font-size:11px;color:var(--muted-2);line-height:1.8;max-width:680px}
+    .footer-links{display:flex;gap:16px;font-size:12px;color:var(--muted)}
+    .footer-links a:hover{color:var(--gold)}
 
     /* REVEAL */
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
     .reveal.is-visible{opacity:1;transform:none}
+
+    /* ACCESSIBILITÉ : réduit les animations si demandé par le système */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .marquee-track{animation:none}
+      .reveal{opacity:1;transform:none;transition:none}
+      .hero-video{transition:opacity .3s ease;transform:none}
+      .module-slide{transition:opacity .3s ease;transform:none}
+      .btn,.btn::after,.stat,.module-card{transition:none}
+    }
 
     /* RESPONSIVE */
     @media(max-width:1100px){
       .hero-inner,.feature-wrap{grid-template-columns:1fr}
       .hero-panel{justify-self:start;width:min(100%,560px)}
       .modules-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .faq-grid{grid-template-columns:1fr}
     }
     @media(max-width:760px){
       .topbar-inner{min-height:64px;padding:10px 0}
@@ -294,6 +363,7 @@
       .hero-actions{width:100%}
       .btn{width:100%}
       .price-current{font-size:clamp(48px,14vw,72px)}
+      .footer-inner{flex-direction:column}
     }
   </style>
 </head>
@@ -302,21 +372,22 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">LUMIÈRE</div>
-      <nav class="nav">
+      <nav class="nav" aria-label="Navigation principale">
         <a href="#pack">Pack complet</a>
         <a href="#modules">Modules</a>
+        <a href="#faq">FAQ</a>
         <a href="#pricing" class="nav-cta">Voir l'offre</a>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-media">
+  <section class="hero" aria-label="Présentation">
+    <div class="hero-media" aria-hidden="true">
       <video class="hero-video active" autoplay muted loop playsinline webkit-playsinline preload="auto">
         <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880534/3181513-hd_1280_720_25fps_r7clr7.mp4" type="video/mp4">
       </video>
-      <video class="hero-video" muted loop playsinline webkit-playsinline preload="auto">
+      <video class="hero-video" muted loop playsinline webkit-playsinline preload="none">
         <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1773880555/3762912-hd_1280_720_50fps_bybc6z.mp4" type="video/mp4">
       </video>
       <div class="hero-overlay"></div>
@@ -325,13 +396,13 @@
     <div class="hero-inner">
       <div class="hero-copy reveal">
         <span class="eyebrow">Digital luxury modules</span>
-        <h1>Des modules premium<br>qui rendent ton site<br>irrésistible.</h1>
+        <h1>Des modules premium<br>qui rendent ta boutique<br>irrésistible.</h1>
         <p class="hero-sub">
           Une expérience plus sensuelle, plus immersive et plus premium.
           Pensée pour capturer l'attention immédiatement et transformer une simple visite en envie d'acheter.
         </p>
         <div class="hero-actions">
-          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-primary">Voir la démo complète</a>
+          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" rel="noopener" class="btn btn-primary">Voir la démo complète</a>
           <a href="#modules" class="btn btn-secondary">Explorer les modules</a>
         </div>
       </div>
@@ -339,7 +410,7 @@
       <aside class="hero-panel reveal">
         <span class="eyebrow">Pensé conversion</span>
         <div class="stats">
-          <div class="stat"><strong>14</strong><span>modules premium réunis dans une seule offre</span></div>
+          <div class="stat"><strong>13 + 1</strong><span>13 modules premium + la page complète assemblée</span></div>
           <div class="stat"><strong>100%</strong><span>mobile, immersif et visuellement fort</span></div>
           <div class="stat"><strong>Luxe</strong><span>direction artistique dark et éditoriale</span></div>
           <div class="stat"><strong>Cloud</strong><span>assets directs, faciles à intégrer</span></div>
@@ -354,28 +425,28 @@
     </div>
   </section>
 
-  <!-- MARQUEE BAND — entre hero et section pack -->
-  <div class="marquee-band">
+  <!-- MARQUEE BAND -->
+  <div class="marquee-band" aria-hidden="true">
     <div class="marquee-track">
-      <span class="marquee-item"><span class="marquee-dot"></span>14 modules premium</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>13 modules + page complète</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Livraison immédiate</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>79 € early bird</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Téléchargement immédiat</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>79 € prix de lancement</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
       <!-- Duplicate for seamless loop -->
-      <span class="marquee-item"><span class="marquee-dot"></span>14 modules premium</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>13 modules + page complète</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Livraison immédiate</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>79 € early bird</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Téléchargement immédiat</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>79 € prix de lancement</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
       <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
     </div>
@@ -386,24 +457,24 @@
     <div class="container">
       <div class="feature-wrap">
         <div class="video-shell reveal">
-          <video id="packVideo" autoplay muted loop playsinline webkit-playsinline preload="auto"
+          <video id="packVideo" autoplay muted loop playsinline webkit-playsinline preload="metadata"
             poster="https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png">
             <source src="https://res.cloudinary.com/dy6joecsh/video/upload/v1774299724/VIDEO_DEMO_mq9oy8.mp4" type="video/mp4">
           </video>
           <div class="glow"></div>
         </div>
         <div class="content-card reveal">
-          <span class="eyebrow">Module 000</span>
-          <h2>Le pack complet qui donne immédiatement une allure premium à ta démo.</h2>
-          <p>14 modules HTML/CSS/JS prêts à intégrer sur Shopify ou Webflow. Direction artistique dark luxury, animations cinématiques et expérience immersive pensée pour les marques beauté qui veulent convertir davantage.</p>
+          <span class="eyebrow">La page complète</span>
+          <h2>Le pack complet qui donne immédiatement une allure premium à ta boutique.</h2>
+          <p>13 modules HTML/CSS/JS + la page complète déjà assemblée, prêts à intégrer sur Shopify ou Webflow. Direction artistique dark luxury, animations cinématiques et expérience immersive pensée pour les marques beauté qui veulent convertir davantage.</p>
           <div class="bullet-list">
             <div class="bullet">Effet "wow" immédiat dès l'arrivée sur la page.</div>
             <div class="bullet">Perception de valeur plus haute et plus cohérente.</div>
-            <div class="bullet">Présentation globale du système avant le détail.</div>
+            <div class="bullet">La page complète assemblée : le résultat final, sans le travail d'assemblage.</div>
             <div class="bullet">Idéal pour vendre une offre premium avec plus d'impact.</div>
           </div>
           <div class="hero-actions" style="margin-top:26px">
-            <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-primary">Voir la démo VELOUR</a>
+            <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" rel="noopener" class="btn btn-primary">Voir la démo VELOUR</a>
           </div>
         </div>
       </div>
@@ -416,100 +487,100 @@
       <div class="grid-head reveal">
         <div>
           <span class="eyebrow">Collection</span>
-          <h3 class="title-serif">Les modules en version cinematic</h3>
+          <h3 class="title-serif">Les 13 modules en version cinematic</h3>
         </div>
         <p>Chaque carte anime automatiquement les visuels du module et renvoie directement vers sa page de démo.</p>
       </div>
       <div class="modules-grid">
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Barre annonce"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/01-barre-annonce.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774829205/Capture_d_%C3%A9cran_834_snubou.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829204/Capture_d_%C3%A9cran_836_d44oba.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">01 • Barre annonce</span><h4>Header premium</h4><p>Un haut de page plus fort, plus propre, plus crédible dès les premières secondes.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Hero slideshow"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/02-hero-slideshow.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_887_pzggwl.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774819689/Capture_d_%C3%A9cran_888_mb4bgl.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774819688/Capture_d_%C3%A9cran_886_cq3l6c.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">02 • Hero slideshow</span><h4>Hero slideshow</h4><p>Un hero plus vivant, plus mode, plus immersif, pour capter l'œil immédiatement.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Vidéo compacte"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/03-video-compact.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_844_dsc89w.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_845_wm8nht.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829182/Capture_d_%C3%A9cran_847_tue4wf.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829183/Capture_d_%C3%A9cran_846_hqfayi.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
-          <div class="module-meta"><span class="module-number">03 • Vidéo compacte</span><h4>Video compacte</h4><p>Un bloc dense, élégant et rythmé, parfait pour présenter un module sans alourdir la page.</p></div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
+          <div class="module-meta"><span class="module-number">03 • Vidéo compacte</span><h4>Video compacte</h4><p>Un bloc dense, élégant et rythmé, parfait pour présenter un produit sans alourdir la page.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Vidéo full"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/04-video-full.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_867_lbzsgl.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_868_xhi8bc.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827974/Capture_d_%C3%A9cran_869_sb7i5o.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827973/Capture_d_%C3%A9cran_870_qc9ukr.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">04 • Vidéo full</span><h4>Video full immersive</h4><p>Une section large et cinématique qui donne une vraie sensation de campagne premium.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Hero panel"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/05-hero-panel.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_889_uqzvtt.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827929/Capture_d_%C3%A9cran_887_s854oi.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827914/Capture_d_%C3%A9cran_888_rvacrp.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827929/Capture_d_%C3%A9cran_886_zkzzd6.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">05 • Hero panel</span><h4>Hero panel</h4><p>Un panneau éditorial plus luxe, plus structuré, qui renforce la présence visuelle du hero.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Marquee"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/06-marquee.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_892_vxoior.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827913/Capture_d_%C3%A9cran_890_arrtyh.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_893_evgxju.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827890/Capture_d_%C3%A9cran_894_sttdpd.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">06 • Marquee</span><h4>Marquee premium</h4><p>Ajoute du mouvement, du rythme et un côté plus contemporain à la page.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Comparateur"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/07-comparateur.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_898_ydk4dx.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_897_raqoog.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827889/Capture_d_%C3%A9cran_899_efxcpa.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827888/Capture_d_%C3%A9cran_900_jkn2x5.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">07 • Comparateur</span><h4>Comparateur</h4><p>Le module de preuve visuelle qui aide le plus à faire ressentir la différence.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Quiz"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/08-quiz.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_902_rwbfen.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827855/Capture_d_%C3%A9cran_904_smp8rp.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">08 • Quiz</span><h4>Quiz intelligent</h4><p>Guide la visiteuse vers la bonne option de façon fluide et plus engageante.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Sélecteur"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/09-selecteur.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774823370/Capture_d_%C3%A9cran_908_f3d2ig.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774823353/Capture_d_%C3%A9cran_907_lw67ue.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774823386/Capture_d_%C3%A9cran_909_mlrnqm.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774823402/Capture_d_%C3%A9cran_910_i3vkxy.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">09 • Sélecteur</span><h4>Sélecteur premium</h4><p>Présente les choix et variantes avec plus de désirabilité et de clarté.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Guide des tailles"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/10-guide-tailles.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_913_uzticg.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774827853/Capture_d_%C3%A9cran_912_j9rtl3.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">10 • Guide tailles</span><h4>Guide des tailles</h4><p>Un bloc de réassurance utile qui réduit les hésitations au moment du choix.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Showcase"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/11-showcase.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774829261/Capture_d_%C3%A9cran_916_givuex.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_917_lrsxoy.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_918_g55kj1.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">11 • Showcase</span><h4>Showcase visuel</h4><p>Met en scène le contenu comme un vrai univers de marque, plus éditorial et plus luxe.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Dock"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/12-dock.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_919_q9rpdk.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_920_rhlcom.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_921_cpvqby.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774829223/Capture_d_%C3%A9cran_922_lxujyw.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">12 • Dock</span><h4>Dock interactif</h4><p>Ajoute une navigation visuelle plus moderne et un effet produit plus technologique.</p></div>
         </article>
 
-        <article class="module-card reveal" tabindex="0" role="link"
+        <article class="module-card reveal" tabindex="0" role="link" aria-label="Voir la démo du module Email et valeurs"
           data-link="https://jkimsociete-eng.github.io/Beauty-Website-Modules/13-email-valeurs.html"
           data-slides='["https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_925_ceqysw.png","https://res.cloudinary.com/dy6joecsh/image/upload/v1774823313/Capture_d_%C3%A9cran_923_uxsko2.png"]'>
-          <div class="module-media"></div><div class="module-arrow">↗</div>
+          <div class="module-media"></div><div class="module-arrow" aria-hidden="true">↗</div>
           <div class="module-meta"><span class="module-number">13 • Email valeurs</span><h4>Email capture / valeurs</h4><p>Renforce le storytelling, la collecte et la cohérence de la proposition de valeur.</p></div>
         </article>
 
@@ -521,9 +592,9 @@
   <section class="section" id="pricing">
     <div class="container">
       <div class="pricing-block reveal">
-        <span class="eyebrow" style="justify-content:center">Offre early bird</span>
+        <span class="eyebrow" style="justify-content:center">Prix de lancement</span>
         <h3 class="title-serif">Un seul pack.<br>Une expérience complète.</h3>
-        <p class="sub">14 modules premium HTML/CSS/JS, guide d'intégration inclus, assets Cloudinary prêts à l'emploi. Intégration immédiate sur Shopify ou Webflow.</p>
+        <p class="sub">13 modules premium HTML/CSS/JS + la page complète assemblée, guide d'intégration inclus, assets prêts à l'emploi. Intégration immédiate sur Shopify ou Webflow.</p>
         <div class="price-row">
           <div class="price-current"><sup>€</sup>79</div>
           <div class="price-old-wrap">
@@ -532,21 +603,72 @@
           </div>
         </div>
         <div class="price-features">
-          <span class="price-pill">14 modules HTML/CSS/JS</span>
+          <span class="price-pill">13 modules + page complète</span>
           <span class="price-pill">Guide d'intégration</span>
           <span class="price-pill">Shopify &amp; Webflow</span>
-          <span class="price-pill">Assets Cloudinary</span>
-          <span class="price-pill">Livraison immédiate</span>
+          <span class="price-pill">Assets prêts à l'emploi</span>
+          <span class="price-pill">Téléchargement immédiat</span>
           <span class="price-pill">Dark luxury aesthetic</span>
         </div>
-        <div class="availability">30 premières offres · il en reste 17</div>
+        <div class="availability">Prix de lancement — passe à 129 € le 1er septembre 2026</div>
         <div class="hero-actions" style="justify-content:center;margin-top:28px;gap:16px">
-          <a href="https://lumirebeauty.gumroad.com/l/demo" target="_blank" class="btn btn-primary" style="min-width:220px;font-size:13px">Obtenir le pack — 79 €</a>
-          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" class="btn btn-secondary">Voir la démo VELOUR</a>
+          <a href="https://lumirebeauty.gumroad.com/l/demo" target="_blank" rel="noopener" class="btn btn-primary" style="min-width:220px;font-size:13px">Obtenir le pack — 79 €</a>
+          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" rel="noopener" class="btn btn-secondary">Voir la démo VELOUR</a>
+        </div>
+        <p class="reassurance">Paiement sécurisé via Gumroad · Téléchargement immédiat après achat · Facture disponible</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="padding-top:0">
+    <div class="container">
+      <div class="grid-head reveal">
+        <div>
+          <span class="eyebrow">Questions fréquentes</span>
+          <h3 class="title-serif">Avant d'acheter</h3>
+        </div>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item reveal">
+          <h4>Je ne sais pas coder, c'est pour moi ?</h4>
+          <p>Oui. Chaque module est un fichier HTML autonome : tu copies le code, tu le colles dans une section personnalisée Shopify ou un embed Webflow, et ça fonctionne. Le guide d'intégration t'accompagne pas à pas.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>Qu'est-ce que je reçois exactement ?</h4>
+          <p>Un téléchargement immédiat contenant les 13 modules HTML/CSS/JS, la page complète assemblée, et le guide d'intégration. Chaque fichier est commenté pour te permettre de changer textes, couleurs et images facilement.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>Les images et vidéos de la démo sont incluses ?</h4>
+          <p>Les visuels de démonstration servent d'exemple. Tu les remplaces par les photos et vidéos de ta propre marque — c'est prévu pour, et le guide t'explique comment en quelques secondes.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>Ça fonctionne sur mobile ?</h4>
+          <p>Oui, chaque module est conçu mobile-first : il s'adapte automatiquement aux téléphones, tablettes et ordinateurs.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand" style="font-size:20px">LUMIÈRE</div>
+        <div class="footer-links" style="margin-top:12px">
+          <a href="https://lumirebeauty.gumroad.com/l/demo" target="_blank" rel="noopener">Acheter le pack</a>
+          <a href="https://jkimsociete-eng.github.io/Beauty-Website-Modules/velour-demo.html" target="_blank" rel="noopener">Démo VELOUR</a>
+          <a href="#modules">Modules</a>
+        </div>
+      </div>
+      <p class="footer-legal">
+        © 2026 KIMYNJ — Société par actions simplifiée unipersonnelle au capital de 1,00&nbsp;€ ·
+        RCS Nancy 105 838 080 · Siège social : 11 Rue Pierre Chalnot, 54000 Nancy ·
+        Directeur de la publication : Jérôme Nau · Contact : jkimsociete@gmail.com ·
+        Vente au détail assurée par Gumroad, Inc. en qualité de commerçant officiel.
+      </p>
+    </div>
+  </footer>
 
   <script>
     // Hero videos
@@ -564,7 +686,9 @@
       nxt.currentTime=0;const p=nxt.play();if(p)p.catch(()=>{});
       nxt.classList.add('active');cur.classList.remove('active');currentHeroVideo=ni;
     }
-    setInterval(switchHeroVideo,6500);
+    // Respecte prefers-reduced-motion : pas d'alternance auto si l'utilisateur limite les animations
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduceMotion && heroVideos.length>1){ setInterval(switchHeroVideo,6500); }
 
     // Pack video
     const pv=document.getElementById('packVideo');
@@ -584,11 +708,11 @@
         slides.forEach((src,i)=>{
           const img=document.createElement('img');
           img.src=src;img.alt='';img.className='module-slide'+(i===0?' active':'');
-          img.loading=i===0?'eager':'lazy';media.appendChild(img);
+          img.loading=i===0?'lazy':'lazy';img.decoding='async';media.appendChild(img);
         });
         const els=media.querySelectorAll('.module-slide');
         let cs=0;
-        if(els.length>1){
+        if(els.length>1 && !reduceMotion){
           setInterval(()=>{
             els[cs].classList.remove('active');cs=(cs+1)%els.length;els[cs].classList.add('active');
           },2600+(ci%3)*300);
@@ -596,8 +720,8 @@
       }
       const link=card.dataset.link;
       if(link){
-        card.addEventListener('click',()=>window.open(link,'_blank'));
-        card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();window.open(link,'_blank')}});
+        card.addEventListener('click',()=>window.open(link,'_blank','noopener'));
+        card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();window.open(link,'_blank','noopener')}});
       }
     });
 
