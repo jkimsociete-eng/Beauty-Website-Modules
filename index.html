@@ -132,7 +132,7 @@
     /* HERO */
     .hero{
       position:relative;min-height:100svh;overflow:hidden;
-      display:flex;align-items:flex-end;padding-top:70px;
+      display:flex;align-items:flex-end;
       touch-action:pan-y;
     }
     .hero-media{position:absolute;inset:0;overflow:hidden}
@@ -186,6 +186,7 @@
 
     /* MARQUEE BAND */
     .marquee-band{
+      margin-top:70px;
       background:linear-gradient(90deg,rgba(200,169,107,.10),rgba(200,169,107,.06),rgba(200,169,107,.10));
       border-top:1px solid rgba(200,169,107,.18);border-bottom:1px solid rgba(200,169,107,.18);
       overflow:hidden;padding:13px 0;white-space:nowrap;max-width:100vw;
@@ -324,6 +325,19 @@
     .footer-links{display:flex;gap:16px;font-size:12px;color:var(--muted)}
     .footer-links a:hover{color:var(--gold)}
 
+    /* EFFET : halo doré suivant le curseur (pricing) */
+    .pricing-block::before{
+      content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+      background:radial-gradient(circle 320px at var(--mx,50%) var(--my,18%),rgba(200,169,107,.13),transparent 70%);
+      transition:opacity .4s ease;opacity:0;
+    }
+    .pricing-block:hover::before{opacity:1}
+    .pricing-block>*{position:relative;z-index:1}
+
+    /* EFFET : tilt 3D des cartes modules */
+    .modules-grid{perspective:1200px}
+    .module-card.tilting{transition:transform .08s ease}
+
     /* REVEAL */
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
     .reveal.is-visible{opacity:1;transform:none}
@@ -347,6 +361,7 @@
     }
     @media(max-width:760px){
       .topbar-inner{min-height:64px;padding:10px 0}
+      .marquee-band{margin-top:64px}
       .nav{display:none}
       .hero{min-height:92svh}
       .hero-inner{width:min(100% - 20px,var(--max));padding:56px 0 28px;gap:18px}
@@ -380,6 +395,33 @@
       </nav>
     </div>
   </header>
+
+  <!-- MARQUEE BAND -->
+  <div class="marquee-band" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-dot"></span>13 modules + page complète</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Téléchargement immédiat</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>79 € prix de lancement</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item"><span class="marquee-dot"></span>13 modules + page complète</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Téléchargement immédiat</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>79 € prix de lancement</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero" aria-label="Présentation">
@@ -424,33 +466,6 @@
       </aside>
     </div>
   </section>
-
-  <!-- MARQUEE BAND -->
-  <div class="marquee-band" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item"><span class="marquee-dot"></span>13 modules + page complète</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Téléchargement immédiat</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>79 € prix de lancement</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
-      <!-- Duplicate for seamless loop -->
-      <span class="marquee-item"><span class="marquee-dot"></span>13 modules + page complète</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Shopify &amp; Webflow ready</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Dark luxury aesthetic</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Hero vidéo cinématique</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Quiz intelligent</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Comparateur avant/après</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Téléchargement immédiat</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>79 € prix de lancement</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Guide d'intégration inclus</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Mobile first &amp; immersif</span>
-    </div>
-  </div>
 
   <!-- PACK COMPLET -->
   <section class="section" id="pack">
@@ -724,6 +739,34 @@
         card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();window.open(link,'_blank','noopener')}});
       }
     });
+
+    // Effets modernes — uniquement souris précise, jamais si l'utilisateur limite les animations
+    const canFancy = window.matchMedia('(pointer:fine)').matches && !reduceMotion;
+    if(canFancy){
+      // Tilt 3D subtil sur les cartes modules
+      document.querySelectorAll('.module-card').forEach(card=>{
+        card.addEventListener('mousemove',e=>{
+          const r=card.getBoundingClientRect();
+          const x=(e.clientX-r.left)/r.width-.5;
+          const y=(e.clientY-r.top)/r.height-.5;
+          card.classList.add('tilting');
+          card.style.transform=`translateY(-6px) rotateX(${(-y*5).toFixed(2)}deg) rotateY(${(x*7).toFixed(2)}deg)`;
+        });
+        card.addEventListener('mouseleave',()=>{
+          card.classList.remove('tilting');
+          card.style.transform='';
+        });
+      });
+      // Halo doré suivant le curseur sur le bloc prix
+      const pb=document.querySelector('.pricing-block');
+      if(pb){
+        pb.addEventListener('mousemove',e=>{
+          const r=pb.getBoundingClientRect();
+          pb.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+          pb.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+        });
+      }
+    }
 
     // Reveal
     const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('is-visible')})},{threshold:0.14});
