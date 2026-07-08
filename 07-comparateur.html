@@ -188,7 +188,6 @@ body{
 
 .compare-before{
   z-index:2;
-  filter:saturate(.58) brightness(.90) contrast(.95);
   filter:brightness(.88) saturate(.92) contrast(1.02);
   clip-path:inset(0 calc(100% - var(--pos)) 0 0);
   -webkit-clip-path:inset(0 calc(100% - var(--pos)) 0 0);
@@ -434,14 +433,14 @@ body{
           <img
             class="compare-img compare-after"
             id="afterImg"
-            src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138182676_tqrpej.png"
+            src="https://res.cloudinary.com/dy6joecsh/image/upload/v1783517740/lumiere-apres-1.png_zesho2.png"
             alt="Résultat après"
           />
 
           <img
             class="compare-img compare-before"
             id="beforeImg"
-            src="https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138182676_tqrpej.png"
+            src="https://res.cloudinary.com/dy6joecsh/image/upload/v1783517740/lumiere-avant-1.png_ez4d2m.png"
             alt="Résultat avant"
           />
 
@@ -476,26 +475,25 @@ body{
 const PAIRS = [
   {
     color:'#F2E0CC',
-    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138182676_tqrpej.png',
-    after:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138182676_tqrpej.png'
+    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1783517740/lumiere-avant-1.png_ez4d2m.png',
+    after:'https://res.cloudinary.com/dy6joecsh/image/upload/v1783517740/lumiere-apres-1.png_zesho2.png'
   },
   {
     color:'#D4A574',
-    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143518/glowup-after-1774138214841_ejukds.png',
-    after:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143518/glowup-after-1774138214841_ejukds.png'
+    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1783517741/lumiere-avant-2.png_h18f5h.png',
+    after:'https://res.cloudinary.com/dy6joecsh/image/upload/v1783517741/lumiere-apres-2.png_s3zse8.png'
   },
   {
     color:'#B8865A',
-    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138233177_bky2nu.png',
-    after:'https://res.cloudinary.com/dy6joecsh/image/upload/v1774143519/glowup-after-1774138233177_bky2nu.png'
+    before:'https://res.cloudinary.com/dy6joecsh/image/upload/v1783517741/lumiere-avant-3.png_ouzybd.png',
+    after:'https://res.cloudinary.com/dy6joecsh/image/upload/v1783517741/lumiere-apres-3.png_ibu7gh.png'
   }
 ];
 
 const stage = document.getElementById('compareStage');
-/* NOTE : dans cette démo, "avant" et "après" utilisent la même image,
-   l'effet "avant" (peau terne) est créé par le filtre CSS .compare-before.
-   Avec vos vraies photos avant/après : mettez vos deux URLs dans les paires
-   ci-dessus et supprimez la ligne "filter" de .compare-before. */
+/* NOTE : pour vos propres photos avant/après, remplacez simplement
+   les URLs before/after dans les paires ci-dessus. Utilisez deux photos
+   au même cadrage (même position du visage) pour un effet parfait. */
 const beforeImg = document.getElementById('beforeImg');
 const afterImg = document.getElementById('afterImg');
 const swatches = document.getElementById('swatches');
